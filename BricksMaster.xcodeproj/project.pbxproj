@@ -12,6 +12,12 @@
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
 		0EC28DF421EC6BAD00DEF32B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF221EC6BAD00DEF32B /* LaunchScreen.storyboard */; };
+		0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DFB21EC71F300DEF32B /* Bank.swift */; };
+		0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DFC21EC71F300DEF32B /* CustomButton.swift */; };
+		0EC28E0321EC71F400DEF32B /* Brick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DFD21EC71F300DEF32B /* Brick.swift */; };
+		0EC28E0421EC71F400DEF32B /* Footswitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DFE21EC71F300DEF32B /* Footswitch.swift */; };
+		0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DFF21EC71F300DEF32B /* FootswitchButton.swift */; };
+		0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28E0021EC71F300DEF32B /* Preset.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +28,12 @@
 		0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0EC28DF321EC6BAD00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0EC28DF521EC6BAD00DEF32B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0EC28DFB21EC71F300DEF32B /* Bank.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bank.swift; sourceTree = "<group>"; };
+		0EC28DFC21EC71F300DEF32B /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		0EC28DFD21EC71F300DEF32B /* Brick.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Brick.swift; sourceTree = "<group>"; };
+		0EC28DFE21EC71F300DEF32B /* Footswitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Footswitch.swift; sourceTree = "<group>"; };
+		0EC28DFF21EC71F300DEF32B /* FootswitchButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FootswitchButton.swift; sourceTree = "<group>"; };
+		0EC28E0021EC71F300DEF32B /* Preset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preset.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
+				0EC28E0721EC720100DEF32B /* Model */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
 				0EC28DEB21EC6BAA00DEF32B /* ViewController.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
@@ -62,6 +75,19 @@
 				0EC28DF521EC6BAD00DEF32B /* Info.plist */,
 			);
 			path = BricksMaster;
+			sourceTree = "<group>";
+		};
+		0EC28E0721EC720100DEF32B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0EC28DFB21EC71F300DEF32B /* Bank.swift */,
+				0EC28DFD21EC71F300DEF32B /* Brick.swift */,
+				0EC28DFC21EC71F300DEF32B /* CustomButton.swift */,
+				0EC28DFE21EC71F300DEF32B /* Footswitch.swift */,
+				0EC28DFF21EC71F300DEF32B /* FootswitchButton.swift */,
+				0EC28E0021EC71F300DEF32B /* Preset.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +161,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC28E0321EC71F400DEF32B /* Brick.swift in Sources */,
+				0EC28E0421EC71F400DEF32B /* Footswitch.swift in Sources */,
+				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
+				0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */,
+				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0EC28DEC21EC6BAA00DEF32B /* ViewController.swift in Sources */,
+				0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */,
 				0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +317,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A4283R63P3;
 				INFOPLIST_FILE = BricksMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -303,6 +336,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A4283R63P3;
 				INFOPLIST_FILE = BricksMaster/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
