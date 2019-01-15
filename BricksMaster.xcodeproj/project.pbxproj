@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEC21EC6BAA00DEF32B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DEB21EC6BAA00DEF32B /* ViewController.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
@@ -24,27 +25,10 @@
 		0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */; };
 		0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */; };
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
-		0EC28E1921EC771A00DEF32B /* ic_cached_24px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1621EC771A00DEF32B /* ic_cached_24px@3x.png */; };
-		0EC28E1A21EC771A00DEF32B /* ic_cached_24px.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1721EC771A00DEF32B /* ic_cached_24px.png */; };
-		0EC28E1B21EC771A00DEF32B /* ic_cached_24px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1821EC771A00DEF32B /* ic_cached_24px@2x.png */; };
-		0EC28E2021EC7DCD00DEF32B /* ic_settings_remote_48px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1D21EC7DCC00DEF32B /* ic_settings_remote_48px@3x.png */; };
-		0EC28E2121EC7DCD00DEF32B /* ic_settings_remote_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1E21EC7DCD00DEF32B /* ic_settings_remote_48px.png */; };
-		0EC28E2221EC7DCD00DEF32B /* ic_settings_remote_48px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1F21EC7DCD00DEF32B /* ic_settings_remote_48px@2x.png */; };
-		0EC28E2721EC833100DEF32B /* ic_view_module_48px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E2421EC833000DEF32B /* ic_view_module_48px@3x.png */; };
-		0EC28E2821EC833100DEF32B /* ic_view_module_48px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E2521EC833000DEF32B /* ic_view_module_48px@2x.png */; };
-		0EC28E2921EC833100DEF32B /* ic_view_module_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E2621EC833100DEF32B /* ic_view_module_48px.png */; };
-		0EC28E2E21EC8B4F00DEF32B /* gray_ic_settings_remote_48px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E2B21EC8B4E00DEF32B /* gray_ic_settings_remote_48px@2x.png */; };
-		0EC28E2F21EC8B4F00DEF32B /* gray_ic_settings_remote_48px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E2C21EC8B4E00DEF32B /* gray_ic_settings_remote_48px@3x.png */; };
-		0EC28E3021EC8B4F00DEF32B /* gray_ic_settings_remote_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E2D21EC8B4F00DEF32B /* gray_ic_settings_remote_48px.png */; };
-		0EC28E3521EC922300DEF32B /* ic_more_vert_48px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E3221EC922300DEF32B /* ic_more_vert_48px@2x.png */; };
-		0EC28E3621EC922300DEF32B /* ic_more_vert_48px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E3321EC922300DEF32B /* ic_more_vert_48px@3x.png */; };
-		0EC28E3721EC922300DEF32B /* ic_more_vert_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E3421EC922300DEF32B /* ic_more_vert_48px.png */; };
-		0EC28E3C21EC9C6100DEF32B /* white_ic_more_vert_48px@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E3921EC9C6000DEF32B /* white_ic_more_vert_48px@2x.png */; };
-		0EC28E3D21EC9C6100DEF32B /* white_ic_more_vert_48px.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E3A21EC9C6100DEF32B /* white_ic_more_vert_48px.png */; };
-		0EC28E3E21EC9C6100DEF32B /* white_ic_more_vert_48px@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E3B21EC9C6100DEF32B /* white_ic_more_vert_48px@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralBluetoothManager.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEB21EC6BAA00DEF32B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -64,24 +48,6 @@
 		0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
-		0EC28E1621EC771A00DEF32B /* ic_cached_24px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_cached_24px@3x.png"; sourceTree = "<group>"; };
-		0EC28E1721EC771A00DEF32B /* ic_cached_24px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_cached_24px.png; sourceTree = "<group>"; };
-		0EC28E1821EC771A00DEF32B /* ic_cached_24px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_cached_24px@2x.png"; sourceTree = "<group>"; };
-		0EC28E1D21EC7DCC00DEF32B /* ic_settings_remote_48px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_settings_remote_48px@3x.png"; sourceTree = "<group>"; };
-		0EC28E1E21EC7DCD00DEF32B /* ic_settings_remote_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_settings_remote_48px.png; sourceTree = "<group>"; };
-		0EC28E1F21EC7DCD00DEF32B /* ic_settings_remote_48px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_settings_remote_48px@2x.png"; sourceTree = "<group>"; };
-		0EC28E2421EC833000DEF32B /* ic_view_module_48px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_view_module_48px@3x.png"; sourceTree = "<group>"; };
-		0EC28E2521EC833000DEF32B /* ic_view_module_48px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_view_module_48px@2x.png"; sourceTree = "<group>"; };
-		0EC28E2621EC833100DEF32B /* ic_view_module_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_view_module_48px.png; sourceTree = "<group>"; };
-		0EC28E2B21EC8B4E00DEF32B /* gray_ic_settings_remote_48px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_ic_settings_remote_48px@2x.png"; sourceTree = "<group>"; };
-		0EC28E2C21EC8B4E00DEF32B /* gray_ic_settings_remote_48px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gray_ic_settings_remote_48px@3x.png"; sourceTree = "<group>"; };
-		0EC28E2D21EC8B4F00DEF32B /* gray_ic_settings_remote_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gray_ic_settings_remote_48px.png; sourceTree = "<group>"; };
-		0EC28E3221EC922300DEF32B /* ic_more_vert_48px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_more_vert_48px@2x.png"; sourceTree = "<group>"; };
-		0EC28E3321EC922300DEF32B /* ic_more_vert_48px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ic_more_vert_48px@3x.png"; sourceTree = "<group>"; };
-		0EC28E3421EC922300DEF32B /* ic_more_vert_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_more_vert_48px.png; sourceTree = "<group>"; };
-		0EC28E3921EC9C6000DEF32B /* white_ic_more_vert_48px@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_ic_more_vert_48px@2x.png"; sourceTree = "<group>"; };
-		0EC28E3A21EC9C6100DEF32B /* white_ic_more_vert_48px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white_ic_more_vert_48px.png; sourceTree = "<group>"; };
-		0EC28E3B21EC9C6100DEF32B /* white_ic_more_vert_48px@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "white_ic_more_vert_48px@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,10 +80,10 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
-				0EC28E1521EC76F900DEF32B /* Icons */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,
 				0EC28E0721EC720100DEF32B /* Model */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
+				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
 				0EC28DEB21EC6BAA00DEF32B /* ViewController.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
@@ -151,79 +117,6 @@
 				0EC28E0921EC736100DEF32B /* SF-Pro-Text-Semibold.otf */,
 			);
 			path = Fonts;
-			sourceTree = "<group>";
-		};
-		0EC28E1521EC76F900DEF32B /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E3F21EC9C6B00DEF32B /* White More */,
-				0EC28E3821EC922B00DEF32B /* More */,
-				0EC28E3121EC8B5700DEF32B /* Gray Device Icon */,
-				0EC28E2A21EC833D00DEF32B /* Presets */,
-				0EC28E2321EC7DD600DEF32B /* Small Device Icon */,
-				0EC28E1C21EC772000DEF32B /* Refresh */,
-			);
-			path = Icons;
-			sourceTree = "<group>";
-		};
-		0EC28E1C21EC772000DEF32B /* Refresh */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E1721EC771A00DEF32B /* ic_cached_24px.png */,
-				0EC28E1821EC771A00DEF32B /* ic_cached_24px@2x.png */,
-				0EC28E1621EC771A00DEF32B /* ic_cached_24px@3x.png */,
-			);
-			path = Refresh;
-			sourceTree = "<group>";
-		};
-		0EC28E2321EC7DD600DEF32B /* Small Device Icon */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E1E21EC7DCD00DEF32B /* ic_settings_remote_48px.png */,
-				0EC28E1F21EC7DCD00DEF32B /* ic_settings_remote_48px@2x.png */,
-				0EC28E1D21EC7DCC00DEF32B /* ic_settings_remote_48px@3x.png */,
-			);
-			path = "Small Device Icon";
-			sourceTree = "<group>";
-		};
-		0EC28E2A21EC833D00DEF32B /* Presets */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E2621EC833100DEF32B /* ic_view_module_48px.png */,
-				0EC28E2521EC833000DEF32B /* ic_view_module_48px@2x.png */,
-				0EC28E2421EC833000DEF32B /* ic_view_module_48px@3x.png */,
-			);
-			path = Presets;
-			sourceTree = "<group>";
-		};
-		0EC28E3121EC8B5700DEF32B /* Gray Device Icon */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E2D21EC8B4F00DEF32B /* gray_ic_settings_remote_48px.png */,
-				0EC28E2B21EC8B4E00DEF32B /* gray_ic_settings_remote_48px@2x.png */,
-				0EC28E2C21EC8B4E00DEF32B /* gray_ic_settings_remote_48px@3x.png */,
-			);
-			path = "Gray Device Icon";
-			sourceTree = "<group>";
-		};
-		0EC28E3821EC922B00DEF32B /* More */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E3421EC922300DEF32B /* ic_more_vert_48px.png */,
-				0EC28E3221EC922300DEF32B /* ic_more_vert_48px@2x.png */,
-				0EC28E3321EC922300DEF32B /* ic_more_vert_48px@3x.png */,
-			);
-			path = More;
-			sourceTree = "<group>";
-		};
-		0EC28E3F21EC9C6B00DEF32B /* White More */ = {
-			isa = PBXGroup;
-			children = (
-				0EC28E3A21EC9C6100DEF32B /* white_ic_more_vert_48px.png */,
-				0EC28E3921EC9C6000DEF32B /* white_ic_more_vert_48px@2x.png */,
-				0EC28E3B21EC9C6100DEF32B /* white_ic_more_vert_48px@3x.png */,
-			);
-			path = "White More";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,32 +177,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EC28E2921EC833100DEF32B /* ic_view_module_48px.png in Resources */,
-				0EC28E3621EC922300DEF32B /* ic_more_vert_48px@3x.png in Resources */,
 				0EC28E1021EC736200DEF32B /* SF-Pro-Display-Medium.otf in Resources */,
 				0EC28E0E21EC736200DEF32B /* SF-Pro-Text-Semibold.otf in Resources */,
 				0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */,
-				0EC28E1921EC771A00DEF32B /* ic_cached_24px@3x.png in Resources */,
-				0EC28E1A21EC771A00DEF32B /* ic_cached_24px.png in Resources */,
-				0EC28E2821EC833100DEF32B /* ic_view_module_48px@2x.png in Resources */,
-				0EC28E2021EC7DCD00DEF32B /* ic_settings_remote_48px@3x.png in Resources */,
-				0EC28E3021EC8B4F00DEF32B /* gray_ic_settings_remote_48px.png in Resources */,
-				0EC28E2721EC833100DEF32B /* ic_view_module_48px@3x.png in Resources */,
-				0EC28E3E21EC9C6100DEF32B /* white_ic_more_vert_48px@3x.png in Resources */,
 				0EC28DF421EC6BAD00DEF32B /* LaunchScreen.storyboard in Resources */,
-				0EC28E1B21EC771A00DEF32B /* ic_cached_24px@2x.png in Resources */,
-				0EC28E3D21EC9C6100DEF32B /* white_ic_more_vert_48px.png in Resources */,
-				0EC28E2121EC7DCD00DEF32B /* ic_settings_remote_48px.png in Resources */,
-				0EC28E2221EC7DCD00DEF32B /* ic_settings_remote_48px@2x.png in Resources */,
-				0EC28E2E21EC8B4F00DEF32B /* gray_ic_settings_remote_48px@2x.png in Resources */,
-				0EC28E2F21EC8B4F00DEF32B /* gray_ic_settings_remote_48px@3x.png in Resources */,
-				0EC28E3721EC922300DEF32B /* ic_more_vert_48px.png in Resources */,
 				0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */,
 				0EC28E0F21EC736200DEF32B /* SF-Pro-Text-Medium.otf in Resources */,
-				0EC28E3521EC922300DEF32B /* ic_more_vert_48px@2x.png in Resources */,
 				0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */,
 				0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */,
-				0EC28E3C21EC9C6100DEF32B /* white_ic_more_vert_48px@2x.png in Resources */,
 				0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,6 +201,7 @@
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
 				0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */,
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
+				0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */,
 				0EC28DEC21EC6BAA00DEF32B /* ViewController.swift in Sources */,
 				0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */,
 				0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */,
