@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import CoreBluetooth
 
 class BricksCollectionViewCell: UICollectionViewCell {
+    
+    var brick: Brick?
     
     @IBOutlet weak var deviceName: UILabel!
     @IBOutlet weak var moreButton: UIButton!
@@ -18,4 +21,36 @@ class BricksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var connectedLabel: UILabel!
     
     
+    @IBAction func connectToBrick(_ sender: UIButton) {
+        guard let peripheral = brick?.peripheral else { return }
+            CentralBluetoothManager.default.centralManager.connect(peripheral)
+    }
+    
+    @IBAction func onOffDevice(_ sender: UIButton) {
+        
+        guard let brick = self.brick, let peripheralCharacteristic = CentralBluetoothManager.default.bricksCharacteristic else { return }
+        guard let peripheral = brick.peripheral else { return }
+        let onOffCommandData = CentralBluetoothManager.default.OnOff()
+        peripheral.writeValue(onOffCommandData,
+                              for: peripheralCharacteristic,
+                              type: CBCharacteristicWriteType.withResponse)
+    }
+    
+    
+    func configure(brick: Brick) {
+        self.brick = brick
+        deviceName.text = brick.deviceName
+        guard let brickState = brick.peripheral?.state else { return }
+        switch brickState {
+        case .disconnected:
+            onOffDeviceButton.isHidden = true
+            connectedLabel.isHidden = true
+        case .connected:
+            onOffDeviceButton.isHidden = false
+            connectedLabel.isHidden = false
+            connectButton.isHidden = true
+        default:
+            break
+        }
+    }
 }

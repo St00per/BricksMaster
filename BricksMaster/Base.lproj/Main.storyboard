@@ -120,6 +120,9 @@
                                                                                     <integer key="value" value="8"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="onOffDevice:" destination="ozA-AU-xzO" eventType="touchUpInside" id="p7Z-Kf-iwi"/>
+                                                                            </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hFb-5Z-a8R">
                                                                             <rect key="frame" x="17.666666666666671" y="85" width="135" height="40"/>
@@ -139,6 +142,9 @@
                                                                                     <integer key="value" value="8"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="connectToBrick:" destination="ozA-AU-xzO" eventType="touchUpInside" id="kDf-wx-ESc"/>
+                                                                            </connections>
                                                                         </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" white="0.93000000000000005" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

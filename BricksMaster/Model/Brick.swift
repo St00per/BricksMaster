@@ -16,10 +16,16 @@ enum BrickStatus {
 }
 
 class Brick: Equatable {
-    var id: Int
-    var status: BrickStatus = .off
     
-    init(id: Int) {
+    var id: UUID?
+    var peripheral: CBPeripheral? = nil
+    var status: BrickStatus = .off
+    var deviceName: String?
+    var color = UIColor.lightGray
+    
+    init() {}
+    
+    init(id: UUID) {
         self.id = id
     }
     
@@ -30,7 +36,5 @@ class Brick: Equatable {
         return first.identifier == second.identifier
     }
     
-    var peripheral: CBPeripheral? = nil
-    var color = UIColor.lightGray
     
 }

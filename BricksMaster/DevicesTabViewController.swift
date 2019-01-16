@@ -19,7 +19,7 @@ class DevicesTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        CentralBluetoothManager.default.devicesTabViewController = self
     }
 
     func scanForBricks() {
@@ -34,6 +34,12 @@ class DevicesTabViewController: UIViewController {
 extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == bricksCollectionView {
+            return UserDevicesManager.default.userBricks.count
+        }
+        if collectionView == footswitchesCollectionView {
+            return UserDevicesManager.default.userFootswitches.count
+        }
         return 5
     }
     
@@ -43,6 +49,8 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrickCell", for: indexPath) as? BricksCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            let currentBrick = UserDevicesManager.default.userBricks[indexPath.row]
+            cell.configure(brick: currentBrick)
             return cell
         }
         if collectionView == footswitchesCollectionView {

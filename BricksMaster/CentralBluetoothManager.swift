@@ -13,15 +13,15 @@ let bricksCBUUID = CBUUID(string: "0xFFE0")
 let footswitchesCBUUID = CBUUID(string: "0xFFE0")
 let moduleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
-public protocol BluetoothManagerConnectDelegate {
-    func connectingStateSet()
-}
 
 class CentralBluetoothManager: NSObject {
     
     public static let `default` = CentralBluetoothManager()
     
     var centralManager: CBCentralManager!
+    
+    var devicesTabViewController: DevicesTabViewController?
+    
     var foundBricks: [CBPeripheral] = []
     var bricksCharacteristic: CBCharacteristic!
     
@@ -30,7 +30,6 @@ class CentralBluetoothManager: NSObject {
     
     
     var isFirstDidLoad = true
-    var delegate: BluetoothManagerConnectDelegate?
     
     override init() {
         super.init()
@@ -67,17 +66,21 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
-        if !CentralBluetoothManager.default.foundBricks.contains(peripheral) {
-            CentralBluetoothManager.default.foundBricks.append(peripheral)
+        let brick = Brick(id: peripheral.identifier)
+        brick.peripheral = peripheral
+        
+        if !UserDevicesManager.default.userBricks.contains(brick) {
+            UserDevicesManager.default.userBricks.append(brick)
         }
         if isFirstDidLoad {
             isFirstDidLoad = false
         }
         print("\(CentralBluetoothManager.default.foundBricks.count) devices have found")
+        devicesTabViewController?.bricksCollectionView.reloadData()
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        delegate?.connectingStateSet()
+        
         print("Connected!")
         peripheral.discoverServices(nil)
     }
@@ -89,7 +92,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     func connect(peripheral: CBPeripheral) {
         
         centralManager.stopScan()
-        print ("Scan stopped")
+        print ("Scan stopped, trying to connect")
         peripheral.delegate = self
         centralManager.connect(peripheral)
     }
@@ -136,5 +139,30 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
             return
         }
         print("Message sent")
+    }
+}
+//Data commands
+extension CentralBluetoothManager {
+    
+    func OnOff() -> Data {
+        
+        var dataToWrite = Data()
+        dataToWrite.append(0xE8)
+        dataToWrite.append(0xA1)
+        dataToWrite.append(0x02)
+        
+        return dataToWrite
+    }
+    
+    func frequency1000() -> Data {
+        
+        var dataToWrite = Data()
+        
+        dataToWrite.append(0xE8)
+        dataToWrite.append(0xA2)
+        dataToWrite.append(0x03)
+        dataToWrite.append(0xE8)
+        
+        return dataToWrite
     }
 }
