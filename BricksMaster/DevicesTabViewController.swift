@@ -16,6 +16,16 @@ class DevicesTabViewController: UIViewController {
     
     @IBOutlet weak var footswitchesCollectionView: UICollectionView!
     @IBOutlet weak var footswitchesCollectionScanButton: UIButton!
+    @IBOutlet var footswitchEditView: UIView!
+    
+    @IBAction func showFootswitchEdit(_ sender: UIButton) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
+            return
+        }
+        show(desVC, sender: nil)
+    }
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()

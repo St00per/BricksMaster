@@ -12,6 +12,7 @@
 		0E1D1D9021EDA460000BEDD7 /* UserDevicesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */; };
 		0E1D1D9221EDAF64000BEDD7 /* BricksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */; };
 		0E1D1D9421EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */; };
+		0E63303E21EF472A00EA3652 /* FootswitchEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDevicesManager.swift; sourceTree = "<group>"; };
 		0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchesCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchEditViewController.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				0E1D1D8D21EDA37D000BEDD7 /* DevicesTabViewController.swift */,
 				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
+				0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */,
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
@@ -207,6 +210,7 @@
 			files = (
 				0EC28E0321EC71F400DEF32B /* Brick.swift in Sources */,
 				0EC28E0421EC71F400DEF32B /* Footswitch.swift in Sources */,
+				0E63303E21EF472A00EA3652 /* FootswitchEditViewController.swift in Sources */,
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
 				0E1D1D9221EDAF64000BEDD7 /* BricksCollectionViewCell.swift in Sources */,
 				0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */,

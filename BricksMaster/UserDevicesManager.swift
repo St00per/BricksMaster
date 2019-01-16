@@ -17,7 +17,7 @@ class UserDevicesManager {
     var userBricks: [Brick] = []
     var userBanks: [Bank] = []
     var userPresets: [Preset] = []
-    var userFootswitches: [Footswitch] = []
+    var userFootswitches: [Footswitch] = [Footswitch(id: 0)]
     
     init() {}
     
