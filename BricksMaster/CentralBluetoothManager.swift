@@ -68,6 +68,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         print(peripheral)
         let brick = Brick(id: peripheral.identifier)
         brick.peripheral = peripheral
+        brick.deviceName = peripheral.name
         
         if !UserDevicesManager.default.userBricks.contains(brick) {
             UserDevicesManager.default.userBricks.append(brick)
@@ -75,7 +76,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         if isFirstDidLoad {
             isFirstDidLoad = false
         }
-        print("\(CentralBluetoothManager.default.foundBricks.count) devices have found")
+        print("\(UserDevicesManager.default.userBricks.count) devices have found")
         devicesTabViewController?.bricksCollectionView.reloadData()
     }
     

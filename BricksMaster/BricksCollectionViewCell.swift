@@ -23,7 +23,11 @@ class BricksCollectionViewCell: UICollectionViewCell {
     
     @IBAction func connectToBrick(_ sender: UIButton) {
         guard let peripheral = brick?.peripheral else { return }
-            CentralBluetoothManager.default.centralManager.connect(peripheral)
+        if peripheral.state == .connecting || peripheral.state == .connected {
+            CentralBluetoothManager.default.disconnect(peripheral: peripheral)
+        } else {
+            CentralBluetoothManager.default.connect(peripheral: peripheral)
+        }
     }
     
     @IBAction func onOffDevice(_ sender: UIButton) {
