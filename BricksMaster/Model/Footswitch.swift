@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import CoreBluetooth
 
 class Footswitch {
+    
     static let maxBriksCount = 5;
     var id: Int
     var bricks: [Brick] = [Brick]() // bricks assigned to footswitch, applyed presets should be mapped on this
@@ -16,7 +18,7 @@ class Footswitch {
     var customButton: CustomButton = CustomButton()
     var selectedBank: Bank?
     var selectedPreset: Preset?
-    
+    var peripheral: CBPeripheral? = nil
     init(id: Int) {
         self.id = id
     }
@@ -29,4 +31,7 @@ class Footswitch {
             buttons[index].isSelected = false
         }
     }
+    
+    
+    
 }

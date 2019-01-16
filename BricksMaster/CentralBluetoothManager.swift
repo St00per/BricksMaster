@@ -9,7 +9,8 @@
 import Foundation
 import CoreBluetooth
 
-let multiLightCBUUID = CBUUID(string: "0xFFE0")
+let bricksCBUUID = CBUUID(string: "0xFFE0")
+let footswitchesCBUUID = CBUUID(string: "0xFFE0")
 let moduleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
 public protocol BluetoothManagerConnectDelegate {
@@ -21,8 +22,11 @@ class CentralBluetoothManager: NSObject {
     public static let `default` = CentralBluetoothManager()
     
     var centralManager: CBCentralManager!
-    var foundDevices: [CBPeripheral] = []
-    var multiLightCharacteristic: CBCharacteristic!
+    var foundBricks: [CBPeripheral] = []
+    var bricksCharacteristic: CBCharacteristic!
+    
+    var foundFootswitches: [CBPeripheral] = []
+    var footswitchesCharacteristic: CBCharacteristic!
     
     
     var isFirstDidLoad = true
@@ -52,7 +56,9 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         case .poweredOn:
             print("central.state is .poweredOn")
             if isFirstDidLoad {
-                centralManager.scanForPeripherals(withServices: [multiLightCBUUID])
+                centralManager.scanForPeripherals(withServices: [bricksCBUUID])
+                
+                //centralManager.scanForPeripherals(withServices: [footswitchesCBUUID])
                 
             }
         }
@@ -61,13 +67,13 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
-        if !CentralBluetoothManager.default.foundDevices.contains(peripheral) {
-            CentralBluetoothManager.default.foundDevices.append(peripheral)
+        if !CentralBluetoothManager.default.foundBricks.contains(peripheral) {
+            CentralBluetoothManager.default.foundBricks.append(peripheral)
         }
         if isFirstDidLoad {
             isFirstDidLoad = false
         }
-        print("\(CentralBluetoothManager.default.foundDevices.count) devices have found")
+        print("\(CentralBluetoothManager.default.foundBricks.count) devices have found")
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -116,7 +122,7 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
             if characteristic.properties.contains(.write) {
                 print("\(characteristic.uuid): properties contains .write")
                 if characteristic.uuid == moduleFunctionConfigurationCBUUID {
-                    CentralBluetoothManager.default.multiLightCharacteristic = characteristic
+                    CentralBluetoothManager.default.bricksCharacteristic = characteristic
  
                 }
             }
