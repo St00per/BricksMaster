@@ -181,17 +181,5 @@ class FootswitchEditViewController: UIViewController {
             fourthPresetOnOffButton.backgroundColor = UIColor.lightGray
             fourthPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
         }
-        
-        //        for button in footswitchButtons {
-        //        configureOnOffButtons(button: button)
-        //        }
     }
-    
-    //    func configureOnOffButtons(button: FootswitchButton) {
-    //        if button.isOn == true {
-    //            firstPresetOnOffButton.setTitle("ON", for: .normal)
-    //            firstPresetOnOffButton.backgroundColor = UIColor.lightGray }
-    //    }
-    
 }
-
