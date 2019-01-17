@@ -11,7 +11,7 @@ import Foundation
 class FootswitchButton {
     var index: Int
     var preset: Preset? = nil
-    var isSelected: Bool = false
+    var isOn: Bool = false
     
     init(_ index: Int) {
         self.index = index

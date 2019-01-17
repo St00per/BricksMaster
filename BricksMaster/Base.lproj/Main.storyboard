@@ -677,8 +677,11 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="OFF">
-                                                            <color key="titleColor" red="0.54117647058823526" green="0.54117647058823526" blue="0.54117647058823526" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onOffFootswitchButton:" destination="LZo-ib-rdI" eventType="touchUpInside" id="vqB-kX-HxM"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bU7-oh-eLp">
                                                         <rect key="frame" x="88" y="5" width="14" height="22"/>
@@ -710,8 +713,11 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="OFF">
-                                                            <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onOffFootswitchButton:" destination="LZo-ib-rdI" eventType="touchUpInside" id="FfJ-X5-MWG"/>
+                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qX-tU-oSR">
                                                         <rect key="frame" x="88" y="4" width="14" height="22"/>
@@ -736,8 +742,11 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="OFF">
-                                                            <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onOffFootswitchButton:" destination="LZo-ib-rdI" eventType="touchUpInside" id="3De-f3-CER"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preset Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2TC-Cq-J94">
                                                         <rect key="frame" x="10" y="8" width="65" height="15"/>
@@ -769,8 +778,11 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
                                                         <state key="normal" title="OFF">
-                                                            <color key="titleColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </state>
+                                                        <connections>
+                                                            <action selector="onOffFootswitchButton:" destination="LZo-ib-rdI" eventType="touchUpInside" id="hIs-Rk-bMQ"/>
+                                                        </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preset Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKb-wv-Bvz">
                                                         <rect key="frame" x="8" y="8" width="65" height="15"/>
@@ -891,10 +903,23 @@
                         <viewLayoutGuide key="safeArea" id="X0M-5o-Qbs"/>
                     </view>
                     <connections>
+                        <outlet property="firstPresetButtonLabel" destination="0bM-Ed-OWu" id="TDl-qO-Ww9"/>
                         <outlet property="firstPresetButtonView" destination="UqD-qy-JdF" id="wcS-pl-DM6"/>
+                        <outlet property="firstPresetOnOffButton" destination="LQD-rP-fvX" id="Wlx-ai-343"/>
+                        <outlet property="firstPresetSelectButton" destination="bU7-oh-eLp" id="7To-lc-gMg"/>
+                        <outlet property="fourthPresetButtonLabel" destination="yKb-wv-Bvz" id="pkg-wE-jmF"/>
                         <outlet property="fourthPresetButtonView" destination="pGL-Lu-b6P" id="Ub5-mv-qPw"/>
+                        <outlet property="fourthPresetOnOffButton" destination="byH-sg-8gq" id="pQ7-OT-C1t"/>
+                        <outlet property="fourthPresetSelectButton" destination="cFk-38-EbE" id="W6t-x7-blF"/>
+                        <outlet property="presetButtonsView" destination="hhz-Ig-38Q" id="cwe-cK-Q5D"/>
+                        <outlet property="secondPresetButtonLabel" destination="Afw-rm-HZW" id="YNv-2N-efb"/>
                         <outlet property="secondPresetButtonView" destination="oob-dx-P1i" id="BsZ-x5-KtH"/>
+                        <outlet property="secondPresetOnOffButton" destination="yym-U9-Bnq" id="vdX-th-Otk"/>
+                        <outlet property="secondPresetSelectButton" destination="9qX-tU-oSR" id="CAD-aD-zX4"/>
+                        <outlet property="thirdPresetButtonLabel" destination="2TC-Cq-J94" id="cnm-wE-bvR"/>
                         <outlet property="thirdPresetButtonView" destination="DiG-aP-5ik" id="u8a-Uu-47Y"/>
+                        <outlet property="thirdPresetOnOffButton" destination="Qhy-UP-w9u" id="1Wo-Vc-cFw"/>
+                        <outlet property="thirdPresetSelectButton" destination="Wrz-dV-vKI" id="SXT-SD-1mY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Let-pn-yje" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,11 +14,12 @@ class PresetPickerCollectionViewCell: UICollectionViewCell {
     
     var preset: Preset?
     var controller: PresetPickerViewController?
+    var footswitchButtonIndex = 0
     
     @IBOutlet weak var presetName: UILabel!
     @IBAction func setPresetToFootswitchButton(_ sender: UIButton) {
         guard let selectedPreset = preset else { return }
-        UserDevicesManager.default.userFootswitches[0].buttons[0].preset = selectedPreset
+        UserDevicesManager.default.userFootswitches[0].buttons[footswitchButtonIndex].preset = selectedPreset
         controller?.dismiss(animated: true, completion: nil)
     }
     

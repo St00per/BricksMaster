@@ -28,7 +28,7 @@ class Footswitch {
         selectedPreset = nil
         for (index, preset) in bank.presets.enumerated() {
             buttons[index].preset = preset
-            buttons[index].isSelected = false
+            buttons[index].isOn = false
         }
     }
     

@@ -10,6 +10,7 @@ import UIKit
 
 class PresetPickerViewController: UIViewController {
 
+    var footswitchButtonNumber = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -34,6 +35,7 @@ extension PresetPickerViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         cell.controller = self
+        cell.footswitchButtonIndex = footswitchButtonNumber
         let currentPreset = UserDevicesManager.default.userPresets[indexPath.row]
         cell.configure(preset: currentPreset)
         return cell
