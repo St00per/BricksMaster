@@ -12,6 +12,13 @@ class PresetsTabViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBAction func showPresetSetting(_ sender: UIButton) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
+            return
+        }
+        show(desVC, sender: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
