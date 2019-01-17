@@ -19,6 +19,8 @@
 		0E63304621F07FA600EA3652 /* PresetsTabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */; };
 		0E63304821F084C800EA3652 /* PresetSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304721F084C800EA3652 /* PresetSettingViewController.swift */; };
 		0E63304A21F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */; };
+		0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */; };
+		0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -50,6 +52,8 @@
 		0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsTabCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E63304721F084C800EA3652 /* PresetSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetSettingViewController.swift; sourceTree = "<group>"; };
 		0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetSettingBricksCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -100,7 +104,9 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
+				0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */,
 				0E1D1D8D21EDA37D000BEDD7 /* DevicesTabViewController.swift */,
+				0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */,
 				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
 				0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */,
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
@@ -110,9 +116,9 @@
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
+				0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */,
 				0E63304721F084C800EA3652 /* PresetSettingViewController.swift */,
 				0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */,
-				0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
 				0EC28E0721EC720100DEF32B /* Model */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,
@@ -240,8 +246,10 @@
 				0E1D1D9021EDA460000BEDD7 /* UserDevicesManager.swift in Sources */,
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */,
+				0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */,
 				0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */,
 				0E1D1D9421EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift in Sources */,
+				0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */,
 				0E1D1D8E21EDA37D000BEDD7 /* DevicesTabViewController.swift in Sources */,
 				0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */,
 				0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */,
