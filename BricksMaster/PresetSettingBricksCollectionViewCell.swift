@@ -24,7 +24,15 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var presetBrickOnOffButton: UIButton!
     
     @IBAction func changePresetBrickState(_ sender: UIButton) {
-        
+        if UserDevicesManager.default.userPresets[0].presetBricks[brickIndex].status == .off {
+            UserDevicesManager.default.userPresets[0].presetBricks[brickIndex].status = .on
+            presetBrickOnOffButton.setTitle("ON", for: .normal)
+            presetBrickOnOffButton.backgroundColor = UIColor.black
+        } else {
+            UserDevicesManager.default.userPresets[0].presetBricks[brickIndex].status = .off
+            presetBrickOnOffButton.setTitle("OFF", for: .normal)
+            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "EDEDED")
+        }
     }
     
     @IBAction func removeBrickFromPreset(_ sender: UIButton) {
@@ -36,7 +44,13 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     func configure(brick: Brick, index: Int) {
         brickName.text = brick.deviceName
         brickIndex = index
-        
+        if UserDevicesManager.default.userPresets[0].presetBricks[brickIndex].status == .off {
+            presetBrickOnOffButton.setTitle("OFF", for: .normal)
+            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "EDEDED")
+        } else {
+            presetBrickOnOffButton.setTitle("ON", for: .normal)
+            presetBrickOnOffButton.backgroundColor = UIColor.black
+        }
     }
     
 }
