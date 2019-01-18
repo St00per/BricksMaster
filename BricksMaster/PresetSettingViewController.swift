@@ -10,7 +10,11 @@ import UIKit
 
 class PresetSettingViewController: UIViewController {
 
+    var currentPresetIndex: Int = 0
+    var presetName: String = "Unnamed"
+    
     @IBAction func closePresetSetting(_ sender: UIButton) {
+        //UserDevicesManager.default.userPresets.remove(at: currentPresetIndex)
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -35,8 +39,9 @@ class PresetSettingViewController: UIViewController {
     }
     
     @IBAction func savePreset(_ sender: UIButton) {
-        let newPreset = Preset(id: 5, name: "Five")
-        UserDevicesManager.default.userPresets.append(newPreset)
+        
+        UserDevicesManager.default.userPresets[currentPresetIndex].name = presetName
+        
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -54,11 +59,14 @@ class PresetSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        presetNameTextField.text = presetName
+        presetNameTextField.delegate = self
+        presetNameTextField.returnKeyType = UIReturnKeyType.done
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        guard let presetFootswitchName = UserDevicesManager.default.userPresets[0].footswitch?.name else { return }
+        guard let presetFootswitchName = UserDevicesManager.default.userPresets[currentPresetIndex].footswitch?.name else { return }
         footswitchButton.setTitle(presetFootswitchName, for: .normal)
         presetBricksCollectionView.reloadData()
     }
@@ -68,7 +76,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == presetBricksCollectionView {
-            return UserDevicesManager.default.userPresets[0].presetBricks.count
+            return UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks.count
         }
         if collectionView == footswitchPickerCollectionView {
             return UserDevicesManager.default.userFootswitches.count
@@ -86,7 +94,8 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
             cell.viewController = self
-            cell.configure(brick: UserDevicesManager.default.userPresets[0].presetBricks[indexPath.row], index: indexPath.row)
+            cell.presetIndex = currentPresetIndex
+            cell.configure(brick: UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks[indexPath.row], index: indexPath.row)
             return cell
         }
         
@@ -112,20 +121,32 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         if collectionView == presetBricksCollectionView {}
         
         if collectionView == footswitchPickerCollectionView {
-            UserDevicesManager.default.userPresets[0].footswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
+            UserDevicesManager.default.userPresets[currentPresetIndex].footswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
             footswitchPicker.removeFromSuperview()
-            guard let presetFootswitchName = UserDevicesManager.default.userPresets[0].footswitch?.name else { return }
+            guard let presetFootswitchName = UserDevicesManager.default.userPresets[currentPresetIndex].footswitch?.name else { return }
             footswitchButton.setTitle(presetFootswitchName, for: .normal)
         }
         
         if collectionView == bricksPickerCollectionView {
             let appendedBrick = UserDevicesManager.default.userBricks[indexPath.row]
-            if !UserDevicesManager.default.userPresets[0].presetBricks.contains(appendedBrick) {
-            UserDevicesManager.default.userPresets[0].presetBricks.append(appendedBrick)
+            if !UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks.contains(appendedBrick) {
+            UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks.append(appendedBrick)
             }
             bricksPicker.removeFromSuperview()
             presetBricksCollectionView.reloadData()
         }
     }
+}
+extension PresetSettingViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        presetName = textField.text ?? "Unnamed"
+        presetNameTextField.resignFirstResponder()
+        return true
+    }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        presetName = textField.text ?? "Unnamed"
+//    }
     
 }

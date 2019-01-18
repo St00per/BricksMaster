@@ -9,11 +9,12 @@
 import Foundation
 
 class Preset {
-    var id: Int
-    var name: String?
+    var id: Int?
+    var name: String = "Unnamed"
     var presetBricks: [Brick]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
     var footswitch: Footswitch?
     
+    init() {}
     
     init(id: Int, name: String) {
         self.id = id

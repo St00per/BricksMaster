@@ -17,6 +17,9 @@ class PresetsTabViewController: UIViewController {
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
             return
         }
+        let newPreset = Preset()
+        UserDevicesManager.default.userPresets.append(newPreset)
+        desVC.currentPresetIndex = UserDevicesManager.default.userPresets.count - 1
         show(desVC, sender: nil)
     }
     
@@ -46,5 +49,14 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
+            return
+        }
+        desVC.presetName = UserDevicesManager.default.userPresets[indexPath.row].name
+        desVC.currentPresetIndex = indexPath.row
+        show(desVC, sender: nil)
+    }
     
 }
