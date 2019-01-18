@@ -23,6 +23,8 @@ class DevicesTabViewController: UIViewController {
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return
         }
+        //strange shit)
+        desVC.currentFootswitch = UserDevicesManager.default.userFootswitches.first
         show(desVC, sender: nil)
     }
    

@@ -37,6 +37,7 @@
 		0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */; };
 		0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */; };
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
+		70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4AF21F2601200EC88DE /* BankCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		70E7D4AF21F2601200EC88DE /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
 				0EC28DF221EC6BAD00DEF32B /* LaunchScreen.storyboard */,
 				0EC28DF521EC6BAD00DEF32B /* Info.plist */,
+				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
 			);
 			path = BricksMaster;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */,
 				0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */,
 				0E1D1D9421EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift in Sources */,
+				70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */,
 				0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */,
 				0E1D1D8E21EDA37D000BEDD7 /* DevicesTabViewController.swift in Sources */,
 				0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */,
@@ -399,7 +403,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A4283R63P3;
+				DEVELOPMENT_TEAM = L59JFSX5QN;
 				INFOPLIST_FILE = BricksMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -418,7 +422,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A4283R63P3;
+				DEVELOPMENT_TEAM = L59JFSX5QN;
 				INFOPLIST_FILE = BricksMaster/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = (

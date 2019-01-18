@@ -57,6 +57,12 @@ class PinData {
     }
 }
 
+struct TxCommand {
+    let data: Data
+    let peripheral: CBPeripheral
+    let characteristic: CBCharacteristic
+}
+
 class CentralBluetoothManager: NSObject {
     
     public static let `default` = CentralBluetoothManager()
@@ -71,6 +77,11 @@ class CentralBluetoothManager: NSObject {
     var foundFootswitches: [CBPeripheral] = []
     var footswitchesCharacteristic: CBCharacteristic!
     
+    var commandQueue: [TxCommand] = []
+    var txReady: Bool = true
+    
+    var digitalIDs = [2:0,3:1,5:2,6:3,9:4]
+    
     private let SYSEX_START: UInt8 = 0xF0
     private let SYSEX_END: UInt8 = 0xF7
     
@@ -83,52 +94,34 @@ class CentralBluetoothManager: NSObject {
         centralManager = CBCentralManager(delegate: self, queue: DispatchQueue.main)
     }
     
-    func queryCapabilities(peripheral: CBPeripheral) {
-        print("queryCapabilities")
-        
-        // Set status
-        pins = []
-        
-        
-        // Query Capabilities
-        let bytes: [UInt8] = [SYSEX_START, 0x6B, SYSEX_END]
-        let data = Data(bytes: bytes)
-        //peripheral.writeValue(data, for: <#T##CBCharacteristic#>, type: <#T##CBCharacteristicWriteType#>)
-    }
-    
-    private func updatePinsForReceivedStates(_ pinStates: Int, port: Int) {
+    private func updatePinsForReceivedStates(_ pinStates: Int, port: Int, footSwitch: Footswitch?) {
         let offset = 8 * port
-        
+        if offset > 0 { return }
         // Iterate through all pins
-        for i in 0...7 {
-            let mask = 1 << i
-            let state = (pinStates & mask) >> i
-            
-            let digitalId = offset + i
-            
-            if let index = indexOfPinWithDigitalId(digitalId), let digitalValue = PinData.DigitalValue(rawValue: state) {
-                let pin = pins[index]
-                pin.digitalValue = digitalValue
-                print("update pinid: \(digitalId) digitalValue: \(digitalValue)")
+        if let footSwitch = footSwitch {
+            var selectedId = -1
+            for i in 0...7 {
+                let mask = 1 << i
+                let state = (pinStates & mask) >> i
+                if let digitalId = digitalIDs[offset + i] {
+                    if !footSwitch.buttons[digitalId].isOn && (state == 0) {
+                        selectedId = digitalId
+                    }
+                }
+                print("[\(i) - \(state)]\t")
             }
-        }
-    }
-    
-    private func indexOfPinWithDigitalId(_ digitalPinId: Int) -> Int? {
-        return pins.index { (pin) -> Bool in
-            pin.digitalPinId == digitalPinId
-        }
-    }
-    
-    private func indexOfPinWithAnalogId(_ analogPinId: Int) -> Int? {
-        return pins.index { (pin) -> Bool in
-            pin.analogPinId == analogPinId
+            if selectedId != -1{
+                for i in 0...3 {
+                    footSwitch.buttons[i].isOn = i == selectedId
+                }
+            }
+            UserDevicesManager.default.updateFootswitch(footswitch: footSwitch)
+            print("\n")
         }
     }
     
     private var receivedPinStateDataBuffer = [UInt8]()
-    
-    fileprivate func receivedPinState(data: Data) {
+    fileprivate func receivedPinState(data: Data, footSwitch: Footswitch?) {
         
         // Append received bytes to buffer
         var receivedDataBytes = [UInt8](repeating: 0, count: data.count)
@@ -152,32 +145,6 @@ class CentralBluetoothManager: NSObject {
              ...  additional optional bytes, as many as needed
              * N  END_SYSEX (0xF7)
              */
-            
-            let pinDigitalId = Int(receivedPinStateDataBuffer[2])
-            let pinMode = PinData.Mode(rawValue: receivedPinStateDataBuffer[3])
-            let pinState = Int(receivedPinStateDataBuffer[4])
-            
-            if let index = indexOfPinWithDigitalId(pinDigitalId), let pinMode = pinMode {
-                let pin = pins[index]
-                pin.mode = pinMode
-                if pinMode == .analog || pinMode == .pwm || pinMode == .servo {
-                    if receivedPinStateDataBuffer.count >= 6 {
-                        let analogValue = pinState + (Int(receivedPinStateDataBuffer[5])<<7)
-                        pin.analogValue = analogValue
-                    } else {
-                        print("Warning: received pinstate for analog pin without analogValue")
-                    }
-                } else {
-                    if let digitalValue = PinData.DigitalValue(rawValue: pinState) {
-                        pin.digitalValue = digitalValue
-                    } else {
-                        print("Warning: received pinstate with unknown digital value. Valid (0,1). Received: \(pinState)")
-                    }
-                }
-            } else {
-                print("Warning: received pinstate for unknown digital pin id: \(pinDigitalId)")
-            }
-            
             // Remove from the buffer the bytes parsed
             if let endIndex = endIndex {
                 receivedPinStateDataBuffer.removeFirst(endIndex)
@@ -201,24 +168,9 @@ class CentralBluetoothManager: NSObject {
                     let port = Int(receivedPinStateDataBuffer[0]) - 0x90
                     var pinStates = Int(receivedPinStateDataBuffer[1])
                     pinStates |= Int(receivedPinStateDataBuffer[2]) << 7           // PORT 0: use LSB of third byte for pin7, PORT 1: pins 14 & 15
-                    updatePinsForReceivedStates(pinStates, port: port)
+                    updatePinsForReceivedStates(pinStates, port: port, footSwitch: footSwitch)
                 } else if isAnalogReportingMessage {       // Analog Reporting (per pin)
-                    
-                    /* analog 14-bit data format
-                     * 0  analog pin, 0xE0-0xEF, (MIDI Pitch Wheel)
-                     * 1  analog least significant 7 bits
-                     * 2  analog most significant 7 bits
-                     */
-                    
-                    let analogPinId = Int(receivedPinStateDataBuffer[0]) - 0xE0
-                    let value = Int(receivedPinStateDataBuffer[1]) + (Int(receivedPinStateDataBuffer[2])<<7)
-                    
-                    if let index = indexOfPinWithAnalogId(analogPinId) {
-                        let pin = pins[index]
-                        pin.analogValue = value
-                    } else {
-                        print("Warning: received pinstate for unknown analog pin id: \(index)")
-                    }
+                    return;
                 }
                 
                 // Remove from the buffer the bytes parsed
@@ -233,13 +185,7 @@ class CentralBluetoothManager: NSObject {
                     isAnalogReportingMessage = false
                 }
             }
-            
         }
-        for pin in pins {
-           print(digitalValueDescription(pin.digitalValue))
-        }
-        // Refresh UI
-        //delegate?.onPinIODidReceivePinState()
     }
     
     private func digitalValueDescription(_ digitalValue: PinData.DigitalValue) -> String {
@@ -295,6 +241,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         for uuid in uuidArray {
             if uuid == footswitchesServiceCBUUID {
                 let newFootswitch = Footswitch(id: peripheral.identifier, name: peripheral.name ?? "Unnamed")
+                newFootswitch.peripheral = peripheral
                 if !UserDevicesManager.default.userFootswitches.contains(newFootswitch) {
                 UserDevicesManager.default.userFootswitches.append(newFootswitch)
                     break
@@ -360,7 +307,7 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService,
                     error: Error?) {
         guard let characteristics = service.characteristics else { return }
-        
+        let footswitch = UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral)
         for characteristic in characteristics {
             //print(characteristic)
             
@@ -370,23 +317,50 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                     CentralBluetoothManager.default.bricksCharacteristic = characteristic
  
                 }
+            }
+            if let footswitch = footswitch {
                 if characteristic.uuid == footswitchTxCharacteristic {
                     footswitchesCharacteristic = characteristic
-                    let data0: UInt8 = 0xD0 + 6        // start port 0 digital reporting (0xD0 + port#)
-                    let data1: UInt8 = 1                  // enable
-                    let bytes: [UInt8] = [data0, data1]
-                    let data = Data(bytes: bytes)
-                    peripheral.writeValue(data, for: footswitchesCharacteristic, type: CBCharacteristicWriteType.withResponse)
+                    footswitch.tx = characteristic
                 }
-                
-               
-                
-            }
-            if characteristic.uuid == footswitchRxCharacteristic {
-                print("\(characteristic.uuid): properties contains .notify")
-                peripheral.setNotifyValue(true, for: characteristic)
+                if characteristic.uuid == footswitchRxCharacteristic {
+                    print("\(characteristic.uuid): properties contains .notify")
+                    peripheral.setNotifyValue(true, for: characteristic)
+                    footswitch.rx = characteristic
+                }
+                //init footswitch ports if it's full connected
+                if(footswitch.peripheral != nil && footswitch.rx != nil && footswitch.tx != nil) {
+                    initFootSwitchPorts(footSwitch: footswitch)
+                }
             }
         }
+    }
+    
+    func initFootSwitchPorts(footSwitch: Footswitch) {
+        guard let peripheral = footSwitch.peripheral, let tx = footSwitch.tx else {
+            print("Can't send message");
+            return;
+        }
+        let data0: UInt8 = 0xD0 + 0        // start port 0 digital reporting (0xD0 + port#)
+        let data1: UInt8 = 1                  // enable
+        var bytes: [UInt8] = [data0, data1]
+        var data = Data(bytes: bytes)
+        sendCommand(to: peripheral, characteristic: tx, data: data)
+        for id in [2,3,5,6,9] {
+            bytes = [0xf4, UInt8(id), 0]
+            data = Data(bytes: bytes)
+            sendCommand(to: peripheral, characteristic: tx, data: data)
+        }
+    }
+    
+    func sendCommand(to peripheral: CBPeripheral, characteristic: CBCharacteristic, data: Data) {
+        if(txReady) {
+            peripheral.writeValue(data, for: characteristic, type: CBCharacteristicWriteType.withResponse)
+        } else {
+            let command = TxCommand(data: data, peripheral: peripheral, characteristic: characteristic)
+            commandQueue.append(command)
+        }
+        txReady = false
     }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic,
@@ -397,7 +371,7 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
         case footswitchRxCharacteristic:
             print(characteristic.value ?? "no value")
             guard let characteristicData = characteristic.value else { return }
-            receivedPinState(data: characteristicData)
+            receivedPinState(data: characteristicData, footSwitch: UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral))
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
@@ -409,11 +383,12 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
             return
         }
         print("Message sent")
-        if isFirstSend {
-        let bytes: [UInt8] = [0xf4, UInt8(6), 0]
-        let data = Data(bytes: bytes)
-        peripheral.writeValue(data, for: footswitchesCharacteristic, type: CBCharacteristicWriteType.withResponse)
-            isFirstSend = false
+        if(commandQueue.count > 0) {
+            print("Queue count: \(commandQueue.count)\n")
+            let command = commandQueue.removeFirst()
+            command.peripheral.writeValue(command.data, for: command.characteristic, type: CBCharacteristicWriteType.withResponse)
+        } else {
+            txReady = true
         }
     }
     
