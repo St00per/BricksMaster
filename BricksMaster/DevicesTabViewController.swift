@@ -37,7 +37,7 @@ class DevicesTabViewController: UIViewController {
     }
     
     func scanForFootswitches() {
-        CentralBluetoothManager.default.centralManager.scanForPeripherals(withServices: [footswitchesCBUUID])
+        CentralBluetoothManager.default.centralManager.scanForPeripherals(withServices: [footswitchesServiceCBUUID])
     }
     
 }

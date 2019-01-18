@@ -10,7 +10,8 @@ import Foundation
 import CoreBluetooth
 
 let bricksCBUUID = CBUUID(string: "0xFFE0")
-let footswitchesCBUUID = CBUUID(string: "0xFFE0")
+let footswitchesServiceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
+
 let moduleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
 
@@ -55,9 +56,9 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         case .poweredOn:
             print("central.state is .poweredOn")
             if isFirstDidLoad {
-                centralManager.scanForPeripherals(withServices: [bricksCBUUID])
+                //centralManager.scanForPeripherals(withServices: [bricksCBUUID])
                 
-                //centralManager.scanForPeripherals(withServices: [footswitchesCBUUID])
+                centralManager.scanForPeripherals(withServices: [footswitchesServiceCBUUID])
                 
             }
         }
@@ -70,24 +71,28 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
-        let brick = Brick(id: peripheral.identifier)
-        brick.peripheral = peripheral
-        brick.deviceName = peripheral.name
+        foundFootswitches.append(peripheral)
+        centralManager.connect(foundFootswitches[0])
         
-        if !UserDevicesManager.default.userBricks.contains(brick) {
-            UserDevicesManager.default.userBricks.append(brick)
-        }
-        if isFirstDidLoad {
-            isFirstDidLoad = false
-        }
-        print("\(UserDevicesManager.default.userBricks.count) devices have found")
-        devicesTabViewController?.bricksCollectionView.reloadData()
+//        let brick = Brick(id: peripheral.identifier)
+//        brick.peripheral = peripheral
+//        brick.deviceName = peripheral.name
+//
+//        if !UserDevicesManager.default.userBricks.contains(brick) {
+//            UserDevicesManager.default.userBricks.append(brick)
+//        }
+//        if isFirstDidLoad {
+//            isFirstDidLoad = false
+//        }
+//        print("\(UserDevicesManager.default.userBricks.count) devices have found")
+//        devicesTabViewController?.bricksCollectionView.reloadData()
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         
         print("Connected!")
-        peripheral.discoverServices(nil)
+        foundFootswitches[0].discoverServices(nil)
+        //peripheral.discoverServices(nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
@@ -133,6 +138,10 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                     CentralBluetoothManager.default.bricksCharacteristic = characteristic
  
                 }
+            }
+            if characteristic.properties.contains(.notify) {
+                print("\(characteristic.uuid): properties contains .notify")
+                
             }
         }
     }
