@@ -8,9 +8,34 @@
 
 import UIKit
 
+
+
 class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     
-    func configure(brick: Brick) {
+    var brickIndex: Int = 0
+    
+    var isBrickOn: Bool = false
+    
+    var viewController: PresetSettingViewController?
+    
+    
+    @IBOutlet weak var brickName: UILabel!
+    
+    @IBOutlet weak var presetBrickOnOffButton: UIButton!
+    
+    @IBAction func changePresetBrickState(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func removeBrickFromPreset(_ sender: UIButton) {
+        UserDevicesManager.default.userPresets[0].presetBricks.remove(at: brickIndex)
+        guard let presetBricksCollectionView = viewController?.presetBricksCollectionView else { return }
+        presetBricksCollectionView.reloadData()
+    }
+    
+    func configure(brick: Brick, index: Int) {
+        brickName.text = brick.deviceName
+        brickIndex = index
         
     }
     
