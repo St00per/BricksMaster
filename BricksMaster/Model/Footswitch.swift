@@ -13,14 +13,16 @@ class Footswitch {
     
     static let maxBriksCount = 5;
     var id: Int
+    var name: String
     var bricks: [Brick] = [Brick]() // bricks assigned to footswitch, applyed presets should be mapped on this
     var buttons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
     var customButton: CustomButton = CustomButton()
     var selectedBank: Bank?
     var selectedPreset: Preset?
     var peripheral: CBPeripheral? = nil
-    init(id: Int) {
+    init(id: Int, name: String) {
         self.id = id
+        self.name = name
     }
     
     func selectBank( bank: Bank ) {

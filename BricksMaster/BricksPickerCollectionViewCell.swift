@@ -10,4 +10,10 @@ import UIKit
 
 class BricksPickerCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var brickName: UILabel!
+    
+    func configure(brick: Brick) {
+        brickName.text = brick.deviceName
+    }
+    
 }

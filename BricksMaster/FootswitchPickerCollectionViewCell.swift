@@ -10,4 +10,11 @@ import UIKit
 
 class FootswitchPickerCollectionViewCell: UICollectionViewCell {
     
+    
+    @IBOutlet weak var footswitchName: UILabel!
+    
+    func configure(footswitch: Footswitch) {
+        footswitchName.text = footswitch.name
+    }
+    
 }

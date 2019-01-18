@@ -1400,9 +1400,9 @@
                     <connections>
                         <outlet property="bricksPicker" destination="aaH-PB-oLE" id="Ghf-1X-PhL"/>
                         <outlet property="bricksPickerCollectionView" destination="kzn-aM-ZkT" id="j8J-kU-hs6"/>
-                        <outlet property="collectionView" destination="bTP-Gh-kFN" id="Fs9-7x-Irh"/>
                         <outlet property="footswitchPicker" destination="4V1-YX-SIv" id="iFz-js-3yV"/>
                         <outlet property="footswitchPickerCollectionView" destination="Cme-x1-go1" id="Od4-Fq-K93"/>
+                        <outlet property="presetBricksCollectionView" destination="bTP-Gh-kFN" id="9Hy-9m-EfP"/>
                         <outlet property="presetNameTextField" destination="mZ0-U6-BNx" id="PHy-gn-H16"/>
                     </connections>
                 </viewController>
@@ -1418,16 +1418,29 @@
                                 <size key="itemSize" width="340" height="45"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="45" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <cells>
-                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="W2C-d5-X7p" customClass="FootswitchPickerCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="0.0" width="340" height="45"/>
+                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FootswitchPickerCollectionViewCell" id="W2C-d5-X7p" customClass="FootswitchPickerCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
+                                    <rect key="frame" x="15" y="45" width="340" height="45"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="FootswitchName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1r0-nR-Gja">
+                                                <rect key="frame" x="20" y="12" width="129" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                     </view>
+                                    <color key="backgroundColor" red="0.38431372549019605" green="0.38431372549019605" blue="0.38431372549019605" alpha="1" colorSpace="calibratedRGB"/>
+                                    <connections>
+                                        <outlet property="footswitchName" destination="1r0-nR-Gja" id="qhu-gm-hkr"/>
+                                    </connections>
                                 </collectionViewCell>
                             </cells>
                             <connections>
@@ -1443,11 +1456,23 @@
                                 <action selector="closeFootswitchPicker:" destination="bbB-Tp-7m0" eventType="touchUpInside" id="gIr-rh-77M"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Footswitch" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2t-zo-JkD">
+                            <rect key="frame" x="110" y="16" width="150" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="KpJ-wd-9Xt"/>
+                                <constraint firstAttribute="height" constant="20" id="a0O-F2-JXF"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Cme-x1-go1" firstAttribute="centerX" secondItem="4V1-YX-SIv" secondAttribute="centerX" id="0e0-jt-e5N"/>
                         <constraint firstItem="Cme-x1-go1" firstAttribute="centerY" secondItem="4V1-YX-SIv" secondAttribute="centerY" id="6oK-pJ-55Y"/>
+                        <constraint firstItem="R2t-zo-JkD" firstAttribute="top" secondItem="4V1-YX-SIv" secondAttribute="top" constant="16" id="KPR-zo-aPq"/>
+                        <constraint firstItem="R2t-zo-JkD" firstAttribute="centerX" secondItem="4V1-YX-SIv" secondAttribute="centerX" id="VNw-LP-c83"/>
                         <constraint firstItem="Cme-x1-go1" firstAttribute="height" secondItem="4V1-YX-SIv" secondAttribute="height" id="bgZ-iS-MHD"/>
                         <constraint firstItem="Cme-x1-go1" firstAttribute="width" secondItem="4V1-YX-SIv" secondAttribute="width" id="o0b-T6-fNO"/>
                     </constraints>
@@ -1469,16 +1494,29 @@
                                 <size key="itemSize" width="340" height="65"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="45" maxX="0.0" maxY="0.0"/>
                             </collectionViewFlowLayout>
                             <cells>
                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BricksPickerCollectionViewCell" id="vht-Et-8Wa" customClass="BricksPickerCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
-                                    <rect key="frame" x="15" y="0.0" width="340" height="65"/>
+                                    <rect key="frame" x="15" y="45" width="340" height="65"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="BrickName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MXX-ZC-t1N">
+                                                <rect key="frame" x="20" y="22" width="84" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
                                     </view>
+                                    <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <outlet property="brickName" destination="MXX-ZC-t1N" id="HWr-pP-rlQ"/>
+                                    </connections>
                                 </collectionViewCell>
                             </cells>
                             <connections>
@@ -1494,13 +1532,25 @@
                                 <action selector="closeBrickPicker:" destination="bbB-Tp-7m0" eventType="touchUpInside" id="Ngl-vQ-4yZ"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bricks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y54-T5-oxg">
+                            <rect key="frame" x="140" y="16" width="90" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="90" id="L8O-9S-W4o"/>
+                                <constraint firstAttribute="height" constant="20" id="Mkl-4j-zar"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="kzn-aM-ZkT" firstAttribute="height" secondItem="aaH-PB-oLE" secondAttribute="height" id="Aru-QM-Me0"/>
                         <constraint firstItem="kzn-aM-ZkT" firstAttribute="width" secondItem="aaH-PB-oLE" secondAttribute="width" id="IhR-F3-LAw"/>
+                        <constraint firstItem="y54-T5-oxg" firstAttribute="top" secondItem="aaH-PB-oLE" secondAttribute="top" constant="16" id="gdK-vP-1fc"/>
                         <constraint firstItem="kzn-aM-ZkT" firstAttribute="centerY" secondItem="aaH-PB-oLE" secondAttribute="centerY" id="rNB-ZD-uqC"/>
                         <constraint firstItem="kzn-aM-ZkT" firstAttribute="centerX" secondItem="aaH-PB-oLE" secondAttribute="centerX" id="uFE-SW-PP9"/>
+                        <constraint firstItem="y54-T5-oxg" firstAttribute="centerX" secondItem="aaH-PB-oLE" secondAttribute="centerX" id="vJl-xJ-wde"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="ofY-RO-By8"/>
                     <userDefinedRuntimeAttributes>

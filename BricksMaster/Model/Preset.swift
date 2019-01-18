@@ -11,7 +11,7 @@ import Foundation
 class Preset {
     var id: Int
     var name: String?
-    var bricksState: [(Int, Bool)]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
+    var presetBricks: [Brick]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
     var footswitch: Footswitch?
     
     

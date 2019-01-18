@@ -23,7 +23,9 @@ class Brick: Equatable {
     var deviceName: String?
     var color = UIColor.lightGray
     
-    init() {}
+    init(deviceName: String) {
+        self.deviceName = deviceName
+    }
     
     init(id: UUID) {
         self.id = id
