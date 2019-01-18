@@ -14,11 +14,11 @@ class UserDevicesManager {
     
     public static let `default` = UserDevicesManager()
     
-    var userBricks: [Brick] = [Brick(deviceName: "FirstBrick"), Brick(deviceName: "SecondBrick"), Brick(deviceName: "ThirdBrick")]
+    var userBricks: [Brick] = []
     var userBanks: [Bank] = []
     var userPresets: [Preset] = []
         //[Preset(id: 1, name: "First"), Preset(id: 2, name: "Second"), Preset(id: 3, name: "Third"), Preset(id: 4, name: "Fourth")]
-    var userFootswitches: [Footswitch] = [Footswitch(id: 0, name: "FirstSwitch"), Footswitch(id: 1, name: "SecondSwitch"), Footswitch(id: 3, name: "ThirdSwitch")]
+    var userFootswitches: [Footswitch] = []
     
     init() {}
     

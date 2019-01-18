@@ -183,3 +183,13 @@ class FootswitchEditViewController: UIViewController {
         }
     }
 }
+extension FootswitchEditViewController: PinIOModuleManagerDelegate {
+    
+    
+    
+    func onPinIODidReceivePinState() {
+        configurePresetButtons()
+    }
+    
+    
+}

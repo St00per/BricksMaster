@@ -9,10 +9,10 @@
 import Foundation
 import CoreBluetooth
 
-class Footswitch {
+class Footswitch: Equatable {
     
     static let maxBriksCount = 5;
-    var id: Int
+    var id: UUID
     var name: String
     var bricks: [Brick] = [Brick]() // bricks assigned to footswitch, applyed presets should be mapped on this
     var buttons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
@@ -20,7 +20,8 @@ class Footswitch {
     var selectedBank: Bank?
     var selectedPreset: Preset?
     var peripheral: CBPeripheral? = nil
-    init(id: Int, name: String) {
+    var characteristic: CBCharacteristic?
+    init(id: UUID, name: String) {
         self.id = id
         self.name = name
     }
@@ -34,6 +35,11 @@ class Footswitch {
         }
     }
     
-    
+    static func == (lhs: Footswitch, rhs: Footswitch) -> Bool {
+        guard let first = lhs.peripheral, let second = rhs.peripheral else {
+            return false
+        }
+        return first.identifier == second.identifier
+    }
     
 }

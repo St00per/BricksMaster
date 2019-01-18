@@ -16,4 +16,7 @@ class FootswitchesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     
+    func configure(footswitch: Footswitch) {
+        deviceName.text = footswitch.peripheral?.name
+    }
 }

@@ -67,6 +67,7 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchCell", for: indexPath) as? FootswitchesCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            let currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
             return cell
         }
         return UICollectionViewCell()
