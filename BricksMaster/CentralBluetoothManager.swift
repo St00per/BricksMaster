@@ -245,6 +245,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
             if uuid == footswitchesServiceCBUUID {
                 let newFootswitch = Footswitch(id: peripheral.identifier, name: peripheral.name ?? "Unnamed")
                 newFootswitch.peripheral = peripheral
+                newFootswitch.name = peripheral.name ?? "Unnamed"
                 if !UserDevicesManager.default.userFootswitches.contains(newFootswitch) {
                 UserDevicesManager.default.userFootswitches.append(newFootswitch)
                     break
