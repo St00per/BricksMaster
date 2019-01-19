@@ -24,6 +24,17 @@ class Brick: Equatable {
     var color = UIColor.lightGray
     var tx: CBCharacteristic?
     
+    var isConnected: Bool {
+        get {
+            guard let peripheral = peripheral else {
+                return false
+            }
+            return peripheral.state == .connected
+        }
+    }
+    
+    var observers: [ConnectionObserver] = []
+    
     init(deviceName: String) {
         self.deviceName = deviceName
     }
@@ -39,5 +50,26 @@ class Brick: Equatable {
         return first.identifier == second.identifier
     }
     
+    func updateConnection(isConnected: Bool) {
+        for observer in observers {
+            if let id = peripheral?.identifier {
+                observer.brickConnectionStateChanged(connected: isConnected, peripheralId: id)
+            }
+        }
+    }
     
+    func subscribe(observer: ConnectionObserver) {
+        observers.append(observer)
+    }
+    
+    func unsubscribe(observer: ConnectionObserver) {
+        if let index = observers.firstIndex (where: { (findedObserver) -> Bool in
+            let findedObserver = findedObserver as? NSObject
+            let observer = observer as? NSObject
+            return findedObserver == observer
+            })
+        {
+            observers.remove(at: index)
+        }
+    }
 }

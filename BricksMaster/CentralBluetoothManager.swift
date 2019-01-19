@@ -251,7 +251,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
                 let brick = Brick(id: peripheral.identifier)
                 brick.peripheral = peripheral
                 brick.deviceName = peripheral.name
-                
+                brick.updateConnection(isConnected: true)
                 if !UserDevicesManager.default.userBricks.contains(brick) {
                     UserDevicesManager.default.userBricks.append(brick)
                 }
@@ -276,6 +276,10 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Disconnected!")
+        if let brick = UserDevicesManager.default.brickForPeripheral(peripheral: peripheral) {
+            brick.updateConnection(isConnected: false)
+        }
+        
     }
     
     func connect(peripheral: CBPeripheral) {

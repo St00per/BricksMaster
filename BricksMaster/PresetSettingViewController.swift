@@ -95,7 +95,10 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         }
             cell.viewController = self
             cell.presetIndex = currentPresetIndex
-            cell.configure(brick: UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks[indexPath.row], index: indexPath.row)
+            let brickState = UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks[indexPath.row]
+            if let brick = UserDevicesManager.default.brick(id: brickState.0) {
+                cell.configure(brick: brick, index: indexPath.row)
+            }
             return cell
         }
         
@@ -129,8 +132,17 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         
         if collectionView == bricksPickerCollectionView {
             let appendedBrick = UserDevicesManager.default.userBricks[indexPath.row]
-            if !UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks.contains(appendedBrick) {
-            UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks.append(appendedBrick)
+            var canBeAdded = true
+            for brickState in UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks {
+                if brickState.0 == appendedBrick.id {
+                    canBeAdded = false
+                    break
+                }
+            }
+            if canBeAdded {
+                if let uuid = appendedBrick.id {
+                    UserDevicesManager.default.userPresets[currentPresetIndex].presetBricks.append((uuid, appendedBrick.status == .on))
+                }
             }
             bricksPicker.removeFromSuperview()
             presetBricksCollectionView.reloadData()
