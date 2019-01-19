@@ -53,9 +53,9 @@ class UserDevicesManager {
     
     func sendPreset(preset:Preset, to footswitch: Footswitch) {
         for brick in preset.presetBricks {
-            if let peripheral = brick.peripheral, let tx = brick.tx {
-                //TODO: send it to proper characteristic
-                var dataToWrite = Data()
+            let brickTx = CentralBluetoothManager.default.bricksCharacteristic
+            if let peripheral = brick.peripheral, let tx = brickTx {
+                 var dataToWrite = Data()
                 dataToWrite.append(0xE7)
                 dataToWrite.append(0xF1)
                 if brick.status == .on {
@@ -99,6 +99,24 @@ class UserDevicesManager {
         }
         return nil
     }
+    
+    func enableBrick(brick: Brick, isEnabled: Bool) {
+        guard let switchedBrick = userBricks.first(where: {brick == $0}) else { return }
+        let brickTx = CentralBluetoothManager.default.bricksCharacteristic
+        if let peripheral = brick.peripheral, let tx = brickTx {
+            var dataToWrite = Data()
+            dataToWrite.append(0xE7)
+            dataToWrite.append(0xF1)
+            if isEnabled {
+                dataToWrite.append(0x01)
+            } else {
+                dataToWrite.append(0x00)
+                
+            }
+            CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
+        }
+    }
+    
 }
 
 extension UIColor {
