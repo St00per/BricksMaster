@@ -22,6 +22,7 @@ class Brick: Equatable {
     var status: BrickStatus = .off
     var deviceName: String?
     var color = UIColor.lightGray
+    var tx: CBCharacteristic?
     
     init(deviceName: String) {
         self.deviceName = deviceName

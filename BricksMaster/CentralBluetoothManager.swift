@@ -308,6 +308,7 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                     error: Error?) {
         guard let characteristics = service.characteristics else { return }
         let footswitch = UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral)
+        let brick = UserDevicesManager.default.brickForPeripheral(peripheral: peripheral)
         for characteristic in characteristics {
             //print(characteristic)
             
@@ -315,7 +316,10 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                 print("\(characteristic.uuid): properties contains .write")
                 if characteristic.uuid == brickModuleFunctionConfigurationCBUUID {
                     CentralBluetoothManager.default.bricksCharacteristic = characteristic
- 
+                    if let brick = brick {
+                        //TODO: Connect right characteristics
+                        brick.tx = characteristic
+                    }
                 }
             }
             if let footswitch = footswitch {

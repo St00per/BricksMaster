@@ -66,10 +66,11 @@ class FootswitchEditViewController: UIViewController {
         }
         let footswitchButtons = currentFootswitch.buttons
 
-        
+        var selectedPreset: Preset? = nil
         switch sender {
         case firstPresetOnOffButton:
             guard footswitchButtons[0].preset != nil else { return }
+            selectedPreset = footswitchButtons[0].preset
             if footswitchButtons[0].isOn == false{
                 footswitchButtons[0].isOn = true
                 footswitchButtons[1].isOn = false
@@ -82,6 +83,7 @@ class FootswitchEditViewController: UIViewController {
             }
         case secondPresetOnOffButton:
             guard footswitchButtons[1].preset != nil else { return }
+            selectedPreset = footswitchButtons[1].preset
             if footswitchButtons[1].isOn == false {
                 footswitchButtons[0].isOn = false
                 footswitchButtons[1].isOn = true
@@ -94,6 +96,7 @@ class FootswitchEditViewController: UIViewController {
             }
         case thirdPresetOnOffButton:
             guard footswitchButtons[2].preset != nil else { return }
+            selectedPreset = footswitchButtons[2].preset
             if footswitchButtons[2].isOn == false {
                 footswitchButtons[0].isOn = false
                 footswitchButtons[1].isOn = false
@@ -106,6 +109,7 @@ class FootswitchEditViewController: UIViewController {
             }
         case fourthPresetOnOffButton:
             guard footswitchButtons[3].preset != nil else { return }
+            selectedPreset = footswitchButtons[3].preset
             if footswitchButtons[3].isOn == false {
                 footswitchButtons[0].isOn = false
                 footswitchButtons[1].isOn = false
@@ -120,6 +124,9 @@ class FootswitchEditViewController: UIViewController {
             return
         }
         configurePresetButtons()
+        if let selectedPreset = selectedPreset {
+            UserDevicesManager.default.sendPreset(preset: selectedPreset, to: currentFootswitch)    
+        }
     }
     
     
