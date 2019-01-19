@@ -9,7 +9,7 @@
 import Foundation
 import CoreBluetooth
 
-let bricksCBUUID = CBUUID(string: "0xFFE0")
+let bricksCBUUID = CBUUID(string: "0xFFF0")
 let footswitchesServiceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
 
 let footswitchRxCharacteristic = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
@@ -113,6 +113,9 @@ class CentralBluetoothManager: NSObject {
             if selectedId != -1{
                 for i in 0...3 {
                     footSwitch.buttons[i].isOn = i == selectedId
+                    if footSwitch.buttons[i].isOn {
+                        footSwitch.selectedPreset = footSwitch.buttons[i].preset
+                    }
                 }
             }
             UserDevicesManager.default.updateFootswitch(footswitch: footSwitch)

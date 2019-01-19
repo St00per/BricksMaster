@@ -48,6 +48,9 @@ class UserDevicesManager {
         }
         if controller.currentFootswitch == footswitch {
             controller.configurePresetButtons()
+            if let preset = footswitch.selectedPreset {
+                sendPreset(preset: preset, to: footswitch)
+            }
         }
     }
     

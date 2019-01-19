@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569576425.4531291"
+            timestampString = "569582754.6859061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569576425.4537131"
+            timestampString = "569582754.686317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "283"
-            endingLineNumber = "283"
-            landmarkName = "centralManager(_:didDisconnectPeripheral:error:)"
+            startingLineNumber = "290"
+            endingLineNumber = "290"
+            landmarkName = "connect(peripheral:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569576425.45415"
+            timestampString = "569582754.686587"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "sendPreset(preset:to:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569576425.4542069"
+            timestampString = "569582754.68664"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
             landmarkName = "brick(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,27 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569576425.45426"
+            timestampString = "569582754.686687"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
-            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569576425.454549"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "311"
-            endingLineNumber = "311"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,12 +90,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569576558.288731"
+            timestampString = "569582754.686941"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "395"
-            endingLineNumber = "395"
-            landmarkName = "peripheral(_:didWriteValueFor:error:)"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
