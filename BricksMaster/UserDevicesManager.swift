@@ -52,13 +52,13 @@ class UserDevicesManager {
     }
     
     func sendPreset(preset:Preset, to footswitch: Footswitch) {
-        for brick in preset.presetBricks {
-            if let peripheral = brick.peripheral, let tx = brick.tx {
+        for brickState in preset.presetBricks {
+            if let currentBrick = brick(id: brickState.0), let peripheral = currentBrick.peripheral, let tx = currentBrick.tx {
                 //TODO: send it to proper characteristic
                 var dataToWrite = Data()
                 dataToWrite.append(0xE7)
                 dataToWrite.append(0xF1)
-                if brick.status == .on {
+                if brickState.1 {
                     dataToWrite.append(0x01)
                 } else {
                     dataToWrite.append(0x00)

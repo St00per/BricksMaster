@@ -314,6 +314,9 @@
                                                                                     <integer key="value" value="8"/>
                                                                                 </userDefinedRuntimeAttribute>
                                                                             </userDefinedRuntimeAttributes>
+                                                                            <connections>
+                                                                                <action selector="connect:" destination="do8-Ma-xes" eventType="touchUpInside" id="jNJ-Iy-bdI"/>
+                                                                            </connections>
                                                                         </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uox-l5-yES">
                                                                             <rect key="frame" x="7.6666666666666572" y="152" width="285" height="40"/>
