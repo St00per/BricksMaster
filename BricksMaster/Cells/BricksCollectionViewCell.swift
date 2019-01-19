@@ -27,6 +27,7 @@ class BricksCollectionViewCell: UICollectionViewCell {
             CentralBluetoothManager.default.disconnect(peripheral: peripheral)
         } else {
             CentralBluetoothManager.default.connect(peripheral: peripheral)
+            
         }
     }
     
@@ -44,14 +45,22 @@ class BricksCollectionViewCell: UICollectionViewCell {
     func configure(brick: Brick) {
         self.brick = brick
         deviceName.text = brick.deviceName
-        guard let brickState = brick.peripheral?.state else { return }
+        guard let brickState = brick.peripheral?.state else {
+            return
+        }
         switch brickState {
         case .disconnected:
             onOffDeviceButton.isHidden = true
             connectedLabel.isHidden = true
+            connectButton.isHidden = false
         case .connected:
             onOffDeviceButton.isHidden = false
             connectedLabel.isHidden = false
+            connectButton.isHidden = true
+        case .connecting:
+            onOffDeviceButton.isHidden = true
+            connectedLabel.isHidden = false
+            connectedLabel.text = "CONNECTING"
             connectButton.isHidden = true
         default:
             break

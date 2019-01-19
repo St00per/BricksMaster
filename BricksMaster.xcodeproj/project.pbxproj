@@ -104,6 +104,7 @@
 		0E046AB621F3152E006A817F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
 				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
 				0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */,
@@ -145,7 +146,6 @@
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
 				0EC28DF221EC6BAD00DEF32B /* LaunchScreen.storyboard */,
 				0EC28DF521EC6BAD00DEF32B /* Info.plist */,
-				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
 			);
 			path = BricksMaster;
 			sourceTree = "<group>";

@@ -20,6 +20,22 @@ class FootswitchesCollectionViewCell: UICollectionViewCell {
     func configure(footswitch: Footswitch) {
         deviceName.text = footswitch.peripheral?.name
         self.footswitch = footswitch
+        
+        guard let footswitchState = footswitch.peripheral?.state else { return }
+        switch footswitchState {
+        case .disconnected:
+            editButton.isHidden = true
+            connectButton.isHidden = false
+        case .connected:
+            editButton.isHidden = false
+            connectButton.isHidden = true
+        case .connecting:
+            editButton.isHidden = true
+            connectButton.isHidden = true
+        default:
+            break
+        }
+        
     }
     
     @IBAction func connect(_ sender: Any?) {

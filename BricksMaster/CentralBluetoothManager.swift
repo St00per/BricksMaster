@@ -268,7 +268,8 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        
+        devicesTabViewController?.bricksCollectionView.reloadData()
+        devicesTabViewController?.footswitchesCollectionView.reloadData()
         print("Connected!")
         peripheral.delegate = self
         peripheral.discoverServices(nil)
@@ -279,7 +280,8 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         if let brick = UserDevicesManager.default.brickForPeripheral(peripheral: peripheral) {
             brick.updateConnection(isConnected: false)
         }
-        
+        devicesTabViewController?.bricksCollectionView.reloadData()
+        devicesTabViewController?.footswitchesCollectionView.reloadData()
     }
     
     func connect(peripheral: CBPeripheral) {
