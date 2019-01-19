@@ -14,6 +14,10 @@ class DevicesTabViewController: UIViewController {
     @IBOutlet weak var bricksCollectionScanButton: UIButton!
     @IBOutlet weak var bricksCollectionView: UICollectionView!
     
+    
+    
+    
+    
     @IBOutlet weak var footswitchesCollectionView: UICollectionView!
     @IBOutlet weak var footswitchesCollectionScanButton: UIButton!
     @IBOutlet var footswitchEditView: UIView!
@@ -34,6 +38,14 @@ class DevicesTabViewController: UIViewController {
         CentralBluetoothManager.default.devicesTabViewController = self
     }
 
+    @IBAction func bricksScanButtonTouched(_ sender: UIButton) {
+        scanForBricks()
+    }
+    
+    @IBAction func footswitchesScanButtonTouched(_ sender: UIButton) {
+        scanForFootswitches()
+    }
+    
     func scanForBricks() {
         CentralBluetoothManager.default.centralManager.scanForPeripherals(withServices: [bricksCBUUID])
     }
