@@ -12,7 +12,8 @@ class Bank {
     var id: Int
     var name: String?
     var presets: [Preset] = [] // presets according to order 1st button - 1st preset
- 
+    var footswitchId: UUID?
+    
     init(id: Int) {
         self.id = id
     }

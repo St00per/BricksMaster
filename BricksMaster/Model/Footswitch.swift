@@ -20,7 +20,9 @@ class Footswitch: Equatable {
     var selectedBank: Bank?
     var selectedPreset: Preset?
     var peripheral: CBPeripheral? = nil
-    var characteristic: CBCharacteristic?
+    var tx: CBCharacteristic? = nil
+    var rx: CBCharacteristic? = nil
+    
     init(id: UUID, name: String) {
         self.id = id
         self.name = name

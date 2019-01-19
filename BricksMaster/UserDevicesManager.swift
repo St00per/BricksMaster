@@ -20,8 +20,58 @@ class UserDevicesManager {
         //[Preset(id: 1, name: "First"), Preset(id: 2, name: "Second"), Preset(id: 3, name: "Third"), Preset(id: 4, name: "Fourth")]
     var userFootswitches: [Footswitch] = []
     
+    var footswitchController: FootswitchEditViewController? = nil
+    
     init() {}
     
+    func footswitchByPeripheral(peripheral: CBPeripheral) -> Footswitch? {
+        for footswitch in userFootswitches {
+            if footswitch.peripheral == peripheral {
+                return footswitch
+            }
+        }
+        return nil
+    }
+    
+    func updateFootswitch(footswitch: Footswitch) {
+        guard let controller = footswitchController else {
+            return
+        }
+        if controller.currentFootswitch == footswitch {
+            controller.configurePresetButtons()
+        }
+    }
+    
+    func banks(footswitch: Footswitch) {
+        
+    }
+    
+    func footswitch(id: UUID)  -> Footswitch?{
+        for footswitch in userFootswitches {
+            if footswitch.id == id {
+                return footswitch
+            }
+        }
+        return nil
+    }
+    
+    func preset(id: Int) -> Preset? {
+        for preset in userPresets {
+            if preset.id == id {
+                return preset
+            }
+        }
+        return nil
+    }
+    
+    func brick(id: UUID) -> Brick? {
+        for brick in userBricks {
+            if brick.id == id {
+                return brick
+            }
+        }
+        return nil
+    }
 }
 
 extension UIColor {

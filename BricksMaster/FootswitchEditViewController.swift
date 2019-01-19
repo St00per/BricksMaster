@@ -10,6 +10,7 @@ import UIKit
 
 class FootswitchEditViewController: UIViewController {
     
+    var currentFootswitch: Footswitch?
     
     @IBOutlet weak var presetButtonsView: UIView!
     
@@ -32,8 +33,6 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var fourthPresetButtonLabel: UILabel!
     @IBOutlet weak var fourthPresetOnOffButton: UIButton!
     @IBOutlet weak var fourthPresetSelectButton: UIButton!
-    
-    
     
     @IBAction func closeEditController(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -62,7 +61,10 @@ class FootswitchEditViewController: UIViewController {
     
     
     @IBAction func onOffFootswitchButton(_ sender: UIButton) {
-        let footswitchButtons = UserDevicesManager.default.userFootswitches[0].buttons
+        guard let currentFootswitch = currentFootswitch else {
+            return
+        }
+        let footswitchButtons = currentFootswitch.buttons
 
         
         switch sender {
@@ -123,7 +125,17 @@ class FootswitchEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UserDevicesManager.default.footswitchController = self
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDevicesManager.default.footswitchController = nil
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -132,7 +144,9 @@ class FootswitchEditViewController: UIViewController {
     }
     
     func configurePresetButtons() {
-        let currentFootswitch = UserDevicesManager.default.userFootswitches[0]
+        guard let currentFootswitch = currentFootswitch else {
+            return
+        }
         firstPresetButtonLabel.text = currentFootswitch.buttons[0].preset?.name ?? "None"
         secondPresetButtonLabel.text = currentFootswitch.buttons[1].preset?.name ?? "None"
         thirdPresetButtonLabel.text = currentFootswitch.buttons[2].preset?.name ?? "None"
@@ -141,7 +155,7 @@ class FootswitchEditViewController: UIViewController {
         let footswitchButtons = currentFootswitch.buttons
         
         
-        if footswitchButtons[0].isOn == true
+        if footswitchButtons[0].isOn == true && footswitchButtons[0].preset != nil
         {
             firstPresetOnOffButton.setTitle("ON", for: .normal)
             firstPresetOnOffButton.backgroundColor = UIColor.black
@@ -151,7 +165,7 @@ class FootswitchEditViewController: UIViewController {
             firstPresetOnOffButton.backgroundColor = UIColor.lightGray
             firstPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
         }
-        if footswitchButtons[1].isOn == true
+        if footswitchButtons[1].isOn == true && footswitchButtons[1].preset != nil
         {
             secondPresetOnOffButton.setTitle("ON", for: .normal)
             secondPresetOnOffButton.backgroundColor = UIColor.black
@@ -161,7 +175,7 @@ class FootswitchEditViewController: UIViewController {
             secondPresetOnOffButton.backgroundColor = UIColor.lightGray
             secondPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
         }
-        if footswitchButtons[2].isOn == true
+        if footswitchButtons[2].isOn == true && footswitchButtons[2].preset != nil
         {
             thirdPresetOnOffButton.setTitle("ON", for: .normal)
             thirdPresetOnOffButton.backgroundColor = UIColor.black
@@ -171,7 +185,7 @@ class FootswitchEditViewController: UIViewController {
             thirdPresetOnOffButton.backgroundColor = UIColor.lightGray
             thirdPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
         }
-        if footswitchButtons[3].isOn == true
+        if footswitchButtons[3].isOn == true && footswitchButtons[3].preset != nil
         {
             fourthPresetOnOffButton.setTitle("ON", for: .normal)
             fourthPresetOnOffButton.backgroundColor = UIColor.black
