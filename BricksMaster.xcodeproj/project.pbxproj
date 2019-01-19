@@ -89,6 +89,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0E046AB521F31507006A817F /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				0E1D1D8D21EDA37D000BEDD7 /* DevicesTabViewController.swift */,
+				0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */,
+				0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */,
+				0E63304721F084C800EA3652 /* PresetSettingViewController.swift */,
+				0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		0E046AB621F3152E006A817F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
+				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
+				0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */,
+				0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */,
+				0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */,
+				0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */,
+				0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		0EC28DDD21EC6BAA00DEF32B = {
 			isa = PBXGroup;
 			children = (
@@ -108,18 +134,8 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
-				0E1D1D8D21EDA37D000BEDD7 /* DevicesTabViewController.swift */,
-				0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */,
-				0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */,
-				0E63304721F084C800EA3652 /* PresetSettingViewController.swift */,
-				0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */,
-				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
-				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
-				0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */,
-				0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */,
-				0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */,
-				0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */,
-				0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */,
+				0E046AB521F31507006A817F /* ViewControllers */,
+				0E046AB621F3152E006A817F /* Cells */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
