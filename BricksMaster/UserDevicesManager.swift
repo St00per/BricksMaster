@@ -33,12 +33,39 @@ class UserDevicesManager {
         return nil
     }
     
+    func brickForPeripheral(peripheral: CBPeripheral) -> Brick? {
+        for footswitch in userBricks {
+            if footswitch.peripheral == peripheral {
+                return footswitch
+            }
+        }
+        return nil
+    }
+    
     func updateFootswitch(footswitch: Footswitch) {
         guard let controller = footswitchController else {
             return
         }
         if controller.currentFootswitch == footswitch {
             controller.configurePresetButtons()
+        }
+    }
+    
+    func sendPreset(preset:Preset, to footswitch: Footswitch) {
+        for brick in preset.presetBricks {
+            if let peripheral = brick.peripheral, let tx = brick.tx {
+                //TODO: send it to proper characteristic
+                var dataToWrite = Data()
+                dataToWrite.append(0xE7)
+                dataToWrite.append(0xF1)
+                if brick.status == .on {
+                    dataToWrite.append(0x01)
+                } else {
+                    dataToWrite.append(0x00)
+
+                }
+                CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
+            }
         }
     }
     
