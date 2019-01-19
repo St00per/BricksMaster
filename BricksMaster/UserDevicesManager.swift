@@ -43,14 +43,13 @@ class UserDevicesManager {
     }
     
     func updateFootswitch(footswitch: Footswitch) {
-        guard let controller = footswitchController else {
-            return
-        }
-        if controller.currentFootswitch == footswitch {
-            controller.configurePresetButtons()
-            if let preset = footswitch.selectedPreset {
-                sendPreset(preset: preset, to: footswitch)
+        if let controller = footswitchController  {
+            if controller.currentFootswitch == footswitch {
+                controller.configurePresetButtons()
             }
+        }
+        if let preset = footswitch.selectedPreset {
+            sendPreset(preset: preset, to: footswitch)
         }
     }
     

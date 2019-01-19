@@ -37,6 +37,7 @@
 		0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */; };
 		0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */; };
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
+		7085533221F3332A007C33C0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085533121F3332A007C33C0 /* Observable.swift */; };
 		70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4AF21F2601200EC88DE /* BankCell.swift */; };
 		70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +75,7 @@
 		0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		7085533121F3332A007C33C0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		70E7D4AF21F2601200EC88DE /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 		70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 				0EC28DFF21EC71F300DEF32B /* FootswitchButton.swift */,
 				0EC28E0021EC71F300DEF32B /* Preset.swift */,
 				70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */,
+				7085533121F3332A007C33C0 /* Observable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -270,6 +273,7 @@
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */,
 				0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */,
+				7085533221F3332A007C33C0 /* Observable.swift in Sources */,
 				0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */,
 				0E1D1D9421EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift in Sources */,
 				70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */,

@@ -8,7 +8,27 @@
 
 import UIKit
 
-class FootswitchesCollectionViewCell: UICollectionViewCell {
+class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
+    func brickConnectionStateChanged(connected: Bool, peripheralId: UUID) {
+    }
+    
+    func footswitchConnectionStateChanged(connected: Bool, peripheralId: UUID) {
+        guard let footswitchState = footswitch?.peripheral?.state else { return }
+        switch footswitchState {
+        case .disconnected:
+            editButton.isHidden = true
+            connectButton.isHidden = false
+        case .connected:
+            editButton.isHidden = false
+            connectButton.isHidden = true
+        case .connecting:
+            editButton.isHidden = true
+            connectButton.isHidden = true
+        default:
+            break
+        }
+    }
+    
     
     @IBOutlet weak var deviceName: UILabel!
     @IBOutlet weak var moreButton: UIButton!
@@ -20,7 +40,8 @@ class FootswitchesCollectionViewCell: UICollectionViewCell {
     func configure(footswitch: Footswitch) {
         deviceName.text = footswitch.peripheral?.name
         self.footswitch = footswitch
-        
+        self.footswitch?.observers.removeAll()
+        self.footswitch?.subscribe(observer: self)
         guard let footswitchState = footswitch.peripheral?.state else { return }
         switch footswitchState {
         case .disconnected:

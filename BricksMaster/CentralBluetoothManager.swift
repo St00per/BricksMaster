@@ -22,46 +22,12 @@ protocol PinIOModuleManagerDelegate: class {
     func onPinIODidReceivePinState()
 }
 
-class PinData {
-    enum Mode: UInt8 {
-        case unknown = 255
-        case input = 0          // Don't chage the values (these are the bytes defined by firmata spec)
-        case output = 1
-        
-        case analog = 2
-        case pwm = 3
-        case servo = 4
-    }
-    
-    enum DigitalValue: Int {
-        case low = 0
-        case high = 1
-    }
-    
-    var digitalPinId: Int
-    var analogPinId: Int = -1
-    
-    var isDigital: Bool
-    var isAnalog: Bool
-    var isPWM: Bool
-    
-    var mode = Mode.input
-    var digitalValue =  DigitalValue.low
-    var analogValue: Int = 0
-    
-    init(digitalPinId: Int, isDigital: Bool, isAnalog: Bool, isPWM: Bool) {
-        self.digitalPinId = digitalPinId
-        self.isDigital = isDigital
-        self.isAnalog = isAnalog
-        self.isPWM = isPWM
-    }
-}
-
 struct TxCommand {
     let data: Data
     let peripheral: CBPeripheral
     let characteristic: CBCharacteristic
 }
+
 
 class CentralBluetoothManager: NSObject {
     
@@ -84,8 +50,6 @@ class CentralBluetoothManager: NSObject {
     
     private let SYSEX_START: UInt8 = 0xF0
     private let SYSEX_END: UInt8 = 0xF7
-    
-    var pins = [PinData]()
     
     var isFirstDidLoad = true
     var isFirstSend = true
@@ -191,18 +155,6 @@ class CentralBluetoothManager: NSObject {
         }
     }
     
-    private func digitalValueDescription(_ digitalValue: PinData.DigitalValue) -> String {
-        
-        
-        var resultStringId: String
-        switch digitalValue {
-        case .low: resultStringId = "LOW"
-        case .high: resultStringId = "HIGH"
-        }
-        
-        return resultStringId
-    }
-    
 }
 
 extension CentralBluetoothManager: CBCentralManagerDelegate {
@@ -247,8 +199,7 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
                 newFootswitch.peripheral = peripheral
                 newFootswitch.name = peripheral.name ?? "Unnamed"
                 if !UserDevicesManager.default.userFootswitches.contains(newFootswitch) {
-                UserDevicesManager.default.userFootswitches.append(newFootswitch)
-                    break
+                    UserDevicesManager.default.userFootswitches.append(newFootswitch)
                 }
             }
             if uuid == bricksCBUUID {
@@ -259,7 +210,6 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
                 if !UserDevicesManager.default.userBricks.contains(brick) {
                     UserDevicesManager.default.userBricks.append(brick)
                 }
-                break
             }
         }
         
@@ -284,14 +234,17 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         if let brick = UserDevicesManager.default.brickForPeripheral(peripheral: peripheral) {
             brick.updateConnection(isConnected: false)
         }
+        if let footswitch = UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral) {
+            footswitch.updateConnection(isConnected: false)
+        }
         devicesTabViewController?.bricksCollectionView.reloadData()
         devicesTabViewController?.footswitchesCollectionView.reloadData()
     }
     
     func connect(peripheral: CBPeripheral) {
         
-        centralManager.stopScan()
-        print ("Scan stopped, trying to connect")
+//        centralManager.stopScan()
+//        print ("Scan stopped, trying to connect")
         peripheral.delegate = self
         centralManager.connect(peripheral)
     }
