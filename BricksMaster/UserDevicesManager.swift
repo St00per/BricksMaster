@@ -103,7 +103,7 @@ class UserDevicesManager {
     func enableBrick(brick: Brick, isEnabled: Bool) {
         guard let switchedBrick = userBricks.first(where: {brick == $0}) else { return }
         let brickTx = CentralBluetoothManager.default.bricksCharacteristic
-        if let peripheral = brick.peripheral, let tx = brickTx {
+        if let peripheral = switchedBrick.peripheral, let tx = brickTx {
             var dataToWrite = Data()
             dataToWrite.append(0xE7)
             dataToWrite.append(0xF1)
