@@ -47,6 +47,7 @@ class BricksCollectionViewCell: UICollectionViewCell {
             dataToWrite.append(0x00)
             
         }
+        println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brick.status == .on)")
         CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: peripheralCharacteristic, data: dataToWrite)
     }
     

@@ -54,6 +54,7 @@ class UserDevicesManager {
     }
     
     func sendPreset(preset:Preset, to footswitch: Footswitch) {
+        println("Send preset: \(preset.name)")
         for brickState in preset.presetBricks {
             if let currentBrick = brick(id: brickState.0), let peripheral = currentBrick.peripheral, let tx = currentBrick.tx {
                 //TODO: send it to proper characteristic
@@ -66,6 +67,7 @@ class UserDevicesManager {
                     dataToWrite.append(0x00)
 
                 }
+                println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brickState.1)")
                 CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
             }
         }
@@ -109,12 +111,13 @@ class UserDevicesManager {
             var dataToWrite = Data()
             dataToWrite.append(0xE7)
             dataToWrite.append(0xF1)
-            if isEnabled {
+            if brick.status == .on {
                 dataToWrite.append(0x01)
             } else {
                 dataToWrite.append(0x00)
                 
             }
+            println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brick.status == .on)")
             CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
         }
     }

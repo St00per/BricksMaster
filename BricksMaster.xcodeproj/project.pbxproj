@@ -38,6 +38,7 @@
 		0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */; };
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
 		7085533221F3332A007C33C0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085533121F3332A007C33C0 /* Observable.swift */; };
+		70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A04FBC21F4BB1B009C714D /* DebugViewController.swift */; };
 		70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4AF21F2601200EC88DE /* BankCell.swift */; };
 		70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */; };
 /* End PBXBuildFile section */
@@ -76,6 +77,7 @@
 		0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		7085533121F3332A007C33C0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		70A04FBC21F4BB1B009C714D /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		70E7D4AF21F2601200EC88DE /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 		70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -99,6 +101,7 @@
 				0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */,
 				0E63304721F084C800EA3652 /* PresetSettingViewController.swift */,
 				0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */,
+				70A04FBC21F4BB1B009C714D /* DebugViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				0EC28E0421EC71F400DEF32B /* Footswitch.swift in Sources */,
 				0E63303E21EF472A00EA3652 /* FootswitchEditViewController.swift in Sources */,
 				0E63304621F07FA600EA3652 /* PresetsTabCollectionViewCell.swift in Sources */,
+				70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */,
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
 				0E63304021F03E6700EA3652 /* PresetPickerViewController.swift in Sources */,
 				70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */,

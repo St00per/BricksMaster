@@ -22,6 +22,7 @@ class Footswitch: Observable {
     var peripheral: CBPeripheral? = nil
     var tx: CBCharacteristic? = nil
     var rx: CBCharacteristic? = nil
+    var needInitalizePorts: Bool = true
     
     init(id: UUID, name: String) {
         self.id = id
