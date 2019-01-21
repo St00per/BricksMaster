@@ -10,12 +10,11 @@ import Foundation
 import CoreBluetooth
 
 let bricksCBUUID = CBUUID(string: "0xFFE0")
-let footswitchesServiceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
+let brickModuleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
+let footswitchesServiceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
 let footswitchRxCharacteristic = CBUUID(string: "6E400003-B5A3-F393-E0A9-E50E24DCCA9E")
 let footswitchTxCharacteristic = CBUUID(string: "6E400002-B5A3-F393-E0A9-E50E24DCCA9E")
-
-let brickModuleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
 protocol PinIOModuleManagerDelegate: class {
     //func onPinIODidEndPinQuery(isDefaultConfigurationAssumed: Bool)

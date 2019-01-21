@@ -11,6 +11,7 @@ import UIKit
 class PresetsTabCollectionViewCell: UICollectionViewCell {
     
     var preset: Preset?
+    var bank: Bank?
     
     @IBOutlet weak var presetName: UILabel!
     
@@ -19,4 +20,8 @@ class PresetsTabCollectionViewCell: UICollectionViewCell {
         presetName.text = preset.name
     }
     
+    func configure(bank: Bank) {
+        self.bank = bank
+        presetName.text = bank.name
+    }
 }

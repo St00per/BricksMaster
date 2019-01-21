@@ -11,6 +11,14 @@ import UIKit
 class FootswitchEditViewController: UIViewController {
     
     var currentFootswitch: Footswitch?
+    var currentBank: Bank?
+    
+    @IBOutlet weak var bankButtonsView: UIView!
+    @IBOutlet weak var firstBankButton: UIButton!
+    @IBOutlet weak var secondBankButton: UIButton!
+    @IBOutlet weak var thirdBankButton: UIButton!
+    @IBOutlet weak var fourthBankButton: UIButton!
+    
     
     @IBOutlet weak var presetButtonsView: UIView!
     
@@ -38,6 +46,42 @@ class FootswitchEditViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
+    @IBAction func bankSelected(_ sender: UIButton) {
+        guard let currentFootswitch = self.currentFootswitch else { return }
+        
+        switch sender {
+        case firstBankButton:
+            if currentFootswitch.banks.count != 0 {
+                currentBank = currentFootswitch.banks[0]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+        case secondBankButton:
+            if currentFootswitch.banks.count > 1 {
+                currentBank = currentFootswitch.banks[1]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+            
+        case thirdBankButton:
+            if currentFootswitch.banks.count > 2 {
+                currentBank = currentFootswitch.banks[2]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+        case fourthBankButton:
+            if currentFootswitch.banks.count > 3 {
+                currentBank = currentFootswitch.banks[3]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+        default:
+            return
+        }
+        
+    }
+    
+    
     @IBAction func openPresetPicker(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetPickerViewController") as? PresetPickerViewController else {
@@ -61,11 +105,10 @@ class FootswitchEditViewController: UIViewController {
     
     
     @IBAction func onOffFootswitchButton(_ sender: UIButton) {
-        guard let currentFootswitch = currentFootswitch else {
+        guard let selectedBank = currentBank, let currentFootswitch = currentFootswitch else {
             return
         }
-        let footswitchButtons = currentFootswitch.buttons
-
+        var footswitchButtons = selectedBank.footswitchButtons
         var selectedPreset: Preset? = nil
         switch sender {
         case firstPresetOnOffButton:
@@ -151,15 +194,16 @@ class FootswitchEditViewController: UIViewController {
     }
     
     func configurePresetButtons() {
-        guard let currentFootswitch = currentFootswitch else {
+        guard let selectedBank = currentBank else {
             return
         }
-        firstPresetButtonLabel.text = currentFootswitch.buttons[0].preset?.name ?? "None"
-        secondPresetButtonLabel.text = currentFootswitch.buttons[1].preset?.name ?? "None"
-        thirdPresetButtonLabel.text = currentFootswitch.buttons[2].preset?.name ?? "None"
-        fourthPresetButtonLabel.text = currentFootswitch.buttons[3].preset?.name ?? "None"
+        var footswitchButtons = selectedBank.footswitchButtons
+        firstPresetButtonLabel.text = footswitchButtons[0].preset?.name ?? "None"
+        secondPresetButtonLabel.text = footswitchButtons[1].preset?.name ?? "None"
+        thirdPresetButtonLabel.text = footswitchButtons[2].preset?.name ?? "None"
+        fourthPresetButtonLabel.text = footswitchButtons[3].preset?.name ?? "None"
         
-        let footswitchButtons = currentFootswitch.buttons
+        //let footswitchButtons = currentFootswitch.buttons
         
         
         if footswitchButtons[0].isOn == true && footswitchButtons[0].preset != nil
@@ -203,10 +247,22 @@ class FootswitchEditViewController: UIViewController {
             fourthPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
         }
     }
+    
+    func configureBankButtons(selectedButton: UIButton) {
+        guard let bankButtons = bankButtonsView.subviews as? [UIButton] else {
+            return
+            
+        }
+        for button in bankButtons {
+            button.backgroundColor = UIColor(hexString: "EDEDED")
+            button.setTitleColor(UIColor.black, for: .normal)
+        }
+        selectedButton.backgroundColor = UIColor.black
+        selectedButton.setTitleColor(UIColor.white, for: .normal)
+    }
+    
 }
 extension FootswitchEditViewController: PinIOModuleManagerDelegate {
-    
-    
     
     func onPinIODidReceivePinState() {
         configurePresetButtons()

@@ -140,13 +140,13 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
+				0EC28E0721EC720100DEF32B /* Model */,
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
-				0EC28E0721EC720100DEF32B /* Model */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
 				0EC28DF221EC6BAD00DEF32B /* LaunchScreen.storyboard */,
