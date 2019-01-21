@@ -9,7 +9,7 @@
 import Foundation
 import CoreBluetooth
 
-class Footswitch: Equatable {
+class Footswitch: Observable {
     
     static let maxBriksCount = 5;
     var id: UUID
@@ -22,6 +22,7 @@ class Footswitch: Equatable {
     var peripheral: CBPeripheral? = nil
     var tx: CBCharacteristic? = nil
     var rx: CBCharacteristic? = nil
+    var needInitalizePorts: Bool = true
     
     init(id: UUID, name: String) {
         self.id = id
@@ -42,6 +43,14 @@ class Footswitch: Equatable {
             return false
         }
         return first.identifier == second.identifier
+    }
+    
+    func updateConnection(isConnected: Bool) {
+        for observer in observers {
+            if let id = peripheral?.identifier {
+                observer.brickConnectionStateChanged(connected: isConnected, peripheralId: id)
+            }
+        }
     }
     
 }

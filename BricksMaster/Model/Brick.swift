@@ -15,7 +15,7 @@ enum BrickStatus {
     case off
 }
 
-class Brick: Equatable {
+class Brick: Observable {
     
     var id: UUID?
     var peripheral: CBPeripheral? = nil
@@ -33,7 +33,6 @@ class Brick: Equatable {
         }
     }
     
-    var observers: [ConnectionObserver] = []
     
     init(deviceName: String) {
         self.deviceName = deviceName
@@ -55,21 +54,6 @@ class Brick: Equatable {
             if let id = peripheral?.identifier {
                 observer.brickConnectionStateChanged(connected: isConnected, peripheralId: id)
             }
-        }
-    }
-    
-    func subscribe(observer: ConnectionObserver) {
-        observers.append(observer)
-    }
-    
-    func unsubscribe(observer: ConnectionObserver) {
-        if let index = observers.firstIndex (where: { (findedObserver) -> Bool in
-            let findedObserver = findedObserver as? NSObject
-            let observer = observer as? NSObject
-            return findedObserver == observer
-            })
-        {
-            observers.remove(at: index)
         }
     }
 }

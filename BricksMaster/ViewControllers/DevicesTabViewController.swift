@@ -82,6 +82,7 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
             let currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
+            cell.configure(footswitch: currentFootswitch)
             return cell
         }
         return UICollectionViewCell()

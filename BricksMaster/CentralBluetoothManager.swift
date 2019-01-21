@@ -22,45 +22,16 @@ protocol PinIOModuleManagerDelegate: class {
     func onPinIODidReceivePinState()
 }
 
-class PinData {
-    enum Mode: UInt8 {
-        case unknown = 255
-        case input = 0          // Don't chage the values (these are the bytes defined by firmata spec)
-        case output = 1
-        
-        case analog = 2
-        case pwm = 3
-        case servo = 4
-    }
-    
-    enum DigitalValue: Int {
-        case low = 0
-        case high = 1
-    }
-    
-    var digitalPinId: Int
-    var analogPinId: Int = -1
-    
-    var isDigital: Bool
-    var isAnalog: Bool
-    var isPWM: Bool
-    
-    var mode = Mode.input
-    var digitalValue =  DigitalValue.low
-    var analogValue: Int = 0
-    
-    init(digitalPinId: Int, isDigital: Bool, isAnalog: Bool, isPWM: Bool) {
-        self.digitalPinId = digitalPinId
-        self.isDigital = isDigital
-        self.isAnalog = isAnalog
-        self.isPWM = isPWM
-    }
-}
-
 struct TxCommand {
     let data: Data
     let peripheral: CBPeripheral
     let characteristic: CBCharacteristic
+}
+
+public func println(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    let output = items.map { "\($0)" }.joined(separator: separator)
+    DebugController.addLog(output)
+    Swift.print(items, terminator: terminator)
 }
 
 class CentralBluetoothManager: NSObject {
@@ -85,8 +56,6 @@ class CentralBluetoothManager: NSObject {
     private let SYSEX_START: UInt8 = 0xF0
     private let SYSEX_END: UInt8 = 0xF7
     
-    var pins = [PinData]()
-    
     var isFirstDidLoad = true
     var isFirstSend = true
     override init() {
@@ -96,7 +65,6 @@ class CentralBluetoothManager: NSObject {
     
     private func updatePinsForReceivedStates(_ pinStates: Int, port: Int, footSwitch: Footswitch?) {
         let offset = 8 * port
-        if offset > 0 { return }
         // Iterate through all pins
         if let footSwitch = footSwitch {
             var selectedId = -1
@@ -104,19 +72,28 @@ class CentralBluetoothManager: NSObject {
                 let mask = 1 << i
                 let state = (pinStates & mask) >> i
                 if let digitalId = digitalIDs[offset + i] {
-                    if !footSwitch.buttons[digitalId].isOn && (state == 0) {
-                        selectedId = digitalId
+                    if digitalId < 4 {
+                        if !footSwitch.buttons[digitalId].isOn && (state == 0) {
+                            selectedId = digitalId
+                        }
+                    } else {
+                        if state == 0 {
+                            //footSwitch.customButton.
+                        }
                     }
                 }
-                print("[\(i) - \(state)]\t")
+                println("[\(i) - \(state)]\t")
             }
             if selectedId != -1{
                 for i in 0...3 {
                     footSwitch.buttons[i].isOn = i == selectedId
+                    if footSwitch.buttons[i].isOn {
+                        footSwitch.selectedPreset = footSwitch.buttons[i].preset
+                    }
                 }
             }
             UserDevicesManager.default.updateFootswitch(footswitch: footSwitch)
-            print("\n")
+            println("\n")
         }
     }
     
@@ -154,7 +131,7 @@ class CentralBluetoothManager: NSObject {
             var isDigitalReportingMessage = (receivedPinStateDataBuffer[0] >= 0x90) && (receivedPinStateDataBuffer[0] <= 0x9F)
             var isAnalogReportingMessage = (receivedPinStateDataBuffer[0] >= 0xE0) && (receivedPinStateDataBuffer[0] <= 0xEF)
             
-            print("receivedPinStateDataBuffer size: \(receivedPinStateDataBuffer.count)")
+            println("receivedPinStateDataBuffer size: \(receivedPinStateDataBuffer.count)")
             
             while receivedPinStateDataBuffer.count >= 3 && (isDigitalReportingMessage || isAnalogReportingMessage)        // Check that current message length is at least 3 bytes
             {
@@ -188,18 +165,6 @@ class CentralBluetoothManager: NSObject {
         }
     }
     
-    private func digitalValueDescription(_ digitalValue: PinData.DigitalValue) -> String {
-        
-        
-        var resultStringId: String
-        switch digitalValue {
-        case .low: resultStringId = "LOW"
-        case .high: resultStringId = "HIGH"
-        }
-        
-        return resultStringId
-    }
-    
 }
 
 extension CentralBluetoothManager: CBCentralManagerDelegate {
@@ -208,31 +173,30 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         switch central.state {
             
         case .unknown:
-            print("central.state is .unknown")
+            println("central.state is .unknown")
         case .resetting:
-            print("central.state is .resetting")
+            println("central.state is .resetting")
         case .unsupported:
-            print("central.state is .unsupported")
+            println("central.state is .unsupported")
         case .unauthorized:
-            print("central.state is .unauthorized")
+            println("central.state is .unauthorized")
         case .poweredOff:
-            print("central.state is .poweredOff")
+            println("central.state is .poweredOff")
         case .poweredOn:
-            print("central.state is .poweredOn")
+            println("central.state is .poweredOn")
             if isFirstDidLoad {
                 centralManager.scanForPeripherals(withServices: [bricksCBUUID,footswitchesServiceCBUUID])
                 
             }
         }
-        
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print(error)
+        println(error)
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print(peripheral)
+        println(peripheral)
         foundFootswitches.append(peripheral)
         centralManager.connect(foundFootswitches[0])
         
@@ -242,9 +206,15 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
             if uuid == footswitchesServiceCBUUID {
                 let newFootswitch = Footswitch(id: peripheral.identifier, name: peripheral.name ?? "Unnamed")
                 newFootswitch.peripheral = peripheral
-                if !UserDevicesManager.default.userFootswitches.contains(newFootswitch) {
-                UserDevicesManager.default.userFootswitches.append(newFootswitch)
-                    break
+                newFootswitch.name = peripheral.name ?? "Unnamed"
+                if UserDevicesManager.default.userFootswitches.first(where: { (footswitch) -> Bool in
+                    guard let findedPeripheral = footswitch.peripheral else {
+                        return false
+                    }
+                    return findedPeripheral.identifier == peripheral.identifier
+                }) == nil {
+                    println("Add footswitch: \(peripheral.identifier)")
+                    UserDevicesManager.default.userFootswitches.append(newFootswitch)
                 }
             }
             if uuid == bricksCBUUID {
@@ -252,10 +222,14 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
                 brick.peripheral = peripheral
                 brick.deviceName = peripheral.name
                 brick.updateConnection(isConnected: true)
-                if !UserDevicesManager.default.userBricks.contains(brick) {
+                if UserDevicesManager.default.userBricks.first(where: { (brick) -> Bool in
+                    guard let findedPeripheral = brick.peripheral else {
+                        return false
+                    }
+                    return findedPeripheral.identifier == peripheral.identifier
+                }) == nil {
                     UserDevicesManager.default.userBricks.append(brick)
                 }
-                break
             }
         }
         
@@ -270,15 +244,18 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         devicesTabViewController?.bricksCollectionView.reloadData()
         devicesTabViewController?.footswitchesCollectionView.reloadData()
-        print("Connected!")
+        println("Connected!")
         peripheral.delegate = self
         peripheral.discoverServices(nil)
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("Disconnected!")
+        println("Disconnected!")
         if let brick = UserDevicesManager.default.brickForPeripheral(peripheral: peripheral) {
             brick.updateConnection(isConnected: false)
+        }
+        if let footswitch = UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral) {
+            footswitch.updateConnection(isConnected: false)
         }
         devicesTabViewController?.bricksCollectionView.reloadData()
         devicesTabViewController?.footswitchesCollectionView.reloadData()
@@ -286,8 +263,8 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
     
     func connect(peripheral: CBPeripheral) {
         
-        centralManager.stopScan()
-        print ("Scan stopped, trying to connect")
+//        centralManager.stopScan()
+//        println ("Scan stopped, trying to connect")
         peripheral.delegate = self
         centralManager.connect(peripheral)
     }
@@ -303,7 +280,7 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
         guard let services = peripheral.services else { return }
         
         for service in services {
-            print(service)
+            println(service)
             peripheral.discoverCharacteristics(nil, for: service)
         }
     }
@@ -316,10 +293,10 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
         let footswitch = UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral)
         let brick = UserDevicesManager.default.brickForPeripheral(peripheral: peripheral)
         for characteristic in characteristics {
-            //print(characteristic)
+            //println(characteristic)
             
             if characteristic.properties.contains(.write) {
-                print("\(characteristic.uuid): properties contains .write")
+                println("\(characteristic.uuid): properties contains .write")
                 if characteristic.uuid == brickModuleFunctionConfigurationCBUUID {
                     CentralBluetoothManager.default.bricksCharacteristic = characteristic
                     if let brick = brick {
@@ -334,27 +311,35 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                     footswitch.tx = characteristic
                 }
                 if characteristic.uuid == footswitchRxCharacteristic {
-                    print("\(characteristic.uuid): properties contains .notify")
+                    println("\(characteristic.uuid): properties contains .notify")
                     peripheral.setNotifyValue(true, for: characteristic)
                     footswitch.rx = characteristic
                 }
-                //init footswitch ports if it's full connected
-                if(footswitch.peripheral != nil && footswitch.rx != nil && footswitch.tx != nil) {
-                    initFootSwitchPorts(footSwitch: footswitch)
-                }
+            }
+        }
+        //init footswitch ports if it's full connected
+        if let footswitch = footswitch {
+            if(footswitch.peripheral != nil && footswitch.rx != nil && footswitch.tx != nil && footswitch.needInitalizePorts) {
+                footswitch.needInitalizePorts = false;
+                initFootSwitchPorts(footSwitch: footswitch)
             }
         }
     }
     
     func initFootSwitchPorts(footSwitch: Footswitch) {
         guard let peripheral = footSwitch.peripheral, let tx = footSwitch.tx else {
-            print("Can't send message");
+            println("Can't send message");
             return;
         }
         let data0: UInt8 = 0xD0 + 0        // start port 0 digital reporting (0xD0 + port#)
         let data1: UInt8 = 1                  // enable
         var bytes: [UInt8] = [data0, data1]
         var data = Data(bytes: bytes)
+        sendCommand(to: peripheral, characteristic: tx, data: data)
+        let data2: UInt8 = 0xD0 + 1        // start port 0 digital reporting (0xD0 + port#)
+        let data3: UInt8 = 1                  // enable
+        bytes = [data2, data3]
+        data = Data(bytes: bytes)
         sendCommand(to: peripheral, characteristic: tx, data: data)
         for id in [2,3,5,6,9] {
             bytes = [0xf4, UInt8(id), 0]
@@ -377,24 +362,24 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                     error: Error?) {
         switch characteristic.uuid {
 //        case footswitchFirstTestedCharacteristic:
-//            print(characteristic.value ?? "no value")
+//            println(characteristic.value ?? "no value")
         case footswitchRxCharacteristic:
-            print(characteristic.value ?? "no value")
+            println(characteristic.value ?? "no value")
             guard let characteristicData = characteristic.value else { return }
             receivedPinState(data: characteristicData, footSwitch: UserDevicesManager.default.footswitchByPeripheral(peripheral: peripheral))
         default:
-            print("Unhandled Characteristic UUID: \(characteristic.uuid)")
+            println("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
     
     func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?) {
         guard error == nil else {
-            print("Error discovering services: error")
+            println("Error while sending: \(error?.localizedDescription ?? "")")
             return
         }
-        print("Message sent")
+        println("Message sent \(peripheral.name ?? "")/\(peripheral.identifier)")
         if(commandQueue.count > 0) {
-            print("Queue count: \(commandQueue.count)\n")
+            println("Queue count: \(commandQueue.count)\n")
             let command = commandQueue.removeFirst()
             command.peripheral.writeValue(command.data, for: command.characteristic, type: CBCharacteristicWriteType.withResponse)
         } else {

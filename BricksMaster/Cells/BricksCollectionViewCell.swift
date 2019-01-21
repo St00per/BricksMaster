@@ -33,12 +33,22 @@ class BricksCollectionViewCell: UICollectionViewCell {
     
     @IBAction func onOffDevice(_ sender: UIButton) {
         
-        guard let brick = self.brick, let peripheralCharacteristic = CentralBluetoothManager.default.bricksCharacteristic else { return }
+        guard let brick = self.brick, let peripheralCharacteristic = brick.tx else { return }
+        brick.status = brick.status == .on ? .off : .on;
+        onOffDeviceButton.setTitle( brick.status == .on ? "ON" : "OFF", for: .normal)
         guard let peripheral = brick.peripheral else { return }
         let onOffCommandData = CentralBluetoothManager.default.OnOff()
-        peripheral.writeValue(onOffCommandData,
-                              for: peripheralCharacteristic,
-                              type: CBCharacteristicWriteType.withResponse)
+        var dataToWrite = Data()
+        dataToWrite.append(0xE7)
+        dataToWrite.append(0xF1)
+        if brick.status == .on {
+            dataToWrite.append(0x01)
+        } else {
+            dataToWrite.append(0x00)
+            
+        }
+        println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brick.status == .on)")
+        CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: peripheralCharacteristic, data: dataToWrite)
     }
     
     
