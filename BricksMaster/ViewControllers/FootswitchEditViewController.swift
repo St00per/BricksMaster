@@ -129,6 +129,44 @@ class FootswitchEditViewController: UIViewController {
     
     
     @IBAction func openBankNameEdit(_ sender: UILongPressGestureRecognizer) {
+        guard let touchedButton = sender.view as? UIButton else {
+            return
+        }
+        
+        
+        
+        guard let currentFootswitch = self.currentFootswitch else { return }
+        switch touchedButton {
+        case firstBankButton:
+            if currentFootswitch.banks.count != 0 {
+                currentBank = currentFootswitch.banks[0]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+        case secondBankButton:
+            if currentFootswitch.banks.count > 1 {
+                currentBank = currentFootswitch.banks[1]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+            
+        case thirdBankButton:
+            if currentFootswitch.banks.count > 2 {
+                currentBank = currentFootswitch.banks[2]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+        case fourthBankButton:
+            if currentFootswitch.banks.count > 3 {
+                currentBank = currentFootswitch.banks[3]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+        default:
+            return
+        }
+        
+        
         if sender.state == .began {
             
             self.becomeFirstResponder()

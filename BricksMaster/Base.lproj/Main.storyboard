@@ -857,6 +857,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8XL-w0-qPM">
                                                 <rect key="frame" x="100" y="2.6666666666666856" width="80" height="60"/>
                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="ccp-1n-24x"/>
                                                     <constraint firstAttribute="width" constant="80" id="ebz-4o-TTW"/>
@@ -866,11 +867,13 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="bankSelected:" destination="LZo-ib-rdI" eventType="touchUpInside" id="UPI-Ra-QRC"/>
+                                                    <outletCollection property="gestureRecognizers" destination="W7f-kq-zL8" appends="YES" id="v4P-XI-nXG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oP4-Z2-FLx">
                                                 <rect key="frame" x="192" y="2.6666666666666856" width="80" height="60"/>
                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="46j-z3-sKb"/>
                                                     <constraint firstAttribute="width" constant="80" id="tXr-Gs-h9v"/>
@@ -880,11 +883,13 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="bankSelected:" destination="LZo-ib-rdI" eventType="touchUpInside" id="ywB-Z1-Hs6"/>
+                                                    <outletCollection property="gestureRecognizers" destination="jG5-ci-aNn" appends="YES" id="km6-r3-8Bt"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s2o-n8-c07">
                                                 <rect key="frame" x="284" y="2.6666666666666856" width="80" height="60"/>
                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="60" id="eyh-dB-gza"/>
                                                     <constraint firstAttribute="width" constant="80" id="jER-Kj-It9"/>
@@ -894,6 +899,7 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="bankSelected:" destination="LZo-ib-rdI" eventType="touchUpInside" id="phA-sq-tON"/>
+                                                    <outletCollection property="gestureRecognizers" destination="WXB-0Z-y6R" appends="YES" id="Y4D-dp-b7R"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRw-md-yrc">
@@ -1061,6 +1067,21 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="cg7-xz-bNO"/>
                 </view>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="W7f-kq-zL8">
+                    <connections>
+                        <action selector="openBankNameEdit:" destination="LZo-ib-rdI" id="VML-YL-AYw"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="jG5-ci-aNn">
+                    <connections>
+                        <action selector="openBankNameEdit:" destination="LZo-ib-rdI" id="Pnk-pq-jFZ"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="WXB-0Z-y6R">
+                    <connections>
+                        <action selector="openBankNameEdit:" destination="LZo-ib-rdI" id="2PJ-Tk-Zaq"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1980" y="-196.55172413793105"/>
         </scene>
