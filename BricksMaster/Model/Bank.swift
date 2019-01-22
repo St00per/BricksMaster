@@ -10,7 +10,7 @@ import Foundation
 
 class Bank {
     var id: Int
-    var name: String = "Unnamed"
+    var name: String?
     var presets: [Preset] = [] // presets according to order 1st button - 1st preset
     var footswitchId: UUID?
     var footswitchButtons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]

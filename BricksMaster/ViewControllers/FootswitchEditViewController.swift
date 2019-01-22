@@ -14,6 +14,7 @@ class FootswitchEditViewController: UIViewController {
     var currentBank: Bank?
     
     @IBOutlet weak var bankButtonsView: UIView!
+    
     @IBOutlet weak var firstBankButton: UIButton!
     @IBOutlet weak var secondBankButton: UIButton!
     @IBOutlet weak var thirdBankButton: UIButton!
@@ -41,6 +42,40 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var fourthPresetButtonLabel: UILabel!
     @IBOutlet weak var fourthPresetOnOffButton: UIButton!
     @IBOutlet weak var fourthPresetSelectButton: UIButton!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+//        updateBankButtonsTitles()
+//        guard let currentFootswitch = self.currentFootswitch else { return }
+//        if currentFootswitch.banks.count != 0 {
+//            currentBank = currentFootswitch.banks[0]
+//            configureBankButtons(selectedButton: firstBankButton)
+//            configurePresetButtons()
+//        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UserDevicesManager.default.footswitchController = self
+        updateBankButtonsTitles()
+        guard let currentFootswitch = self.currentFootswitch else { return }
+        if currentFootswitch.banks.count != 0 {
+            currentBank = currentFootswitch.banks[0]
+            configureBankButtons(selectedButton: firstBankButton)
+            configurePresetButtons()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDevicesManager.default.footswitchController = nil
+    }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(false)
+//        configurePresetButtons()
+//    }
     
     @IBAction func closeEditController(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -78,7 +113,6 @@ class FootswitchEditViewController: UIViewController {
         default:
             return
         }
-        
     }
     
     
@@ -173,25 +207,7 @@ class FootswitchEditViewController: UIViewController {
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UserDevicesManager.default.footswitchController = self
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        UserDevicesManager.default.footswitchController = nil
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        configurePresetButtons()
-    }
     
     func configurePresetButtons() {
         guard let selectedBank = currentBank else {
@@ -248,17 +264,39 @@ class FootswitchEditViewController: UIViewController {
         }
     }
     
+    func updateBankButtonsTitles() {
+        var banksNames: [String?] = []
+        guard let banks = currentFootswitch?.banks else { return }
+        for bank in banks {
+            banksNames.append(bank.name)
+        }
+        if banksNames[0] != nil {
+            firstBankButton.setTitle(banksNames[0], for: .normal)
+        }
+        if banksNames[1] != nil {
+            secondBankButton.setTitle(banksNames[1], for: .normal)
+        }
+        if banksNames[2] != nil {
+            thirdBankButton.setTitle(banksNames[2], for: .normal)
+        }
+        if banksNames[3] != nil {
+            fourthBankButton.setTitle(banksNames[3], for: .normal)
+        }
+    }
+    
     func configureBankButtons(selectedButton: UIButton) {
         guard let bankButtons = bankButtonsView.subviews as? [UIButton] else {
             return
             
         }
         for button in bankButtons {
+            
             button.backgroundColor = UIColor(hexString: "EDEDED")
             button.setTitleColor(UIColor.black, for: .normal)
         }
         selectedButton.backgroundColor = UIColor.black
         selectedButton.setTitleColor(UIColor.white, for: .normal)
+        
     }
     
 }
