@@ -861,7 +861,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="ccp-1n-24x"/>
                                                     <constraint firstAttribute="width" constant="80" id="ebz-4o-TTW"/>
                                                 </constraints>
-                                                <state key="normal" title="None">
+                                                <state key="normal" title="NewBank">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -875,7 +875,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="46j-z3-sKb"/>
                                                     <constraint firstAttribute="width" constant="80" id="tXr-Gs-h9v"/>
                                                 </constraints>
-                                                <state key="normal" title="None">
+                                                <state key="normal" title="NewBank">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -889,7 +889,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="eyh-dB-gza"/>
                                                     <constraint firstAttribute="width" constant="80" id="jER-Kj-It9"/>
                                                 </constraints>
-                                                <state key="normal" title="None">
+                                                <state key="normal" title="NewBank">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -899,16 +899,18 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRw-md-yrc">
                                                 <rect key="frame" x="8" y="2.6666666666666856" width="80" height="60"/>
                                                 <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="gZM-Po-Rmt"/>
                                                     <constraint firstAttribute="height" constant="60" id="hN8-10-KTU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="None">
+                                                <state key="normal" title="NewBank">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
                                                     <action selector="bankSelected:" destination="LZo-ib-rdI" eventType="touchUpInside" id="eO3-50-BWd"/>
+                                                    <outletCollection property="gestureRecognizers" destination="yTc-ab-sAK" appends="YES" id="sjm-fW-aru"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -962,11 +964,14 @@
                     </view>
                     <connections>
                         <outlet property="bankButtonsView" destination="E0v-sJ-rnN" id="710-Gl-8FL"/>
+                        <outlet property="bankNameEditTextField" destination="zqN-jV-Tfc" id="nee-zv-nyt"/>
+                        <outlet property="bankNameEditView" destination="YSR-D6-Jue" id="pDq-C4-RNj"/>
                         <outlet property="firstBankButton" destination="IRw-md-yrc" id="9Su-Pg-yW7"/>
                         <outlet property="firstPresetButtonLabel" destination="0bM-Ed-OWu" id="TDl-qO-Ww9"/>
                         <outlet property="firstPresetButtonView" destination="UqD-qy-JdF" id="wcS-pl-DM6"/>
                         <outlet property="firstPresetOnOffButton" destination="LQD-rP-fvX" id="Wlx-ai-343"/>
                         <outlet property="firstPresetSelectButton" destination="bU7-oh-eLp" id="7To-lc-gMg"/>
+                        <outlet property="footswitchEditView" destination="Cr3-gY-s23" id="i0V-AO-YRo"/>
                         <outlet property="fourthBankButton" destination="s2o-n8-c07" id="owc-if-T9l"/>
                         <outlet property="fourthPresetButtonLabel" destination="yKb-wv-Bvz" id="pkg-wE-jmF"/>
                         <outlet property="fourthPresetButtonView" destination="pGL-Lu-b6P" id="Ub5-mv-qPw"/>
@@ -987,6 +992,75 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Let-pn-yje" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="AYo-Pr-ers" userLabel="Exit" sceneMemberID="exit"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="yTc-ab-sAK">
+                    <connections>
+                        <action selector="openBankNameEdit:" destination="LZo-ib-rdI" id="mcZ-RU-FgM"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <view contentMode="scaleToFill" id="YSR-D6-Jue">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cej-eD-a1H">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zqN-jV-Tfc">
+                                    <rect key="frame" x="0.0" y="39" width="240" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="gEG-Cs-uAa"/>
+                                    </constraints>
+                                    <nil key="textColor"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FxQ-ro-ifz">
+                                    <rect key="frame" x="76" y="10" width="88.333333333333314" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XTX-q1-6Qd">
+                                    <rect key="frame" x="208" y="8" width="25" height="25"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" image="Close 2.1"/>
+                                    <connections>
+                                        <action selector="closeBankNameEdit:" destination="LZo-ib-rdI" eventType="touchUpInside" id="7Oz-nz-lg5"/>
+                                        <action selector="closeBankNameView:" destination="Qrf-xu-Kzf" eventType="touchUpInside" id="Ycw-7d-mdS"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D3D-nR-LIC">
+                                    <rect key="frame" x="102" y="92" width="37" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <state key="normal" title="SAVE">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="createNewBank:" destination="Qrf-xu-Kzf" eventType="touchUpInside" id="H7P-PI-SXD"/>
+                                        <action selector="saveEditedBankName:" destination="LZo-ib-rdI" eventType="touchUpInside" id="ixR-sD-Op4"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="zqN-jV-Tfc" firstAttribute="top" secondItem="FxQ-ro-ifz" secondAttribute="bottom" constant="8" id="BH0-7i-r5j"/>
+                                <constraint firstItem="zqN-jV-Tfc" firstAttribute="width" secondItem="cej-eD-a1H" secondAttribute="width" id="JpU-cN-xh3"/>
+                                <constraint firstAttribute="width" constant="240" id="Jwt-M5-aN3"/>
+                                <constraint firstItem="FxQ-ro-ifz" firstAttribute="centerX" secondItem="cej-eD-a1H" secondAttribute="centerX" id="LQO-Dz-rfv"/>
+                                <constraint firstAttribute="height" constant="128" id="e5W-w2-bxH"/>
+                                <constraint firstItem="zqN-jV-Tfc" firstAttribute="centerX" secondItem="cej-eD-a1H" secondAttribute="centerX" id="hhu-qa-SfN"/>
+                                <constraint firstItem="zqN-jV-Tfc" firstAttribute="centerY" secondItem="cej-eD-a1H" secondAttribute="centerY" id="jAd-MX-IgZ"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="89I-hw-2UF"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="cej-eD-a1H" firstAttribute="centerX" secondItem="YSR-D6-Jue" secondAttribute="centerX" id="Syn-PB-bn5"/>
+                        <constraint firstItem="cej-eD-a1H" firstAttribute="centerY" secondItem="YSR-D6-Jue" secondAttribute="centerY" id="b54-66-gKu"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="cg7-xz-bNO"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="1980" y="-196.55172413793105"/>
         </scene>

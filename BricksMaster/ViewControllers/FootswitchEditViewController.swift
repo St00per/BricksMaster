@@ -44,9 +44,12 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var fourthPresetOnOffButton: UIButton!
     @IBOutlet weak var fourthPresetSelectButton: UIButton!
     
+    @IBOutlet weak var bankNameEditTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bankNameEditTextField.delegate = self
+        bankNameEditTextField.returnKeyType = UIReturnKeyType.done
         currentBankButton = firstBankButton
         guard let currentFootswitch = self.currentFootswitch else { return }
         currentBank = currentFootswitch.banks.first
@@ -77,6 +80,16 @@ class FootswitchEditViewController: UIViewController {
     }
     
     @IBAction func bankSelected(_ sender: UIButton) {
+        if sender.titleLabel?.text == "NewBank" {
+            let newBank: Bank = Bank(id: currentFootswitch?.banks.count ?? 1, name: bankNameEditTextField.text ?? "Unnamed")
+            UserDevicesManager.default.userFootswitches.first?.banks.append(newBank)
+            currentBank = UserDevicesManager.default.userFootswitches.first?.banks.last
+            footswitchEditView.alpha = 0.4
+            footswitchEditView.isUserInteractionEnabled = false
+            self.view.addSubview(bankNameEditView)
+            bankNameEditView.center = self.view.center
+        }
+        
         guard let currentFootswitch = self.currentFootswitch else { return }
         
         switch sender {
@@ -108,6 +121,36 @@ class FootswitchEditViewController: UIViewController {
         default:
             return
         }
+    }
+    @IBOutlet weak var footswitchEditView: UIView!
+    
+    @IBOutlet var bankNameEditView: UIView!
+    
+    
+    
+    @IBAction func openBankNameEdit(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            
+            self.becomeFirstResponder()
+            footswitchEditView.alpha = 0.4
+            footswitchEditView.isUserInteractionEnabled = false
+            self.view.addSubview(bankNameEditView)
+            bankNameEditView.center = self.view.center
+        }
+    }
+    
+    @IBAction func closeBankNameEdit(_ sender: UIButton) {
+        bankNameEditView.removeFromSuperview()
+        footswitchEditView.alpha = 1
+        footswitchEditView.isUserInteractionEnabled = true
+    }
+    
+    @IBAction func saveEditedBankName(_ sender: UIButton) {
+        currentBank?.name = bankNameEditTextField.text
+        bankNameEditView.removeFromSuperview()
+        footswitchEditView.alpha = 1
+        footswitchEditView.isUserInteractionEnabled = true
+        updateBankButtonsTitles()
     }
     
     
@@ -202,9 +245,6 @@ class FootswitchEditViewController: UIViewController {
         }
     }
     
-    
-    
-    
     func configurePresetButtons() {
         guard let selectedBank = currentBank else {
             return
@@ -281,25 +321,32 @@ class FootswitchEditViewController: UIViewController {
     func configureBankButtons(selectedButton: UIButton) {
         guard let bankButtons = bankButtonsView.subviews as? [UIButton] else {
             return
-            
         }
         for button in bankButtons {
-            
             button.backgroundColor = UIColor(hexString: "EDEDED")
             button.setTitleColor(UIColor.black, for: .normal)
         }
         self.currentBankButton = selectedButton
         selectedButton.backgroundColor = UIColor.black
         selectedButton.setTitleColor(UIColor.white, for: .normal)
-        
     }
-    
 }
 extension FootswitchEditViewController: PinIOModuleManagerDelegate {
     
     func onPinIODidReceivePinState() {
         configurePresetButtons()
     }
+}
+extension FootswitchEditViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        currentBank?.name = bankNameEditTextField.text
+        bankNameEditView.removeFromSuperview()
+        footswitchEditView.alpha = 1
+        footswitchEditView.isUserInteractionEnabled = true
+        guard let button = currentBankButton else { return false}
+        configureBankButtons(selectedButton: button)
+        return true
+    }
     
 }
