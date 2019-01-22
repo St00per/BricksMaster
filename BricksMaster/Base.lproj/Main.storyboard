@@ -861,7 +861,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="ccp-1n-24x"/>
                                                     <constraint firstAttribute="width" constant="80" id="ebz-4o-TTW"/>
                                                 </constraints>
-                                                <state key="normal" title="Bank2">
+                                                <state key="normal" title="None">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -875,7 +875,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="46j-z3-sKb"/>
                                                     <constraint firstAttribute="width" constant="80" id="tXr-Gs-h9v"/>
                                                 </constraints>
-                                                <state key="normal" title="Bank3">
+                                                <state key="normal" title="None">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -889,7 +889,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="eyh-dB-gza"/>
                                                     <constraint firstAttribute="width" constant="80" id="jER-Kj-It9"/>
                                                 </constraints>
-                                                <state key="normal" title="Bank4">
+                                                <state key="normal" title="None">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -904,7 +904,7 @@
                                                     <constraint firstAttribute="height" constant="60" id="hN8-10-KTU"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Bank1">
+                                                <state key="normal" title="None">
                                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -1259,12 +1259,64 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Presets" image="ic_view_module_48px" selectedImage="ic_view_module_48px" id="AMk-G1-fyy"/>
                     <connections>
+                        <outlet property="bankNameTextField" destination="nB5-kk-mym" id="iWb-vo-Ofr"/>
+                        <outlet property="bankNameView" destination="aXc-00-USK" id="eTu-cz-COI"/>
                         <outlet property="collectionView" destination="lRH-dw-zbm" id="maC-he-afB"/>
+                        <outlet property="presetsView" destination="w9W-wI-fu9" id="PTH-Rb-cFc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SsR-hz-VFq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="aXc-00-USK">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nB5-kk-mym">
+                            <rect key="frame" x="0.0" y="39" width="240" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="hkZ-UM-b99"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="50L-mU-vEk">
+                            <rect key="frame" x="76" y="10" width="88" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXa-2w-zC3">
+                            <rect key="frame" x="208" y="8" width="25" height="25"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <state key="normal" image="Close 2.1"/>
+                            <connections>
+                                <action selector="closeBankNameView:" destination="Qrf-xu-Kzf" eventType="touchUpInside" id="Hcn-bK-vIy"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mj0-Mj-SRR">
+                            <rect key="frame" x="92" y="92" width="56" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal" title="CREATE">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="createNewBank:" destination="Qrf-xu-Kzf" eventType="touchUpInside" id="Nlc-Sn-VcT"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="nB5-kk-mym" firstAttribute="top" secondItem="50L-mU-vEk" secondAttribute="bottom" constant="8" id="Gt0-IZ-Pit"/>
+                        <constraint firstItem="nB5-kk-mym" firstAttribute="centerY" secondItem="aXc-00-USK" secondAttribute="centerY" id="Gv3-Pa-779"/>
+                        <constraint firstItem="50L-mU-vEk" firstAttribute="centerX" secondItem="aXc-00-USK" secondAttribute="centerX" id="P5Z-WK-G1k"/>
+                        <constraint firstItem="nB5-kk-mym" firstAttribute="width" secondItem="aXc-00-USK" secondAttribute="width" id="Uei-ve-df9"/>
+                        <constraint firstItem="nB5-kk-mym" firstAttribute="centerX" secondItem="aXc-00-USK" secondAttribute="centerX" id="e6e-BR-GuX"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Qgh-Ji-Hgq"/>
+                </view>
             </objects>
-            <point key="canvasLocation" x="1072.8" y="503.94088669950742"/>
+            <point key="canvasLocation" x="1081" y="755"/>
         </scene>
         <!--Debug-->
         <scene sceneID="97a-hB-RPo">
@@ -1297,7 +1349,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gUF-zK-pan" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1068" y="1160.8374384236454"/>
+            <point key="canvasLocation" x="134" y="914"/>
         </scene>
         <!--Preset Setting View Controller-->
         <scene sceneID="vlD-RY-7FM">

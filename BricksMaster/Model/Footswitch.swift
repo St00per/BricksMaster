@@ -18,7 +18,7 @@ class Footswitch: Observable {
     var buttons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
     var customButton: CustomButton = CustomButton()
     var selectedBank: Bank?
-    var banks: [Bank] = [Bank(id: 0,name: "TestBank1"), Bank(id: 1,name: "TestBank2"), Bank(id: 1,name: "TestBank3"), Bank(id: 3,name: "TestBank4")]
+    var banks: [Bank] = [Bank(id: 0,name: "TestBank1")]
     var selectedPreset: Preset?
     var peripheral: CBPeripheral? = nil
     var tx: CBCharacteristic? = nil

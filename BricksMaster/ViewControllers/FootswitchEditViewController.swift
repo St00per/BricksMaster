@@ -264,16 +264,16 @@ class FootswitchEditViewController: UIViewController {
         for bank in banks {
             banksNames.append(bank.name)
         }
-        if banksNames[0] != nil {
+        if banksNames.count > 0, banksNames[0] != nil {
             firstBankButton.setTitle(banksNames[0], for: .normal)
         }
-        if banksNames[1] != nil {
+        if banksNames.count > 1, banksNames[1] != nil {
             secondBankButton.setTitle(banksNames[1], for: .normal)
         }
-        if banksNames[2] != nil {
+        if banksNames.count > 2 ,banksNames[2] != nil {
             thirdBankButton.setTitle(banksNames[2], for: .normal)
         }
-        if banksNames[3] != nil {
+        if banksNames.count > 3, banksNames[3] != nil {
             fourthBankButton.setTitle(banksNames[3], for: .normal)
         }
     }
