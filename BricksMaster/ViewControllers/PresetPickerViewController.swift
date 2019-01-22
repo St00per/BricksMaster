@@ -9,7 +9,9 @@
 import UIKit
 
 class PresetPickerViewController: UIViewController {
-
+    
+    var editedFootswitch: Footswitch?
+    var editedBank: Bank?
     var footswitchButtonNumber = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -19,8 +21,6 @@ class PresetPickerViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     
@@ -35,6 +35,8 @@ extension PresetPickerViewController: UICollectionViewDelegate, UICollectionView
             return UICollectionViewCell()
         }
         cell.controller = self
+        cell.footswitch = editedFootswitch
+        cell.bank = editedBank
         cell.footswitchButtonIndex = footswitchButtonNumber
         let currentPreset = UserDevicesManager.default.userPresets[indexPath.row]
         cell.configure(preset: currentPreset)
