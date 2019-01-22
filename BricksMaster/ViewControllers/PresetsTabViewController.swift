@@ -77,12 +77,13 @@ class PresetsTabViewController: UIViewController {
     
     @IBAction func createNewBank(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
+        guard let currentFootswitch = self.currentFootswitch, let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return
         }
-        let newBank: Bank = Bank(id: currentFootswitch?.banks.count ?? 1, name: bankNameTextField.text ?? "Unnamed")
-        UserDevicesManager.default.userFootswitches.first?.banks.append(newBank)
-        desVC.currentFootswitch = UserDevicesManager.default.userFootswitches.first
+        
+        let newBank: Bank = Bank(id: currentFootswitch.banks.count, name: bankNameTextField.text ?? "Unnamed")
+        currentFootswitch.banks.append(newBank)
+        desVC.currentFootswitch = currentFootswitch
         bankNameView.removeFromSuperview()
         presetsView.alpha = 1
         presetsView.isUserInteractionEnabled = true
@@ -93,15 +94,30 @@ class PresetsTabViewController: UIViewController {
 }
 extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return UserDevicesManager.default.userFootswitches.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         if collectionViewState == .presets {
             return UserDevicesManager.default.userPresets.count
         }
         
         if collectionViewState == .banks {
-            return UserDevicesManager.default.userFootswitches.first?.banks.count ?? 0
+            
+            return UserDevicesManager.default.userFootswitches[section].banks.count
         }
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        guard let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeaderView", for: indexPath) as? SectionHeaderView else {
+            return UICollectionReusableView()
+        }
+        
+        sectionHeaderView.footswitchName = UserDevicesManager.default.userFootswitches[indexPath.section].name
+        return sectionHeaderView
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -117,9 +133,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsTabCell", for: indexPath) as? PresetsTabCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            guard let bank = UserDevicesManager.default.userFootswitches.first?.banks[indexPath.row] else {
-                return UICollectionViewCell()
-            }
+            let bank = UserDevicesManager.default.userFootswitches[indexPath.section].banks[indexPath.row]
             cell.configure(bank: bank)
             return cell
         }
@@ -144,7 +158,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
     guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
     return
     }
-    desVC.currentFootswitch = UserDevicesManager.default.userFootswitches.first
+    desVC.currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.section]
     desVC.currentBank = UserDevicesManager.default.userBanks.first
     show(desVC, sender: nil)
             }

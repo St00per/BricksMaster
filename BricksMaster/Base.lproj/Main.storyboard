@@ -972,6 +972,7 @@
                         <outlet property="bankButtonsView" destination="E0v-sJ-rnN" id="710-Gl-8FL"/>
                         <outlet property="bankNameEditTextField" destination="zqN-jV-Tfc" id="nee-zv-nyt"/>
                         <outlet property="bankNameEditView" destination="YSR-D6-Jue" id="pDq-C4-RNj"/>
+                        <outlet property="currentFootswitchName" destination="U2a-wk-wJU" id="SUK-kj-yP7"/>
                         <outlet property="firstBankButton" destination="IRw-md-yrc" id="9Su-Pg-yW7"/>
                         <outlet property="firstPresetButtonLabel" destination="0bM-Ed-OWu" id="TDl-qO-Ww9"/>
                         <outlet property="firstPresetButtonView" destination="UqD-qy-JdF" id="wcS-pl-DM6"/>
@@ -1219,13 +1220,13 @@
                                         </constraints>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z2d-PL-9hE">
                                             <size key="itemSize" width="350" height="70"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="headerReferenceSize" width="50" height="50"/>
+                                            <size key="footerReferenceSize" width="50" height="50"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PresetsTabCell" id="wv2-Jf-kpm" customClass="PresetsTabCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
+                                                <rect key="frame" x="0.0" y="50" width="350" height="70"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                     <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
@@ -1274,6 +1275,30 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
+                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SectionHeaderView" id="lqv-Xd-NL0" customClass="SectionHeaderView" customModule="BricksMaster" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rKE-Rd-T9g">
+                                                    <rect key="frame" x="0.0" y="7" width="350" height="36"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="rKE-Rd-T9g" firstAttribute="width" secondItem="lqv-Xd-NL0" secondAttribute="width" id="9aS-MJ-hYj"/>
+                                                <constraint firstItem="rKE-Rd-T9g" firstAttribute="centerY" secondItem="lqv-Xd-NL0" secondAttribute="centerY" id="Buo-qM-U7o"/>
+                                                <constraint firstItem="rKE-Rd-T9g" firstAttribute="centerX" secondItem="lqv-Xd-NL0" secondAttribute="centerX" id="zXh-DV-gzq"/>
+                                            </constraints>
+                                            <connections>
+                                                <outlet property="footswitchTitleLabel" destination="rKE-Rd-T9g" id="SgG-0j-ZPv"/>
+                                            </connections>
+                                        </collectionReusableView>
+                                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="f72-oP-koi">
+                                            <rect key="frame" x="0.0" y="120" width="350" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionReusableView>
                                         <connections>
                                             <outlet property="dataSource" destination="Qrf-xu-Kzf" id="EUr-7U-YSE"/>
                                             <outlet property="delegate" destination="Qrf-xu-Kzf" id="Wh3-Ib-dhR"/>
@@ -1411,7 +1436,7 @@
                     <viewLayoutGuide key="safeArea" id="Qgh-Ji-Hgq"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1081" y="755"/>
+            <point key="canvasLocation" x="1080.8" y="754.43349753694588"/>
         </scene>
         <!--Debug-->
         <scene sceneID="97a-hB-RPo">

@@ -14,6 +14,8 @@ class FootswitchEditViewController: UIViewController {
     var currentBank: Bank?
     var currentBankButton: UIButton?
     
+    @IBOutlet weak var currentFootswitchName: UILabel!
+    
     @IBOutlet weak var bankButtonsView: UIView!
     
     @IBOutlet weak var firstBankButton: UIButton!
@@ -48,10 +50,12 @@ class FootswitchEditViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         bankNameEditTextField.delegate = self
         bankNameEditTextField.returnKeyType = UIReturnKeyType.done
         currentBankButton = firstBankButton
         guard let currentFootswitch = self.currentFootswitch else { return }
+        currentFootswitchName.text = currentFootswitch.name
         currentBank = currentFootswitch.banks.first
     }
     
@@ -80,17 +84,18 @@ class FootswitchEditViewController: UIViewController {
     }
     
     @IBAction func bankSelected(_ sender: UIButton) {
+        guard let currentFootswitch = self.currentFootswitch else { return }
         if sender.titleLabel?.text == "NewBank" {
-            let newBank: Bank = Bank(id: currentFootswitch?.banks.count ?? 1, name: bankNameEditTextField.text ?? "Unnamed")
-            UserDevicesManager.default.userFootswitches.first?.banks.append(newBank)
-            currentBank = UserDevicesManager.default.userFootswitches.first?.banks.last
+            let newBank: Bank = Bank(id: currentFootswitch.banks.count, name: bankNameEditTextField.text ?? "Unnamed")
+            currentFootswitch.banks.append(newBank)
+            currentBank = currentFootswitch.banks.last
             footswitchEditView.alpha = 0.4
             footswitchEditView.isUserInteractionEnabled = false
             self.view.addSubview(bankNameEditView)
             bankNameEditView.center = self.view.center
         }
         
-        guard let currentFootswitch = self.currentFootswitch else { return }
+        
         
         switch sender {
         case firstBankButton:
