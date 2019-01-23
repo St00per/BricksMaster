@@ -2264,8 +2264,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Close 2.1" width="25.666666030883789" height="25.666666030883789"/>
-        <image name="Group" width="10.333333015441895" height="22.666666030883789"/>
+        <image name="Close 2.1" width="25" height="25"/>
+        <image name="Group" width="10" height="22"/>
         <image name="Plus" width="20" height="20"/>
         <image name="Refresh" width="24" height="24"/>
         <image name="black_ic_mode_edit_48px" width="14" height="14"/>

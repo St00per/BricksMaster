@@ -23,12 +23,11 @@ class BricksCollectionViewCell: UICollectionViewCell {
     
     
     @IBAction func connectToBrick(_ sender: UIButton) {
-        guard let peripheral = brick?.peripheral else { return }
+        guard let brick = brick, let peripheral = brick.peripheral else { return }
         if peripheral.state == .connecting || peripheral.state == .connected {
             CentralBluetoothManager.default.disconnect(peripheral: peripheral)
         } else {
-            CentralBluetoothManager.default.connect(peripheral: peripheral)
-            
+            UserDevicesManager.default.connect(brick: brick)
         }
     }
     
@@ -55,7 +54,6 @@ class BricksCollectionViewCell: UICollectionViewCell {
             dataToWrite.append(0x01)
         } else {
             dataToWrite.append(0x00)
-            
         }
         println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brick.status == .on)")
         CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: peripheralCharacteristic, data: dataToWrite)

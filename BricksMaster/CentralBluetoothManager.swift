@@ -52,6 +52,8 @@ class CentralBluetoothManager: NSObject {
     
     var digitalIDs = [2:0,3:1,5:2,6:3,9:4]
     
+    var connectQueue: [Observable] = []
+    
     private let SYSEX_START: UInt8 = 0xF0
     private let SYSEX_END: UInt8 = 0xF7
     
@@ -203,15 +205,13 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         
         for uuid in uuidArray {
             if uuid == footswitchesServiceCBUUID {
-                let newFootswitch = Footswitch(id: peripheral.identifier, name: peripheral.name ?? "Unnamed")
+                let newFootswitch = Footswitch(id: peripheral.identifier.uuidString, name: peripheral.name ?? "Unnamed")
                 newFootswitch.peripheral = peripheral
                 newFootswitch.name = peripheral.name ?? "Unnamed"
-                if UserDevicesManager.default.userFootswitches.first(where: { (footswitch) -> Bool in
-                    guard let findedPeripheral = footswitch.peripheral else {
-                        return false
-                    }
-                    return findedPeripheral.identifier == peripheral.identifier
-                }) == nil {
+                let footswitch = UserDevicesManager.default.footswitch(id: peripheral.identifier.uuidString)
+                if let newFootswitch = footswitch {
+                    UserDevicesManager.default.connect(footswitch: newFootswitch)
+                } else {
                     println("Add footswitch: \(peripheral.identifier)")
                     UserDevicesManager.default.userFootswitches.append(newFootswitch)
                 }
@@ -220,12 +220,11 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
                 let brick = Brick(id: peripheral.identifier)
                 brick.peripheral = peripheral
                 brick.deviceName = peripheral.name
-                brick.updateConnection(isConnected: true)
                 if UserDevicesManager.default.userBricks.first(where: { (brick) -> Bool in
-                    guard let findedPeripheral = brick.peripheral else {
+                    guard let id = brick.id else {
                         return false
                     }
-                    return findedPeripheral.identifier == peripheral.identifier
+                    return id == peripheral.identifier.uuidString
                 }) == nil {
                     UserDevicesManager.default.userBricks.append(brick)
                 }
@@ -323,6 +322,15 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                 initFootSwitchPorts(footSwitch: footswitch)
             }
         }
+        if let observable = connectQueue.first {
+            if(observable.checkConnection()){
+                observable.saveConnected()
+                connectQueue.removeFirst()
+                if let nextObservable = connectQueue.first {
+                    nextObservable.connect()
+                }
+            }
+        }
     }
     
     func initFootSwitchPorts(footSwitch: Footswitch) {
@@ -340,8 +348,8 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
         bytes = [data2, data3]
         data = Data(bytes: bytes)
         sendCommand(to: peripheral, characteristic: tx, data: data)
-        for id in [2,3,5,6,9] {
-            bytes = [0xf4, UInt8(id), 0]
+        for id in [2,3,5,6,9,10, 21, 22, 23] {
+            bytes = [0xf4, UInt8(id), id < 10 ? 0 : 1]
             data = Data(bytes: bytes)
             sendCommand(to: peripheral, characteristic: tx, data: data)
         }

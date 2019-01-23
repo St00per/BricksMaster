@@ -45,9 +45,6 @@ class PresetsTabViewController: UIViewController {
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
                 return
             }
-            let newPreset = Preset()
-            UserDevicesManager.default.userPresets.append(newPreset)
-            desVC.currentPresetIndex = UserDevicesManager.default.userPresets.count - 1
             show(desVC, sender: nil)
         }
         
@@ -85,7 +82,7 @@ class PresetsTabViewController: UIViewController {
             return
         }
         
-        let newBank: Bank = Bank(id: currentFootswitch.banks.count, name: bankNameTextField.text ?? "Unnamed")
+        let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
         currentFootswitch.banks.append(newBank)
         desVC.currentFootswitch = currentFootswitch
         bankNameView.removeFromSuperview()
@@ -162,8 +159,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
                 return
             }
-            desVC.presetName = UserDevicesManager.default.userFootswitches[indexPath.section].presets[indexPath.row].name
-            desVC.currentPresetIndex = indexPath.row
+            desVC.preset = UserDevicesManager.default.userFootswitches[indexPath.section].presets[indexPath.row]
             show(desVC, sender: nil)
         }
         
@@ -194,7 +190,7 @@ extension PresetsTabViewController: UITextFieldDelegate {
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return false
         }
-        let newBank: Bank = Bank(id: currentFootswitch?.banks.count ?? 1, name: bankNameTextField.text ?? "Unnamed")
+        let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
         UserDevicesManager.default.userFootswitches.first?.banks.append(newBank)
         desVC.currentFootswitch = UserDevicesManager.default.userFootswitches.first
         

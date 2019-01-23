@@ -17,7 +17,7 @@ class UserDevicesManager {
     var userBricks: [Brick] = []
     //var userBanks: [Bank] = []
     var userPresets: [Preset] = []
-    var userFootswitches: [Footswitch] = [Footswitch(id: nil, name: "TestFootSwitch"), Footswitch(id: nil, name: "SecondFoot")]
+    var userFootswitches: [Footswitch] = []
     
     var footswitchController: FootswitchEditViewController? = nil
     
@@ -64,19 +64,55 @@ class UserDevicesManager {
                     dataToWrite.append(0x01)
                 } else {
                     dataToWrite.append(0x00)
-
                 }
                 println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brickState.1)")
                 CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
             }
         }
+        for i in 0...3 {
+            lightButton(id: i, to: footswitch, on: footswitch.buttons[i].isOn)
+        }
+    }
+    
+    func lightButton(id: Int, to footswitch: Footswitch, on: Bool) {
+        guard  let peripheral = footswitch.peripheral, let tx = footswitch.tx else {
+            return
+        }
+        // Write value
+        let map = [10, 21, 22, 23]
+        let index = map[id];
+        let port = UInt8(index / 8)
+        let data0 = 0x90 + port
+        
+        let offset = 8 * Int(port)
+        var state: Int = 0
+        for i in 0...7 {
+            var pinValue = 1
+            if(i+offset>9) {
+                if(i == index - offset) {
+                    pinValue = on ? 0x1 : 0x0
+                } else {
+                    pinValue = 0x0
+                }
+            }
+            let pinMask = pinValue << i
+            state |= pinMask
+        }
+    
+        let data1 = UInt8(state & 0x7f)         // only 7 bottom bits
+        let data2 = UInt8(state >> 7)           // top bit in second byte
+    
+        let bytes: [UInt8] = [data0, data1, data2]
+        let data = Data(bytes: bytes)
+        println("Light (\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(index)")
+        CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: data)
     }
     
     func banks(footswitch: Footswitch) {
         
     }
     
-    func footswitch(id: UUID)  -> Footswitch?{
+    func footswitch(id: String)  -> Footswitch?{
         for footswitch in userFootswitches {
             if footswitch.id == id {
                 return footswitch
@@ -85,7 +121,7 @@ class UserDevicesManager {
         return nil
     }
     
-    func preset(id: Int) -> Preset? {
+    func preset(id: String) -> Preset? {
         for preset in userPresets {
             if preset.id == id {
                 return preset
@@ -94,7 +130,7 @@ class UserDevicesManager {
         return nil
     }
     
-    func brick(id: UUID) -> Brick? {
+    func brick(id: String) -> Brick? {
         for brick in userBricks {
             if brick.id == id {
                 return brick
@@ -118,6 +154,24 @@ class UserDevicesManager {
             }
             println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brick.status == .on)")
             CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
+        }
+    }
+    
+    func connect(brick: Brick) {
+        if(CentralBluetoothManager.default.connectQueue.count > 0) {
+            CentralBluetoothManager.default.connectQueue.append(brick)
+        } else {
+            CentralBluetoothManager.default.connectQueue.append(brick)
+            brick.connect()
+        }
+    }
+    
+    func connect(footswitch: Footswitch) {
+        if(CentralBluetoothManager.default.connectQueue.count > 0) {
+            CentralBluetoothManager.default.connectQueue.append(footswitch)
+        } else {
+            CentralBluetoothManager.default.connectQueue.append(footswitch)
+            footswitch.connect()
         }
     }
     
