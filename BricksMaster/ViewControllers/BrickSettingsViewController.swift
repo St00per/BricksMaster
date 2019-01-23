@@ -13,10 +13,15 @@ class BrickSettingsViewController: UIViewController {
     var currentBrick: Brick?
     var assignedFootswitch: Footswitch?
     var brickImages: [UIImage] = []
-    let slider = MTCircularSlider(frame: CGRect(x: 30, y: 0, width: 300, height: 300))
-    let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 30, y: -40, width: 300, height: 300))
     
-    @IBOutlet weak var brickName: UITextField!
+    let slider = MTCircularSlider(frame: CGRect(x: 55, y: 15, width: 275, height: 275))
+    let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 40, y: -40, width: 300, height: 300))
+    
+    @IBOutlet weak var gradientRing: UIImageView!
+    
+    
+    @IBOutlet weak var brickName: UILabel!
+    
     
     @IBOutlet var footswitchPicker: UIView!
     
@@ -32,11 +37,13 @@ class BrickSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         colorPicker.setViewColor(UIColor.white)
         colorPicker.delegate = self
         colorPickerView.addSubview(colorPicker)
         сircleSliderConfigure()
         colorPickerView.addSubview(slider)
+        
         fillingBrickImagesArray()
         assignedFootswitch = currentBrick?.assignedFootswitch
         brickName.text = currentBrick?.deviceName
@@ -108,7 +115,6 @@ class BrickSettingsViewController: UIViewController {
         brickImages.append(UIImage(named: "pedal_image3")!)
         brickImages.append(UIImage(named: "pedal_image4")!)
         brickImages.append(UIImage(named: "pedal_image5")!)
-        print(brickImages.count)
     }
     
 }
@@ -150,16 +156,18 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             brickSettingsView.alpha = 1
             brickSettingsView.isUserInteractionEnabled = true
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
+
+        }
+
+        if collectionView == brickImageCollectionView {
+            currentBrick?.image = brickImages[indexPath.row]
             
         }
     }
 }
 extension BrickSettingsViewController: GradientRingDelegate {
     func updateGradientRingColor(color: UIColor) {
-        
+        gradientRing.tintColor = color
+        currentBrick?.color = color
     }
-    
-//    func updateGradientRingColor(color: UIColor) {
-//        gradientRing.tintColor = color
-//    }
 }
