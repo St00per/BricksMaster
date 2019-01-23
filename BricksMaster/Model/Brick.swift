@@ -23,6 +23,7 @@ class Brick: Observable {
     var deviceName: String?
     var assignedFootswitch: Footswitch?
     var color = UIColor.lightGray
+    var image: UIImage?
     var tx: CBCharacteristic?
     
     var isConnected: Bool {

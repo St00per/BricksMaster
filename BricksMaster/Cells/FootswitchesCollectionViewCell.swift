@@ -58,7 +58,8 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
     }
     
     func configure(footswitch: Footswitch) {
-        deviceName.text = footswitch.peripheral?.name
+        deviceName.text = footswitch.name
+        //deviceName.text = footswitch.peripheral?.name - commented for testing
         self.footswitch = footswitch
         self.footswitch?.observers.removeAll()
         self.footswitch?.subscribe(observer: self)

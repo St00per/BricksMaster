@@ -25,6 +25,16 @@
 		0E7926BA21F81F3E0085776A /* NewBankPresetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */; };
 		0E7926BC21F8207A0085776A /* NewBankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */; };
 		0E7926BE21F85B060085776A /* BrickSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926BD21F85B060085776A /* BrickSettingsViewController.swift */; };
+		0E7926C021F886A30085776A /* BrickImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926BF21F886A30085776A /* BrickImageCollectionViewCell.swift */; };
+		0E7926D721F89ADA0085776A /* SSAlphaPassView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926D421F89ADA0085776A /* SSAlphaPassView.m */; };
+		0E7926D821F89ADA0085776A /* SSAlphaPassButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926D521F89ADA0085776A /* SSAlphaPassButton.m */; };
+		0E7926D921F89ADA0085776A /* SSAlphaPass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926D621F89ADA0085776A /* SSAlphaPass.m */; };
+		0E7926DF21F89AED0085776A /* ColorUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DA21F89AED0085776A /* ColorUtils.swift */; };
+		0E7926E021F89AED0085776A /* ColorWheel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DB21F89AED0085776A /* ColorWheel.swift */; };
+		0E7926E121F89AED0085776A /* SwiftHSVColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DC21F89AED0085776A /* SwiftHSVColorPicker.swift */; };
+		0E7926E221F89AED0085776A /* SelectedColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DD21F89AED0085776A /* SelectedColorView.swift */; };
+		0E7926E321F89AED0085776A /* BrightnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DE21F89AED0085776A /* BrightnessView.swift */; };
+		0E7926E521F89AF70085776A /* MTCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E421F89AF70085776A /* MTCircularSlider.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -66,6 +76,20 @@
 		0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewBankPresetCell.xib; sourceTree = "<group>"; };
 		0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBankCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E7926BD21F85B060085776A /* BrickSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickSettingsViewController.swift; sourceTree = "<group>"; };
+		0E7926BF21F886A30085776A /* BrickImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickImageCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E7926C821F895FB0085776A /* BrickMaster-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BrickMaster-Bridging-Header.h"; sourceTree = "<group>"; };
+		0E7926D121F89ADA0085776A /* SSAlphaPassButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAlphaPassButton.h; sourceTree = "<group>"; };
+		0E7926D221F89ADA0085776A /* SSAlphaPass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAlphaPass.h; sourceTree = "<group>"; };
+		0E7926D321F89ADA0085776A /* SSAlphaPassView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSAlphaPassView.h; sourceTree = "<group>"; };
+		0E7926D421F89ADA0085776A /* SSAlphaPassView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAlphaPassView.m; sourceTree = "<group>"; };
+		0E7926D521F89ADA0085776A /* SSAlphaPassButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAlphaPassButton.m; sourceTree = "<group>"; };
+		0E7926D621F89ADA0085776A /* SSAlphaPass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSAlphaPass.m; sourceTree = "<group>"; };
+		0E7926DA21F89AED0085776A /* ColorUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorUtils.swift; sourceTree = "<group>"; };
+		0E7926DB21F89AED0085776A /* ColorWheel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorWheel.swift; sourceTree = "<group>"; };
+		0E7926DC21F89AED0085776A /* SwiftHSVColorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHSVColorPicker.swift; sourceTree = "<group>"; };
+		0E7926DD21F89AED0085776A /* SelectedColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedColorView.swift; sourceTree = "<group>"; };
+		0E7926DE21F89AED0085776A /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
+		0E7926E421F89AF70085776A /* MTCircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTCircularSlider.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -118,6 +142,7 @@
 		0E046AB621F3152E006A817F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0E7926BF21F886A30085776A /* BrickImageCollectionViewCell.swift */,
 				0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */,
 				0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */,
 				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
@@ -131,6 +156,31 @@
 				0E7926B521F72BC30085776A /* SectionHeaderView.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		0E7926CF21F89A8D0085776A /* ColorPicker */ = {
+			isa = PBXGroup;
+			children = (
+				0E7926DE21F89AED0085776A /* BrightnessView.swift */,
+				0E7926DA21F89AED0085776A /* ColorUtils.swift */,
+				0E7926DB21F89AED0085776A /* ColorWheel.swift */,
+				0E7926DD21F89AED0085776A /* SelectedColorView.swift */,
+				0E7926DC21F89AED0085776A /* SwiftHSVColorPicker.swift */,
+			);
+			path = ColorPicker;
+			sourceTree = "<group>";
+		};
+		0E7926D021F89A980085776A /* SSAlphaPass */ = {
+			isa = PBXGroup;
+			children = (
+				0E7926D221F89ADA0085776A /* SSAlphaPass.h */,
+				0E7926D621F89ADA0085776A /* SSAlphaPass.m */,
+				0E7926D121F89ADA0085776A /* SSAlphaPassButton.h */,
+				0E7926D521F89ADA0085776A /* SSAlphaPassButton.m */,
+				0E7926D321F89ADA0085776A /* SSAlphaPassView.h */,
+				0E7926D421F89ADA0085776A /* SSAlphaPassView.m */,
+			);
+			path = SSAlphaPass;
 			sourceTree = "<group>";
 		};
 		0EC28DDD21EC6BAA00DEF32B = {
@@ -152,6 +202,10 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
+				0E7926E421F89AF70085776A /* MTCircularSlider.swift */,
+				0E7926D021F89A980085776A /* SSAlphaPass */,
+				0E7926CF21F89A8D0085776A /* ColorPicker */,
+				0E7926C821F895FB0085776A /* BrickMaster-Bridging-Header.h */,
 				0EC28E0721EC720100DEF32B /* Model */,
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
@@ -273,16 +327,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E7926D721F89ADA0085776A /* SSAlphaPassView.m in Sources */,
+				0E7926E321F89AED0085776A /* BrightnessView.swift in Sources */,
 				0EC28E0321EC71F400DEF32B /* Brick.swift in Sources */,
 				0EC28E0421EC71F400DEF32B /* Footswitch.swift in Sources */,
 				0E63303E21EF472A00EA3652 /* FootswitchEditViewController.swift in Sources */,
 				0E63304621F07FA600EA3652 /* PresetsTabCollectionViewCell.swift in Sources */,
+				0E7926E021F89AED0085776A /* ColorWheel.swift in Sources */,
 				70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */,
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
 				0E63304021F03E6700EA3652 /* PresetPickerViewController.swift in Sources */,
 				70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */,
 				0E63304821F084C800EA3652 /* PresetSettingViewController.swift in Sources */,
+				0E7926E521F89AF70085776A /* MTCircularSlider.swift in Sources */,
 				0E63304421F07EEF00EA3652 /* PresetsTabViewController.swift in Sources */,
+				0E7926D921F89ADA0085776A /* SSAlphaPass.m in Sources */,
 				0E1D1D9221EDAF64000BEDD7 /* BricksCollectionViewCell.swift in Sources */,
 				0E63304A21F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift in Sources */,
 				0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */,
@@ -291,14 +350,19 @@
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0E7926B621F72BC30085776A /* SectionHeaderView.swift in Sources */,
 				0E7926BE21F85B060085776A /* BrickSettingsViewController.swift in Sources */,
+				0E7926E221F89AED0085776A /* SelectedColorView.swift in Sources */,
 				0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */,
 				0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */,
+				0E7926D821F89ADA0085776A /* SSAlphaPassButton.m in Sources */,
 				7085533221F3332A007C33C0 /* Observable.swift in Sources */,
 				0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */,
 				0E1D1D9421EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift in Sources */,
 				70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */,
+				0E7926E121F89AED0085776A /* SwiftHSVColorPicker.swift in Sources */,
 				0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */,
 				0E1D1D8E21EDA37D000BEDD7 /* DevicesTabViewController.swift in Sources */,
+				0E7926C021F886A30085776A /* BrickImageCollectionViewCell.swift in Sources */,
+				0E7926DF21F89AED0085776A /* ColorUtils.swift in Sources */,
 				0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */,
 				0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */,
 			);
@@ -456,8 +520,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = BlackBricks.BricksMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BricksMaster/BrickMaster-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/BricksMaster/SSAlphaPass";
 			};
 			name = Debug;
 		};
@@ -475,8 +541,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = BlackBricks.BricksMaster;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/BricksMaster/BrickMaster-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "$(SRCROOT)/BricksMaster/SSAlphaPass";
 			};
 			name = Release;
 		};
