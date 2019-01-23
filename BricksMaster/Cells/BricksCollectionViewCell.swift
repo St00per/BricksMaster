@@ -47,7 +47,6 @@ class BricksCollectionViewCell: UICollectionViewCell {
         brick.status = brick.status == .on ? .off : .on;
         onOffDeviceButton.setTitle( brick.status == .on ? "ON" : "OFF", for: .normal)
         guard let peripheral = brick.peripheral else { return }
-        let onOffCommandData = CentralBluetoothManager.default.OnOff()
         var dataToWrite = Data()
         dataToWrite.append(0xE7)
         dataToWrite.append(0xF1)

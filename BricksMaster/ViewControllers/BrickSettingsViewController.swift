@@ -17,6 +17,9 @@ class BrickSettingsViewController: UIViewController {
     let slider = MTCircularSlider(frame: CGRect(x: 55, y: 15, width: 275, height: 275))
     let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 40, y: -40, width: 300, height: 300))
     
+    var pingPinIsOn: Bool = false
+    var pingTimer: Timer?
+    
     @IBOutlet weak var gradientRing: UIImageView!
     
     
@@ -52,6 +55,11 @@ class BrickSettingsViewController: UIViewController {
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        endPing()
+    }
+    
     @IBAction func showFootswitchPicker(_ sender: UIButton) {
         brickSettingsView.isUserInteractionEnabled = false
         brickSettingsView.alpha = 0.4
@@ -76,6 +84,38 @@ class BrickSettingsViewController: UIViewController {
         assignedFootswitch.bricks.append(currentBrick)
         currentBrick.assignedFootswitch = self.assignedFootswitch
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func startPing() {
+        pingPinIsOn = false
+        pingTimer = Timer(timeInterval: 0.2, repeats: true, block: { (timer) in
+            self.pingPinIsOn = !self.pingPinIsOn
+            self.setPingPin(on: self.pingPinIsOn)
+        })
+    }
+    
+    @IBAction func endPing() {
+        setPingPin(on: false)
+        pingTimer?.invalidate()
+    }
+    
+    func setPingPin(on: Bool) {
+        guard
+            let brick = self.currentBrick,
+            let peripheralCharacteristic = brick.tx,
+            let peripheral = brick.peripheral
+            else {
+                return
+        }
+        var dataToWrite = Data()
+        dataToWrite.append(0xE7)
+        dataToWrite.append(0xF2)
+        if on {
+            dataToWrite.append(0x01)
+        } else {
+            dataToWrite.append(0x00)
+        }
+        CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: peripheralCharacteristic, data: dataToWrite)
     }
     
     func сircleSliderConfigure()  {
