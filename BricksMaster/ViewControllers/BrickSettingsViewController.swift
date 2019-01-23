@@ -12,7 +12,7 @@ class BrickSettingsViewController: UIViewController {
 
     var currentBrick: Brick?
     var assignedFootswitch: Footswitch?
-    var brickImages: [UIImage] = []
+    var brickImages: [String] = []
     
     let slider = MTCircularSlider(frame: CGRect(x: 55, y: 15, width: 275, height: 275))
     let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 40, y: -40, width: 300, height: 300))
@@ -110,11 +110,11 @@ class BrickSettingsViewController: UIViewController {
     }
     
     func fillingBrickImagesArray() {
-        brickImages.append(UIImage(named: "pedal_image1")!)
-        brickImages.append(UIImage(named: "pedal_image2")!)
-        brickImages.append(UIImage(named: "pedal_image3")!)
-        brickImages.append(UIImage(named: "pedal_image4")!)
-        brickImages.append(UIImage(named: "pedal_image5")!)
+        brickImages.append("pedal_image1")
+        brickImages.append("pedal_image2")
+        brickImages.append("pedal_image3")
+        brickImages.append("pedal_image4")
+        brickImages.append("pedal_image5")
     }
     
 }
@@ -142,8 +142,9 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrickImageCollectionViewCell", for: indexPath) as? BrickImageCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let currentBrickImage = brickImages[indexPath.row]
-            cell.configure(image: currentBrickImage)
+            if let currentBrickImage = UIImage(named: brickImages[indexPath.row]) {
+                cell.configure(image: currentBrickImage)
+            }
             return cell
         }
         return UICollectionViewCell()
@@ -160,7 +161,7 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
         }
 
         if collectionView == brickImageCollectionView {
-            currentBrick?.image = brickImages[indexPath.row]
+            currentBrick?.imageId = brickImages[indexPath.row]
             
         }
     }

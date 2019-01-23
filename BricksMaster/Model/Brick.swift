@@ -25,7 +25,6 @@ class Brick: Observable {
     var color = UIColor.lightGray
     //var image: UIImage?
     var imageId: String?
-    var assignedFootswitch: Footswitch?
     
     var peripheral: CBPeripheral? = nil
     var tx: CBCharacteristic? = nil

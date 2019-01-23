@@ -23,13 +23,6 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
     
     
     
-    @IBAction func connect(_ sender: Any?) {
-        guard let footswitch = footswitch, let peripheral = footswitch.peripheral else {
-           return
-        }
-        CentralBluetoothManager.default.connect(peripheral: peripheral)
-    }
-    
     @IBAction func showFootswitchEdit(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
