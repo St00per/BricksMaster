@@ -1221,7 +1221,7 @@
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="z2d-PL-9hE">
                                             <size key="itemSize" width="350" height="70"/>
                                             <size key="headerReferenceSize" width="50" height="50"/>
-                                            <size key="footerReferenceSize" width="50" height="50"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
@@ -1294,10 +1294,6 @@
                                             <connections>
                                                 <outlet property="footswitchTitleLabel" destination="rKE-Rd-T9g" id="SgG-0j-ZPv"/>
                                             </connections>
-                                        </collectionReusableView>
-                                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="f72-oP-koi">
-                                            <rect key="frame" x="0.0" y="120" width="350" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
                                         </collectionReusableView>
                                         <connections>
                                             <outlet property="dataSource" destination="Qrf-xu-Kzf" id="EUr-7U-YSE"/>
@@ -1382,6 +1378,7 @@
                         <outlet property="bankNameTextField" destination="nB5-kk-mym" id="iWb-vo-Ofr"/>
                         <outlet property="bankNameView" destination="aXc-00-USK" id="eTu-cz-COI"/>
                         <outlet property="collectionView" destination="lRH-dw-zbm" id="maC-he-afB"/>
+                        <outlet property="createNewPresetButton" destination="9Mg-OH-Vpr" id="IBL-78-o4S"/>
                         <outlet property="presetsView" destination="w9W-wI-fu9" id="PTH-Rb-cFc"/>
                     </connections>
                 </viewController>
@@ -1391,7 +1388,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nB5-kk-mym">
-                            <rect key="frame" x="0.0" y="39" width="240" height="50"/>
+                            <rect key="frame" x="16" y="39" width="208" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="hkZ-UM-b99"/>
                             </constraints>
@@ -1427,13 +1424,19 @@
                     </subviews>
                     <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
+                        <constraint firstItem="Qgh-Ji-Hgq" firstAttribute="trailing" secondItem="nB5-kk-mym" secondAttribute="trailing" constant="16" id="EUK-oX-JzZ"/>
                         <constraint firstItem="nB5-kk-mym" firstAttribute="top" secondItem="50L-mU-vEk" secondAttribute="bottom" constant="8" id="Gt0-IZ-Pit"/>
                         <constraint firstItem="nB5-kk-mym" firstAttribute="centerY" secondItem="aXc-00-USK" secondAttribute="centerY" id="Gv3-Pa-779"/>
                         <constraint firstItem="50L-mU-vEk" firstAttribute="centerX" secondItem="aXc-00-USK" secondAttribute="centerX" id="P5Z-WK-G1k"/>
-                        <constraint firstItem="nB5-kk-mym" firstAttribute="width" secondItem="aXc-00-USK" secondAttribute="width" id="Uei-ve-df9"/>
                         <constraint firstItem="nB5-kk-mym" firstAttribute="centerX" secondItem="aXc-00-USK" secondAttribute="centerX" id="e6e-BR-GuX"/>
+                        <constraint firstItem="nB5-kk-mym" firstAttribute="leading" secondItem="Qgh-Ji-Hgq" secondAttribute="leading" constant="16" id="wgI-na-MGC"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="Qgh-Ji-Hgq"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </objects>
             <point key="canvasLocation" x="1080.8" y="754.43349753694588"/>
