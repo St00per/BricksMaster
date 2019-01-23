@@ -12,6 +12,7 @@ import CoreBluetooth
 class BricksCollectionViewCell: UICollectionViewCell {
     
     var brick: Brick?
+    var controller: DevicesTabViewController?
     
     @IBOutlet weak var deviceName: UILabel!
     @IBOutlet weak var moreButton: UIButton!
@@ -29,6 +30,16 @@ class BricksCollectionViewCell: UICollectionViewCell {
             CentralBluetoothManager.default.connect(peripheral: peripheral)
             
         }
+    }
+    
+    @IBAction func showBrickEdit(_ sender: UIButton) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "BrickSettingsViewController") as? BrickSettingsViewController else {
+            return
+        }
+        
+        desVC.currentBrick = self.brick
+        controller?.show(desVC, sender: nil)
     }
     
     @IBAction func onOffDevice(_ sender: UIButton) {

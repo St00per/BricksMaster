@@ -21,6 +21,7 @@ class Brick: Observable {
     var peripheral: CBPeripheral? = nil
     var status: BrickStatus = .off
     var deviceName: String?
+    var assignedFootswitch: Footswitch?
     var color = UIColor.lightGray
     var tx: CBCharacteristic?
     

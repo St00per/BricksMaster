@@ -18,17 +18,6 @@ class DevicesTabViewController: UIViewController {
     @IBOutlet weak var footswitchesCollectionScanButton: UIButton!
     @IBOutlet var footswitchEditView: UIView!
     
-    @IBAction func showFootswitchEdit(_ sender: UIButton) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
-            return
-        }
-        //strange shit)
-        desVC.currentFootswitch = UserDevicesManager.default.userFootswitches.first
-        show(desVC, sender: nil)
-    }
-   
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         CentralBluetoothManager.default.devicesTabViewController = self
@@ -70,6 +59,7 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
                 return UICollectionViewCell()
             }
             let currentBrick = UserDevicesManager.default.userBricks[indexPath.row]
+            cell.controller = self
             cell.configure(brick: currentBrick)
             return cell
         }
@@ -77,7 +67,9 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchCell", for: indexPath) as? FootswitchesCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            
             let currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
+            cell.controller = self
             cell.configure(footswitch: currentFootswitch)
             return cell
         }
