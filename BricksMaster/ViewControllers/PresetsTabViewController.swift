@@ -168,7 +168,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         
         if collectionViewState == .banks {
-            currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.section]
+            self.currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.section]
             if indexPath.row > UserDevicesManager.default.userFootswitches[indexPath.section].banks.count - 1 {
                 presetsView.alpha = 0.4
                 presetsView.isUserInteractionEnabled = false
@@ -179,8 +179,8 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
                 return
             }
-            desVC.currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.section]
-            desVC.currentBank = UserDevicesManager.default.userBanks.first
+            desVC.currentFootswitch = self.currentFootswitch
+            desVC.currentBank = self.currentFootswitch?.banks.first
             show(desVC, sender: nil)
             }
         }

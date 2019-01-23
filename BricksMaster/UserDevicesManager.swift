@@ -15,7 +15,7 @@ class UserDevicesManager {
     public static let `default` = UserDevicesManager()
     
     var userBricks: [Brick] = []
-    var userBanks: [Bank] = []
+    //var userBanks: [Bank] = []
     var userPresets: [Preset] = []
     var userFootswitches: [Footswitch] = [Footswitch(id: nil, name: "TestFootSwitch"), Footswitch(id: nil, name: "SecondFoot")]
     

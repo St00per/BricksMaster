@@ -1698,13 +1698,18 @@
                         <viewLayoutGuide key="safeArea" id="yXb-cS-zQf"/>
                     </view>
                     <connections>
+                        <outlet property="addBricksButton" destination="PJ1-jU-vxy" id="Wrr-b8-aWr"/>
+                        <outlet property="bricksHeaderLabel" destination="1Am-9K-xmz" id="ono-dU-fK3"/>
                         <outlet property="bricksPicker" destination="aaH-PB-oLE" id="Ghf-1X-PhL"/>
                         <outlet property="bricksPickerCollectionView" destination="kzn-aM-ZkT" id="j8J-kU-hs6"/>
                         <outlet property="footswitchButton" destination="IHP-W9-G3l" id="QJ6-8f-eFV"/>
                         <outlet property="footswitchPicker" destination="4V1-YX-SIv" id="iFz-js-3yV"/>
                         <outlet property="footswitchPickerCollectionView" destination="Cme-x1-go1" id="Od4-Fq-K93"/>
                         <outlet property="presetBricksCollectionView" destination="bTP-Gh-kFN" id="9Hy-9m-EfP"/>
+                        <outlet property="presetNameHeader" destination="mAP-QV-UTU" id="6N3-x2-2Ob"/>
                         <outlet property="presetNameTextField" destination="mZ0-U6-BNx" id="PHy-gn-H16"/>
+                        <outlet property="presetNameTextFieldView" destination="SMd-kx-hJo" id="Bxm-SS-iHV"/>
+                        <outlet property="savePresetButton" destination="IuJ-4e-M06" id="Hiz-Jy-ieR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Mm-P5-vLo" userLabel="First Responder" sceneMemberID="firstResponder"/>
