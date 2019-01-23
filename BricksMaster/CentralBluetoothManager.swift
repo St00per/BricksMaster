@@ -341,8 +341,8 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
         bytes = [data2, data3]
         data = Data(bytes: bytes)
         sendCommand(to: peripheral, characteristic: tx, data: data)
-        for id in [2,3,5,6,9] {
-            bytes = [0xf4, UInt8(id), 0]
+        for id in [2,3,5,6,9,10, 21, 22, 23] {
+            bytes = [0xf4, UInt8(id), id < 10 ? 0 : 1]
             data = Data(bytes: bytes)
             sendCommand(to: peripheral, characteristic: tx, data: data)
         }
