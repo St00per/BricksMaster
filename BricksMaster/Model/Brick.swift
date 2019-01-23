@@ -21,7 +21,9 @@ class Brick: Observable {
     var id: String?
     var status: BrickStatus = .off
     var deviceName: String?
+    var assignedFootswitch: Footswitch?
     var color = UIColor.lightGray
+    //var image: UIImage?
     var imageId: String?
     var assignedFootswitch: Footswitch?
     

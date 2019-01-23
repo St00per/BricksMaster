@@ -12,6 +12,34 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
     func brickConnectionStateChanged(connected: Bool, peripheralId: UUID) {
     }
     
+    var footswitch: Footswitch?
+    var controller: DevicesTabViewController?
+    
+    @IBOutlet weak var deviceName: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
+    
+    @IBOutlet weak var connectButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!
+    
+    
+    
+    @IBAction func connect(_ sender: Any?) {
+        guard let footswitch = footswitch, let peripheral = footswitch.peripheral else {
+           return
+        }
+        CentralBluetoothManager.default.connect(peripheral: peripheral)
+    }
+    
+    @IBAction func showFootswitchEdit(_ sender: UIButton) {
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
+            return
+        }
+     
+        desVC.currentFootswitch = self.footswitch
+        controller?.show(desVC, sender: nil)
+    }
+    
     func footswitchConnectionStateChanged(connected: Bool, peripheralId: UUID) {
         guard let footswitchState = footswitch?.peripheral?.state else { return }
         switch footswitchState {
@@ -29,16 +57,9 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         }
     }
     
-    
-    @IBOutlet weak var deviceName: UILabel!
-    @IBOutlet weak var moreButton: UIButton!
-    
-    @IBOutlet weak var connectButton: UIButton!
-    @IBOutlet weak var editButton: UIButton!
-    var footswitch: Footswitch?
-    
     func configure(footswitch: Footswitch) {
-        deviceName.text = footswitch.peripheral?.name
+        deviceName.text = footswitch.name
+        //deviceName.text = footswitch.peripheral?.name - commented for testing
         self.footswitch = footswitch
         self.footswitch?.observers.removeAll()
         self.footswitch?.subscribe(observer: self)
