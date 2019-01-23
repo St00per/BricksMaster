@@ -10,6 +10,8 @@ import Foundation
 
 class Observable: NSObject {
     
+    var isConnected: Bool = false
+
     var observers: [ConnectionObserver] = []
     
     func subscribe(observer: ConnectionObserver) {
@@ -26,4 +28,13 @@ class Observable: NSObject {
             observers.remove(at: index)
         }
     }
+    
+    func checkConnection() -> Bool {
+        return false
+    }
+    
+    func saveConnected() {
+    }
+    
+    func connect() {}
 }

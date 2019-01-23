@@ -86,7 +86,7 @@ class FootswitchEditViewController: UIViewController {
     @IBAction func bankSelected(_ sender: UIButton) {
         guard let currentFootswitch = self.currentFootswitch else { return }
         if sender.titleLabel?.text == "NewBank" {
-            let newBank: Bank = Bank(id: currentFootswitch.banks.count, name: bankNameEditTextField.text ?? "Unnamed")
+            let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameEditTextField.text ?? "Unnamed")
             currentFootswitch.banks.append(newBank)
             currentBank = currentFootswitch.banks.last
             footswitchEditView.alpha = 0.4

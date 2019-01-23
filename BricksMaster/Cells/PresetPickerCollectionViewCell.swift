@@ -26,7 +26,11 @@ class PresetPickerCollectionViewCell: UICollectionViewCell {
         let footswitchArray = UserDevicesManager.default.userFootswitches
         guard let currentFootswitch = self.footswitch, let currentBank = self.bank else { return }
         guard let footswitchIndex = footswitchArray.firstIndex(of: currentFootswitch) else { return }
-        UserDevicesManager.default.userFootswitches[footswitchIndex].banks[currentBank.id].footswitchButtons[footswitchButtonIndex].preset = selectedPreset
+       
+        let bank = UserDevicesManager.default.userFootswitches[footswitchIndex].banks.first{$0.id == currentBank.id}
+        if let bank = bank {
+            bank.footswitchButtons[footswitchButtonIndex].preset = selectedPreset
+        }
         controller?.dismiss(animated: true, completion: nil)
     }
     

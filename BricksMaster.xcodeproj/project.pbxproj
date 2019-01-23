@@ -40,10 +40,13 @@
 		0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */; };
 		0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */; };
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
+		70715EAF21F8529800C21C3E /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EAE21F8529800C21C3E /* DataBase.swift */; };
+		70715EB121F8788800C21C3E /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EB021F8788800C21C3E /* DataBaseManager.swift */; };
 		7085533221F3332A007C33C0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085533121F3332A007C33C0 /* Observable.swift */; };
 		70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A04FBC21F4BB1B009C714D /* DebugViewController.swift */; };
 		70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4AF21F2601200EC88DE /* BankCell.swift */; };
 		70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */; };
+		E6D6095EA970AFFB66E7DD4A /* Pods_BricksMaster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6E80DCC38C7BF1C65C73C43 /* Pods_BricksMaster.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,10 +85,15 @@
 		0EC28E0C21EC736200DEF32B /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
+		70715EAE21F8529800C21C3E /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
+		70715EB021F8788800C21C3E /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		7085533121F3332A007C33C0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		70A04FBC21F4BB1B009C714D /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		70E7D4AF21F2601200EC88DE /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
 		70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionObserver.swift; sourceTree = "<group>"; };
+		C6E80DCC38C7BF1C65C73C43 /* Pods_BricksMaster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BricksMaster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA9C9DAE61E6A7D37E4A63D3 /* Pods-BricksMaster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BricksMaster.release.xcconfig"; path = "Pods/Target Support Files/Pods-BricksMaster/Pods-BricksMaster.release.xcconfig"; sourceTree = "<group>"; };
+		E35D4E973D57077A4888EB51 /* Pods-BricksMaster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BricksMaster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BricksMaster/Pods-BricksMaster.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6D6095EA970AFFB66E7DD4A /* Pods_BricksMaster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,6 +143,8 @@
 			children = (
 				0EC28DE821EC6BAA00DEF32B /* BricksMaster */,
 				0EC28DE721EC6BAA00DEF32B /* Products */,
+				F4F49A9EA28C0BC17CA462A2 /* Pods */,
+				B68DCA3FC38DA67FD4B90ACD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,6 +163,7 @@
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
+				70715EB021F8788800C21C3E /* DataBaseManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
 				0E7926B521F72BC30085776A /* SectionHeaderView.swift */,
@@ -175,6 +187,7 @@
 				0EC28E0021EC71F300DEF32B /* Preset.swift */,
 				70E7D4B321F30E1200EC88DE /* ConnectionObserver.swift */,
 				7085533121F3332A007C33C0 /* Observable.swift */,
+				70715EAE21F8529800C21C3E /* DataBase.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -192,6 +205,23 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		B68DCA3FC38DA67FD4B90ACD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C6E80DCC38C7BF1C65C73C43 /* Pods_BricksMaster.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F4F49A9EA28C0BC17CA462A2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E35D4E973D57077A4888EB51 /* Pods-BricksMaster.debug.xcconfig */,
+				CA9C9DAE61E6A7D37E4A63D3 /* Pods-BricksMaster.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -199,9 +229,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0EC28DF821EC6BAD00DEF32B /* Build configuration list for PBXNativeTarget "BricksMaster" */;
 			buildPhases = (
+				9421210A85F8E961C454E749 /* [CP] Check Pods Manifest.lock */,
 				0EC28DE221EC6BAA00DEF32B /* Sources */,
 				0EC28DE321EC6BAA00DEF32B /* Frameworks */,
 				0EC28DE421EC6BAA00DEF32B /* Resources */,
+				E47951B6C1B7B12925FEB333 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -265,6 +297,47 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9421210A85F8E961C454E749 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BricksMaster-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E47951B6C1B7B12925FEB333 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BricksMaster/Pods-BricksMaster-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BricksMaster/Pods-BricksMaster-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		0EC28DE221EC6BAA00DEF32B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -283,11 +356,13 @@
 				0E1D1D9221EDAF64000BEDD7 /* BricksCollectionViewCell.swift in Sources */,
 				0E63304A21F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift in Sources */,
 				0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */,
+				70715EB121F8788800C21C3E /* DataBaseManager.swift in Sources */,
 				0E1D1D9021EDA460000BEDD7 /* UserDevicesManager.swift in Sources */,
 				0E7926BC21F8207A0085776A /* NewBankCollectionViewCell.swift in Sources */,
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0E7926B621F72BC30085776A /* SectionHeaderView.swift in Sources */,
 				0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */,
+				70715EAF21F8529800C21C3E /* DataBase.swift in Sources */,
 				0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */,
 				7085533221F3332A007C33C0 /* Observable.swift in Sources */,
 				0E1D1D8C21EDA1DD000BEDD7 /* CentralBluetoothManager.swift in Sources */,
@@ -440,6 +515,7 @@
 		};
 		0EC28DF921EC6BAD00DEF32B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E35D4E973D57077A4888EB51 /* Pods-BricksMaster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -459,6 +535,7 @@
 		};
 		0EC28DFA21EC6BAD00DEF32B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA9C9DAE61E6A7D37E4A63D3 /* Pods-BricksMaster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

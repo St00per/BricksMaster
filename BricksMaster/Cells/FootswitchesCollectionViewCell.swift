@@ -63,6 +63,6 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         guard let footswitch = footswitch, let peripheral = footswitch.peripheral else {
            return
         }
-        CentralBluetoothManager.default.connect(peripheral: peripheral)
+       UserDevicesManager.default.connect(footswitch: footswitch)
     }
 }

@@ -17,7 +17,7 @@ class UserDevicesManager {
     var userBricks: [Brick] = []
     //var userBanks: [Bank] = []
     var userPresets: [Preset] = []
-    var userFootswitches: [Footswitch] = [Footswitch(id: nil, name: "TestFootSwitch"), Footswitch(id: nil, name: "SecondFoot")]
+    var userFootswitches: [Footswitch] = []
     
     var footswitchController: FootswitchEditViewController? = nil
     
@@ -112,7 +112,7 @@ class UserDevicesManager {
         
     }
     
-    func footswitch(id: UUID)  -> Footswitch?{
+    func footswitch(id: String)  -> Footswitch?{
         for footswitch in userFootswitches {
             if footswitch.id == id {
                 return footswitch
@@ -121,7 +121,7 @@ class UserDevicesManager {
         return nil
     }
     
-    func preset(id: Int) -> Preset? {
+    func preset(id: String) -> Preset? {
         for preset in userPresets {
             if preset.id == id {
                 return preset
@@ -130,7 +130,7 @@ class UserDevicesManager {
         return nil
     }
     
-    func brick(id: UUID) -> Brick? {
+    func brick(id: String) -> Brick? {
         for brick in userBricks {
             if brick.id == id {
                 return brick
@@ -154,6 +154,24 @@ class UserDevicesManager {
             }
             println("Set brick(\(peripheral.name ?? "noname")/\(peripheral.identifier)) state: \(brick.status == .on)")
             CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
+        }
+    }
+    
+    func connect(brick: Brick) {
+        if(CentralBluetoothManager.default.connectQueue.count > 0) {
+            CentralBluetoothManager.default.connectQueue.append(brick)
+        } else {
+            CentralBluetoothManager.default.connectQueue.append(brick)
+            brick.connect()
+        }
+    }
+    
+    func connect(footswitch: Footswitch) {
+        if(CentralBluetoothManager.default.connectQueue.count > 0) {
+            CentralBluetoothManager.default.connectQueue.append(footswitch)
+        } else {
+            CentralBluetoothManager.default.connectQueue.append(footswitch)
+            footswitch.connect()
         }
     }
     

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreBluetooth
+import RealmSwift
 
 enum BrickStatus {
     case on
@@ -17,29 +18,54 @@ enum BrickStatus {
 
 class Brick: Observable {
     
-    var id: UUID?
-    var peripheral: CBPeripheral? = nil
+    var id: String?
     var status: BrickStatus = .off
     var deviceName: String?
     var color = UIColor.lightGray
-    var tx: CBCharacteristic?
+    var imageId: String?
+    var assignedFootswitch: Footswitch?
     
-    var isConnected: Bool {
-        get {
-            guard let peripheral = peripheral else {
-                return false
-            }
-            return peripheral.state == .connected
-        }
+    var peripheral: CBPeripheral? = nil
+    var tx: CBCharacteristic? = nil
+    
+    var brickObject: BrickObject?
+    
+    var new: Bool = true
+    
+    override func checkConnection() -> Bool {
+        isConnected = peripheral != nil && peripheral!.state == .connected && tx != nil
+        return isConnected
     }
     
+    override func saveConnected() {
+        new = false
+        save()
+    }
+    
+    override func connect() {
+        guard let peripheral = peripheral else { return }
+        CentralBluetoothManager.default.centralManager.connect(peripheral, options: nil)
+    }
     
     init(deviceName: String) {
         self.deviceName = deviceName
     }
     
     init(id: UUID) {
-        self.id = id
+        self.id = id.uuidString
+    }
+    
+    init(brickObject: BrickObject) {
+        super.init()
+        self.brickObject = brickObject
+        id = brickObject.id
+        status = brickObject.status ? .on : .off
+        deviceName = brickObject.deviceName
+        if let data = brickObject.color {
+            color = UIColor.color(withData: data)
+        }
+        imageId = brickObject.imageId
+        new = false
     }
     
     static func == (lhs: Brick, rhs: Brick) -> Bool {
@@ -55,5 +81,28 @@ class Brick: Observable {
                 observer.brickConnectionStateChanged(connected: isConnected, peripheralId: id)
             }
         }
+    }
+    
+    func save() {
+        guard let realm = try? Realm() else {
+            return
+        }
+        if let object = brickObject {
+            object.update(brick: self)
+            realm.add(object, update: true)
+        } else {
+            let object = BrickObject(brick: self)
+            realm.add(object)
+        }
+    }
+}
+
+extension UIColor {
+    class func color(withData data:Data) -> UIColor {
+        return NSKeyedUnarchiver.unarchiveObject(with: data) as! UIColor
+    }
+    
+    func encode() -> Data {
+        return NSKeyedArchiver.archivedData(withRootObject: self)
     }
 }

@@ -13,7 +13,7 @@ import UIKit
 class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     
     var brickIndex: Int = 0
-    var presetIndex: Int = 0
+    var preset: Preset? = nil
     var isBrickOn: Bool = false
     
     var viewController: PresetSettingViewController?
@@ -24,19 +24,19 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var presetBrickOnOffButton: UIButton!
     
     @IBAction func changePresetBrickState(_ sender: UIButton) {
-        if UserDevicesManager.default.userPresets[presetIndex].presetBricks[brickIndex].1 == false {
-            UserDevicesManager.default.userPresets[presetIndex].presetBricks[brickIndex].1 = true
+        if preset?.presetBricks[brickIndex].1 == false {
+            preset?.presetBricks[brickIndex].1 = true
             presetBrickOnOffButton.setTitle("ON", for: .normal)
             presetBrickOnOffButton.backgroundColor = UIColor.black
         } else {
-            UserDevicesManager.default.userPresets[presetIndex].presetBricks[brickIndex].1 = false
+            preset?.presetBricks[brickIndex].1 = false
             presetBrickOnOffButton.setTitle("OFF", for: .normal)
             presetBrickOnOffButton.backgroundColor = UIColor(hexString: "EDEDED")
         }
     }
     
     @IBAction func removeBrickFromPreset(_ sender: UIButton) {
-        UserDevicesManager.default.userPresets[presetIndex].presetBricks.remove(at: brickIndex)
+        preset?.presetBricks.remove(at: brickIndex)
         guard let presetBricksCollectionView = viewController?.presetBricksCollectionView else { return }
         presetBricksCollectionView.reloadData()
     }
@@ -44,7 +44,7 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     func configure(brick: Brick, index: Int) {
         brickName.text = brick.deviceName
         brickIndex = index
-        if UserDevicesManager.default.userPresets[presetIndex].presetBricks[brickIndex].1 == false {
+        if preset?.presetBricks[brickIndex].1 == false {
             presetBrickOnOffButton.setTitle("OFF", for: .normal)
             presetBrickOnOffButton.backgroundColor = UIColor(hexString: "EDEDED")
         } else {
