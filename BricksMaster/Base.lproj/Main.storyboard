@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="By5-Kd-P2h">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="By5-Kd-P2h">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -759,22 +759,46 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VZg-Nj-d2d">
-                                        <rect key="frame" x="147.66666666666666" y="722" width="80" height="40"/>
-                                        <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <rect key="frame" x="255" y="728" width="100" height="44"/>
+                                        <color key="backgroundColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="3iW-EE-9SJ"/>
-                                            <constraint firstAttribute="height" constant="40" id="IFK-I2-GEa"/>
+                                            <constraint firstAttribute="width" constant="100" id="3iW-EE-9SJ"/>
+                                            <constraint firstAttribute="height" constant="44" id="IFK-I2-GEa"/>
                                         </constraints>
-                                        <state key="normal" title="SAVE">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="8"/>
+                                                <integer key="value" value="6"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="saveBrickSettings:" destination="DhP-Un-8Zx" eventType="touchUpInside" id="xUv-mA-pcQ"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vT8-bn-5Rx">
+                                        <rect key="frame" x="20" y="728" width="100" height="44"/>
+                                        <color key="backgroundColor" red="0.76862745098039209" green="0.76862745098039209" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="OUd-cj-8uu"/>
+                                            <constraint firstAttribute="width" constant="100" id="jW2-iC-nNu"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                                        <state key="normal" title="Ping">
+                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="6"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="endPing" destination="DhP-Un-8Zx" eventType="touchUpInside" id="u4H-YS-lll"/>
+                                            <action selector="endPing" destination="DhP-Un-8Zx" eventType="touchCancel" id="vRm-u3-ihF"/>
+                                            <action selector="endPing" destination="DhP-Un-8Zx" eventType="touchUpOutside" id="zpg-9Q-usz"/>
+                                            <action selector="startPing" destination="DhP-Un-8Zx" eventType="touchDown" id="9Ut-dM-TZi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -785,14 +809,16 @@
                                     <constraint firstAttribute="bottom" secondItem="fVJ-gz-FMC" secondAttribute="bottom" constant="101" id="4uP-zb-GSu"/>
                                     <constraint firstItem="73U-hG-8OQ" firstAttribute="top" secondItem="Pf3-eb-caL" secondAttribute="top" constant="52" id="6kt-mK-cqE"/>
                                     <constraint firstItem="fVJ-gz-FMC" firstAttribute="top" secondItem="yxE-wz-7Gp" secondAttribute="bottom" constant="8" id="70z-Yg-kmW"/>
+                                    <constraint firstItem="vT8-bn-5Rx" firstAttribute="leading" secondItem="Pf3-eb-caL" secondAttribute="leading" constant="20" id="G3O-U7-JGg"/>
                                     <constraint firstItem="aAF-Ty-XpM" firstAttribute="leading" secondItem="QnP-8z-RcS" secondAttribute="leading" id="GMt-QH-yDp"/>
                                     <constraint firstItem="L9Q-AF-22e" firstAttribute="leading" secondItem="QnP-8z-RcS" secondAttribute="leading" id="GqR-jA-3fL"/>
                                     <constraint firstItem="aAF-Ty-XpM" firstAttribute="centerX" secondItem="Pf3-eb-caL" secondAttribute="centerX" id="Jsw-4j-g3a"/>
-                                    <constraint firstItem="VZg-Nj-d2d" firstAttribute="centerX" secondItem="Pf3-eb-caL" secondAttribute="centerX" id="L6o-Qu-gzV"/>
                                     <constraint firstItem="1yz-he-Iee" firstAttribute="top" secondItem="73U-hG-8OQ" secondAttribute="bottom" constant="42" id="T2H-OI-M7g"/>
                                     <constraint firstItem="L9Q-AF-22e" firstAttribute="top" secondItem="1yz-he-Iee" secondAttribute="bottom" constant="8" id="VSc-4K-9aa"/>
-                                    <constraint firstAttribute="bottom" secondItem="VZg-Nj-d2d" secondAttribute="bottom" constant="50" id="Vot-xh-CID"/>
+                                    <constraint firstAttribute="bottom" secondItem="VZg-Nj-d2d" secondAttribute="bottom" constant="40" id="Vot-xh-CID"/>
+                                    <constraint firstAttribute="bottom" secondItem="vT8-bn-5Rx" secondAttribute="bottom" constant="40" id="X4s-Me-eGy"/>
                                     <constraint firstItem="yxE-wz-7Gp" firstAttribute="leading" secondItem="Pf3-eb-caL" secondAttribute="leading" constant="16" id="YBv-Hw-29Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="VZg-Nj-d2d" secondAttribute="trailing" constant="20" id="YNq-3q-MBh"/>
                                     <constraint firstAttribute="trailing" secondItem="yxE-wz-7Gp" secondAttribute="trailing" constant="16" id="aGI-Se-IA8"/>
                                     <constraint firstItem="fVJ-gz-FMC" firstAttribute="width" secondItem="Pf3-eb-caL" secondAttribute="width" id="bwz-b2-vrF"/>
                                     <constraint firstItem="1yz-he-Iee" firstAttribute="top" secondItem="QnP-8z-RcS" secondAttribute="bottom" constant="8" id="c6g-ce-0bt"/>
