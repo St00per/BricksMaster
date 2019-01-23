@@ -105,7 +105,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         if collectionViewState == .presets {
-            return UserDevicesManager.default.userPresets.count
+            return UserDevicesManager.default.userFootswitches[section].presets.count
         }
         
         if collectionViewState == .banks {
@@ -132,7 +132,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsTabCell", for: indexPath) as? PresetsTabCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configure(preset: UserDevicesManager.default.userPresets[indexPath.row])
+            cell.configure(preset: UserDevicesManager.default.userFootswitches[indexPath.section].presets[indexPath.row])
             return cell
         }
         
@@ -162,7 +162,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
                 return
             }
-            desVC.presetName = UserDevicesManager.default.userPresets[indexPath.row].name
+            desVC.presetName = UserDevicesManager.default.userFootswitches[indexPath.section].presets[indexPath.row].name
             desVC.currentPresetIndex = indexPath.row
             show(desVC, sender: nil)
         }
