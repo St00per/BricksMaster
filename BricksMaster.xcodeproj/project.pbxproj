@@ -21,6 +21,9 @@
 		0E63304A21F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */; };
 		0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */; };
 		0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */; };
+		0E7926B621F72BC30085776A /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926B521F72BC30085776A /* SectionHeaderView.swift */; };
+		0E7926BA21F81F3E0085776A /* NewBankPresetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */; };
+		0E7926BC21F8207A0085776A /* NewBankCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -58,6 +61,9 @@
 		0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetSettingBricksCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksPickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E7926B521F72BC30085776A /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewBankPresetCell.xib; sourceTree = "<group>"; };
+		0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewBankCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -109,6 +115,8 @@
 		0E046AB621F3152E006A817F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */,
+				0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */,
 				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
 				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
@@ -140,13 +148,14 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
+				0EC28E0721EC720100DEF32B /* Model */,
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
+				0E7926B521F72BC30085776A /* SectionHeaderView.swift */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
-				0EC28E0721EC720100DEF32B /* Model */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
 				0EC28DF221EC6BAD00DEF32B /* LaunchScreen.storyboard */,
@@ -246,6 +255,7 @@
 				0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */,
 				0EC28DF421EC6BAD00DEF32B /* LaunchScreen.storyboard in Resources */,
 				0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */,
+				0E7926BA21F81F3E0085776A /* NewBankPresetCell.xib in Resources */,
 				0EC28E0F21EC736200DEF32B /* SF-Pro-Text-Medium.otf in Resources */,
 				0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */,
 				0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */,
@@ -274,7 +284,9 @@
 				0E63304A21F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift in Sources */,
 				0EC28E0221EC71F400DEF32B /* CustomButton.swift in Sources */,
 				0E1D1D9021EDA460000BEDD7 /* UserDevicesManager.swift in Sources */,
+				0E7926BC21F8207A0085776A /* NewBankCollectionViewCell.swift in Sources */,
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
+				0E7926B621F72BC30085776A /* SectionHeaderView.swift in Sources */,
 				0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */,
 				0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */,
 				7085533221F3332A007C33C0 /* Observable.swift in Sources */,

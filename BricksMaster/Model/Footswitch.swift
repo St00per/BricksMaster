@@ -12,19 +12,21 @@ import CoreBluetooth
 class Footswitch: Observable {
     
     static let maxBriksCount = 5;
-    var id: UUID
+    var id: UUID?
     var name: String
     var bricks: [Brick] = [Brick]() // bricks assigned to footswitch, applyed presets should be mapped on this
     var buttons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
     var customButton: CustomButton = CustomButton()
     var selectedBank: Bank?
+    var banks: [Bank] = [Bank(id: 0,name: "TestBank1")]
+    var presets: [Preset] = [Preset(id: 1, name: "First"), Preset(id: 2, name: "Second"), Preset(id: 3, name: "Third"), Preset(id: 4, name: "Fourth")]
     var selectedPreset: Preset?
     var peripheral: CBPeripheral? = nil
     var tx: CBCharacteristic? = nil
     var rx: CBCharacteristic? = nil
     var needInitalizePorts: Bool = true
     
-    init(id: UUID, name: String) {
+    init(id: UUID?, name: String) {
         self.id = id
         self.name = name
     }

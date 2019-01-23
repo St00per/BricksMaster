@@ -14,10 +14,6 @@ class DevicesTabViewController: UIViewController {
     @IBOutlet weak var bricksCollectionScanButton: UIButton!
     @IBOutlet weak var bricksCollectionView: UICollectionView!
     
-    
-    
-    
-    
     @IBOutlet weak var footswitchesCollectionView: UICollectionView!
     @IBOutlet weak var footswitchesCollectionScanButton: UIButton!
     @IBOutlet var footswitchEditView: UIView!

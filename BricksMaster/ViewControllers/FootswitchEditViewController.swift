@@ -11,6 +11,18 @@ import UIKit
 class FootswitchEditViewController: UIViewController {
     
     var currentFootswitch: Footswitch?
+    var currentBank: Bank?
+    var currentBankButton: UIButton?
+    
+    @IBOutlet weak var currentFootswitchName: UILabel!
+    
+    @IBOutlet weak var bankButtonsView: UIView!
+    
+    @IBOutlet weak var firstBankButton: UIButton!
+    @IBOutlet weak var secondBankButton: UIButton!
+    @IBOutlet weak var thirdBankButton: UIButton!
+    @IBOutlet weak var fourthBankButton: UIButton!
+    
     
     @IBOutlet weak var presetButtonsView: UIView!
     
@@ -34,16 +46,164 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var fourthPresetOnOffButton: UIButton!
     @IBOutlet weak var fourthPresetSelectButton: UIButton!
     
+    @IBOutlet weak var bankNameEditTextField: UITextField!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        bankNameEditTextField.delegate = self
+        bankNameEditTextField.returnKeyType = UIReturnKeyType.done
+        currentBankButton = firstBankButton
+        guard let currentFootswitch = self.currentFootswitch else { return }
+        currentFootswitchName.text = currentFootswitch.name
+        currentBank = currentFootswitch.banks.first
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UserDevicesManager.default.footswitchController = self
+        
+        updateBankButtonsTitles()
+        guard let currentFootswitch = self.currentFootswitch, let currentBankButton = self.currentBankButton else { return }
+        if currentFootswitch.banks.count != 0 {
+            //
+            configureBankButtons(selectedButton: currentBankButton)
+            configurePresetButtons()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        UserDevicesManager.default.footswitchController = nil
+    }
+    
+
+    
     @IBAction func closeEditController(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func bankSelected(_ sender: UIButton) {
+        guard let currentFootswitch = self.currentFootswitch else { return }
+        if sender.titleLabel?.text == "NewBank" {
+            let newBank: Bank = Bank(id: currentFootswitch.banks.count, name: bankNameEditTextField.text ?? "Unnamed")
+            currentFootswitch.banks.append(newBank)
+            currentBank = currentFootswitch.banks.last
+            footswitchEditView.alpha = 0.4
+            footswitchEditView.isUserInteractionEnabled = false
+            self.view.addSubview(bankNameEditView)
+            bankNameEditView.center = self.view.center
+        }
+        
+        
+        
+        switch sender {
+        case firstBankButton:
+            if currentFootswitch.banks.count != 0 {
+                currentBank = currentFootswitch.banks[0]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+        case secondBankButton:
+            if currentFootswitch.banks.count > 1 {
+                currentBank = currentFootswitch.banks[1]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+            
+        case thirdBankButton:
+            if currentFootswitch.banks.count > 2 {
+                currentBank = currentFootswitch.banks[2]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+        case fourthBankButton:
+            if currentFootswitch.banks.count > 3 {
+                currentBank = currentFootswitch.banks[3]
+                configureBankButtons(selectedButton: sender)
+                configurePresetButtons()
+            }
+        default:
+            return
+        }
+    }
+    @IBOutlet weak var footswitchEditView: UIView!
+    
+    @IBOutlet var bankNameEditView: UIView!
+    
+    
+    
+    @IBAction func openBankNameEdit(_ sender: UILongPressGestureRecognizer) {
+        guard let touchedButton = sender.view as? UIButton else {
+            return
+        }
+        
+        
+        
+        guard let currentFootswitch = self.currentFootswitch else { return }
+        switch touchedButton {
+        case firstBankButton:
+            if currentFootswitch.banks.count != 0 {
+                currentBank = currentFootswitch.banks[0]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+        case secondBankButton:
+            if currentFootswitch.banks.count > 1 {
+                currentBank = currentFootswitch.banks[1]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+            
+        case thirdBankButton:
+            if currentFootswitch.banks.count > 2 {
+                currentBank = currentFootswitch.banks[2]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+        case fourthBankButton:
+            if currentFootswitch.banks.count > 3 {
+                currentBank = currentFootswitch.banks[3]
+                configureBankButtons(selectedButton: touchedButton)
+                configurePresetButtons()
+            }
+        default:
+            return
+        }
+        
+        
+        if sender.state == .began {
+            
+            self.becomeFirstResponder()
+            footswitchEditView.alpha = 0.4
+            footswitchEditView.isUserInteractionEnabled = false
+            self.view.addSubview(bankNameEditView)
+            bankNameEditView.center = self.view.center
+        }
+    }
+    
+    @IBAction func closeBankNameEdit(_ sender: UIButton) {
+        bankNameEditView.removeFromSuperview()
+        footswitchEditView.alpha = 1
+        footswitchEditView.isUserInteractionEnabled = true
+    }
+    
+    @IBAction func saveEditedBankName(_ sender: UIButton) {
+        currentBank?.name = bankNameEditTextField.text
+        bankNameEditView.removeFromSuperview()
+        footswitchEditView.alpha = 1
+        footswitchEditView.isUserInteractionEnabled = true
+        updateBankButtonsTitles()
+    }
+    
     
     @IBAction func openPresetPicker(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetPickerViewController") as? PresetPickerViewController else {
             return
         }
-        
+        desVC.editedFootswitch = self.currentFootswitch
+        desVC.editedBank = self.currentBank
         switch sender {
         case firstPresetSelectButton:
             desVC.footswitchButtonNumber = 0
@@ -61,11 +221,10 @@ class FootswitchEditViewController: UIViewController {
     
     
     @IBAction func onOffFootswitchButton(_ sender: UIButton) {
-        guard let currentFootswitch = currentFootswitch else {
+        guard let selectedBank = currentBank, let currentFootswitch = currentFootswitch else {
             return
         }
-        let footswitchButtons = currentFootswitch.buttons
-
+        var footswitchButtons = selectedBank.footswitchButtons
         var selectedPreset: Preset? = nil
         var selectedButton = -1;
         switch sender {
@@ -135,37 +294,15 @@ class FootswitchEditViewController: UIViewController {
         }
     }
     
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UserDevicesManager.default.footswitchController = self
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        UserDevicesManager.default.footswitchController = nil
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(false)
-        configurePresetButtons()
-    }
-    
     func configurePresetButtons() {
-        guard let currentFootswitch = currentFootswitch else {
+        guard let selectedBank = currentBank else {
             return
         }
-        firstPresetButtonLabel.text = currentFootswitch.buttons[0].preset?.name ?? "None"
-        secondPresetButtonLabel.text = currentFootswitch.buttons[1].preset?.name ?? "None"
-        thirdPresetButtonLabel.text = currentFootswitch.buttons[2].preset?.name ?? "None"
-        fourthPresetButtonLabel.text = currentFootswitch.buttons[3].preset?.name ?? "None"
-        
-        let footswitchButtons = currentFootswitch.buttons
+        var footswitchButtons = selectedBank.footswitchButtons
+        firstPresetButtonLabel.text = footswitchButtons[0].preset?.name ?? "None"
+        secondPresetButtonLabel.text = footswitchButtons[1].preset?.name ?? "None"
+        thirdPresetButtonLabel.text = footswitchButtons[2].preset?.name ?? "None"
+        fourthPresetButtonLabel.text = footswitchButtons[3].preset?.name ?? "None"
         
         
         if footswitchButtons[0].isOn == true && footswitchButtons[0].preset != nil
@@ -209,14 +346,56 @@ class FootswitchEditViewController: UIViewController {
             fourthPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
         }
     }
+    
+    func updateBankButtonsTitles() {
+        var banksNames: [String?] = []
+        guard let banks = currentFootswitch?.banks else { return }
+        for bank in banks {
+            banksNames.append(bank.name)
+        }
+        if banksNames.count > 0, banksNames[0] != nil {
+            firstBankButton.setTitle(banksNames[0], for: .normal)
+        }
+        if banksNames.count > 1, banksNames[1] != nil {
+            secondBankButton.setTitle(banksNames[1], for: .normal)
+        }
+        if banksNames.count > 2 ,banksNames[2] != nil {
+            thirdBankButton.setTitle(banksNames[2], for: .normal)
+        }
+        if banksNames.count > 3, banksNames[3] != nil {
+            fourthBankButton.setTitle(banksNames[3], for: .normal)
+        }
+    }
+    
+    func configureBankButtons(selectedButton: UIButton) {
+        guard let bankButtons = bankButtonsView.subviews as? [UIButton] else {
+            return
+        }
+        for button in bankButtons {
+            button.backgroundColor = UIColor(hexString: "EDEDED")
+            button.setTitleColor(UIColor.black, for: .normal)
+        }
+        self.currentBankButton = selectedButton
+        selectedButton.backgroundColor = UIColor.black
+        selectedButton.setTitleColor(UIColor.white, for: .normal)
+    }
 }
 extension FootswitchEditViewController: PinIOModuleManagerDelegate {
-    
-    
     
     func onPinIODidReceivePinState() {
         configurePresetButtons()
     }
+}
+extension FootswitchEditViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        currentBank?.name = bankNameEditTextField.text
+        bankNameEditView.removeFromSuperview()
+        footswitchEditView.alpha = 1
+        footswitchEditView.isUserInteractionEnabled = true
+        guard let button = currentBankButton else { return false}
+        configureBankButtons(selectedButton: button)
+        return true
+    }
     
 }
