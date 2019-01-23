@@ -18,11 +18,11 @@ class BankObject: Object {
     
     convenience init(bank: Bank) {
         self.init()
+        self.id = bank.id
         self.update(bank: bank)
     }
     
     func update(bank: Bank) {
-        self.id = bank.id
         self.name = bank.name
         self.presets.removeAll()
         for preset in bank.presets {
@@ -44,12 +44,8 @@ class BrickStateObject: Object {
     
     convenience init(id: String, state: Bool) {
         self.init()
-        self.id = id
+        self.brickId = id
         self.state = state
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
     }
 }
 
@@ -62,11 +58,11 @@ class PresetObject: Object {
     
     convenience init(preset: Preset) {
         self.init()
+        self.id = preset.id
         self.update(preset: preset)
     }
     
     func update(preset: Preset) {
-        self.id = preset.id
         self.name = preset.name
         presetBricks.removeAll()
         for presetState in preset.presetBricks {
@@ -92,11 +88,11 @@ class FootswitchObject: Object {
     
     convenience init(footswitch: Footswitch) {
         self.init()
+        self.id = footswitch.id
         self.update(footswitch: footswitch)
     }
     
     func update(footswitch: Footswitch) {
-        self.id = footswitch.id
         self.name = footswitch.name
         self.bricks.removeAll()
         for brick in footswitch.bricks {
@@ -141,11 +137,11 @@ class BrickObject: Object {
     
     convenience init(brick: Brick) {
         self.init()
+        self.id = brick.id
         self.update(brick: brick)
     }
     
     func update(brick: Brick) {
-        self.id = brick.id
         self.color = brick.color.encode()
         self.deviceName = brick.deviceName
         self.status = brick.status == .on
@@ -168,11 +164,11 @@ class FootswitchButtonObject: Object {
     
     convenience init(footswitchButton: FootswitchButton) {
         self.init()
+        self.id = footswitchButton.id
         self .update(footswitchButton: footswitchButton)
     }
     
     func update(footswitchButton: FootswitchButton) {
-        self.id = footswitchButton.id
         self.index = footswitchButton.index
         if let preset = footswitchButton.preset {
             if let id = preset.id {
@@ -180,9 +176,5 @@ class FootswitchButtonObject: Object {
             }
         }
         self.isOn = footswitchButton.isOn
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
     }
 }

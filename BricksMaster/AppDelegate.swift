@@ -22,7 +22,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                try! realm.deleteAll()
 //            }
 //        }
-        DataBaseManager.client.restoreBase()
         return true
     }
 

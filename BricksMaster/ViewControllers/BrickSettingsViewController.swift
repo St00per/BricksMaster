@@ -92,6 +92,7 @@ class BrickSettingsViewController: UIViewController {
             self.pingPinIsOn = !self.pingPinIsOn
             self.setPingPin(on: self.pingPinIsOn)
         })
+        RunLoop.current.add(pingTimer!, forMode: .default)
     }
     
     @IBAction func endPing() {
@@ -115,6 +116,7 @@ class BrickSettingsViewController: UIViewController {
         } else {
             dataToWrite.append(0x00)
         }
+        println("Blink ...")
         CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: peripheralCharacteristic, data: dataToWrite)
     }
     

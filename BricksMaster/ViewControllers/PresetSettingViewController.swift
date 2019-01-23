@@ -55,6 +55,7 @@ class PresetSettingViewController: UIViewController {
         if let preset = preset {
             preset.footswitch?.presets.append(preset)
             preset.save()
+            preset.footswitch?.save()
         }
         self.dismiss(animated: true, completion: nil)
     }

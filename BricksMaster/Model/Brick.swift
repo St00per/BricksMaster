@@ -88,12 +88,14 @@ class Brick: Observable {
         guard let realm = try? Realm() else {
             return
         }
-        if let object = brickObject {
-            object.update(brick: self)
-            realm.add(object, update: true)
-        } else {
-            let object = BrickObject(brick: self)
-            realm.add(object)
+        try! realm.write {
+            if let object = brickObject {
+                object.update(brick: self)
+                realm.add(object, update: true)
+            } else {
+                let object = BrickObject(brick: self)
+                realm.add(object)
+            }
         }
     }
 }

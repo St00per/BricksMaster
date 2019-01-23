@@ -39,12 +39,14 @@ class Bank {
         guard let realm = try? Realm() else {
             return
         }
-        if let object = bankObject {
-            object.update(bank: self)
-            realm.add(object, update: true)
-        } else {
-            let object = BankObject(bank: self)
-            realm.add(object)
+        try! realm.write {
+            if let object = bankObject {
+                object.update(bank: self)
+                realm.add(object, update: true)
+            } else {
+                let object = BankObject(bank: self)
+                realm.add(object)
+                }
         }
     }
 }

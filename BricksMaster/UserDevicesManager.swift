@@ -158,12 +158,12 @@ class UserDevicesManager {
     }
     
     func connect(brick: Brick) {
-        if(CentralBluetoothManager.default.connectQueue.count > 0) {
-            CentralBluetoothManager.default.connectQueue.append(brick)
-        } else {
+//        if(CentralBluetoothManager.default.connectQueue.count > 0) {
+//            CentralBluetoothManager.default.connectQueue.append(brick)
+//        } else {
             CentralBluetoothManager.default.connectQueue.append(brick)
             brick.connect()
-        }
+//        }
     }
     
     func connect(footswitch: Footswitch) {

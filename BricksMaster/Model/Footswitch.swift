@@ -103,14 +103,18 @@ class Footswitch: Observable {
         guard let realm = try? Realm() else {
             return
         }
-        try! realm.write {
+        do {
+        try realm.write {
         if let object = footswitchObject {
             object.update(footswitch: self)
             realm.add(object, update: true)
         } else {
             let object = FootswitchObject(footswitch: self)
-            realm.add(object)
+            realm.add(object, update: true)
         }
+            }
+        } catch {
+            println(error)
         }
     }
 }

@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/DataBaseManager.swift"
-            timestampString = "569958362.2539279"
+            timestampString = "569968641.028975"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
@@ -26,27 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/DataBaseManager.swift"
-            timestampString = "569958362.254005"
+            timestampString = "569968641.029063"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "restoreBase()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BricksMaster/DataBaseManager.swift"
-            timestampString = "569958362.2540621"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
             landmarkName = "restoreBase()"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/Model/Footswitch.swift"
-            timestampString = "569958362.254119"
+            timestampString = "569968641.0291359"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -74,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/Model/Footswitch.swift"
-            timestampString = "569958362.254172"
+            timestampString = "569968641.029197"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
@@ -90,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569958362.254226"
+            timestampString = "569968641.0292701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "340"
+            endingLineNumber = "340"
             landmarkName = "peripheral(_:didDiscoverCharacteristicsFor:error:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -106,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569958362.254663"
+            timestampString = "569968641.029706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -121,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569958362.254998"
+            filePath = "BricksMaster/Model/Footswitch.swift"
+            timestampString = "569968641.029953"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "centralManager(_:didDiscover:advertisementData:rssi:)"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "save()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -137,14 +121,78 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BricksMaster/Model/Footswitch.swift"
-            timestampString = "569958362.255302"
+            filePath = "BricksMaster/UserDevicesManager.swift"
+            timestampString = "569968641.030002"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "save()"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "connect(brick:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BricksMaster/Model/DataBase.swift"
+            timestampString = "569968641.030055"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "update(footswitch:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BricksMaster/DataBaseManager.swift"
+            timestampString = "569968641.030104"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "restoreBase()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "BricksMaster.DataBaseManager.restoreBase() -&gt; Swift.Bool"
+                  moduleName = "BricksMaster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sviatoslavsemenihin/Documents/Workspace/BricksMaster/BricksMaster/DataBaseManager.swift"
+                  timestampString = "569968641.3494281"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "3704">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #7 (BricksMaster.Preset) -&gt; Swift.Bool in BricksMaster.DataBaseManager.restoreBase() -&gt; Swift.Bool"
+                  moduleName = "BricksMaster"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sviatoslavsemenihin/Documents/Workspace/BricksMaster/BricksMaster/DataBaseManager.swift"
+                  timestampString = "569968641.351174"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -25,6 +25,7 @@ class Preset {
     }
     
     init(presetObject: PresetObject) {
+        self.presetObject = presetObject
         id = presetObject.id
         name = presetObject.name
         for presetBrick in presetObject.presetBricks {
@@ -44,7 +45,7 @@ class Preset {
                 realm.add(object, update: true)
             } else {
                 let object = PresetObject(preset: self)
-                realm.add(object)
+                realm.add(object, update: true)
             }
         }
     }
