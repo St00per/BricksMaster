@@ -150,6 +150,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewBankPresetCell", for: indexPath) as? NewBankCollectionViewCell else {
                     return UICollectionViewCell()
                 }
+                cell.configure()
                 return cell
             }
         }
