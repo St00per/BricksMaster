@@ -22,7 +22,7 @@ class Brick: Observable {
     var status: BrickStatus = .off
     var deviceName: String?
     var assignedFootswitch: Footswitch?
-    var color = UIColor.lightGray
+    var color = UIColor.white
     //var image: UIImage?
     var imageId: String?
     
@@ -88,14 +88,25 @@ class Brick: Observable {
         guard let realm = try? Realm() else {
             return
         }
-        if let object = brickObject {
-            object.update(brick: self)
-            realm.add(object, update: true)
-        } else {
-            let object = BrickObject(brick: self)
-            realm.add(object)
+        try! realm.write {
+            if let object = brickObject {
+                object.update(brick: self)
+                realm.add(object, update: true)
+            } else {
+                let object = BrickObject(brick: self)
+                self.brickObject = object
+                realm.add(object)
+            }
         }
     }
+    
+//    func saveInBackground () {
+//        DispatchQueue(label: "background").async {
+//            autoreleasepool {
+//                self.save()
+//            }
+//        }
+//    }
 }
 
 extension UIColor {

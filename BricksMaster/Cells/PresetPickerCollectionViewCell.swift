@@ -31,6 +31,8 @@ class PresetPickerCollectionViewCell: UICollectionViewCell {
         if let bank = bank {
             bank.footswitchButtons[footswitchButtonIndex].preset = selectedPreset
         }
+        bank?.save()
+        currentFootswitch.save()
         controller?.dismiss(animated: true, completion: nil)
     }
     

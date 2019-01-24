@@ -20,6 +20,8 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     
     
     @IBOutlet weak var brickName: UILabel!
+    @IBOutlet weak var brickColor: UIView!
+    @IBOutlet weak var brickImage: UIImageView!
     
     @IBOutlet weak var presetBrickOnOffButton: UIButton!
     
@@ -27,11 +29,11 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
         if preset?.presetBricks[brickIndex].1 == false {
             preset?.presetBricks[brickIndex].1 = true
             presetBrickOnOffButton.setTitle("ON", for: .normal)
-            presetBrickOnOffButton.backgroundColor = UIColor.black
+            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "94C15B")
         } else {
             preset?.presetBricks[brickIndex].1 = false
             presetBrickOnOffButton.setTitle("OFF", for: .normal)
-            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "EDEDED")
+            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "DE6969")
         }
     }
     
@@ -44,12 +46,14 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
     func configure(brick: Brick, index: Int) {
         brickName.text = brick.deviceName
         brickIndex = index
+        brickColor.backgroundColor = brick.color
+        brickImage.image = UIImage(named: brick.imageId ?? "")
         if preset?.presetBricks[brickIndex].1 == false {
             presetBrickOnOffButton.setTitle("OFF", for: .normal)
-            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "EDEDED")
+            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "DE6969")
         } else {
             presetBrickOnOffButton.setTitle("ON", for: .normal)
-            presetBrickOnOffButton.backgroundColor = UIColor.black
+            presetBrickOnOffButton.backgroundColor = UIColor(hexString: "94C15B")
         }
     }
     

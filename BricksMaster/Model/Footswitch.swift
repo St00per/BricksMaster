@@ -50,8 +50,14 @@ class Footswitch: Observable {
     init(id: String?, name: String) {
         self.id = id
         self.name = name
-        
         super.init()
+        
+        self.banks = [Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: "")]
+        for bank in self.banks {
+            bank.footswitchId = self.id
+        }
+        banks.first?.name = "Default bank"
+        banks.first?.empty = false
         //TODO: REMOVE ON RELEASE
         //self.mockData()
     }
@@ -62,6 +68,7 @@ class Footswitch: Observable {
         super.init()
         self.new = false
         self.footswitchObject = footswitchObject
+        let emptyBanksCount = 4 - banks.count
     }
     
     
@@ -103,14 +110,28 @@ class Footswitch: Observable {
         guard let realm = try? Realm() else {
             return
         }
-        try! realm.write {
+        do {
+        try realm.write {
         if let object = footswitchObject {
             object.update(footswitch: self)
             realm.add(object, update: true)
         } else {
             let object = FootswitchObject(footswitch: self)
-            realm.add(object)
+            self.footswitchObject = object
+            realm.add(object, update: true)
         }
+            
+        }
+        } catch {
+            println(error)
+        }
+    }
+    
+    func saveInBackground() {
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                self.save()
+            }
         }
     }
 }

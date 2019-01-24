@@ -17,6 +17,8 @@ class BricksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var deviceName: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var deviceImage: UIImageView!
+    @IBOutlet weak var deviceColor: UIView!
+    
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var onOffDeviceButton: UIButton!
     @IBOutlet weak var connectedLabel: UILabel!
@@ -63,6 +65,8 @@ class BricksCollectionViewCell: UICollectionViewCell {
     func configure(brick: Brick) {
         self.brick = brick
         deviceName.text = brick.deviceName
+        deviceImage.image = UIImage(named: brick.imageId ?? "")
+        deviceColor.backgroundColor = brick.color
         guard let brickState = brick.peripheral?.state else {
             return
         }
@@ -74,6 +78,7 @@ class BricksCollectionViewCell: UICollectionViewCell {
         case .connected:
             onOffDeviceButton.isHidden = false
             connectedLabel.isHidden = false
+            connectedLabel.text = "CONNECTED"
             connectButton.isHidden = true
         case .connecting:
             onOffDeviceButton.isHidden = true

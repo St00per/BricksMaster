@@ -158,12 +158,12 @@ class UserDevicesManager {
     }
     
     func connect(brick: Brick) {
-        if(CentralBluetoothManager.default.connectQueue.count > 0) {
-            CentralBluetoothManager.default.connectQueue.append(brick)
-        } else {
+//        if(CentralBluetoothManager.default.connectQueue.count > 0) {
+//            CentralBluetoothManager.default.connectQueue.append(brick)
+//        } else {
             CentralBluetoothManager.default.connectQueue.append(brick)
             brick.connect()
-        }
+//        }
     }
     
     func connect(footswitch: Footswitch) {
@@ -206,3 +206,24 @@ extension UIColor {
     }
 }
 
+extension UIView {
+    
+    func addDashedBorder() {
+        let color = UIColor.lightGray.cgColor
+        
+        let shapeLayer:CAShapeLayer = CAShapeLayer()
+        let frameSize = self.frame.size
+        let shapeRect = CGRect(x: 0, y: 0, width: frameSize.width, height: frameSize.height)
+        
+        shapeLayer.bounds = shapeRect
+        shapeLayer.position = CGPoint(x: frameSize.width/2, y: frameSize.height/2)
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = color
+        shapeLayer.lineWidth = 1
+        shapeLayer.lineJoin = CAShapeLayerLineJoin.round
+        shapeLayer.lineDashPattern = [3,3]
+        shapeLayer.path = UIBezierPath(roundedRect: shapeRect, cornerRadius: 5).cgPath
+        
+        self.layer.addSublayer(shapeLayer)
+    }
+}

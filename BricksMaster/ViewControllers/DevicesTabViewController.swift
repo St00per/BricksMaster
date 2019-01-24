@@ -20,9 +20,16 @@ class DevicesTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DataBaseManager.client.restoreBase()
+        CentralBluetoothManager.default.startScan()
         CentralBluetoothManager.default.devicesTabViewController = self
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        bricksCollectionView.reloadData()
+        footswitchesCollectionView.reloadData()
+    }
+    
     @IBAction func bricksScanButtonTouched(_ sender: UIButton) {
         scanForBricks()
     }

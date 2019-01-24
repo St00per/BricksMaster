@@ -49,9 +49,9 @@ class ColorWheel: SSAlphaPassView {
         self.layer.addSublayer(wheelLayer)
         
         // Layer for the brightness
-        brightnessLayer = CAShapeLayer()
-        brightnessLayer.path = UIBezierPath(roundedRect: CGRect(x: 20.5, y: 20.5, width: self.frame.width-40.5, height: self.frame.height-40.5), cornerRadius: (self.frame.height-40.5)/2).cgPath
-        self.layer.addSublayer(brightnessLayer)
+//        brightnessLayer = CAShapeLayer()
+//        brightnessLayer.path = UIBezierPath(roundedRect: CGRect(x: 20.5, y: 20.5, width: self.frame.width-40.5, height: self.frame.height-40.5), cornerRadius: (self.frame.height-40.5)/2).cgPath
+        //self.layer.addSublayer(brightnessLayer)
         
         // Layer for the indicator
         indicatorLayer = CAShapeLayer()
@@ -232,7 +232,7 @@ class ColorWheel: SSAlphaPassView {
         }
         self.color = color
         self.brightness = brightness
-        brightnessLayer.fillColor = UIColor(white: 0, alpha: 1.0-self.brightness).cgColor
+        //brightnessLayer.fillColor = UIColor(white: 0, alpha: 1.0-self.brightness).cgColor
         point = pointAtHueSaturation(hue, saturation: saturation)
         drawIndicator()
     }

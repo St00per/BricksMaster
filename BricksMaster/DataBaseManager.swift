@@ -27,12 +27,40 @@ class DataBaseManager {
         UserDevicesManager.default.userFootswitches = footswitches.map{ Footswitch(footswitchObject: $0) }
         let mappedPresets = presets.map{ Preset(presetObject: $0) }
         let mappedBanks = banks.map{ Bank(bankObject: $0) }
+        UserDevicesManager.default.userPresets.append(contentsOf: mappedPresets)
+
+        for bank in mappedBanks {
+            if let object = bank.bankObject {
+                for presetId in object.presets {
+                    if let preset = mappedPresets.first(where: { $0.id == presetId } ) {
+                        bank.presets.append( preset )
+                    }
+                }
+            }
+        }
         
         for footswitch in UserDevicesManager.default.userFootswitches {
             footswitch.banks = mappedBanks.filter{ $0.footswitchId == footswitch.id }
             footswitch.presets = mappedPresets.filter{ $0.presetObject?.footswitch == footswitch.id}
             footswitch.selectedBank = mappedBanks.first{$0.id == footswitch.footswitchObject?.selectedBank}
             footswitch.selectedPreset = mappedPresets.first{$0.id == footswitch.footswitchObject?.selectedPreset}
+            for preset in footswitch.presets {
+                preset.footswitch = footswitch
+            }
+            footswitch.selectedBank = mappedBanks.first{$0.id == footswitch.footswitchObject?.selectedBank}
+            footswitch.selectedPreset = mappedPresets.first{$0.id == footswitch.footswitchObject?.selectedPreset}
+
+            if let selectedBank = footswitch.selectedBank {
+                for i in 0 ..< selectedBank.footswitchButtons.count {
+                    footswitch.buttons[i].index = selectedBank.footswitchButtons[i].index
+                    footswitch.buttons[i].isOn = selectedBank.footswitchButtons[i].isOn
+                    footswitch.buttons[i].preset = selectedBank.footswitchButtons[i].preset
+                }
+            }
+            let emptyBanksCount = 4 - footswitch.banks.count
+            for _ in 0..<emptyBanksCount {
+                footswitch.banks.append(Bank(id: UUID().uuidString, name: ""))
+            }
         }
         
         for brick in UserDevicesManager.default.userBricks {

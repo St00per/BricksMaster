@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Preset {
+class Preset: NSObject {
     var id: String?
     var name: String = "Unnamed"
     var presetBricks: [(String, Bool)]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
@@ -17,7 +17,7 @@ class Preset {
     
     var presetObject: PresetObject?
     
-    init() {}
+    override init() {}
     
     init(id: String, name: String) {
         self.id = id
@@ -25,6 +25,7 @@ class Preset {
     }
     
     init(presetObject: PresetObject) {
+        self.presetObject = presetObject
         id = presetObject.id
         name = presetObject.name
         for presetBrick in presetObject.presetBricks {
@@ -44,7 +45,20 @@ class Preset {
                 realm.add(object, update: true)
             } else {
                 let object = PresetObject(preset: self)
-                realm.add(object)
+                self.presetObject = object
+                realm.add(object, update: true)
+            }
+        }
+    }
+    
+    static func == (lhs: Preset, rhs: Preset) -> Bool {
+        return lhs.name == lhs.name
+    }
+    
+    func saveInBackground () {
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                self.save()
             }
         }
     }

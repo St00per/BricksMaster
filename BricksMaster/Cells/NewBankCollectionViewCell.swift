@@ -10,4 +10,9 @@ import UIKit
 
 class NewBankCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var newBankView: UIView!
+    
+    func configure() {
+       newBankView.addDashedBorder()
+    }
 }

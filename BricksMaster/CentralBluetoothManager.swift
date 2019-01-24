@@ -9,7 +9,7 @@
 import Foundation
 import CoreBluetooth
 
-let bricksCBUUID = CBUUID(string: "0xFFE0")
+let bricksCBUUID = CBUUID(string: "0xFFF0")
 let brickModuleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
 let footswitchesServiceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
@@ -57,7 +57,7 @@ class CentralBluetoothManager: NSObject {
     private let SYSEX_START: UInt8 = 0xF0
     private let SYSEX_END: UInt8 = 0xF7
     
-    var isFirstDidLoad = true
+    var isFirstDidLoad = false
     var isFirstSend = true
     override init() {
         super.init()
@@ -79,7 +79,9 @@ class CentralBluetoothManager: NSObject {
                         }
                     } else {
                         if state == 0 {
-                            //footSwitch.customButton.
+                            footSwitch.customButton.startPendedAction()
+                        } else {
+                            footSwitch.customButton.finishPendedAction()
                         }
                     }
                 }
@@ -95,6 +97,14 @@ class CentralBluetoothManager: NSObject {
             }
             UserDevicesManager.default.updateFootswitch(footswitch: footSwitch)
             println("\n")
+        }
+    }
+    
+    func startScan() {
+        if centralManager.state == .poweredOn {
+            centralManager.scanForPeripherals(withServices: [bricksCBUUID,footswitchesServiceCBUUID])
+        } else {
+            isFirstDidLoad = true
         }
     }
     
@@ -205,27 +215,34 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         
         for uuid in uuidArray {
             if uuid == footswitchesServiceCBUUID {
-                let newFootswitch = Footswitch(id: peripheral.identifier.uuidString, name: peripheral.name ?? "Unnamed")
-                newFootswitch.peripheral = peripheral
-                newFootswitch.name = peripheral.name ?? "Unnamed"
                 let footswitch = UserDevicesManager.default.footswitch(id: peripheral.identifier.uuidString)
                 if let newFootswitch = footswitch {
-                    UserDevicesManager.default.connect(footswitch: newFootswitch)
+                    newFootswitch.peripheral = peripheral
+                    newFootswitch.name = peripheral.name ?? "Unnamed"
+                    if !newFootswitch.new {
+                        UserDevicesManager.default.connect(footswitch: newFootswitch)
+                    }
                 } else {
+                    let newFootswitch = Footswitch(id: peripheral.identifier.uuidString, name: peripheral.name ?? "Unnamed")
+                    newFootswitch.peripheral = peripheral
+                    newFootswitch.name = peripheral.name ?? "Unnamed"
                     println("Add footswitch: \(peripheral.identifier)")
                     UserDevicesManager.default.userFootswitches.append(newFootswitch)
                 }
             }
             if uuid == bricksCBUUID {
-                let brick = Brick(id: peripheral.identifier)
-                brick.peripheral = peripheral
-                brick.deviceName = peripheral.name
-                if UserDevicesManager.default.userBricks.first(where: { (brick) -> Bool in
-                    guard let id = brick.id else {
-                        return false
+                let brick = UserDevicesManager.default.brick(id: peripheral.identifier.uuidString)
+                if let newBrick = brick {
+                    newBrick.peripheral = peripheral
+                    newBrick.deviceName = peripheral.name
+                    if !newBrick.new {
+                        UserDevicesManager.default.connect(brick: newBrick)
                     }
-                    return id == peripheral.identifier.uuidString
-                }) == nil {
+                } else {
+                    let brick = Brick(id: peripheral.identifier)
+                    brick.peripheral = peripheral
+                    brick.deviceName = peripheral.name
+                    println("Add brick: \(peripheral.identifier)")
                     UserDevicesManager.default.userBricks.append(brick)
                 }
             }

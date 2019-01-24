@@ -35,6 +35,8 @@
 		0E7926E221F89AED0085776A /* SelectedColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DD21F89AED0085776A /* SelectedColorView.swift */; };
 		0E7926E321F89AED0085776A /* BrightnessView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926DE21F89AED0085776A /* BrightnessView.swift */; };
 		0E7926E521F89AF70085776A /* MTCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E421F89AF70085776A /* MTCircularSlider.swift */; };
+		0E7926E721F9BF580085776A /* FootswitchBricksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */; };
+		0E7926E921F9D30B0085776A /* BricksCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E821F9D30B0085776A /* BricksCollectionController.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -53,6 +55,8 @@
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
 		70715EAF21F8529800C21C3E /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EAE21F8529800C21C3E /* DataBase.swift */; };
 		70715EB121F8788800C21C3E /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EB021F8788800C21C3E /* DataBaseManager.swift */; };
+		70715EB921F9A10500C21C3E /* FootswitchEditBankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EB821F9A10500C21C3E /* FootswitchEditBankCell.swift */; };
+		70715EBD21F9A4FB00C21C3E /* BanksController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EBC21F9A4FB00C21C3E /* BanksController.swift */; };
 		7085533221F3332A007C33C0 /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7085533121F3332A007C33C0 /* Observable.swift */; };
 		70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70A04FBC21F4BB1B009C714D /* DebugViewController.swift */; };
 		70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E7D4AF21F2601200EC88DE /* BankCell.swift */; };
@@ -93,6 +97,8 @@
 		0E7926DD21F89AED0085776A /* SelectedColorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedColorView.swift; sourceTree = "<group>"; };
 		0E7926DE21F89AED0085776A /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
 		0E7926E421F89AF70085776A /* MTCircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTCircularSlider.swift; sourceTree = "<group>"; };
+		0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchBricksCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E7926E821F9D30B0085776A /* BricksCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BricksCollectionController.swift; path = ViewControllers/BricksCollectionController.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -113,6 +119,8 @@
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		70715EAE21F8529800C21C3E /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		70715EB021F8788800C21C3E /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		70715EB821F9A10500C21C3E /* FootswitchEditBankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchEditBankCell.swift; sourceTree = "<group>"; };
+		70715EBC21F9A4FB00C21C3E /* BanksController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksController.swift; sourceTree = "<group>"; };
 		7085533121F3332A007C33C0 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		70A04FBC21F4BB1B009C714D /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		70E7D4AF21F2601200EC88DE /* BankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankCell.swift; sourceTree = "<group>"; };
@@ -151,6 +159,7 @@
 		0E046AB621F3152E006A817F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */,
 				0E7926BF21F886A30085776A /* BrickImageCollectionViewCell.swift */,
 				0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */,
 				0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */,
@@ -163,6 +172,7 @@
 				0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */,
 				0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */,
 				0E7926B521F72BC30085776A /* SectionHeaderView.swift */,
+				70715EB821F9A10500C21C3E /* FootswitchEditBankCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -221,9 +231,11 @@
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
+				70715EBC21F9A4FB00C21C3E /* BanksController.swift */,
 				70715EB021F8788800C21C3E /* DataBaseManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
 				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
+				0E7926E821F9D30B0085776A /* BricksCollectionController.swift */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
@@ -411,6 +423,7 @@
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
 				0E63304021F03E6700EA3652 /* PresetPickerViewController.swift in Sources */,
 				70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */,
+				70715EB921F9A10500C21C3E /* FootswitchEditBankCell.swift in Sources */,
 				0E63304821F084C800EA3652 /* PresetSettingViewController.swift in Sources */,
 				0E7926E521F89AF70085776A /* MTCircularSlider.swift in Sources */,
 				0E63304421F07EEF00EA3652 /* PresetsTabViewController.swift in Sources */,
@@ -421,6 +434,7 @@
 				70715EB121F8788800C21C3E /* DataBaseManager.swift in Sources */,
 				0E1D1D9021EDA460000BEDD7 /* UserDevicesManager.swift in Sources */,
 				0E7926BC21F8207A0085776A /* NewBankCollectionViewCell.swift in Sources */,
+				0E7926E921F9D30B0085776A /* BricksCollectionController.swift in Sources */,
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0E7926B621F72BC30085776A /* SectionHeaderView.swift in Sources */,
 				0E7926BE21F85B060085776A /* BrickSettingsViewController.swift in Sources */,
@@ -436,10 +450,12 @@
 				0E7926E121F89AED0085776A /* SwiftHSVColorPicker.swift in Sources */,
 				0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */,
 				0E1D1D8E21EDA37D000BEDD7 /* DevicesTabViewController.swift in Sources */,
+				0E7926E721F9BF580085776A /* FootswitchBricksCollectionViewCell.swift in Sources */,
 				0E7926C021F886A30085776A /* BrickImageCollectionViewCell.swift in Sources */,
 				0E7926DF21F89AED0085776A /* ColorUtils.swift in Sources */,
 				0EC28E0521EC71F400DEF32B /* FootswitchButton.swift in Sources */,
 				0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */,
+				70715EBD21F9A4FB00C21C3E /* BanksController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
