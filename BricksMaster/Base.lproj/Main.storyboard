@@ -685,7 +685,7 @@
                                             <inset key="sectionInset" minX="20" minY="8" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BrickImageCollectionViewCell" id="abF-5a-rGd" customClass="BrickImageCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" reuseIdentifier="BrickImageCollectionViewCell" id="abF-5a-rGd" customClass="BrickImageCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="8" width="40" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -702,10 +702,19 @@
                                                                         <constraint firstAttribute="height" constant="60" id="qzS-M3-gOU"/>
                                                                     </constraints>
                                                                 </imageView>
+                                                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="brickSelectIcon" translatesAutoresizingMaskIntoConstraints="NO" id="9HO-VJ-dtd">
+                                                                    <rect key="frame" x="13" y="23" width="14" height="14"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="14" id="pdz-Ye-8YZ"/>
+                                                                        <constraint firstAttribute="width" constant="14" id="u2j-ch-n5g"/>
+                                                                    </constraints>
+                                                                </imageView>
                                                             </subviews>
                                                             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
+                                                                <constraint firstItem="9HO-VJ-dtd" firstAttribute="centerY" secondItem="Crs-zu-hS5" secondAttribute="centerY" id="3Zr-Jd-tXq"/>
                                                                 <constraint firstItem="f2a-80-61w" firstAttribute="centerX" secondItem="Crs-zu-hS5" secondAttribute="centerX" id="56G-f3-yRK"/>
+                                                                <constraint firstItem="9HO-VJ-dtd" firstAttribute="centerX" secondItem="Crs-zu-hS5" secondAttribute="centerX" id="Fpb-2z-AGf"/>
                                                                 <constraint firstItem="f2a-80-61w" firstAttribute="centerY" secondItem="Crs-zu-hS5" secondAttribute="centerY" id="wRz-U1-WQx"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
@@ -724,6 +733,7 @@
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="brickImage" destination="f2a-80-61w" id="KVN-Wd-Zfi"/>
+                                                    <outlet property="selectedImageView" destination="9HO-VJ-dtd" id="2hQ-4c-WdJ"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -2269,13 +2279,14 @@
         <image name="Plus" width="20" height="20"/>
         <image name="Refresh" width="24" height="24"/>
         <image name="black_ic_mode_edit_48px" width="14" height="14"/>
-        <image name="black_ring" width="120" height="119.51999664306641"/>
+        <image name="black_ring" width="500" height="498"/>
+        <image name="brickSelectIcon" width="14" height="14"/>
         <image name="gray_ic_settings_remote_48px" width="64" height="64"/>
         <image name="ic_more_vert_48px" width="24" height="24"/>
         <image name="ic_settings_remote_48px" width="24" height="24"/>
         <image name="ic_view_module_48px" width="24" height="24"/>
         <image name="pedalform1" width="70.333335876464844" height="87"/>
         <image name="white_ic_more_vert_48px" width="24" height="24"/>
-        <image name="white_ring" width="120" height="119.51999664306641"/>
+        <image name="white_ring" width="500" height="498"/>
     </resources>
 </document>

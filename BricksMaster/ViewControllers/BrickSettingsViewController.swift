@@ -20,6 +20,8 @@ class BrickSettingsViewController: UIViewController {
     var pingPinIsOn: Bool = false
     var pingTimer: Timer?
     
+    var selectedIndexPAth: IndexPath?
+    
     @IBOutlet weak var gradientRing: UIImageView!
     
     
@@ -53,6 +55,7 @@ class BrickSettingsViewController: UIViewController {
         if assignedFootswitch != nil {
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
         }
+        footswitchPickerCollectionView.allowsSelection = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -83,6 +86,8 @@ class BrickSettingsViewController: UIViewController {
         guard let currentBrick = self.currentBrick, let assignedFootswitch = self.assignedFootswitch else { return }
         assignedFootswitch.bricks.append(currentBrick)
         currentBrick.assignedFootswitch = self.assignedFootswitch
+        currentBrick.save()
+        assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -199,12 +204,11 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             brickSettingsView.alpha = 1
             brickSettingsView.isUserInteractionEnabled = true
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
-
         }
 
         if collectionView == brickImageCollectionView {
             currentBrick?.imageId = brickImages[indexPath.row]
-            
+            selectedIndexPAth = indexPath
         }
     }
 }
