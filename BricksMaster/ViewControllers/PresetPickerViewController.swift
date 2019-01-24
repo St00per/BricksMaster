@@ -27,7 +27,7 @@ class PresetPickerViewController: UIViewController {
 }
 extension PresetPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return UserDevicesManager.default.userPresets.count
+        return editedFootswitch?.presets.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -38,8 +38,9 @@ extension PresetPickerViewController: UICollectionViewDelegate, UICollectionView
         cell.footswitch = editedFootswitch
         cell.bank = editedBank
         cell.footswitchButtonIndex = footswitchButtonNumber
-        let currentPreset = UserDevicesManager.default.userPresets[indexPath.row]
-        cell.configure(preset: currentPreset)
+        if let currentPreset = editedFootswitch?.presets[indexPath.row] {
+            cell.configure(preset: currentPreset)
+        }
         return cell
     }
 }

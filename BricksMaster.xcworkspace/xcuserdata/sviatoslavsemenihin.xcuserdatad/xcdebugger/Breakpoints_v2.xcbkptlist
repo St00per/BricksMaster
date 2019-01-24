@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/DataBaseManager.swift"
-            timestampString = "569972523.760048"
+            timestampString = "570001340.571667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "17"
@@ -25,24 +25,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BricksMaster/DataBaseManager.swift"
-            timestampString = "569972523.760139"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "restoreBase()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BricksMaster/Model/Footswitch.swift"
-            timestampString = "569972523.760215"
+            timestampString = "570001340.5718091"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "41"
@@ -58,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/Model/Footswitch.swift"
-            timestampString = "569972523.760275"
+            timestampString = "570001340.571879"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "103"
@@ -74,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569972523.760335"
+            timestampString = "570001340.571944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "340"
@@ -90,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569972523.7604131"
+            timestampString = "570001340.572029"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "116"
@@ -106,7 +90,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/Model/Footswitch.swift"
-            timestampString = "569972523.760667"
+            timestampString = "570001340.572314"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "108"
@@ -122,7 +106,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569972523.760713"
+            timestampString = "570001340.572377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
@@ -138,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/Model/DataBase.swift"
-            timestampString = "569972523.760766"
+            timestampString = "570001340.572435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "96"
@@ -153,60 +137,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "BricksMaster/DataBaseManager.swift"
-            timestampString = "569972523.760813"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "restoreBase()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "BricksMaster.DataBaseManager.restoreBase() -&gt; Swift.Bool"
-                  moduleName = "BricksMaster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sviatoslavsemenihin/Documents/Workspace/BricksMaster/BricksMaster/DataBaseManager.swift"
-                  timestampString = "569973171.848707"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "3704">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #7 (BricksMaster.Preset) -&gt; Swift.Bool in BricksMaster.DataBaseManager.restoreBase() -&gt; Swift.Bool"
-                  moduleName = "BricksMaster"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sviatoslavsemenihin/Documents/Workspace/BricksMaster/BricksMaster/DataBaseManager.swift"
-                  timestampString = "569973171.8509459"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "44"
-                  endingLineNumber = "44"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "BricksMaster/ViewControllers/BrickSettingsViewController.swift"
-            timestampString = "569972523.76088"
+            timestampString = "570001340.572485"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "211"
+            endingLineNumber = "211"
             landmarkName = "collectionView(_:didSelectItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -218,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569973169.972809"
+            timestampString = "570001340.572539"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "82"
@@ -234,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569973199.541832"
+            timestampString = "570001340.572582"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "78"
@@ -250,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569973297.405269"
+            timestampString = "570001340.572626"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
@@ -266,7 +202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569973299.615096"
+            timestampString = "570001340.572669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "56"
@@ -282,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/UserDevicesManager.swift"
-            timestampString = "569973341.994241"
+            timestampString = "570001340.572711"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -298,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569973476.149773"
+            timestampString = "570001340.5727561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "88"
@@ -314,12 +250,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "BricksMaster/CentralBluetoothManager.swift"
-            timestampString = "569973521.146208"
+            timestampString = "570001340.5728"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "72"
             endingLineNumber = "72"
             landmarkName = "updatePinsForReceivedStates(_:port:footSwitch:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "BricksMaster/ViewControllers/BrickSettingsViewController.swift"
+            timestampString = "570001340.572844"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "setPingPin(on:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

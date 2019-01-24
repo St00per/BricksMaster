@@ -47,6 +47,16 @@ class DataBaseManager {
             for preset in footswitch.presets {
                 preset.footswitch = footswitch
             }
+            footswitch.selectedBank = mappedBanks.first{$0.id == footswitch.footswitchObject?.selectedBank}
+            footswitch.selectedPreset = mappedPresets.first{$0.id == footswitch.footswitchObject?.selectedPreset}
+
+            if let selectedBank = footswitch.selectedBank {
+                for i in 0 ..< selectedBank.footswitchButtons.count {
+                    footswitch.buttons[i].index = selectedBank.footswitchButtons[i].index
+                    footswitch.buttons[i].isOn = selectedBank.footswitchButtons[i].isOn
+                    footswitch.buttons[i].preset = selectedBank.footswitchButtons[i].preset
+                }
+            }
         }
         
         for brick in UserDevicesManager.default.userBricks {

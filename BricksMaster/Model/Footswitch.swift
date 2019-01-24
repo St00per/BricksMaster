@@ -117,4 +117,12 @@ class Footswitch: Observable {
             println(error)
         }
     }
+    
+    func saveInBackground() {
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                self.save()
+            }
+        }
+    }
 }

@@ -13,6 +13,10 @@ class BrickImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var brickImage: UIImageView!
     @IBOutlet weak var selectedImageView: UIImageView!
     
+    @IBOutlet weak var width: NSLayoutConstraint!
+    @IBOutlet weak var height: NSLayoutConstraint!
+    
+    
     func configure(image: UIImage) {
         brickImage.image = image
     }
