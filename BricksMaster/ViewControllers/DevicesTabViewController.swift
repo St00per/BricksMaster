@@ -20,6 +20,8 @@ class DevicesTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        DataBaseManager.client.restoreBase()
+        CentralBluetoothManager.default.startScan()
         CentralBluetoothManager.default.devicesTabViewController = self
     }
 

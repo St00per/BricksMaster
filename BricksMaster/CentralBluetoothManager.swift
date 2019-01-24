@@ -9,7 +9,7 @@
 import Foundation
 import CoreBluetooth
 
-let bricksCBUUID = CBUUID(string: "0xFFE0")
+let bricksCBUUID = CBUUID(string: "0xFFF0")
 let brickModuleFunctionConfigurationCBUUID = CBUUID(string: "FFE2")
 
 let footswitchesServiceCBUUID = CBUUID(string: "6E400001-B5A3-F393-E0A9-E50E24DCCA9E")
@@ -52,10 +52,12 @@ class CentralBluetoothManager: NSObject {
     
     var digitalIDs = [2:0,3:1,5:2,6:3,9:4]
     
+    var connectQueue: [Observable] = []
+    
     private let SYSEX_START: UInt8 = 0xF0
     private let SYSEX_END: UInt8 = 0xF7
     
-    var isFirstDidLoad = true
+    var isFirstDidLoad = false
     var isFirstSend = true
     override init() {
         super.init()
@@ -93,6 +95,14 @@ class CentralBluetoothManager: NSObject {
             }
             UserDevicesManager.default.updateFootswitch(footswitch: footSwitch)
             println("\n")
+        }
+    }
+    
+    func startScan() {
+        if centralManager.state == .poweredOn {
+            centralManager.scanForPeripherals(withServices: [bricksCBUUID,footswitchesServiceCBUUID])
+        } else {
+            isFirstDidLoad = true
         }
     }
     
@@ -203,30 +213,34 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         
         for uuid in uuidArray {
             if uuid == footswitchesServiceCBUUID {
-                let newFootswitch = Footswitch(id: peripheral.identifier, name: peripheral.name ?? "Unnamed")
-                newFootswitch.peripheral = peripheral
-                newFootswitch.name = peripheral.name ?? "Unnamed"
-                if UserDevicesManager.default.userFootswitches.first(where: { (footswitch) -> Bool in
-                    guard let findedPeripheral = footswitch.peripheral else {
-                        return false
+                let footswitch = UserDevicesManager.default.footswitch(id: peripheral.identifier.uuidString)
+                if let newFootswitch = footswitch {
+                    newFootswitch.peripheral = peripheral
+                    newFootswitch.name = peripheral.name ?? "Unnamed"
+                    if !newFootswitch.new {
+                        UserDevicesManager.default.connect(footswitch: newFootswitch)
                     }
-                    return findedPeripheral.identifier == peripheral.identifier
-                }) == nil {
+                } else {
+                    let newFootswitch = Footswitch(id: peripheral.identifier.uuidString, name: peripheral.name ?? "Unnamed")
+                    newFootswitch.peripheral = peripheral
+                    newFootswitch.name = peripheral.name ?? "Unnamed"
                     println("Add footswitch: \(peripheral.identifier)")
                     UserDevicesManager.default.userFootswitches.append(newFootswitch)
                 }
             }
             if uuid == bricksCBUUID {
-                let brick = Brick(id: peripheral.identifier)
-                brick.peripheral = peripheral
-                brick.deviceName = peripheral.name
-                brick.updateConnection(isConnected: true)
-                if UserDevicesManager.default.userBricks.first(where: { (brick) -> Bool in
-                    guard let findedPeripheral = brick.peripheral else {
-                        return false
+                let brick = UserDevicesManager.default.brick(id: peripheral.identifier.uuidString)
+                if let newBrick = brick {
+                    newBrick.peripheral = peripheral
+                    newBrick.deviceName = peripheral.name
+                    if !newBrick.new {
+                        UserDevicesManager.default.connect(brick: newBrick)
                     }
-                    return findedPeripheral.identifier == peripheral.identifier
-                }) == nil {
+                } else {
+                    let brick = Brick(id: peripheral.identifier)
+                    brick.peripheral = peripheral
+                    brick.deviceName = peripheral.name
+                    println("Add brick: \(peripheral.identifier)")
                     UserDevicesManager.default.userBricks.append(brick)
                 }
             }
@@ -323,6 +337,15 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
                 initFootSwitchPorts(footSwitch: footswitch)
             }
         }
+        if let observable = connectQueue.first {
+            if(observable.checkConnection()){
+                observable.saveConnected()
+                connectQueue.removeFirst()
+                if let nextObservable = connectQueue.first {
+                    nextObservable.connect()
+                }
+            }
+        }
     }
     
     func initFootSwitchPorts(footSwitch: Footswitch) {
@@ -340,8 +363,8 @@ extension CentralBluetoothManager: CBPeripheralDelegate {
         bytes = [data2, data3]
         data = Data(bytes: bytes)
         sendCommand(to: peripheral, characteristic: tx, data: data)
-        for id in [2,3,5,6,9] {
-            bytes = [0xf4, UInt8(id), 0]
+        for id in [2,3,5,6,9,10, 21, 22, 23] {
+            bytes = [0xf4, UInt8(id), id < 10 ? 0 : 1]
             data = Data(bytes: bytes)
             sendCommand(to: peripheral, characteristic: tx, data: data)
         }

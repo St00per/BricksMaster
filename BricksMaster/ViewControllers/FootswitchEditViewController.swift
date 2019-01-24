@@ -86,7 +86,7 @@ class FootswitchEditViewController: UIViewController {
     @IBAction func bankSelected(_ sender: UIButton) {
         guard let currentFootswitch = self.currentFootswitch else { return }
         if sender.titleLabel?.text == "NewBank" {
-            let newBank: Bank = Bank(id: currentFootswitch.banks.count, name: bankNameEditTextField.text ?? "Unnamed")
+            let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameEditTextField.text ?? "Unnamed")
             currentFootswitch.banks.append(newBank)
             currentBank = currentFootswitch.banks.last
             footswitchEditView.alpha = 0.4
@@ -226,8 +226,10 @@ class FootswitchEditViewController: UIViewController {
         }
         var footswitchButtons = selectedBank.footswitchButtons
         var selectedPreset: Preset? = nil
+        var selectedButton = -1;
         switch sender {
         case firstPresetOnOffButton:
+            selectedButton = 0;
             guard footswitchButtons[0].preset != nil else { return }
             selectedPreset = footswitchButtons[0].preset
             if footswitchButtons[0].isOn == false{
@@ -241,6 +243,7 @@ class FootswitchEditViewController: UIViewController {
                 }
             }
         case secondPresetOnOffButton:
+            selectedButton = 1;
             guard footswitchButtons[1].preset != nil else { return }
             selectedPreset = footswitchButtons[1].preset
             if footswitchButtons[1].isOn == false {
@@ -254,6 +257,7 @@ class FootswitchEditViewController: UIViewController {
                 }
             }
         case thirdPresetOnOffButton:
+            selectedButton = 2;
             guard footswitchButtons[2].preset != nil else { return }
             selectedPreset = footswitchButtons[2].preset
             if footswitchButtons[2].isOn == false {
@@ -267,6 +271,7 @@ class FootswitchEditViewController: UIViewController {
                 }
             }
         case fourthPresetOnOffButton:
+            selectedButton = 3;
             guard footswitchButtons[3].preset != nil else { return }
             selectedPreset = footswitchButtons[3].preset
             if footswitchButtons[3].isOn == false {
@@ -284,7 +289,8 @@ class FootswitchEditViewController: UIViewController {
         }
         configurePresetButtons()
         if let selectedPreset = selectedPreset {
-            UserDevicesManager.default.sendPreset(preset: selectedPreset, to: currentFootswitch)    
+            UserDevicesManager.default.sendPreset(preset: selectedPreset, to: currentFootswitch)
+            UserDevicesManager.default.lightButton(id: selectedButton, to: currentFootswitch, on: footswitchButtons[selectedButton].isOn)
         }
     }
     

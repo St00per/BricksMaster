@@ -12,13 +12,15 @@ class BrickSettingsViewController: UIViewController {
 
     var currentBrick: Brick?
     var assignedFootswitch: Footswitch?
-    var brickImages: [UIImage] = []
+    var brickImages: [String] = []
     
     let slider = MTCircularSlider(frame: CGRect(x: 55, y: 15, width: 275, height: 275))
     let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 40, y: -40, width: 300, height: 300))
     
     var pingPinIsOn: Bool = false
     var pingTimer: Timer?
+    
+    var selectedIndexPAth: IndexPath?
     
     @IBOutlet weak var gradientRing: UIImageView!
     
@@ -53,6 +55,7 @@ class BrickSettingsViewController: UIViewController {
         if assignedFootswitch != nil {
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
         }
+        footswitchPickerCollectionView.allowsSelection = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -83,6 +86,8 @@ class BrickSettingsViewController: UIViewController {
         guard let currentBrick = self.currentBrick, let assignedFootswitch = self.assignedFootswitch else { return }
         assignedFootswitch.bricks.append(currentBrick)
         currentBrick.assignedFootswitch = self.assignedFootswitch
+        currentBrick.save()
+        assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -92,6 +97,7 @@ class BrickSettingsViewController: UIViewController {
             self.pingPinIsOn = !self.pingPinIsOn
             self.setPingPin(on: self.pingPinIsOn)
         })
+        RunLoop.current.add(pingTimer!, forMode: .default)
     }
     
     @IBAction func endPing() {
@@ -115,6 +121,7 @@ class BrickSettingsViewController: UIViewController {
         } else {
             dataToWrite.append(0x00)
         }
+        println("Blink ...")
         CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: peripheralCharacteristic, data: dataToWrite)
     }
     
@@ -150,11 +157,11 @@ class BrickSettingsViewController: UIViewController {
     }
     
     func fillingBrickImagesArray() {
-        brickImages.append(UIImage(named: "pedal_image1")!)
-        brickImages.append(UIImage(named: "pedal_image2")!)
-        brickImages.append(UIImage(named: "pedal_image3")!)
-        brickImages.append(UIImage(named: "pedal_image4")!)
-        brickImages.append(UIImage(named: "pedal_image5")!)
+        brickImages.append("pedal_image1")
+        brickImages.append("pedal_image2")
+        brickImages.append("pedal_image3")
+        brickImages.append("pedal_image4")
+        brickImages.append("pedal_image5")
     }
     
 }
@@ -182,8 +189,9 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrickImageCollectionViewCell", for: indexPath) as? BrickImageCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let currentBrickImage = brickImages[indexPath.row]
-            cell.configure(image: currentBrickImage)
+            if let currentBrickImage = UIImage(named: brickImages[indexPath.row]) {
+                cell.configure(image: currentBrickImage)
+            }
             return cell
         }
         return UICollectionViewCell()
@@ -196,12 +204,11 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             brickSettingsView.alpha = 1
             brickSettingsView.isUserInteractionEnabled = true
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
-
         }
 
         if collectionView == brickImageCollectionView {
-            currentBrick?.image = brickImages[indexPath.row]
-            
+            currentBrick?.imageId = brickImages[indexPath.row]
+            selectedIndexPAth = indexPath
         }
     }
 }

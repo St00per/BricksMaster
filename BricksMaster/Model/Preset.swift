@@ -7,17 +7,46 @@
 //
 
 import Foundation
+import RealmSwift
 
 class Preset {
-    var id: Int?
+    var id: String?
     var name: String = "Unnamed"
-    var presetBricks: [(UUID, Bool)]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
+    var presetBricks: [(String, Bool)]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
     var footswitch: Footswitch?
+    
+    var presetObject: PresetObject?
     
     init() {}
     
-    init(id: Int, name: String) {
+    init(id: String, name: String) {
         self.id = id
         self.name = name
+    }
+    
+    init(presetObject: PresetObject) {
+        self.presetObject = presetObject
+        id = presetObject.id
+        name = presetObject.name
+        for presetBrick in presetObject.presetBricks {
+            if let id = presetBrick.brickId {
+                presetBricks.append((id, presetBrick.state))
+            }
+        }
+    }
+    
+    func save() {
+        guard let realm = try? Realm() else {
+            return
+        }
+        try! realm.write {
+            if let object = presetObject {
+                object.update(preset: self)
+                realm.add(object, update: true)
+            } else {
+                let object = PresetObject(preset: self)
+                realm.add(object, update: true)
+            }
+        }
     }
 }

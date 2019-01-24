@@ -9,6 +9,7 @@
 import Foundation
 
 class FootswitchButton {
+    var id: String = UUID().uuidString
     var index: Int
     var preset: Preset? = nil
     var isOn: Bool = false
