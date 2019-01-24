@@ -36,19 +36,19 @@ class Preset: NSObject {
     }
     
     func save() {
-        guard let realm = try? Realm() else {
-            return
-        }
-        try! realm.write {
-            if let object = presetObject {
-                object.update(preset: self)
-                realm.add(object, update: true)
-            } else {
-                let object = PresetObject(preset: self)
-                self.presetObject = object
-                realm.add(object, update: true)
-            }
-        }
+//        guard let realm = try? Realm() else {
+//            return
+//        }
+//        try! realm.write {
+//            if let object = presetObject {
+//                object.update(preset: self)
+//                realm.add(object, update: true)
+//            } else {
+//                let object = PresetObject(preset: self)
+//                self.presetObject = object
+//                realm.add(object, update: true)
+//            }
+//        }
     }
     
     static func == (lhs: Preset, rhs: Preset) -> Bool {
