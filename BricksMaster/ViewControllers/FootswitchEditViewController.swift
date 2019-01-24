@@ -41,6 +41,7 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var fourthPresetSelectButton: UIButton!
     
     @IBOutlet weak var banksCollection: UICollectionView!
+    @IBOutlet weak var bricksCollection: UICollectionView!
 
     @IBOutlet weak var bankNameEditTextField: UITextField!
     @IBOutlet weak var bankNameEditUnderTextView: UIView!
@@ -49,6 +50,7 @@ class FootswitchEditViewController: UIViewController {
     var shadowView = UIView(frame: UIScreen.main.bounds)
     
     var banksController: BanksController?
+    var bricksCollectionController: BricksCollectionController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,9 @@ class FootswitchEditViewController: UIViewController {
         guard let currentFootswitch = self.currentFootswitch else { return }
         currentFootswitchName.text = currentFootswitch.name
         currentBank = currentFootswitch.banks.first
+        
+        bricksCollectionController = BricksCollectionController(collection: bricksCollection, footswitch: currentFootswitch)
+        bricksCollectionController?.delegate = self
         
         banksController = BanksController(collection: banksCollection, footswitch: currentFootswitch)
         banksController?.delegate = self
