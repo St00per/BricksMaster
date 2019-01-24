@@ -15,7 +15,8 @@ class BankObject: Object {
     var presets: List<String> = List<String>() // presets according to order 1st button - 1st preset
     @objc dynamic var footswitchId: String?
     var footswitchButtons: List<FootswitchButtonObject> = List<FootswitchButtonObject>()
-    
+    @objc dynamic var empty: Bool = true
+
     convenience init(bank: Bank) {
         self.init()
         self.id = bank.id
@@ -34,6 +35,7 @@ class BankObject: Object {
         for button in bank.footswitchButtons {
             self.footswitchButtons.append(FootswitchButtonObject(footswitchButton: button))
         }
+        self.empty = bank.empty
     }
 }
 

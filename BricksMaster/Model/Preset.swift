@@ -45,6 +45,7 @@ class Preset {
                 realm.add(object, update: true)
             } else {
                 let object = PresetObject(preset: self)
+                self.presetObject = object
                 realm.add(object, update: true)
             }
         }

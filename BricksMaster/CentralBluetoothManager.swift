@@ -79,7 +79,9 @@ class CentralBluetoothManager: NSObject {
                         }
                     } else {
                         if state == 0 {
-                            //footSwitch.customButton.
+                            footSwitch.customButton.startPendedAction()
+                        } else {
+                            footSwitch.customButton.finishPendedAction()
                         }
                     }
                 }

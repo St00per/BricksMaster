@@ -62,6 +62,7 @@ class Footswitch: Observable {
         super.init()
         self.new = false
         self.footswitchObject = footswitchObject
+        let emptyBanksCount = 4 - banks.count
     }
     
     
@@ -110,9 +111,11 @@ class Footswitch: Observable {
             realm.add(object, update: true)
         } else {
             let object = FootswitchObject(footswitch: self)
+            self.footswitchObject = object
             realm.add(object, update: true)
         }
-            }
+            
+        }
         } catch {
             println(error)
         }

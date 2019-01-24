@@ -242,10 +242,15 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == footswitchPickerCollectionView {
             assignedFootswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
-            footswitchPicker.removeFromSuperview()
-            brickSettingsView.alpha = 1
-            brickSettingsView.isUserInteractionEnabled = true
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.footswitchPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 320)
+                self.viewShadow?.alpha = 0.0
+            }) { (isFinished) in
+                self.brickSettingsView.isUserInteractionEnabled = true
+                self.footswitchPicker.removeFromSuperview()
+                self.viewShadow?.removeFromSuperview()
+            }
         }
 
         if collectionView == brickImageCollectionView {
