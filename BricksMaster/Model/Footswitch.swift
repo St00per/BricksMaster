@@ -50,7 +50,7 @@ class Footswitch: Observable {
     init(id: String?, name: String) {
         self.id = id
         self.name = name
-        
+        self.banks = [Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: "")]
         super.init()
         //TODO: REMOVE ON RELEASE
         //self.mockData()
