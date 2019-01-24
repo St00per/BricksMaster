@@ -37,6 +37,7 @@ class BrickSettingsViewController: UIViewController {
     @IBOutlet weak var brickSettingsView: UIView!
     @IBOutlet weak var assignedFootswitchName: UIButton!
     @IBOutlet weak var footswitchPickerCollectionView: UICollectionView!
+    var viewShadow: UIView?
     
     
     @IBOutlet weak var brickImageCollectionView: UICollectionView!
@@ -61,6 +62,9 @@ class BrickSettingsViewController: UIViewController {
         footswitchPickerCollectionView.allowsSelection = true
         
         selectedImage = currentBrick?.imageId
+        viewShadow = UIView(frame: UIScreen.main.bounds)
+        viewShadow?.backgroundColor = UIColor.black
+        viewShadow?.alpha = 0.0
         
     }
     
@@ -70,17 +74,28 @@ class BrickSettingsViewController: UIViewController {
     }
     
     @IBAction func showFootswitchPicker(_ sender: UIButton) {
+        if let viewShadow = viewShadow {
+            self.view.addSubview(viewShadow)
+        }
         brickSettingsView.isUserInteractionEnabled = false
-        brickSettingsView.alpha = 0.4
         self.view.addSubview(footswitchPicker)
-        footswitchPicker.center = self.view.center
-        
+        footswitchPicker.frame = CGRect(x: 16, y: self.view.bounds.size.height, width: self.view.bounds.size.width - 32, height: 320)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.viewShadow?.alpha = 0.45
+            self.footswitchPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - 320, width: self.view.bounds.size.width, height: 320)
+        }) { (isFinished) in
+        }
     }
     
     @IBAction func closeFootswitchPicker(_ sender: UIButton) {
-        footswitchPicker.removeFromSuperview()
-        brickSettingsView.alpha = 1
-        brickSettingsView.isUserInteractionEnabled = true
+        UIView.animate(withDuration: 0.3, animations: {
+            self.footswitchPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 320)
+            self.viewShadow?.alpha = 0.0
+        }) { (isFinished) in
+            self.brickSettingsView.isUserInteractionEnabled = true
+            self.footswitchPicker.removeFromSuperview()
+            self.viewShadow?.removeFromSuperview()
+        }
     }
     
     
@@ -224,7 +239,7 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == footswitchPickerCollectionView {
-            return CGSize.zero
+            return CGSize(width: collectionView.bounds.width - 32, height: 44)
         }
         if collectionView == brickImageCollectionView {
             return CGSize(width: 50, height: 60)

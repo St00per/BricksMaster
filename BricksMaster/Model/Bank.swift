@@ -16,6 +16,8 @@ class Bank {
     var footswitchId: String?
     var footswitchButtons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
     
+    var empty: Bool = true
+    
     var bankObject: BankObject?
     
     init(id: String, name: String) {
@@ -27,6 +29,7 @@ class Bank {
         self.bankObject = bankObject
         id = bankObject.id
         name = bankObject.name
+        empty = false
         footswitchId = bankObject.footswitchId
         for (i, button) in bankObject.footswitchButtons.enumerated() {
             footswitchButtons[i].id = button.id

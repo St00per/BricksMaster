@@ -101,12 +101,14 @@ class FootswitchEditViewController: UIViewController {
         case firstBankButton:
             if currentFootswitch.banks.count != 0 {
                 currentBank = currentFootswitch.banks[0]
+                currentFootswitch.selectedBank = currentBank
                 configureBankButtons(selectedButton: sender)
                 configurePresetButtons()
             }
         case secondBankButton:
             if currentFootswitch.banks.count > 1 {
                 currentBank = currentFootswitch.banks[1]
+                currentFootswitch.selectedBank = currentBank
                 configureBankButtons(selectedButton: sender)
                 configurePresetButtons()
             }
@@ -114,18 +116,21 @@ class FootswitchEditViewController: UIViewController {
         case thirdBankButton:
             if currentFootswitch.banks.count > 2 {
                 currentBank = currentFootswitch.banks[2]
+                currentFootswitch.selectedBank = currentBank
                 configureBankButtons(selectedButton: sender)
                 configurePresetButtons()
             }
         case fourthBankButton:
             if currentFootswitch.banks.count > 3 {
                 currentBank = currentFootswitch.banks[3]
+                currentFootswitch.selectedBank = currentBank
                 configureBankButtons(selectedButton: sender)
                 configurePresetButtons()
             }
         default:
             return
         }
+        currentFootswitch.save()
     }
     @IBOutlet weak var footswitchEditView: UIView!
     
