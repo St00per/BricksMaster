@@ -85,19 +85,19 @@ class Brick: Observable {
     }
     
     func save() {
-        guard let realm = try? Realm() else {
-            return
-        }
-        try! realm.write {
-            if let object = brickObject {
-                object.update(brick: self)
-                realm.add(object, update: true)
-            } else {
-                let object = BrickObject(brick: self)
-                self.brickObject = object
-                realm.add(object)
-            }
-        }
+//        guard let realm = try? Realm() else {
+//            return
+//        }
+//        try! realm.write {
+//            if let object = brickObject {
+//                object.update(brick: self)
+//                realm.add(object, update: true)
+//            } else {
+//                let object = BrickObject(brick: self)
+//                self.brickObject = object
+//                realm.add(object)
+//            }
+//        }
     }
     
 //    func saveInBackground () {

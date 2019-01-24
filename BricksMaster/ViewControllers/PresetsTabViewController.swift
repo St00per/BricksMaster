@@ -107,11 +107,7 @@ extension PresetsTabViewController: UICollectionViewDelegate, UICollectionViewDa
         }
         
         if collectionViewState == .banks {
-            if footswitches[section].banks.count < 4 {
-                return footswitches[section].banks.count + 1
-            } else {
                 return footswitches[section].banks.count
-            }
         }
         return 0
     }

@@ -40,19 +40,19 @@ class Bank {
     }
 
     func save() {
-        guard let realm = try? Realm() else {
-            return
-        }
-        try! realm.write {
-            if let object = bankObject {
-                object.update(bank: self)
-                realm.add(object, update: true)
-            } else {
-                let object = BankObject(bank: self)
-                self.bankObject = object
-                realm.add(object)
-                }
-        }
+//        guard let realm = try? Realm() else {
+//            return
+//        }
+//        try! realm.write {
+//            if let object = bankObject {
+//                object.update(bank: self)
+//                realm.add(object, update: true)
+//            } else {
+//                let object = BankObject(bank: self)
+//                self.bankObject = object
+//                realm.add(object)
+//                }
+//        }
     }
     
     func saveInBackground () {
