@@ -36,6 +36,7 @@ class Bank {
             footswitchButtons[i].index = button.index
             footswitchButtons[i].isOn = button.isOn
         }
+        empty = bankObject.empty
     }
 
     func save() {
@@ -48,6 +49,7 @@ class Bank {
                 realm.add(object, update: true)
             } else {
                 let object = BankObject(bank: self)
+                self.bankObject = object
                 realm.add(object)
                 }
         }

@@ -18,25 +18,28 @@ class CustomButton: NSObject {
     var longTapAction: CustomButtonAction = .nextBank
     var shortTapAction: CustomButtonAction = .disableAllBricks
     
-    var longTapTimeout: TimeInterval = 1000.0
+    var longTapTimeout: TimeInterval = 2.0
     var pendedAction: Bool = false
     var tapTime: TimeInterval?
     var longTapOccures: Bool = false
     
     func startPendedAction() {
         pendedAction = true
-        perform(#selector(longTap), with: self, afterDelay: longTapTimeout)
-    
+        perform(#selector(longTapOccured), with: self, afterDelay: longTapTimeout)
     }
     
     func tap() {
-        
+        print("5 Button tap")
     }
     
-    @objc func longTap() {
+    func longTap() {
+        print("5 Button LOOOONG tap")
+    }
+    
+    @objc func longTapOccured() {
         longTapOccures = true
-        
-        perform(#selector(longTap), with: self, afterDelay: longTapTimeout)
+        longTap()
+        perform(#selector(longTapOccured), with: self, afterDelay: longTapTimeout)
     }
     
     func finishPendedAction() {

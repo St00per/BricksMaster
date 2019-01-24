@@ -18,12 +18,6 @@ class FootswitchEditViewController: UIViewController {
     
     @IBOutlet weak var bankButtonsView: UIView!
     
-    @IBOutlet weak var firstBankButton: UIButton!
-    @IBOutlet weak var secondBankButton: UIButton!
-    @IBOutlet weak var thirdBankButton: UIButton!
-    @IBOutlet weak var fourthBankButton: UIButton!
-    
-    
     @IBOutlet weak var presetButtonsView: UIView!
     
     @IBOutlet weak var firstPresetButtonView: UIView!
@@ -46,30 +40,50 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var fourthPresetOnOffButton: UIButton!
     @IBOutlet weak var fourthPresetSelectButton: UIButton!
     
+    @IBOutlet weak var banksCollection: UICollectionView!
+
     @IBOutlet weak var bankNameEditTextField: UITextField!
+    @IBOutlet weak var bankNameEditUnderTextView: UIView!
+    @IBOutlet weak var bankNameEditButton: UIView!
+
+    var shadowView = UIView(frame: UIScreen.main.bounds)
+    
+    var banksController: BanksController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         bankNameEditTextField.delegate = self
         bankNameEditTextField.returnKeyType = UIReturnKeyType.done
-        currentBankButton = firstBankButton
         guard let currentFootswitch = self.currentFootswitch else { return }
         currentFootswitchName.text = currentFootswitch.name
         currentBank = currentFootswitch.banks.first
+        
+        banksController = BanksController(collection: banksCollection, footswitch: currentFootswitch)
+        banksController?.delegate = self
+        
+        bankNameEditView.layer.cornerRadius = 8
+        bankNameEditView.layer.masksToBounds = true
+        bankNameEditUnderTextView.layer.cornerRadius = 4
+        bankNameEditButton.layer.cornerRadius = 6
+        
+        shadowView.backgroundColor = UIColor.black
+        shadowView.alpha = 0.0
+        shadowView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeBankNameEdit(_:))))
+        self.view.addSubview(shadowView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UserDevicesManager.default.footswitchController = self
         
-        updateBankButtonsTitles()
         guard let currentFootswitch = self.currentFootswitch, let currentBankButton = self.currentBankButton else { return }
         if currentFootswitch.banks.count != 0 {
             //
             configureBankButtons(selectedButton: currentBankButton)
             configurePresetButtons()
         }
+        shadowView.frame = self.view.bounds
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -95,41 +109,7 @@ class FootswitchEditViewController: UIViewController {
             bankNameEditView.center = self.view.center
         }
         
-        
-        
-        switch sender {
-        case firstBankButton:
-            if currentFootswitch.banks.count != 0 {
-                currentBank = currentFootswitch.banks[0]
-                currentFootswitch.selectedBank = currentBank
-                configureBankButtons(selectedButton: sender)
-                configurePresetButtons()
-            }
-        case secondBankButton:
-            if currentFootswitch.banks.count > 1 {
-                currentBank = currentFootswitch.banks[1]
-                currentFootswitch.selectedBank = currentBank
-                configureBankButtons(selectedButton: sender)
-                configurePresetButtons()
-            }
-            
-        case thirdBankButton:
-            if currentFootswitch.banks.count > 2 {
-                currentBank = currentFootswitch.banks[2]
-                currentFootswitch.selectedBank = currentBank
-                configureBankButtons(selectedButton: sender)
-                configurePresetButtons()
-            }
-        case fourthBankButton:
-            if currentFootswitch.banks.count > 3 {
-                currentBank = currentFootswitch.banks[3]
-                currentFootswitch.selectedBank = currentBank
-                configureBankButtons(selectedButton: sender)
-                configurePresetButtons()
-            }
-        default:
-            return
-        }
+        configurePresetButtons()
         currentFootswitch.save()
     }
     @IBOutlet weak var footswitchEditView: UIView!
@@ -138,67 +118,47 @@ class FootswitchEditViewController: UIViewController {
     
     
     
-    @IBAction func openBankNameEdit(_ sender: UILongPressGestureRecognizer) {
-        guard let touchedButton = sender.view as? UIButton else {
-            return
-        }
+    func openBankNameEdit() {
+        configurePresetButtons()
+        footswitchEditView.isUserInteractionEnabled = false
+        self.view.addSubview(bankNameEditView)
+        let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+        let bankNameEditFrame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+        self.bankNameEditView.frame = bankNameEditFrame
         
-        
-        
-        guard let currentFootswitch = self.currentFootswitch else { return }
-        switch touchedButton {
-        case firstBankButton:
-            if currentFootswitch.banks.count != 0 {
-                currentBank = currentFootswitch.banks[0]
-                configureBankButtons(selectedButton: touchedButton)
-                configurePresetButtons()
-            }
-        case secondBankButton:
-            if currentFootswitch.banks.count > 1 {
-                currentBank = currentFootswitch.banks[1]
-                configureBankButtons(selectedButton: touchedButton)
-                configurePresetButtons()
-            }
-            
-        case thirdBankButton:
-            if currentFootswitch.banks.count > 2 {
-                currentBank = currentFootswitch.banks[2]
-                configureBankButtons(selectedButton: touchedButton)
-                configurePresetButtons()
-            }
-        case fourthBankButton:
-            if currentFootswitch.banks.count > 3 {
-                currentBank = currentFootswitch.banks[3]
-                configureBankButtons(selectedButton: touchedButton)
-                configurePresetButtons()
-            }
-        default:
-            return
-        }
-        
-        
-        if sender.state == .began {
-            
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.45
+            self.bankNameEditView.frame = CGRect(x: bankNameEditFrame.origin.x, y: self.view.bounds.midY - 120, width: size.width, height: size.height)
+        }) { (isFinished) in
             self.becomeFirstResponder()
-            footswitchEditView.alpha = 0.4
-            footswitchEditView.isUserInteractionEnabled = false
-            self.view.addSubview(bankNameEditView)
-            bankNameEditView.center = self.view.center
         }
     }
     
-    @IBAction func closeBankNameEdit(_ sender: UIButton) {
-        bankNameEditView.removeFromSuperview()
-        footswitchEditView.alpha = 1
-        footswitchEditView.isUserInteractionEnabled = true
+    @IBAction func closeBankNameEdit(_ sender: Any) {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.0
+            let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+        }) { (isFinished) in
+            self.becomeFirstResponder()
+            self.footswitchEditView.isUserInteractionEnabled = true
+            self.bankNameEditView.removeFromSuperview()
+        }
     }
     
     @IBAction func saveEditedBankName(_ sender: UIButton) {
         currentBank?.name = bankNameEditTextField.text
-        bankNameEditView.removeFromSuperview()
-        footswitchEditView.alpha = 1
-        footswitchEditView.isUserInteractionEnabled = true
-        updateBankButtonsTitles()
+        currentBank?.empty = false
+        banksController?.update()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.0
+            let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+        }) { (isFinished) in
+            self.becomeFirstResponder()
+            self.footswitchEditView.isUserInteractionEnabled = true
+            self.bankNameEditView.removeFromSuperview()
+        }
     }
     
     
@@ -353,26 +313,6 @@ class FootswitchEditViewController: UIViewController {
         }
     }
     
-    func updateBankButtonsTitles() {
-        var banksNames: [String?] = []
-        guard let banks = currentFootswitch?.banks else { return }
-        for bank in banks {
-            banksNames.append(bank.name)
-        }
-        if banksNames.count > 0, banksNames[0] != nil {
-            firstBankButton.setTitle(banksNames[0], for: .normal)
-        }
-        if banksNames.count > 1, banksNames[1] != nil {
-            secondBankButton.setTitle(banksNames[1], for: .normal)
-        }
-        if banksNames.count > 2 ,banksNames[2] != nil {
-            thirdBankButton.setTitle(banksNames[2], for: .normal)
-        }
-        if banksNames.count > 3, banksNames[3] != nil {
-            fourthBankButton.setTitle(banksNames[3], for: .normal)
-        }
-    }
-    
     func configureBankButtons(selectedButton: UIButton) {
         guard let bankButtons = bankButtonsView.subviews as? [UIButton] else {
             return
@@ -402,6 +342,20 @@ extension FootswitchEditViewController: UITextFieldDelegate {
         guard let button = currentBankButton else { return false}
         configureBankButtons(selectedButton: button)
         return true
+    }
+    
+}
+
+extension FootswitchEditViewController: BanksControllerDelegate {
+   
+    func didCreateNew(bank: Bank) {
+        currentBank = bank
+        openBankNameEdit()
+    }
+    
+    func selectedBank(bank: Bank) {
+        currentBank = bank
+        configurePresetButtons()
     }
     
 }

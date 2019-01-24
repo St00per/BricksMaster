@@ -94,18 +94,19 @@ class Brick: Observable {
                 realm.add(object, update: true)
             } else {
                 let object = BrickObject(brick: self)
+                self.brickObject = object
                 realm.add(object)
             }
         }
     }
     
-    func saveInBackground () {
-        DispatchQueue(label: "background").async {
-            autoreleasepool {
-                self.save()
-            }
-        }
-    }
+//    func saveInBackground () {
+//        DispatchQueue(label: "background").async {
+//            autoreleasepool {
+//                self.save()
+//            }
+//        }
+//    }
 }
 
 extension UIColor {
