@@ -16,6 +16,15 @@
             <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zg3-5p-9t8">
+                    <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Bank Preset" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9t-TF-QqY">
                     <rect key="frame" x="110" y="25" width="131" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -25,6 +34,12 @@
                 </label>
             </subviews>
             <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Zg3-5p-9t8" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="7Ho-LN-Zrk"/>
+                <constraint firstItem="Zg3-5p-9t8" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="RVm-N7-SI1"/>
+                <constraint firstItem="Zg3-5p-9t8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nb2-5m-0fS"/>
+                <constraint firstItem="Zg3-5p-9t8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="wfV-8P-mwY"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <userDefinedRuntimeAttributes>
@@ -32,6 +47,9 @@
                     <integer key="value" value="8"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="newBankView" destination="Zg3-5p-9t8" id="qca-wI-ZDp"/>
+            </connections>
         </view>
     </objects>
 </document>

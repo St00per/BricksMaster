@@ -14,7 +14,7 @@ class BrickSettingsViewController: UIViewController {
     var assignedFootswitch: Footswitch?
     var brickImages: [String] = []
     
-    let slider = MTCircularSlider(frame: CGRect(x: 55, y: 15, width: 275, height: 275))
+    let slider = MTCircularSlider(frame: CGRect(x: 55, y: 10, width: 280, height: 280))
     let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 40, y: -40, width: 300, height: 300))
     
     var pingPinIsOn: Bool = false
@@ -47,11 +47,17 @@ class BrickSettingsViewController: UIViewController {
         
         if let color = currentBrick?.color {
             colorPicker.setViewColor(color)
+            var brightness: CGFloat = 0
+            color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
+            slider.value = brightness
+            gradientRing.tintColor = color
         }
+        
         colorPicker.delegate = self
         colorPickerView.addSubview(colorPicker)
         сircleSliderConfigure()
         colorPickerView.addSubview(slider)
+        brightnessUpdate()
         
         fillingBrickImagesArray()
         assignedFootswitch = currentBrick?.assignedFootswitch
@@ -105,10 +111,11 @@ class BrickSettingsViewController: UIViewController {
     
     @IBAction func saveBrickSettings(_ sender: UIButton) {
         guard let currentBrick = self.currentBrick, let assignedFootswitch = self.assignedFootswitch else { return }
-        assignedFootswitch.bricks.append(currentBrick)
+        //assignedFootswitch.bricks.append(currentBrick) - ??
         currentBrick.assignedFootswitch = self.assignedFootswitch
         currentBrick.imageId = selectedImage
         currentBrick.color = colorPicker.color
+        
         currentBrick.save()
         assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
@@ -174,9 +181,11 @@ class BrickSettingsViewController: UIViewController {
     
     @objc func brightnessUpdate() {
         
-        let sliderAngle = slider.getThumbAngle()
-        let brightness = (sliderAngle - 1.65)/6.11
+        //let sliderAngle = slider.getThumbAngle()
+        let brightness = slider.value
+            //(sliderAngle - 1.65)/6.11
         colorPicker.brightnessSelected(brightness)
+        
     }
     
     func fillingBrickImagesArray() {
@@ -212,11 +221,19 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrickImageCollectionViewCell", for: indexPath) as? BrickImageCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if let currentBrickImage = UIImage(named: brickImages[indexPath.item]) {
-                cell.configure(image: currentBrickImage)
+            guard let brickImage = UIImage(named: brickImages[indexPath.item]) else {
+                return UICollectionViewCell()
+            }
+            if brickImages[indexPath.item] == selectedImage {
+                cell.isSelected = true
+                cell.isHighlighted = true
+            } else {
+                cell.isSelected = false
+            }
+                cell.configure(image: brickImage)
                 cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
                 cell.height.constant = 60
-            }
+           
             return cell
         }
         return UICollectionViewCell()
@@ -237,8 +254,10 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
         }
 
         if collectionView == brickImageCollectionView {
-            currentBrick?.imageId = brickImages[indexPath.row]
+            //currentBrick?.imageId = brickImages[indexPath.item]
+            selectedImage = brickImages[indexPath.item]
             selectedIndexPAth = indexPath
+            collectionView.reloadData()
         }
     }
     

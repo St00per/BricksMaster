@@ -15,13 +15,18 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
     var footswitch: Footswitch?
     var controller: DevicesTabViewController?
     
+    
     @IBOutlet weak var deviceName: UILabel!
     @IBOutlet weak var moreButton: UIButton!
+    @IBOutlet weak var footswitchBricksCollectionView: UICollectionView!
     
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var editButton: UIButton!
     
-    
+    override func awakeFromNib() {
+        footswitchBricksCollectionView.delegate = self
+        footswitchBricksCollectionView.dataSource = self
+    }
     
     @IBAction func showFootswitchEdit(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -39,12 +44,15 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         case .disconnected:
             editButton.isHidden = true
             connectButton.isHidden = false
+            footswitchBricksCollectionView.isHidden = true
         case .connected:
             editButton.isHidden = false
             connectButton.isHidden = true
+            footswitchBricksCollectionView.isHidden = false
         case .connecting:
             editButton.isHidden = true
             connectButton.isHidden = true
+            footswitchBricksCollectionView.isHidden = true
         default:
             break
         }
@@ -64,6 +72,7 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         case .connected:
             editButton.isHidden = false
             connectButton.isHidden = true
+            footswitchBricksCollectionView.reloadData()
         case .connecting:
             editButton.isHidden = true
             connectButton.isHidden = true
@@ -79,4 +88,26 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         }
        UserDevicesManager.default.connect(footswitch: footswitch)
     }
+}
+extension FootswitchesCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let footswitch = self.footswitch else { return 0 }
+        return footswitch.bricks.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchBricksCollectionViewCell", for: indexPath) as? FootswitchBricksCollectionViewCell, let brick = footswitch?.bricks[indexPath.row] else {
+            return UICollectionViewCell()
+        }
+        
+        
+        cell.configure(brick: brick)
+        //cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
+        //cell.height.constant = 60
+        
+        return cell
+    }
+    
+    
 }

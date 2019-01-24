@@ -52,12 +52,17 @@ class PresetSettingViewController: UIViewController {
     }
     
     @IBAction func savePreset(_ sender: UIButton) {
-        if let preset = preset {
-            preset.footswitch?.presets.append(preset)
+        guard let footswitch = self.preset?.footswitch, let preset = self.preset else { return }
+        if !footswitch.presets.contains(preset) {
+                preset.footswitch?.presets.append(preset)
+                preset.save()
+                preset.footswitch?.save()
+                self.dismiss(animated: true, completion: nil)
+        } else {
             preset.save()
             preset.footswitch?.save()
+            self.dismiss(animated: true, completion: nil)
         }
-        self.dismiss(animated: true, completion: nil)
     }
     
     @IBOutlet var footswitchPicker: UIView!
