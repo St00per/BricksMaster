@@ -74,6 +74,57 @@ class UserDevicesManager {
         }
     }
     
+    func disableAll(footSwitch: Footswitch) {
+        for currentBrick in footSwitch.bricks {
+            if let peripheral = currentBrick.peripheral, let tx = currentBrick.tx {
+                //TODO: send it to proper characteristic
+                var dataToWrite = Data()
+                dataToWrite.append(0xE7)
+                dataToWrite.append(0xF1)
+                dataToWrite.append(0x00)
+                println("Disable brick(\(peripheral.name ?? "noname")/\(peripheral.identifier))")
+                CentralBluetoothManager.default.sendCommand(to: peripheral, characteristic: tx, data: dataToWrite)
+            }
+        }
+    }
+    
+    func nextBank(footswitch: Footswitch) {
+        if let selectedBank = footswitch.selectedBank {
+            if let index = footswitch.banks.firstIndex(where: { (bank) -> Bool in
+                return bank.id == selectedBank.id
+            }) {
+                var nextBank: Bank?
+                var currentIndex: Int?
+                for i in 1 ..< 4 {
+                    let next = (index + i) % 4
+                     nextBank = footswitch.banks[next]
+                    if let nextBank = nextBank {
+                        if !nextBank.empty {
+                            currentIndex = next
+                            break
+                        }
+                    }
+                }
+                if let nextBank = nextBank {
+                    footswitch.selectedBank = nextBank
+                }
+                print("Next bank \(nextBank?.name)")
+                if let controller = footswitchController  {
+                    if controller.currentFootswitch == footswitch {
+                        if let nextBank = nextBank, let index = currentIndex {
+                        controller.newBankSelected(bank: nextBank, index: index)
+                        }
+                    }
+                }
+                if let preset = nextBank?.presets.first {
+                    sendPreset(preset: preset, to: footswitch)
+                }
+            }
+        } else {
+            
+        }
+    }
+    
     func lightButton(id: Int, to footswitch: Footswitch, on: Bool) {
         guard  let peripheral = footswitch.peripheral, let tx = footswitch.tx else {
             return

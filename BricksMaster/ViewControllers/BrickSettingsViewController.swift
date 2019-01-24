@@ -115,9 +115,16 @@ class BrickSettingsViewController: UIViewController {
         currentBrick.assignedFootswitch = self.assignedFootswitch
         currentBrick.imageId = selectedImage
         currentBrick.color = colorPicker.color
+        if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
+            return brick.id == currentBrick.id
+        }) {
+            
+        } else {
+            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
+        }
         
-        currentBrick.save()
-        assignedFootswitch.save()
+//        currentBrick.save()
+//        assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
     }
     

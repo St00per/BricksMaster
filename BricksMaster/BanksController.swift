@@ -17,6 +17,9 @@ class BanksController : NSObject{
     
     weak var collection: UICollectionView?
     var footswitch: Footswitch
+    var firstUse: Bool = true
+    
+    var selectedIndex: IndexPath?
     
     weak var delegate: BanksControllerDelegate?
     
@@ -26,6 +29,14 @@ class BanksController : NSObject{
         super.init()
         self.collection?.dataSource = self
         self.collection?.delegate = self
+    }
+    
+    func updateSelection() {
+        if firstUse {
+            firstUse = false
+            let index = footswitch.banks.firstIndex{$0.id == footswitch.selectedBank?.id}
+            collection?.selectItem(at: IndexPath(item: index ?? 0, section: 0), animated: false, scrollPosition: .left)
+        }
     }
     
     func update() {
@@ -61,9 +72,11 @@ extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource,
             delegate?.didCreateNew(bank: bank)
             return false
         } else {
+            selectedIndex = indexPath
             return true
         }
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let bank = footswitch.banks[indexPath.item]

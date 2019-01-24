@@ -15,6 +15,8 @@ class PresetPickerViewController: UIViewController {
     var footswitchButtonNumber = 0
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var shadow: UICollectionView!
+
     
     @IBAction func closePresetPicker(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -25,7 +27,7 @@ class PresetPickerViewController: UIViewController {
     
     
 }
-extension PresetPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension PresetPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return editedFootswitch?.presets.count ?? 0
     }
@@ -43,4 +45,9 @@ extension PresetPickerViewController: UICollectionViewDelegate, UICollectionView
         }
         return cell
     }
+    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        
+//    }
+    
 }
