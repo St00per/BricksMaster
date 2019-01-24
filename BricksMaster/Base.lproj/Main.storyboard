@@ -303,7 +303,7 @@
                                                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7sf-Ea-kLQ">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="50" height="60"/>
                                                                                                 <subviews>
-                                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="djr-i4-H5y">
+                                                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="djr-i4-H5y">
                                                                                                         <rect key="frame" x="0.0" y="0.0" width="50" height="60"/>
                                                                                                     </imageView>
                                                                                                 </subviews>
