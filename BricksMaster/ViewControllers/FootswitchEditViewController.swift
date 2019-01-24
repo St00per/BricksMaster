@@ -135,6 +135,10 @@ class FootswitchEditViewController: UIViewController {
     }
     
     @IBAction func closeBankNameEdit(_ sender: Any) {
+        if let currentBank = currentBank {
+            banksController?.setSelected(bank: currentBank)
+        }
+        banksController?.update()
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
@@ -150,6 +154,7 @@ class FootswitchEditViewController: UIViewController {
         currentBank?.name = bankNameEditTextField.text
         currentBank?.empty = false
         banksController?.update()
+        currentBank?.save()
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)

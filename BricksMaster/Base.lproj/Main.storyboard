@@ -1484,6 +1484,10 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="74" height="65"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cnV-1H-WLa">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="74" height="65"/>
+                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="top" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iqe-ii-XaL">
                                                                     <rect key="frame" x="8" y="8" width="58" height="14.333333333333336"/>
                                                                     <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
@@ -1502,11 +1506,16 @@
                                                         <constraints>
                                                             <constraint firstAttribute="trailing" secondItem="Iqe-ii-XaL" secondAttribute="trailing" constant="8" id="2zT-eF-Zen"/>
                                                             <constraint firstItem="Hfa-YQ-avd" firstAttribute="centerX" secondItem="d9x-oD-ATl" secondAttribute="centerX" id="4nQ-tT-bJe"/>
+                                                            <constraint firstAttribute="bottom" secondItem="cnV-1H-WLa" secondAttribute="bottom" id="7Fc-Hx-3l6"/>
                                                             <constraint firstItem="Iqe-ii-XaL" firstAttribute="leading" secondItem="d9x-oD-ATl" secondAttribute="leading" constant="8" id="GWl-pT-cIy"/>
                                                             <constraint firstItem="Iqe-ii-XaL" firstAttribute="top" secondItem="d9x-oD-ATl" secondAttribute="top" constant="8" id="LUp-IR-T5D"/>
+                                                            <constraint firstItem="cnV-1H-WLa" firstAttribute="top" secondItem="d9x-oD-ATl" secondAttribute="top" id="ZY5-mi-crE"/>
                                                             <constraint firstItem="Hfa-YQ-avd" firstAttribute="centerY" secondItem="d9x-oD-ATl" secondAttribute="centerY" id="a2a-zg-tw8"/>
+                                                            <constraint firstItem="cnV-1H-WLa" firstAttribute="leading" secondItem="d9x-oD-ATl" secondAttribute="leading" id="dlN-Kj-vl7"/>
+                                                            <constraint firstAttribute="trailing" secondItem="cnV-1H-WLa" secondAttribute="trailing" id="f9l-de-NIN"/>
                                                         </constraints>
                                                         <connections>
+                                                            <outlet property="colorView" destination="cnV-1H-WLa" id="DNG-TJ-efK"/>
                                                             <outlet property="nameLabel" destination="Iqe-ii-XaL" id="oJ4-jV-qjA"/>
                                                             <outlet property="plusImage" destination="Hfa-YQ-avd" id="obN-ei-Cq2"/>
                                                         </connections>

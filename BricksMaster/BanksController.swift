@@ -21,6 +21,8 @@ class BanksController : NSObject{
     weak var delegate: BanksControllerDelegate?
     
     var selectedFootswitchId: Int = 0
+    var selectedCell: FootswitchEditBankCell? = nil
+    var selectedIndex: Int = 0
     
     init(collection: UICollectionView, footswitch: Footswitch) {
         self.collection = collection
@@ -33,6 +35,17 @@ class BanksController : NSObject{
     func update() {
         collection?.reloadData()
     }
+    
+    func setSelected(bank: Bank) {
+        let first = footswitch.banks.firstIndex{$0.id == bank.id}
+        if let first = first {
+            selectedIndex = first
+            selectedCell?.setSelected(selected: false)
+            if let cell = collection?.cellForItem(at: IndexPath(item: first, section: 0)) as? FootswitchEditBankCell {
+                cell.setSelected(selected: true)
+            }
+        }
+    }
 }
 
 extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -44,7 +57,7 @@ extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectBankCell", for: indexPath)
         if let cell = cell as? FootswitchEditBankCell {
-            cell.configure(bank: footswitch.banks[indexPath.item])
+            cell.configure(bank: footswitch.banks[indexPath.item], isSelected: selectedIndex == indexPath.item)
         }
         return cell
     }
@@ -64,6 +77,12 @@ extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource,
         } else {
             footswitch.selectedBank = bank
             delegate?.selectedBank(bank: bank)
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectBankCell", for: indexPath) as? FootswitchEditBankCell {
+                cell.setSelected(selected: true)
+                selectedCell?.setSelected(selected: false)
+                selectedIndex = indexPath.item
+                selectedCell = cell
+            }
             footswitch.save()
         }
     }

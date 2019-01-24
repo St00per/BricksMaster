@@ -51,6 +51,9 @@ class Footswitch: Observable {
         self.id = id
         self.name = name
         self.banks = [Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: "")]
+        for bank in self.banks {
+            bank.footswitchId = self.id
+        }
         super.init()
         //TODO: REMOVE ON RELEASE
         //self.mockData()
