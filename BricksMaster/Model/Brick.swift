@@ -22,7 +22,7 @@ class Brick: Observable {
     var status: BrickStatus = .off
     var deviceName: String?
     var assignedFootswitch: Footswitch?
-    var color = UIColor.lightGray
+    var color = UIColor.white
     //var image: UIImage?
     var imageId: String?
     

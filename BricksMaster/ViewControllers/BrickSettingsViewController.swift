@@ -21,6 +21,7 @@ class BrickSettingsViewController: UIViewController {
     var pingTimer: Timer?
     
     var selectedIndexPAth: IndexPath?
+    var selectedImage: String?
     
     @IBOutlet weak var gradientRing: UIImageView!
     
@@ -43,7 +44,9 @@ class BrickSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        colorPicker.setViewColor(UIColor.white)
+        if let color = currentBrick?.color {
+            colorPicker.setViewColor(color)
+        }
         colorPicker.delegate = self
         colorPickerView.addSubview(colorPicker)
         сircleSliderConfigure()
@@ -56,6 +59,9 @@ class BrickSettingsViewController: UIViewController {
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
         }
         footswitchPickerCollectionView.allowsSelection = true
+        
+        selectedImage = currentBrick?.imageId
+        
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -86,6 +92,8 @@ class BrickSettingsViewController: UIViewController {
         guard let currentBrick = self.currentBrick, let assignedFootswitch = self.assignedFootswitch else { return }
         assignedFootswitch.bricks.append(currentBrick)
         currentBrick.assignedFootswitch = self.assignedFootswitch
+        currentBrick.imageId = selectedImage
+        currentBrick.color = colorPicker.color
         currentBrick.save()
         assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
