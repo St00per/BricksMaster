@@ -82,10 +82,9 @@ class FootswitchEditViewController: UIViewController {
         super.viewDidAppear(animated)
         UserDevicesManager.default.footswitchController = self
         
-        guard let currentFootswitch = self.currentFootswitch, let currentBankButton = self.currentBankButton else { return }
+        guard let currentFootswitch = self.currentFootswitch else { return }
         if currentFootswitch.banks.count != 0 {
             //
-            configureBankButtons(selectedButton: currentBankButton)
             configurePresetButtons()
         }
         shadowView.frame = self.view.bounds
@@ -155,6 +154,7 @@ class FootswitchEditViewController: UIViewController {
         currentBank?.name = bankNameEditTextField.text
         currentBank?.empty = false
         banksController?.update()
+        currentBank?.save()
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
@@ -318,18 +318,6 @@ class FootswitchEditViewController: UIViewController {
         }
     }
     
-    func configureBankButtons(selectedButton: UIButton) {
-        guard let bankButtons = bankButtonsView.subviews as? [UIButton] else {
-            return
-        }
-        for button in bankButtons {
-            button.backgroundColor = UIColor(hexString: "EDEDED")
-            button.setTitleColor(UIColor.black, for: .normal)
-        }
-        self.currentBankButton = selectedButton
-        selectedButton.backgroundColor = UIColor.black
-        selectedButton.setTitleColor(UIColor.white, for: .normal)
-    }
 }
 extension FootswitchEditViewController: PinIOModuleManagerDelegate {
     
@@ -345,7 +333,6 @@ extension FootswitchEditViewController: UITextFieldDelegate {
         footswitchEditView.alpha = 1
         footswitchEditView.isUserInteractionEnabled = true
         guard let button = currentBankButton else { return false}
-        configureBankButtons(selectedButton: button)
         return true
     }
     

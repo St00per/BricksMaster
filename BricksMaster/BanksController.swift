@@ -20,8 +20,6 @@ class BanksController : NSObject{
     
     weak var delegate: BanksControllerDelegate?
     
-    var selectedFootswitchId: Int = 0
-    
     init(collection: UICollectionView, footswitch: Footswitch) {
         self.collection = collection
         self.footswitch = footswitch
@@ -57,10 +55,20 @@ extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource,
         return 8
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         let bank = footswitch.banks[indexPath.item]
         if bank.empty {
             delegate?.didCreateNew(bank: bank)
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let bank = footswitch.banks[indexPath.item]
+        if bank.empty {
+            //delegate?.didCreateNew(bank: bank)
         } else {
             footswitch.selectedBank = bank
             delegate?.selectedBank(bank: bank)

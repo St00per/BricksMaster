@@ -12,6 +12,7 @@ class  FootswitchEditBankCell: UICollectionViewCell {
     
     @IBOutlet weak var plusImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
     var borderView: CAShapeLayer = CAShapeLayer()
 
     
@@ -32,6 +33,7 @@ class  FootswitchEditBankCell: UICollectionViewCell {
     }
     
     var bank: Bank?
+    var isCurrent: Bool = false
     
     func configure(bank: Bank) {
         self.bank = bank
@@ -46,14 +48,17 @@ class  FootswitchEditBankCell: UICollectionViewCell {
             borderView.isHidden = true
         }
     }
-    
+
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                self.backgroundColor = UIColor(red: 107 / 255.0, green: 155 / 255.0, blue: 212.0 / 255.0, alpha: 1.0)
+                self.colorView.backgroundColor = UIColor(red: 107 / 255.0, green: 155 / 255.0, blue: 212.0 / 255.0, alpha: 1.0)
+                self.nameLabel.textColor = UIColor.white
             } else {
-                self.backgroundColor = UIColor(red: 107 / 255.0, green: 155 / 255.0, blue: 212.0 / 255.0, alpha: 0.07)
+                self.colorView.backgroundColor = UIColor(red: 107 / 255.0, green: 155 / 255.0, blue: 212.0 / 255.0, alpha: 0.07)
+                self.nameLabel.textColor = UIColor(red: 50.0 / 255.0, green: 50.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0)
             }
         }
     }
+    
 }

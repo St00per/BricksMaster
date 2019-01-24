@@ -50,8 +50,14 @@ class Footswitch: Observable {
     init(id: String?, name: String) {
         self.id = id
         self.name = name
-        self.banks = [Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: "")]
         super.init()
+        
+        self.banks = [Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: "")]
+        for bank in self.banks {
+            bank.footswitchId = self.id
+        }
+        banks.first?.name = "Default bank"
+        banks.first?.empty = false
         //TODO: REMOVE ON RELEASE
         //self.mockData()
     }
@@ -101,24 +107,24 @@ class Footswitch: Observable {
     }
     
     func save() {
-        guard let realm = try? Realm() else {
-            return
-        }
-        do {
-        try realm.write {
-        if let object = footswitchObject {
-            object.update(footswitch: self)
-            realm.add(object, update: true)
-        } else {
-            let object = FootswitchObject(footswitch: self)
-            self.footswitchObject = object
-            realm.add(object, update: true)
-        }
-            
-        }
-        } catch {
-            println(error)
-        }
+//        guard let realm = try? Realm() else {
+//            return
+//        }
+//        do {
+//        try realm.write {
+//        if let object = footswitchObject {
+//            object.update(footswitch: self)
+//            realm.add(object, update: true)
+//        } else {
+//            let object = FootswitchObject(footswitch: self)
+//            self.footswitchObject = object
+//            realm.add(object, update: true)
+//        }
+//            
+//        }
+//        } catch {
+//            println(error)
+//        }
     }
     
     func saveInBackground() {
