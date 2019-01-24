@@ -291,6 +291,7 @@ class FootswitchEditViewController: UIViewController {
         if let selectedPreset = selectedPreset {
             UserDevicesManager.default.sendPreset(preset: selectedPreset, to: currentFootswitch)
             UserDevicesManager.default.lightButton(id: selectedButton, to: currentFootswitch, on: footswitchButtons[selectedButton].isOn)
+            selectedPreset.saveInBackground()
         }
     }
     

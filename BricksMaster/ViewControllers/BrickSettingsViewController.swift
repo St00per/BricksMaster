@@ -93,7 +93,7 @@ class BrickSettingsViewController: UIViewController {
     
     @IBAction func startPing() {
         pingPinIsOn = false
-        pingTimer = Timer(timeInterval: 0.2, repeats: true, block: { (timer) in
+        pingTimer = Timer(timeInterval: 0.1, repeats: true, block: { (timer) in
             self.pingPinIsOn = !self.pingPinIsOn
             self.setPingPin(on: self.pingPinIsOn)
         })
@@ -165,7 +165,7 @@ class BrickSettingsViewController: UIViewController {
     }
     
 }
-extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == footswitchPickerCollectionView {
@@ -182,15 +182,17 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchPickerCollectionViewCell", for: indexPath) as? FootswitchPickerCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.configure(footswitch: UserDevicesManager.default.userFootswitches[indexPath.row])
+            cell.configure(footswitch: UserDevicesManager.default.userFootswitches[indexPath.item])
             return cell
         }
         if collectionView == brickImageCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrickImageCollectionViewCell", for: indexPath) as? BrickImageCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if let currentBrickImage = UIImage(named: brickImages[indexPath.row]) {
+            if let currentBrickImage = UIImage(named: brickImages[indexPath.item]) {
                 cell.configure(image: currentBrickImage)
+                cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
+                cell.height.constant = 60
             }
             return cell
         }
@@ -210,6 +212,16 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             currentBrick?.imageId = brickImages[indexPath.row]
             selectedIndexPAth = indexPath
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == footswitchPickerCollectionView {
+            return CGSize.zero
+        }
+        if collectionView == brickImageCollectionView {
+            return CGSize(width: 50, height: 60)
+        }
+        return CGSize.zero
     }
 }
 extension BrickSettingsViewController: GradientRingDelegate {

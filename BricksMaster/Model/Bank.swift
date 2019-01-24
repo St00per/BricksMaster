@@ -49,4 +49,14 @@ class Bank {
                 }
         }
     }
+    
+    func saveInBackground () {
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                self.save()
+            }
+        }
+    }
+    
+    
 }

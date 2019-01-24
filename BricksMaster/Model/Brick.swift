@@ -98,6 +98,14 @@ class Brick: Observable {
             }
         }
     }
+    
+    func saveInBackground () {
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                self.save()
+            }
+        }
+    }
 }
 
 extension UIColor {
