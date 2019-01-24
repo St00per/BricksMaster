@@ -197,11 +197,19 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BrickImageCollectionViewCell", for: indexPath) as? BrickImageCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            if let currentBrickImage = UIImage(named: brickImages[indexPath.item]) {
-                cell.configure(image: currentBrickImage)
+            guard let brickImage = UIImage(named: brickImages[indexPath.item]) else {
+                return UICollectionViewCell()
+            }
+            if brickImages[indexPath.item] == selectedImage {
+                cell.isSelected = true
+                cell.isHighlighted = true
+            } else {
+                cell.isSelected = false
+            }
+                cell.configure(image: brickImage)
                 cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
                 cell.height.constant = 60
-            }
+           
             return cell
         }
         return UICollectionViewCell()
@@ -217,8 +225,10 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
         }
 
         if collectionView == brickImageCollectionView {
-            currentBrick?.imageId = brickImages[indexPath.row]
+            //currentBrick?.imageId = brickImages[indexPath.item]
+            selectedImage = brickImages[indexPath.item]
             selectedIndexPAth = indexPath
+            collectionView.reloadData()
         }
     }
     
