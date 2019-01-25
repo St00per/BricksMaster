@@ -45,7 +45,7 @@ class PresetsTabViewController: UIViewController {
     
     @IBAction func showPresetSetting(_ sender: UIButton) {
         if collectionViewState == .presets {
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "PresetSettings", bundle: nil)
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
                 return
             }

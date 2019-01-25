@@ -34,7 +34,7 @@ class BricksCollectionViewCell: UICollectionViewCell {
     }
     
     @IBAction func showBrickEdit(_ sender: UIButton) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "BrickSettings", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "BrickSettingsViewController") as? BrickSettingsViewController else {
             return
         }

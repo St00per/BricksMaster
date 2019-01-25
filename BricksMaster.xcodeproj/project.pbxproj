@@ -37,6 +37,13 @@
 		0E7926E521F89AF70085776A /* MTCircularSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E421F89AF70085776A /* MTCircularSlider.swift */; };
 		0E7926E721F9BF580085776A /* FootswitchBricksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */; };
 		0E7926E921F9D30B0085776A /* BricksCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926E821F9D30B0085776A /* BricksCollectionController.swift */; };
+		0E7926EF21FAE31E0085776A /* Devices.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926EE21FAE31E0085776A /* Devices.storyboard */; };
+		0E7926F121FAF4AD0085776A /* Presets.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F021FAF4AD0085776A /* Presets.storyboard */; };
+		0E7926F321FAF5CF0085776A /* PresetSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F221FAF5CF0085776A /* PresetSettings.storyboard */; };
+		0E7926F521FAF6220085776A /* FootswitchEdit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F421FAF6220085776A /* FootswitchEdit.storyboard */; };
+		0E7926F721FAF6A40085776A /* BrickSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F621FAF6A40085776A /* BrickSettings.storyboard */; };
+		0E7926F921FAFDE80085776A /* AddBrickPresetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F821FAFDE80085776A /* AddBrickPresetCell.xib */; };
+		0E7926FB21FAFEDC0085776A /* AddBrickPresetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7926FA21FAFEDC0085776A /* AddBrickPresetCell.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -99,6 +106,13 @@
 		0E7926E421F89AF70085776A /* MTCircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTCircularSlider.swift; sourceTree = "<group>"; };
 		0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchBricksCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E7926E821F9D30B0085776A /* BricksCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BricksCollectionController.swift; path = ViewControllers/BricksCollectionController.swift; sourceTree = "<group>"; };
+		0E7926EE21FAE31E0085776A /* Devices.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Devices.storyboard; sourceTree = "<group>"; };
+		0E7926F021FAF4AD0085776A /* Presets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Presets.storyboard; sourceTree = "<group>"; };
+		0E7926F221FAF5CF0085776A /* PresetSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresetSettings.storyboard; sourceTree = "<group>"; };
+		0E7926F421FAF6220085776A /* FootswitchEdit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FootswitchEdit.storyboard; sourceTree = "<group>"; };
+		0E7926F621FAF6A40085776A /* BrickSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BrickSettings.storyboard; sourceTree = "<group>"; };
+		0E7926F821FAFDE80085776A /* AddBrickPresetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBrickPresetCell.xib; sourceTree = "<group>"; };
+		0E7926FA21FAFEDC0085776A /* AddBrickPresetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddBrickPresetCell.swift; path = BricksMaster/Cells/AddBrickPresetCell.swift; sourceTree = SOURCE_ROOT; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -145,10 +159,10 @@
 		0E046AB521F31507006A817F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				0E7926BD21F85B060085776A /* BrickSettingsViewController.swift */,
 				0E1D1D8D21EDA37D000BEDD7 /* DevicesTabViewController.swift */,
-				0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */,
+				0E7926BD21F85B060085776A /* BrickSettingsViewController.swift */,
 				0E63303D21EF472A00EA3652 /* FootswitchEditViewController.swift */,
+				0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */,
 				0E63304721F084C800EA3652 /* PresetSettingViewController.swift */,
 				0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */,
 				70A04FBC21F4BB1B009C714D /* DebugViewController.swift */,
@@ -159,19 +173,21 @@
 		0E046AB621F3152E006A817F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */,
+				0E7926FA21FAFEDC0085776A /* AddBrickPresetCell.swift */,
+				0E7926F821FAFDE80085776A /* AddBrickPresetCell.xib */,
 				0E7926BF21F886A30085776A /* BrickImageCollectionViewCell.swift */,
-				0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */,
-				0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */,
 				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
 				0E1D1D9121EDAF64000BEDD7 /* BricksCollectionViewCell.swift */,
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
+				0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */,
 				0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */,
 				0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */,
 				0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */,
 				0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */,
 				0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */,
 				0E7926B521F72BC30085776A /* SectionHeaderView.swift */,
+				0E7926B921F81F3E0085776A /* NewBankPresetCell.xib */,
+				0E7926BB21F8207A0085776A /* NewBankCollectionViewCell.swift */,
 				70715EB821F9A10500C21C3E /* FootswitchEditBankCell.swift */,
 			);
 			path = Cells;
@@ -180,6 +196,8 @@
 		0E7926CF21F89A8D0085776A /* ColorPicker */ = {
 			isa = PBXGroup;
 			children = (
+				0E7926D021F89A980085776A /* SSAlphaPass */,
+				0E7926E421F89AF70085776A /* MTCircularSlider.swift */,
 				0E7926DE21F89AED0085776A /* BrightnessView.swift */,
 				0E7926DA21F89AED0085776A /* ColorUtils.swift */,
 				0E7926DB21F89AED0085776A /* ColorWheel.swift */,
@@ -200,6 +218,19 @@
 				0E7926D421F89ADA0085776A /* SSAlphaPassView.m */,
 			);
 			path = SSAlphaPass;
+			sourceTree = "<group>";
+		};
+		0E7926ED21FAE3030085776A /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
+				0E7926EE21FAE31E0085776A /* Devices.storyboard */,
+				0E7926F021FAF4AD0085776A /* Presets.storyboard */,
+				0E7926F221FAF5CF0085776A /* PresetSettings.storyboard */,
+				0E7926F421FAF6220085776A /* FootswitchEdit.storyboard */,
+				0E7926F621FAF6A40085776A /* BrickSettings.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 		0EC28DDD21EC6BAA00DEF32B = {
@@ -223,10 +254,8 @@
 		0EC28DE821EC6BAA00DEF32B /* BricksMaster */ = {
 			isa = PBXGroup;
 			children = (
-				0E7926E421F89AF70085776A /* MTCircularSlider.swift */,
-				0E7926D021F89A980085776A /* SSAlphaPass */,
+				0E7926ED21FAE3030085776A /* Storyboards */,
 				0E7926CF21F89A8D0085776A /* ColorPicker */,
-				0E7926C821F895FB0085776A /* BrickMaster-Bridging-Header.h */,
 				0EC28E0721EC720100DEF32B /* Model */,
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
@@ -234,9 +263,9 @@
 				70715EBC21F9A4FB00C21C3E /* BanksController.swift */,
 				70715EB021F8788800C21C3E /* DataBaseManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
-				0EC28DED21EC6BAA00DEF32B /* Main.storyboard */,
 				0E7926E821F9D30B0085776A /* BricksCollectionController.swift */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
+				0E7926C821F895FB0085776A /* BrickMaster-Bridging-Header.h */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,
 				0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */,
 				0EC28DF221EC6BAD00DEF32B /* LaunchScreen.storyboard */,
@@ -353,14 +382,20 @@
 			files = (
 				0EC28E1021EC736200DEF32B /* SF-Pro-Display-Medium.otf in Resources */,
 				0EC28E0E21EC736200DEF32B /* SF-Pro-Text-Semibold.otf in Resources */,
+				0E7926F321FAF5CF0085776A /* PresetSettings.storyboard in Resources */,
 				0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */,
+				0E7926F521FAF6220085776A /* FootswitchEdit.storyboard in Resources */,
 				0EC28DF421EC6BAD00DEF32B /* LaunchScreen.storyboard in Resources */,
+				0E7926F721FAF6A40085776A /* BrickSettings.storyboard in Resources */,
 				0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */,
 				0E7926BA21F81F3E0085776A /* NewBankPresetCell.xib in Resources */,
 				0EC28E0F21EC736200DEF32B /* SF-Pro-Text-Medium.otf in Resources */,
 				0EC28E1121EC736200DEF32B /* SF-Pro-Display-Regular.otf in Resources */,
+				0E7926EF21FAE31E0085776A /* Devices.storyboard in Resources */,
 				0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */,
 				0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */,
+				0E7926F921FAFDE80085776A /* AddBrickPresetCell.xib in Resources */,
+				0E7926F121FAF4AD0085776A /* Presets.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +484,7 @@
 				70E7D4B021F2601200EC88DE /* BankCell.swift in Sources */,
 				0E7926E121F89AED0085776A /* SwiftHSVColorPicker.swift in Sources */,
 				0E63304E21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift in Sources */,
+				0E7926FB21FAFEDC0085776A /* AddBrickPresetCell.swift in Sources */,
 				0E1D1D8E21EDA37D000BEDD7 /* DevicesTabViewController.swift in Sources */,
 				0E7926E721F9BF580085776A /* FootswitchBricksCollectionViewCell.swift in Sources */,
 				0E7926C021F886A30085776A /* BrickImageCollectionViewCell.swift in Sources */,

@@ -29,7 +29,7 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
     }
     
     @IBAction func showFootswitchEdit(_ sender: UIButton) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return
         }
