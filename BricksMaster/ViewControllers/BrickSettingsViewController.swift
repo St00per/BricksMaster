@@ -14,8 +14,8 @@ class BrickSettingsViewController: UIViewController {
     var assignedFootswitch: Footswitch?
     var brickImages: [String] = []
     
-    let slider = MTCircularSlider(frame: CGRect(x: 55, y: 10, width: 280, height: 280))
-    let colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 40, y: -40, width: 300, height: 300))
+    var slider = MTCircularSlider()
+    var colorPicker = SwiftHSVColorPicker()
     
     var pingPinIsOn: Bool = false
     var pingTimer: Timer?
@@ -45,19 +45,7 @@ class BrickSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let color = currentBrick?.color {
-            colorPicker.setViewColor(color)
-            var brightness: CGFloat = 0
-            color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
-            slider.value = brightness
-            gradientRing.tintColor = color
-        }
         
-        colorPicker.delegate = self
-        colorPickerView.addSubview(colorPicker)
-        сircleSliderConfigure()
-        colorPickerView.addSubview(slider)
-        brightnessUpdate()
         
         fillingBrickImagesArray()
         assignedFootswitch = currentBrick?.assignedFootswitch
@@ -72,6 +60,26 @@ class BrickSettingsViewController: UIViewController {
         viewShadow?.backgroundColor = UIColor.black
         viewShadow?.alpha = 0.0
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        slider = MTCircularSlider(frame: CGRect(x: colorPickerView.center.x - colorPickerView.frame.width/2, y: 0, width: colorPickerView.frame.height-20, height: colorPickerView.frame.height-20))
+        colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
+            if let color = currentBrick?.color {
+            colorPicker.setViewColor(color)
+            var brightness: CGFloat = 0
+            color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
+            slider.value = brightness
+            gradientRing.tintColor = color
+        }
+        
+        colorPicker.delegate = self
+        //colorPickerView.addSubview(colorPicker)
+        
+        сircleSliderConfigure()
+        colorPickerView.addSubview(slider)
+        //slider.center = colorPickerView.center
+        brightnessUpdate()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -187,12 +195,8 @@ class BrickSettingsViewController: UIViewController {
     }
     
     @objc func brightnessUpdate() {
-        
-        //let sliderAngle = slider.getThumbAngle()
         let brightness = slider.value
-            //(sliderAngle - 1.65)/6.11
         colorPicker.brightnessSelected(brightness)
-        
     }
     
     func fillingBrickImagesArray() {
