@@ -91,7 +91,7 @@ class CentralBluetoothManager: NSObject {
                 for i in 0...3 {
                     footSwitch.selectedBank?.footswitchButtons[i].isOn = i == selectedId
                     if footSwitch.selectedBank?.footswitchButtons[i].isOn ?? false {
-                        footSwitch.selectedPreset = footSwitch.buttons[i].preset
+                        footSwitch.selectedPreset = footSwitch.selectedBank?.footswitchButtons[i].preset
                     }
                 }
             }

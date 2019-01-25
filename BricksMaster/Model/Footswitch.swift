@@ -59,6 +59,8 @@ class Footswitch: Observable {
         banks.first?.name = "Default bank"
         banks.first?.empty = false
         customButton.footswitch = self
+        selectedBank = banks.first
+
         //TODO: REMOVE ON RELEASE
         //self.mockData()
     }

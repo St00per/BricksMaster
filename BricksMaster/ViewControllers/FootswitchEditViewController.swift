@@ -200,7 +200,10 @@ class FootswitchEditViewController: UIViewController {
         default:
             return
         }
-        show(desVC, sender: nil)
+        desVC.completion = {
+            self.configurePresetButtons()
+        }
+        present(desVC, animated: false, completion: nil)
     }
     
     

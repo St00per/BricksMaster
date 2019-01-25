@@ -26,12 +26,16 @@ class PresetsTabViewController: UIViewController {
     @IBOutlet var bankNameView: UIView!
     @IBOutlet weak var bankNameTextField: UITextField!
     
+     @IBOutlet var presetsButton: UIButton!
+     @IBOutlet var banksButton: UIButton!
+    var selectedButton: UIButton?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bankNameTextField.delegate = self
         bankNameTextField.returnKeyType = UIReturnKeyType.done
         self.collectionView.register(UINib(nibName: "NewBankPresetCell", bundle: nil), forCellWithReuseIdentifier: "NewBankPresetCell")
+        selectedButton = presetsButton
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,12 +62,20 @@ class PresetsTabViewController: UIViewController {
     }
     
     @IBAction func showPresets(_ sender: UIButton) {
+        selectedButton?.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
+        presetsButton?.setTitleColor(#colorLiteral(red: 0.2558659911, green: 0.2558728456, blue: 0.2558691502, alpha: 1), for: .normal)
+        selectedButton = presetsButton
         createNewPresetButton.isHidden = false
         collectionViewState = .presets
         collectionView.reloadData()
     }
     
     @IBAction func showBanks(_ sender: UIButton) {
+        
+        selectedButton?.setTitleColor(#colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1), for: .normal)
+        banksButton?.setTitleColor(#colorLiteral(red: 0.2558659911, green: 0.2558728456, blue: 0.2558691502, alpha: 1), for: .normal)
+        selectedButton = banksButton
+        
         createNewPresetButton.isHidden = true
         collectionViewState = .banks
         collectionView.reloadData()

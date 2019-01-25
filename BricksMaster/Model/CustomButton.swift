@@ -18,7 +18,7 @@ class CustomButton: NSObject {
     var longTapAction: CustomButtonAction = .nextBank
     var shortTapAction: CustomButtonAction = .disableAllBricks
     
-    var longTapTimeout: TimeInterval = 2.0
+    var longTapTimeout: TimeInterval = 1.0
     var pendedAction: Bool = false
     var tapTime: TimeInterval?
     var longTapOccures: Bool = false

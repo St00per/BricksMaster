@@ -14,17 +14,44 @@ class PresetPickerViewController: UIViewController {
     var editedBank: Bank?
     var footswitchButtonNumber = 0
     
+    var completion: (()->Void)?
+    
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var shadow: UICollectionView!
+    @IBOutlet weak var shadow: UIView!
+    @IBOutlet weak var mainView: UIView!
 
     
     @IBAction func closePresetPicker(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
+        close()
     }
     
+    func close() {
+        completion?()
+        UIView.animate(withDuration: 0.4, animations: {
+            self.shadow.alpha = 0.0
+            var frame = self.mainView.frame
+            frame.origin.y = self.view.bounds.height
+            self.mainView.frame = frame
+        }, completion: { selected in
+            self.dismiss(animated: false, completion: nil)
+        })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        shadow.alpha = 0.0
+    }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.4, animations: {
+            self.shadow.alpha = 0.45
+            var frame = self.mainView.frame
+            frame.origin.y = self.view.bounds.height - 500
+            self.mainView.frame = frame
+        }, completion: nil)
+    }
     
 }
 extension PresetPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {

@@ -46,6 +46,14 @@ class  FootswitchEditBankCell: UICollectionViewCell {
             nameLabel.isHidden = false
             nameLabel.text = bank.name
             borderView.isHidden = true
+            
+            if isSelected {
+                self.colorView.backgroundColor = UIColor(red: 107 / 255.0, green: 155 / 255.0, blue: 212.0 / 255.0, alpha: 1.0)
+                self.nameLabel.textColor = UIColor.white
+            } else {
+                self.colorView.backgroundColor = UIColor(red: 107 / 255.0, green: 155 / 255.0, blue: 212.0 / 255.0, alpha: 0.07)
+                self.nameLabel.textColor = UIColor(red: 50.0 / 255.0, green: 50.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0)
+            }
         }
     }
 
