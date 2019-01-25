@@ -121,10 +121,11 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == presetBricksCollectionView {
-            return preset?.presetBricks.count ?? 0
+            let count = (preset?.footswitch?.bricks.count ?? 0) + 1
+            return count
         }
         if collectionView == footswitchPickerCollectionView {
-            let footswitches = UserDevicesManager.default.userFootswitches.filter{ !$0.new }
+            let footswitches = UserDevicesManager.default.userFootswitches//.filter{ !$0.new }
             return footswitches.count
         }
         if collectionView == bricksPickerCollectionView {
@@ -136,6 +137,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == presetBricksCollectionView {
+            if indexPath.row < preset?.footswitch?.bricks.count {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetSettingsBrickCell", for: indexPath) as? PresetSettingBricksCollectionViewCell else {
             return UICollectionViewCell()
         }
@@ -148,13 +150,16 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
                 cell.configure(brick: brick, index: indexPath.row)
             }
             return cell
+            } else {
+                
+            }
         }
         
         if collectionView == footswitchPickerCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchPickerCollectionViewCell", for: indexPath) as? FootswitchPickerCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let footswitches = UserDevicesManager.default.userFootswitches.filter{ !$0.new }
+            let footswitches = UserDevicesManager.default.userFootswitches//.filter{ !$0.new }
             cell.configure(footswitch: footswitches[indexPath.row])
             return cell
         }
