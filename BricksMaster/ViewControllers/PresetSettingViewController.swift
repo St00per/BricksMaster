@@ -45,6 +45,7 @@ class PresetSettingViewController: UIViewController {
     @IBAction func showBrickPicker(_ sender: UIButton) {
         self.view.addSubview(bricksPicker)
         bricksPicker.center = self.view.center
+        
     }
     
     @IBAction func closeBrickPicker(_ sender: UIButton) {

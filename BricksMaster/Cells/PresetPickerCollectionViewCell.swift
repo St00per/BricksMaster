@@ -33,7 +33,7 @@ class PresetPickerCollectionViewCell: UICollectionViewCell {
         }
         bank?.save()
         currentFootswitch.save()
-        controller?.dismiss(animated: true, completion: nil)
+        controller?.close()
     }
     
     func configure(preset: Preset) {

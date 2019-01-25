@@ -41,6 +41,7 @@ class Brick: Observable {
     override func saveConnected() {
         new = false
         save()
+        UserDevicesManager.default.enableBrick(brick: self, isEnabled: false)
     }
     
     override func connect() {

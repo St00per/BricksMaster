@@ -76,6 +76,11 @@ class FootswitchEditViewController: UIViewController {
         shadowView.alpha = 0.0
         shadowView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(closeBankNameEdit(_:))))
         self.view.addSubview(shadowView)
+        firstPresetButtonView.layer.cornerRadius = 4
+        secondPresetButtonView.layer.cornerRadius = 4
+        thirdPresetButtonView.layer.cornerRadius = 4
+        fourthPresetButtonView.layer.cornerRadius = 4
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +93,7 @@ class FootswitchEditViewController: UIViewController {
             configurePresetButtons()
         }
         shadowView.frame = self.view.bounds
+        banksController?.updateSelection()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -139,6 +145,9 @@ class FootswitchEditViewController: UIViewController {
     }
     
     @IBAction func closeBankNameEdit(_ sender: Any) {
+        if let selected = banksController?.selectedIndex {
+            banksCollection.selectItem(at: selected, animated: false, scrollPosition: .left)
+        }
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
@@ -153,6 +162,11 @@ class FootswitchEditViewController: UIViewController {
     @IBAction func saveEditedBankName(_ sender: UIButton) {
         currentBank?.name = bankNameEditTextField.text
         currentBank?.empty = false
+        if let selected = currentFootswitch?.banks.firstIndex(where: { (bank) -> Bool in
+            return bank.id == currentBank?.id
+        }) {
+            banksCollection.selectItem(at: IndexPath(item: selected, section: 0), animated: false, scrollPosition: .left)
+        }
         banksController?.update()
         currentBank?.save()
         UIView.animate(withDuration: 0.3, animations: {
@@ -186,7 +200,10 @@ class FootswitchEditViewController: UIViewController {
         default:
             return
         }
-        show(desVC, sender: nil)
+        desVC.completion = {
+            self.configurePresetButtons()
+        }
+        present(desVC, animated: false, completion: nil)
     }
     
     
@@ -265,6 +282,14 @@ class FootswitchEditViewController: UIViewController {
         }
     }
     
+    func newBankSelected(bank: Bank, index: Int) {
+        currentBank = bank
+        let path = IndexPath(item: index, section: 0)
+        banksController?.selectedIndex = IndexPath(item: index, section: 0)
+        banksCollection.selectItem(at: path, animated: true, scrollPosition: .left)
+        configurePresetButtons()
+    }
+    
     func configurePresetButtons() {
         guard let selectedBank = currentBank else {
             return
@@ -279,42 +304,42 @@ class FootswitchEditViewController: UIViewController {
         if footswitchButtons[0].isOn == true && footswitchButtons[0].preset != nil
         {
             firstPresetOnOffButton.setTitle("ON", for: .normal)
-            firstPresetOnOffButton.backgroundColor = UIColor.black
-            firstPresetButtonView.backgroundColor = UIColor.lightGray
+            firstPresetOnOffButton.backgroundColor = UIColor.white
+            firstPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5")
         } else {
             firstPresetOnOffButton.setTitle("OFF", for: .normal)
-            firstPresetOnOffButton.backgroundColor = UIColor.lightGray
-            firstPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
+            firstPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
+            firstPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
         if footswitchButtons[1].isOn == true && footswitchButtons[1].preset != nil
         {
             secondPresetOnOffButton.setTitle("ON", for: .normal)
-            secondPresetOnOffButton.backgroundColor = UIColor.black
-            secondPresetButtonView.backgroundColor = UIColor.lightGray
+            secondPresetOnOffButton.backgroundColor = UIColor.white
+            secondPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5")
         } else {
             secondPresetOnOffButton.setTitle("OFF", for: .normal)
-            secondPresetOnOffButton.backgroundColor = UIColor.lightGray
-            secondPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
+            secondPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
+            secondPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
         if footswitchButtons[2].isOn == true && footswitchButtons[2].preset != nil
         {
             thirdPresetOnOffButton.setTitle("ON", for: .normal)
-            thirdPresetOnOffButton.backgroundColor = UIColor.black
-            thirdPresetButtonView.backgroundColor = UIColor.lightGray
+            thirdPresetOnOffButton.backgroundColor = UIColor.white
+            thirdPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5")
         } else {
             thirdPresetOnOffButton.setTitle("OFF", for: .normal)
-            thirdPresetOnOffButton.backgroundColor = UIColor.lightGray
-            thirdPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
+            thirdPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
+            thirdPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
         if footswitchButtons[3].isOn == true && footswitchButtons[3].preset != nil
         {
             fourthPresetOnOffButton.setTitle("ON", for: .normal)
-            fourthPresetOnOffButton.backgroundColor = UIColor.black
-            fourthPresetButtonView.backgroundColor = UIColor.lightGray
+            fourthPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
+            fourthPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5")
         } else {
             fourthPresetOnOffButton.setTitle("OFF", for: .normal)
-            fourthPresetOnOffButton.backgroundColor = UIColor.lightGray
-            fourthPresetButtonView.backgroundColor = UIColor(hexString: "EDEDED")
+            fourthPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
+            fourthPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
     }
     
