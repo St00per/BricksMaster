@@ -57,6 +57,7 @@ class BrickSettingsViewController: UIViewController {
         footswitchPickerCollectionView.allowsSelection = true
         
         selectedImage = currentBrick?.imageId
+        selectedColor = currentBrick?.color ?? UIColor.white
         viewShadow = UIView(frame: UIScreen.main.bounds)
         viewShadow?.backgroundColor = UIColor.black
         viewShadow?.alpha = 0.0
@@ -113,18 +114,29 @@ class BrickSettingsViewController: UIViewController {
     }
     
     @IBAction func saveBrickSettings(_ sender: UIButton) {
-        guard let currentBrick = self.currentBrick else { return }
-        assignedFootswitch?.bricks.append(currentBrick)
-        currentBrick.assignedFootswitch = self.assignedFootswitch
+        guard let currentBrick = self.currentBrick else {
+            return
+        }
         currentBrick.imageId = selectedImage
         currentBrick.color = selectedColor
-        if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
-            return brick.id == currentBrick.id
-        }) {
-            
-        } else {
-            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
+        guard let assignedFootswitch = self.assignedFootswitch else {
+            self.dismiss(animated: true, completion: nil)
+            return
         }
+        currentBrick.assignedFootswitch = self.assignedFootswitch
+        if !assignedFootswitch.bricks.contains(currentBrick) {
+            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+//        if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
+//            return brick.id == currentBrick.id
+//        }) {
+//
+//        } else {
+//            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
+//        }
         
         //        currentBrick.save()
         //        assignedFootswitch.save()
