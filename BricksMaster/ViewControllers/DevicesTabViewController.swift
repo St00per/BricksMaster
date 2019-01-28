@@ -10,9 +10,15 @@ import UIKit
 
 class DevicesTabViewController: UIViewController {
     
+    @IBOutlet weak var noBricksDevicesView: UIView!
+    
+    
     @IBOutlet weak var bricksCount: UILabel!
     @IBOutlet weak var bricksCollectionScanButton: UIButton!
     @IBOutlet weak var bricksCollectionView: UICollectionView!
+    
+    
+    @IBOutlet weak var noFootDevicesView: UIView!
     
     @IBOutlet weak var footswitchCount: UILabel!
     @IBOutlet weak var footswitchesCollectionView: UICollectionView!
@@ -28,6 +34,16 @@ class DevicesTabViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        if UserDevicesManager.default.userBricks.count == 0 {
+            noBricksDevicesView.isHidden = false
+        } else {
+            noBricksDevicesView.isHidden = true
+        }
+        if UserDevicesManager.default.userFootswitches.count == 0 {
+            noFootDevicesView.isHidden = false
+        } else {
+            noFootDevicesView.isHidden = true
+        }
         bricksCollectionView.reloadData()
         bricksCount.text = "(\(UserDevicesManager.default.userBricks.count))"
         footswitchesCollectionView.reloadData()

@@ -67,6 +67,34 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GFG-fE-lsB" userLabel="BricksView">
                                         <rect key="frame" x="0.0" y="37" width="375" height="310"/>
                                         <subviews>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYF-Wc-pB5" userLabel="NoDevicesView">
+                                                <rect key="frame" x="67.666666666666686" y="91" width="240" height="128"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gray_ic_settings_remote_48px" translatesAutoresizingMaskIntoConstraints="NO" id="yuA-oG-5lO">
+                                                        <rect key="frame" x="81.999999999999986" y="14" width="76.000000000000014" height="77"/>
+                                                        <color key="tintColor" red="0.41568627450980389" green="0.60784313725490191" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="77" id="GHD-3O-9D1"/>
+                                                            <constraint firstAttribute="width" constant="76" id="nUv-bd-3sZ"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no devices right now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-z4-BFD">
+                                                        <rect key="frame" x="13" y="99" width="214" height="21"/>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                        <color key="textColor" red="0.41568627450980389" green="0.60784313725490191" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="bvi-z4-BFD" firstAttribute="top" secondItem="yuA-oG-5lO" secondAttribute="bottom" constant="8" id="2sY-W2-8WR"/>
+                                                    <constraint firstAttribute="height" constant="128" id="7Ep-0C-leo"/>
+                                                    <constraint firstItem="yuA-oG-5lO" firstAttribute="leading" secondItem="SYF-Wc-pB5" secondAttribute="leading" constant="82" id="B0S-B8-cgQ"/>
+                                                    <constraint firstItem="bvi-z4-BFD" firstAttribute="centerX" secondItem="SYF-Wc-pB5" secondAttribute="centerX" id="D8y-bh-3QP"/>
+                                                    <constraint firstItem="bvi-z4-BFD" firstAttribute="bottom" secondItem="SYF-Wc-pB5" secondAttribute="bottomMargin" id="EAv-MQ-pcy"/>
+                                                    <constraint firstAttribute="width" constant="240" id="J4R-G8-IGN"/>
+                                                    <constraint firstAttribute="trailing" secondItem="yuA-oG-5lO" secondAttribute="trailing" constant="82" id="l4l-Rd-StG"/>
+                                                </constraints>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ig5-s9-VcT">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -231,34 +259,6 @@
                                                     <outlet property="delegate" destination="cfU-fZ-NGE" id="Z1L-hh-bc8"/>
                                                 </connections>
                                             </collectionView>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SYF-Wc-pB5" userLabel="NoDevicesView">
-                                                <rect key="frame" x="67.666666666666686" y="73" width="240" height="128"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gray_ic_settings_remote_48px" translatesAutoresizingMaskIntoConstraints="NO" id="yuA-oG-5lO">
-                                                        <rect key="frame" x="81.999999999999986" y="14" width="76.000000000000014" height="77"/>
-                                                        <color key="tintColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="77" id="GHD-3O-9D1"/>
-                                                            <constraint firstAttribute="width" constant="76" id="nUv-bd-3sZ"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no devices right now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-z4-BFD">
-                                                        <rect key="frame" x="13" y="99" width="214" height="21"/>
-                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
-                                                        <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="bvi-z4-BFD" firstAttribute="top" secondItem="yuA-oG-5lO" secondAttribute="bottom" constant="8" id="2sY-W2-8WR"/>
-                                                    <constraint firstAttribute="height" constant="128" id="7Ep-0C-leo"/>
-                                                    <constraint firstItem="yuA-oG-5lO" firstAttribute="leading" secondItem="SYF-Wc-pB5" secondAttribute="leading" constant="82" id="B0S-B8-cgQ"/>
-                                                    <constraint firstItem="bvi-z4-BFD" firstAttribute="centerX" secondItem="SYF-Wc-pB5" secondAttribute="centerX" id="D8y-bh-3QP"/>
-                                                    <constraint firstItem="bvi-z4-BFD" firstAttribute="bottom" secondItem="SYF-Wc-pB5" secondAttribute="bottomMargin" id="EAv-MQ-pcy"/>
-                                                    <constraint firstAttribute="width" constant="240" id="J4R-G8-IGN"/>
-                                                    <constraint firstAttribute="trailing" secondItem="yuA-oG-5lO" secondAttribute="trailing" constant="82" id="l4l-Rd-StG"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -266,15 +266,38 @@
                                             <constraint firstItem="SYF-Wc-pB5" firstAttribute="centerX" secondItem="GFG-fE-lsB" secondAttribute="centerX" id="hQw-vM-GAr"/>
                                             <constraint firstItem="SYF-Wc-pB5" firstAttribute="centerY" secondItem="GFG-fE-lsB" secondAttribute="centerY" id="sxr-RY-cEX"/>
                                         </constraints>
-                                        <variation key="default">
-                                            <mask key="subviews">
-                                                <exclude reference="SYF-Wc-pB5"/>
-                                            </mask>
-                                        </variation>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gzA-GM-sq5" userLabel="FootswitchesView">
                                         <rect key="frame" x="0.0" y="385" width="375" height="300"/>
                                         <subviews>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SMS-zo-ByY" userLabel="NoDevicesView">
+                                                <rect key="frame" x="67.666666666666686" y="86" width="240" height="128"/>
+                                                <subviews>
+                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gray_ic_settings_remote_48px" translatesAutoresizingMaskIntoConstraints="NO" id="8I0-9N-gxR">
+                                                        <rect key="frame" x="81.999999999999986" y="14" width="76.000000000000014" height="77"/>
+                                                        <color key="tintColor" red="0.41568627450000001" green="0.60784313729999995" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="76" id="sT8-Fh-of2"/>
+                                                            <constraint firstAttribute="height" constant="77" id="z1b-6J-kws"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no devices right now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8si-T5-tob">
+                                                        <rect key="frame" x="13" y="99" width="214" height="21"/>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                                        <color key="textColor" red="0.41568627450000001" green="0.60784313729999995" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="8I0-9N-gxR" secondAttribute="trailing" constant="82" id="768-dT-Wqs"/>
+                                                    <constraint firstItem="8si-T5-tob" firstAttribute="centerX" secondItem="SMS-zo-ByY" secondAttribute="centerX" id="CmF-eq-E9s"/>
+                                                    <constraint firstAttribute="width" constant="240" id="IU7-6f-WIh"/>
+                                                    <constraint firstItem="8si-T5-tob" firstAttribute="top" secondItem="8I0-9N-gxR" secondAttribute="bottom" constant="8" id="W5m-BF-bXz"/>
+                                                    <constraint firstItem="8si-T5-tob" firstAttribute="bottom" secondItem="SMS-zo-ByY" secondAttribute="bottomMargin" id="gaA-JK-Qgc"/>
+                                                    <constraint firstItem="8I0-9N-gxR" firstAttribute="leading" secondItem="SMS-zo-ByY" secondAttribute="leading" constant="82" id="iFZ-e1-sAO"/>
+                                                    <constraint firstAttribute="height" constant="128" id="pnB-er-sxl"/>
+                                                </constraints>
+                                            </view>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="myb-EH-cwi">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="239"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -477,6 +500,8 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="300" id="OyH-Ph-ghV"/>
+                                            <constraint firstItem="SMS-zo-ByY" firstAttribute="centerX" secondItem="gzA-GM-sq5" secondAttribute="centerX" id="gEF-EG-zKz"/>
+                                            <constraint firstItem="SMS-zo-ByY" firstAttribute="centerY" secondItem="gzA-GM-sq5" secondAttribute="centerY" id="sUI-ua-Tz7"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Footswitches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dz4-Dk-M35">
@@ -549,6 +574,8 @@
                         <outlet property="footswitchCount" destination="2gp-fe-HHV" id="D5H-xh-bHA"/>
                         <outlet property="footswitchesCollectionScanButton" destination="dZj-aD-Ksu" id="r6s-JA-mPc"/>
                         <outlet property="footswitchesCollectionView" destination="myb-EH-cwi" id="XJq-Hz-W4G"/>
+                        <outlet property="noBricksDevicesView" destination="SYF-Wc-pB5" id="OfE-Mm-bhG"/>
+                        <outlet property="noFootDevicesView" destination="SMS-zo-ByY" id="cC7-n0-H3K"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KoA-5d-cEc" sceneMemberID="firstResponder"/>

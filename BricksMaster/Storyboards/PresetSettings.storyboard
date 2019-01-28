@@ -234,21 +234,6 @@
                                             <outlet property="delegate" destination="rzc-Vd-yEx" id="4Pq-q6-son"/>
                                         </connections>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NGc-OY-bls">
-                                        <rect key="frame" x="279" y="184" width="80" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="FLU-UJ-Wqw"/>
-                                            <constraint firstAttribute="width" constant="80" id="ycQ-Ag-vDc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
-                                        <state key="normal" title="Add Brick">
-                                            <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showBrickPicker:" destination="rzc-Vd-yEx" eventType="touchUpInside" id="dqN-Cd-Kfv"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -261,7 +246,6 @@
                                     <constraint firstAttribute="bottom" secondItem="Qgc-vA-Kmk" secondAttribute="bottom" constant="8" id="70Q-3J-jvS"/>
                                     <constraint firstItem="Qgc-vA-Kmk" firstAttribute="centerX" secondItem="Krk-qa-vdK" secondAttribute="centerX" id="ADl-nF-HQ8"/>
                                     <constraint firstItem="Qgc-vA-Kmk" firstAttribute="top" secondItem="1Km-jL-ldD" secondAttribute="bottom" constant="8" id="EZe-6V-PPM"/>
-                                    <constraint firstItem="Qgc-vA-Kmk" firstAttribute="top" secondItem="NGc-OY-bls" secondAttribute="bottom" constant="8" id="Llm-Rc-LMv"/>
                                     <constraint firstItem="G4e-u1-jvq" firstAttribute="top" secondItem="vaj-V9-qMC" secondAttribute="bottom" constant="8" id="Pha-Fw-tg2"/>
                                     <constraint firstItem="1Km-jL-ldD" firstAttribute="leading" secondItem="Krk-qa-vdK" secondAttribute="leading" constant="16" id="PpU-GI-GcM"/>
                                     <constraint firstItem="LZ1-vh-w8H" firstAttribute="top" secondItem="Krk-qa-vdK" secondAttribute="top" constant="16" id="b7C-1n-wF6"/>
@@ -276,7 +260,6 @@
                                     <constraint firstItem="F4p-2L-adu" firstAttribute="centerY" secondItem="U7H-f8-qyE" secondAttribute="centerY" id="hbL-Dv-Sd5"/>
                                     <constraint firstItem="LZ1-vh-w8H" firstAttribute="leading" secondItem="Krk-qa-vdK" secondAttribute="leading" constant="16" id="jaE-eq-mAm"/>
                                     <constraint firstAttribute="trailing" secondItem="yJX-Y1-xe4" secondAttribute="trailing" constant="30" id="ljY-ZZ-gfb"/>
-                                    <constraint firstAttribute="trailing" secondItem="NGc-OY-bls" secondAttribute="trailing" constant="16" id="mYv-Bo-Fhg"/>
                                     <constraint firstItem="k1w-nM-Dmb" firstAttribute="centerY" secondItem="vaj-V9-qMC" secondAttribute="centerY" id="mu1-6B-BkA"/>
                                     <constraint firstItem="vaj-V9-qMC" firstAttribute="leading" secondItem="Krk-qa-vdK" secondAttribute="leading" constant="16" id="vkD-TA-mfU"/>
                                     <constraint firstItem="U7H-f8-qyE" firstAttribute="top" secondItem="G4e-u1-jvq" secondAttribute="bottom" constant="8" id="xeI-7v-UHp"/>
@@ -333,7 +316,6 @@
                         <viewLayoutGuide key="safeArea" id="I9q-sv-AdF"/>
                     </view>
                     <connections>
-                        <outlet property="addBricksButton" destination="NGc-OY-bls" id="htA-Wg-Je6"/>
                         <outlet property="bricksHeaderLabel" destination="1Km-jL-ldD" id="Q8k-7s-oaO"/>
                         <outlet property="bricksPicker" destination="BuY-Sg-c8N" id="S7h-5A-BXF"/>
                         <outlet property="bricksPickerCollectionView" destination="ZuG-Gf-3Ir" id="ICK-Of-9zh"/>

@@ -22,8 +22,6 @@ class PresetSettingViewController: UIViewController {
     
     @IBOutlet weak var bricksHeaderLabel: UILabel!
     
-    @IBOutlet weak var addBricksButton: UIButton!
-    
     @IBOutlet weak var savePresetButton: UIButton!
     
     @IBAction func closePresetSetting(_ sender: UIButton) {
@@ -42,10 +40,9 @@ class PresetSettingViewController: UIViewController {
         footswitchPicker.removeFromSuperview()
     }
     
-    @IBAction func showBrickPicker(_ sender: UIButton) {
+    func showBrickPicker() {
         self.view.addSubview(bricksPicker)
         bricksPicker.center = self.view.center
-        
     }
     
     @IBAction func closeBrickPicker(_ sender: UIButton) {
@@ -104,14 +101,12 @@ class PresetSettingViewController: UIViewController {
             presetNameHeader.isHidden = true
             presetNameTextFieldView.isHidden = true
             bricksHeaderLabel.isHidden = true
-            addBricksButton.isHidden = true
             savePresetButton.isHidden = true
             presetBricksCollectionView.isHidden = true
         } else {
             presetNameHeader.isHidden = false
             presetNameTextFieldView.isHidden = false
             bricksHeaderLabel.isHidden = false
-            addBricksButton.isHidden = false
             savePresetButton.isHidden = false
             presetBricksCollectionView.isHidden = false
         }
@@ -191,7 +186,10 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == presetBricksCollectionView {
-            
+            guard let count = preset?.presetBricks.count else { return }
+            if indexPath.row > count - 1  {
+                showBrickPicker()
+            }
         }
         
         if collectionView == footswitchPickerCollectionView {
