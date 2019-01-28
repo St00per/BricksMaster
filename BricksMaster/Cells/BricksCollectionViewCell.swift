@@ -22,6 +22,8 @@ class BricksCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var connectButton: UIButton!
     @IBOutlet weak var onOffDeviceButton: UIButton!
     @IBOutlet weak var connectedLabel: UILabel!
+    @IBOutlet weak var connectedLabelView: UIView!
+    
     
     
     @IBAction func connectToBrick(_ sender: UIButton) {
@@ -48,6 +50,7 @@ class BricksCollectionViewCell: UICollectionViewCell {
         guard let brick = self.brick, let peripheralCharacteristic = brick.tx else { return }
         brick.status = brick.status == .on ? .off : .on;
         onOffDeviceButton.setTitle( brick.status == .on ? "ON" : "OFF", for: .normal)
+        onOffDeviceButton.backgroundColor = brick.status == .on ? UIColor(hexString: "94C15B") : UIColor(hexString: "DE6969")
         guard let peripheral = brick.peripheral else { return }
         var dataToWrite = Data()
         dataToWrite.append(0xE7)
@@ -67,22 +70,24 @@ class BricksCollectionViewCell: UICollectionViewCell {
         deviceName.text = brick.deviceName
         deviceImage.image = UIImage(named: brick.imageId ?? "")
         deviceColor.backgroundColor = brick.color
+        connectedLabelView.layer.cornerRadius = 4
+        
         guard let brickState = brick.peripheral?.state else {
             return
         }
         switch brickState {
         case .disconnected:
             onOffDeviceButton.isHidden = true
-            connectedLabel.isHidden = true
+            connectedLabelView.isHidden = true
             connectButton.isHidden = false
         case .connected:
             onOffDeviceButton.isHidden = false
-            connectedLabel.isHidden = false
+            connectedLabelView.isHidden = false
             connectedLabel.text = "CONNECTED"
             connectButton.isHidden = true
         case .connecting:
             onOffDeviceButton.isHidden = true
-            connectedLabel.isHidden = false
+            connectedLabelView.isHidden = false
             connectedLabel.text = "CONNECTING"
             connectButton.isHidden = true
         default:

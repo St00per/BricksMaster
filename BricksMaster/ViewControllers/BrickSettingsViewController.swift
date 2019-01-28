@@ -119,7 +119,7 @@ class BrickSettingsViewController: UIViewController {
     
     @IBAction func saveBrickSettings(_ sender: UIButton) {
         guard let currentBrick = self.currentBrick else { return }
-        //assignedFootswitch.bricks.append(currentBrick) - ??
+        assignedFootswitch?.bricks.append(currentBrick)
         currentBrick.assignedFootswitch = self.assignedFootswitch
         currentBrick.imageId = selectedImage
         currentBrick.color = colorPicker.color

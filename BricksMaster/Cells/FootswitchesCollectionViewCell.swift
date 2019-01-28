@@ -24,6 +24,7 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
     @IBOutlet weak var editButton: UIButton!
     
     override func awakeFromNib() {
+        footswitchBricksCollectionView.isHidden = false//test
         footswitchBricksCollectionView.delegate = self
         footswitchBricksCollectionView.dataSource = self
     }
@@ -64,6 +65,7 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         self.footswitch = footswitch
         self.footswitch?.observers.removeAll()
         self.footswitch?.subscribe(observer: self)
+        footswitchBricksCollectionView.reloadData()//test
         guard let footswitchState = footswitch.peripheral?.state else { return }
         switch footswitchState {
         case .disconnected:

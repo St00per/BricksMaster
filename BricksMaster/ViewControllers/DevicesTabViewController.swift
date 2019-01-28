@@ -10,12 +10,14 @@ import UIKit
 
 class DevicesTabViewController: UIViewController {
     
-    
+    @IBOutlet weak var bricksCount: UILabel!
     @IBOutlet weak var bricksCollectionScanButton: UIButton!
     @IBOutlet weak var bricksCollectionView: UICollectionView!
     
+    @IBOutlet weak var footswitchCount: UILabel!
     @IBOutlet weak var footswitchesCollectionView: UICollectionView!
     @IBOutlet weak var footswitchesCollectionScanButton: UIButton!
+    
     @IBOutlet var footswitchEditView: UIView!
     
     override func viewDidLoad() {
@@ -27,7 +29,10 @@ class DevicesTabViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         bricksCollectionView.reloadData()
+        bricksCount.text = "(\(UserDevicesManager.default.userBricks.count))"
         footswitchesCollectionView.reloadData()
+        footswitchCount.text = "(\(UserDevicesManager.default.userFootswitches.count))"
+        
     }
     
     @IBAction func bricksScanButtonTouched(_ sender: UIButton) {
@@ -68,6 +73,7 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             let currentBrick = UserDevicesManager.default.userBricks[indexPath.row]
             cell.controller = self
             cell.configure(brick: currentBrick)
+            cell.dropShadow()
             return cell
         }
         if collectionView == footswitchesCollectionView {
@@ -78,6 +84,7 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             let currentFootswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
             cell.controller = self
             cell.configure(footswitch: currentFootswitch)
+            cell.dropShadow()
             return cell
         }
         return UICollectionViewCell()
