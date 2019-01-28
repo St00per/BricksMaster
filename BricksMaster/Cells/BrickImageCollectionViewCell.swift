@@ -10,6 +10,7 @@ import UIKit
 
 class BrickImageCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var brickColorView: UIView!
     @IBOutlet weak var brickImage: UIImageView!
     @IBOutlet weak var selectedImageView: UIImageView!
     
@@ -17,8 +18,9 @@ class BrickImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var height: NSLayoutConstraint!
     
     
-    func configure(image: UIImage) {
+    func configure(image: UIImage, color: UIColor) {
         brickImage.image = image
+        brickColorView.backgroundColor = color
     }
     
     override var isSelected: Bool {

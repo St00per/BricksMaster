@@ -9,10 +9,11 @@
 import UIKit
 
 class BrickSettingsViewController: UIViewController {
-
+    
     var currentBrick: Brick?
     var assignedFootswitch: Footswitch?
     var brickImages: [String] = []
+    var brickColors: [UIColor] = []
     
     var slider = MTCircularSlider()
     var colorPicker = SwiftHSVColorPicker()
@@ -22,6 +23,7 @@ class BrickSettingsViewController: UIViewController {
     
     var selectedIndexPAth: IndexPath?
     var selectedImage: String?
+    var selectedColor = UIColor.white
     
     @IBOutlet weak var gradientRing: UIImageView!
     
@@ -45,8 +47,7 @@ class BrickSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
+        createRandomColors()
         fillingBrickImagesArray()
         assignedFootswitch = currentBrick?.assignedFootswitch
         brickName.text = currentBrick?.deviceName
@@ -65,16 +66,10 @@ class BrickSettingsViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         slider = MTCircularSlider(frame: CGRect(x: colorPickerView.center.x - colorPickerView.frame.width/2, y: 0, width: colorPickerView.frame.height-20, height: colorPickerView.frame.height-20))
         colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-            if let color = currentBrick?.color {
-            colorPicker.setViewColor(color)
-            var brightness: CGFloat = 0
-            color.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
-            slider.value = brightness
-            gradientRing.tintColor = color
-        }
+        updateColorPicker()
         
         colorPicker.delegate = self
-        //colorPickerView.addSubview(colorPicker)
+        colorPickerView.addSubview(colorPicker)
         
         сircleSliderConfigure()
         colorPickerView.addSubview(slider)
@@ -122,7 +117,7 @@ class BrickSettingsViewController: UIViewController {
         assignedFootswitch?.bricks.append(currentBrick)
         currentBrick.assignedFootswitch = self.assignedFootswitch
         currentBrick.imageId = selectedImage
-        currentBrick.color = colorPicker.color
+        currentBrick.color = selectedColor
         if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
             return brick.id == currentBrick.id
         }) {
@@ -131,8 +126,8 @@ class BrickSettingsViewController: UIViewController {
             currentBrick.assignedFootswitch?.bricks.append(currentBrick)
         }
         
-//        currentBrick.save()
-//        assignedFootswitch.save()
+        //        currentBrick.save()
+        //        assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -206,8 +201,22 @@ class BrickSettingsViewController: UIViewController {
         brickImages.append("pedal_image4")
         brickImages.append("pedal_image5")
     }
+    func createRandomColors() {
+        while brickColors.count < 5 {
+            brickColors.append(.random)
+        }
+    }
+    
+    func updateColorPicker() {
+            colorPicker.setViewColor(selectedColor)
+            var brightness: CGFloat = 0
+            selectedColor.getHue(nil, saturation: nil, brightness: &brightness, alpha: nil)
+            slider.value = brightness
+            gradientRing.tintColor = selectedColor
+    }
     
 }
+
 extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -241,10 +250,11 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             } else {
                 cell.isSelected = false
             }
-                cell.configure(image: brickImage)
-                cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
-                cell.height.constant = 60
-           
+            
+            cell.configure(image: brickImage, color: brickColors[indexPath.row])
+            cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
+            cell.height.constant = 60
+            
             return cell
         }
         return UICollectionViewCell()
@@ -263,9 +273,10 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
                 self.viewShadow?.removeFromSuperview()
             }
         }
-
+        
         if collectionView == brickImageCollectionView {
-            //currentBrick?.imageId = brickImages[indexPath.item]
+            selectedColor = brickColors[indexPath.item]
+            updateColorPicker()
             selectedImage = brickImages[indexPath.item]
             selectedIndexPAth = indexPath
             collectionView.reloadData()
@@ -285,6 +296,6 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
 extension BrickSettingsViewController: GradientRingDelegate {
     func updateGradientRingColor(color: UIColor) {
         gradientRing.tintColor = color
-        currentBrick?.color = color
+        selectedColor = color
     }
 }
