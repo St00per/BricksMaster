@@ -55,19 +55,34 @@ open class SwiftHSVColorPicker: UIView, ColorWheelDelegate, BrightnessViewDelega
         
         // let color wheel get the maximum size that is not overflow from the frame for both width and height
         let colorWheelSize = min(self.bounds.width, self.bounds.height - selectedColorViewHeight - brightnessViewHeight)
-        
+        print ("COLOR PICKER SELF BOUNDS WIDTH & HEIGHT = \(self.bounds.width, self.bounds.height)")
         // let the all the subviews stay in the middle of universe horizontally
         let centeredX = (self.bounds.width - colorWheelSize) / 2.0
         
         // Init SelectedColorView subview
-        selectedColorView = SelectedColorView(frame: CGRect(x: 280, y:55, width: 34, height: selectedColorViewHeight), color: self.color)
+        if self.bounds.width == 250 {
+            //narrow screen configuration(iPhone 6)
+            selectedColorView = SelectedColorView(frame: CGRect(x: self.bounds.width, y: self.bounds.height - 180, width: 34, height: selectedColorViewHeight), color: self.color)
+        }
+        
+        if self.bounds.width == 299 {
+            //wide screen configuration(iPhone 8s)
+            selectedColorView = SelectedColorView(frame: CGRect(x: self.bounds.width - 20, y: self.bounds.height - 250, width: 34, height: selectedColorViewHeight), color: self.color)
+        }
+        
+        if self.bounds.width > 299 {
+            //narrow screen configuration(iPhone X)
+            selectedColorView = SelectedColorView(frame: CGRect(x: self.bounds.width - 50, y: self.bounds.height - 330, width: 34, height: selectedColorViewHeight), color: self.color)
+        }
+        
         selectedColorView.layer.cornerRadius = selectedColorView.frame.width/2
         // Add selectedColorView as a subview of this view
         self.addSubview(selectedColorView)
         
         // Init new ColorWheel subview
-        colorWheel = ColorWheel(frame: CGRect(x: 31, y: selectedColorView.frame.maxY-20, width: colorWheelSize, height: colorWheelSize), color: self.color)
+        colorWheel = ColorWheel(frame: CGRect(x: 30, y: 70, width: colorWheelSize, height: colorWheelSize), color: self.color)
         colorWheel.delegate = self
+        colorWheel.dropShadow()
         // Add colorWheel as a subview of this view
         self.addSubview(colorWheel)
         

@@ -46,18 +46,21 @@ class BrickSettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        colorPickerView.isHidden = true
         createRandomColors()
         fillingBrickImagesArray()
         assignedFootswitch = currentBrick?.assignedFootswitch
         brickName.text = currentBrick?.deviceName
+        
         if assignedFootswitch != nil {
             assignedFootswitchName.setTitle(assignedFootswitch?.name, for: .normal)
         }
+        
         footswitchPickerCollectionView.allowsSelection = true
         
         selectedImage = currentBrick?.imageId
         selectedColor = currentBrick?.color ?? UIColor.white
+        
         viewShadow = UIView(frame: UIScreen.main.bounds)
         viewShadow?.backgroundColor = UIColor.black
         viewShadow?.alpha = 0.0
@@ -65,17 +68,44 @@ class BrickSettingsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        slider = MTCircularSlider(frame: CGRect(x: colorPickerView.center.x - colorPickerView.frame.width/2, y: 0, width: colorPickerView.frame.height-20, height: colorPickerView.frame.height-20))
-        colorPicker = SwiftHSVColorPicker(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        updateColorPicker()
         
+        print ("COLOR_PICKER_HEIGHT = \(colorPickerView.frame.height)")
+        print ("COLOR_PICKER_WIDTH = \(colorPickerView.frame.width)")
+        print ("COLOR_PICKER_CENTER_X = \(colorPickerView.center.x)")
+        print ("SELF_VIEW_FRAME_WIDTH = \(self.view.frame.width)")
+//        slider = MTCircularSlider(frame: CGRect(x: self.view.frame.width - 385,
+//                                                y: colorPickerView.frame.width - 345,
+//                                                width: colorPickerView.frame.height - 10,
+//                                                height: colorPickerView.frame.height - 10))
+        if colorPickerView.frame.height >= 299 {
+            slider = MTCircularSlider(frame: CGRect(x: self.view.frame.width - 385,
+                                                    y: colorPickerView.frame.width - 345,
+                                                    width: colorPickerView.frame.height - 10,
+                                                    height: colorPickerView.frame.height - 10))
+            colorPicker = SwiftHSVColorPicker(frame: CGRect(x: self.view.frame.width - 387,
+                                                        y: colorPickerView.frame.width - 390,
+                                                        width: colorPickerView.frame.height,
+                                                        height: colorPickerView.frame.height))
+            } else {
+            slider = MTCircularSlider(frame: CGRect(x: self.view.frame.width - 310,
+                                                    y: colorPickerView.frame.width - 345,
+                                                    width: colorPickerView.frame.height - 10,
+                                                    height: colorPickerView.frame.height - 10))
+            colorPicker = SwiftHSVColorPicker(frame: CGRect(x: self.view.frame.width - 325,
+                                                            y: colorPickerView.frame.width - 400,
+                                                            width: colorPickerView.frame.height + 20,
+                                                            height: colorPickerView.frame.height + 20))
+        }
+        
+        updateColorPicker()
         colorPicker.delegate = self
         colorPickerView.addSubview(colorPicker)
         
         сircleSliderConfigure()
         colorPickerView.addSubview(slider)
-        //slider.center = colorPickerView.center
+        
         brightnessUpdate()
+        colorPickerView.isHidden = false
     }
     
     override func viewDidDisappear(_ animated: Bool) {
