@@ -55,7 +55,6 @@ open class SwiftHSVColorPicker: UIView, ColorWheelDelegate, BrightnessViewDelega
         
         // let color wheel get the maximum size that is not overflow from the frame for both width and height
         let colorWheelSize = min(self.bounds.width, self.bounds.height - selectedColorViewHeight - brightnessViewHeight)
-        print ("COLOR PICKER SELF BOUNDS WIDTH & HEIGHT = \(self.bounds.width, self.bounds.height)")
         // let the all the subviews stay in the middle of universe horizontally
         let centeredX = (self.bounds.width - colorWheelSize) / 2.0
         

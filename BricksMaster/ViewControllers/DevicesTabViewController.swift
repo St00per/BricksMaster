@@ -89,6 +89,9 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             let currentBrick = UserDevicesManager.default.userBricks[indexPath.row]
             cell.controller = self
             cell.configure(brick: currentBrick)
+//            if currentBrick.imageId == nil {
+//                cell.deviceImage.addDashedBorder()
+//            }
             cell.dropShadow()
             return cell
         }

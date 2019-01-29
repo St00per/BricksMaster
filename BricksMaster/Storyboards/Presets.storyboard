@@ -129,11 +129,11 @@
                                         </connections>
                                     </collectionView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZy-j8-gDg">
-                                        <rect key="frame" x="304" y="546" width="55" height="55"/>
+                                        <rect key="frame" x="300" y="546" width="55" height="55"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFw-oR-6Xz">
                                                 <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
-                                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="55" id="1Yl-gJ-n8u"/>
                                                     <constraint firstAttribute="width" constant="55" id="em0-FW-6O2"/>
@@ -149,7 +149,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="tFw-oR-6Xz" firstAttribute="centerX" secondItem="EZy-j8-gDg" secondAttribute="centerX" id="37q-7Y-oC7"/>
                                             <constraint firstAttribute="height" constant="55" id="QDy-n5-Nu2"/>
@@ -194,7 +194,7 @@
                                     <constraint firstItem="eRr-Cv-FzZ" firstAttribute="centerY" secondItem="X61-Uf-GZs" secondAttribute="centerY" id="0RU-Qa-MSt"/>
                                     <constraint firstItem="X61-Uf-GZs" firstAttribute="leading" secondItem="590-o2-0Ac" secondAttribute="leading" id="G39-Zf-z3t"/>
                                     <constraint firstItem="Eet-X1-reo" firstAttribute="centerY" secondItem="590-o2-0Ac" secondAttribute="centerY" id="GK9-YS-4ZZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="EZy-j8-gDg" secondAttribute="trailing" constant="16" id="LBR-S7-bre"/>
+                                    <constraint firstAttribute="trailing" secondItem="EZy-j8-gDg" secondAttribute="trailing" constant="20" id="LBR-S7-bre"/>
                                     <constraint firstItem="eRr-Cv-FzZ" firstAttribute="leading" secondItem="X61-Uf-GZs" secondAttribute="trailing" id="Qrs-S0-ElU"/>
                                     <constraint firstItem="Eet-X1-reo" firstAttribute="centerX" secondItem="590-o2-0Ac" secondAttribute="centerX" id="YX1-tg-IYs"/>
                                     <constraint firstAttribute="trailing" secondItem="eRr-Cv-FzZ" secondAttribute="trailing" constant="-5" id="rIu-71-fZS"/>

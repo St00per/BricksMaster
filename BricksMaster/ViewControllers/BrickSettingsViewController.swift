@@ -68,15 +68,6 @@ class BrickSettingsViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        print ("COLOR_PICKER_HEIGHT = \(colorPickerView.frame.height)")
-        print ("COLOR_PICKER_WIDTH = \(colorPickerView.frame.width)")
-        print ("COLOR_PICKER_CENTER_X = \(colorPickerView.center.x)")
-        print ("SELF_VIEW_FRAME_WIDTH = \(self.view.frame.width)")
-//        slider = MTCircularSlider(frame: CGRect(x: self.view.frame.width - 385,
-//                                                y: colorPickerView.frame.width - 345,
-//                                                width: colorPickerView.frame.height - 10,
-//                                                height: colorPickerView.frame.height - 10))
         if colorPickerView.frame.height >= 299 {
             slider = MTCircularSlider(frame: CGRect(x: self.view.frame.width - 385,
                                                     y: colorPickerView.frame.width - 345,
@@ -289,11 +280,12 @@ extension BrickSettingsViewController: UICollectionViewDelegate, UICollectionVie
             if brickImages[indexPath.item] == selectedImage {
                 cell.isSelected = true
                 cell.isHighlighted = true
+                cell.configure(image: brickImage, color: selectedColor)
             } else {
                 cell.isSelected = false
+                cell.configure(image: brickImage, color: brickColors[indexPath.row])
             }
             
-            cell.configure(image: brickImage, color: brickColors[indexPath.row])
             cell.width.constant = indexPath.item == 2 || indexPath.item == 3 ? 49 : 40
             cell.height.constant = 60
             
