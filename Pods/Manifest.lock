@@ -1,22 +1,26 @@
 PODS:
-  - Realm (3.13.0):
-    - Realm/Headers (= 3.13.0)
-  - Realm/Headers (3.13.0)
-  - RealmSwift (3.13.0):
-    - Realm (= 3.13.0)
+  - HMSegmentedControl (1.5.5)
+  - Realm (3.13.1):
+    - Realm/Headers (= 3.13.1)
+  - Realm/Headers (3.13.1)
+  - RealmSwift (3.13.1):
+    - Realm (= 3.13.1)
 
 DEPENDENCIES:
+  - HMSegmentedControl
   - RealmSwift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - HMSegmentedControl
     - Realm
     - RealmSwift
 
 SPEC CHECKSUMS:
-  Realm: 5edd2ee65406aef591a4f9895de5a3440e51b3d8
-  RealmSwift: be5ebc7930e37cd3376b41cec7f21984528aaa16
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  Realm: 50071da38fe079e0735e47c9f2eae738c68c5996
+  RealmSwift: 8a1e6a02b7a08cd17a31e3115143fb69fe5f3fb9
 
-PODFILE CHECKSUM: 2a62c7990ceb35f0198aaf2eb06e503eb3dd3ac7
+PODFILE CHECKSUM: f542ddb84184267b06eee5cce700e1772df1cf70
 
 COCOAPODS: 1.5.3

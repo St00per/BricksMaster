@@ -442,7 +442,7 @@
                                             </label>
                                         </subviews>
                                     </view>
-                                    <color key="backgroundColor" white="0.84999999999999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <connections>
                                         <outlet property="brickName" destination="D1m-h4-raP" id="Y5B-st-eAr"/>
                                     </connections>
