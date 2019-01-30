@@ -61,12 +61,28 @@ class PresetSettingViewController: UIViewController {
     }
     
     func showBrickPicker() {
+        if let viewShadow = viewShadow {
+            self.view.addSubview(viewShadow)
+        }
+        presetSettingsView.isUserInteractionEnabled = false
         self.view.addSubview(bricksPicker)
-        bricksPicker.center = self.view.center
+        bricksPicker.frame = CGRect(x: 16, y: self.view.bounds.size.height, width: self.view.bounds.size.width - 32, height: 320)
+        UIView.animate(withDuration: 0.3, animations: {
+            self.viewShadow?.alpha = 0.45
+            self.bricksPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - 320, width: self.view.bounds.size.width, height: 320)
+        }) { (isFinished) in
+        }
     }
     
     @IBAction func closeBrickPicker(_ sender: UIButton) {
-        bricksPicker.removeFromSuperview()
+        UIView.animate(withDuration: 0.3, animations: {
+            self.bricksPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 320)
+            self.viewShadow?.alpha = 0.0
+        }) { (isFinished) in
+            self.presetSettingsView.isUserInteractionEnabled = true
+            self.bricksPicker.removeFromSuperview()
+            self.viewShadow?.removeFromSuperview()
+        }
     }
     
     @IBAction func savePreset(_ sender: UIButton) {
@@ -124,10 +140,12 @@ class PresetSettingViewController: UIViewController {
         if self.currentPreset?.footswitch == nil {
             presetNameHeader.isHidden = true
             presetNameTextFieldView.isHidden = true
+            presetNameTextField.isHidden = true
             bricksHeaderLabel.isHidden = true
             savePresetButton.isHidden = true
             presetBricksCollectionView.isHidden = true
         } else {
+            presetNameTextField.isHidden = false
             presetNameHeader.isHidden = false
             presetNameTextFieldView.isHidden = false
             bricksHeaderLabel.isHidden = false
@@ -140,34 +158,45 @@ class PresetSettingViewController: UIViewController {
 extension PresetSettingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
         guard let preset = self.currentPreset else {
             return 1
         }
+        
         let presetBricksCount = preset.presetTestBricks.count
+        
         if collectionView == presetBricksCollectionView {
             guard presetBricksCount != 0 else {
                 return 1
             }
             return presetBricksCount + 1
         }
+  
+        
         if collectionView == footswitchPickerCollectionView {
             let footswitches = UserDevicesManager.default.userFootswitches//.filter{ !$0.new }
             return footswitches.count
         }
+        
+        
+        
         if collectionView == bricksPickerCollectionView {
             return currentPreset?.footswitch?.bricks.count ?? 0
         }
         return 0
     }
     
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         guard let preset = self.currentPreset else {
             return UICollectionViewCell()
         }
         let presetBricksCount = preset.presetTestBricks.count
+        
         if collectionView == presetBricksCollectionView {
             guard presetBricksCount > 0 else {
-                
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddBrickPresetCell", for: indexPath) as? AddBrickPresetCell else {
                     return UICollectionViewCell()
                 }
@@ -187,6 +216,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
 //                if let brick = UserDevicesManager.default.brick(id: brickState.0) {
                 cell.configure(brick: brick, index: indexPath.row)
 //                }
+                cell.dropShadow()
                 return cell
             } else {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddBrickPresetCell", for: indexPath) as? AddBrickPresetCell else {
@@ -197,6 +227,8 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             }
         }
         
+        
+        
         if collectionView == footswitchPickerCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchPickerCollectionViewCell", for: indexPath) as? FootswitchPickerCollectionViewCell else {
                 return UICollectionViewCell()
@@ -205,6 +237,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             cell.configure(footswitch: footswitches[indexPath.row])
             return cell
         }
+        
         
         if collectionView == bricksPickerCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BricksPickerCollectionViewCell", for: indexPath) as? BricksPickerCollectionViewCell, let bricks =  preset.footswitch?.bricks else {
@@ -215,6 +248,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         }
         return UICollectionViewCell()
     }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == presetBricksCollectionView {
@@ -257,7 +291,9 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             if !(currentPreset?.presetTestBricks.contains(appendedBrick))! {
                 currentPreset?.presetTestBricks.append(appendedBrick)
             }
-            bricksPicker.removeFromSuperview()
+            self.presetSettingsView.isUserInteractionEnabled = true
+            self.bricksPicker.removeFromSuperview()
+            self.viewShadow?.removeFromSuperview()
             presetBricksCollectionView.reloadData()
         }
     }

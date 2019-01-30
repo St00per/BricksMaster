@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="emy-U8-KMx">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -10,6 +10,12 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Bold.otf">
+            <string>SFProDisplay-Bold</string>
+        </array>
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
         <array key="SF-Pro-Text-Medium.otf">
             <string>SFProText-Medium</string>
         </array>
@@ -20,23 +26,23 @@
             <objects>
                 <viewController id="emy-U8-KMx" userLabel="Presets" customClass="PresetsTabViewController" customModule="BricksMaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zge-7D-5Xa">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4F-XM-4Q3">
-                                <rect key="frame" x="0.0" y="20" width="375" height="598"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="685"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cCO-bt-mcM">
-                                        <rect key="frame" x="0.0" y="70" width="375" height="528"/>
+                                        <rect key="frame" x="0.0" y="70" width="375" height="615"/>
                                         <subviews>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f04-cR-J7P">
-                                                <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                                                 <connections>
                                                     <segue destination="bFz-lq-XEE" kind="embed" id="QRH-XN-bKE"/>
                                                 </connections>
                                             </containerView>
                                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0c-rt-KQa">
-                                                <rect key="frame" x="375" y="0.0" width="375" height="528"/>
+                                                <rect key="frame" x="375" y="0.0" width="375" height="615"/>
                                                 <connections>
                                                     <segue destination="7V6-GI-3N6" kind="embed" id="d89-o4-NuC"/>
                                                 </connections>
@@ -100,10 +106,10 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgD-bL-rxk">
-                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            <rect key="frame" x="0.0" y="44" width="240" height="84"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3h-6T-Qzb">
-                                    <rect key="frame" x="16" y="60.5" width="208" height="50"/>
+                                    <rect key="frame" x="16" y="60.666666666666671" width="208" height="50"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-c6-Vpe">
                                             <rect key="frame" x="8" y="8" width="192" height="34"/>
@@ -122,13 +128,13 @@
                                     </constraints>
                                 </view>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add bank name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-uf-RZB">
-                                    <rect key="frame" x="60" y="24" width="120" height="20.5"/>
+                                    <rect key="frame" x="60" y="24" width="120" height="20.666666666666671"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgw-wf-ah9">
-                                    <rect key="frame" x="43.5" y="126.5" width="153" height="44"/>
+                                    <rect key="frame" x="43.666666666666657" y="126.66666666666666" width="153" height="44"/>
                                     <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="153" id="VPg-aA-w2A"/>
@@ -177,11 +183,11 @@
             <objects>
                 <viewController id="bFz-lq-XEE" customClass="PresetsListViewController" customModule="BricksMaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="utM-Dh-VyB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Eet-X1-reo">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="c1G-ms-zMP">
                                     <size key="itemSize" width="350" height="70"/>
@@ -191,7 +197,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PresetsListCell" id="HGu-mD-yXl" customClass="PresetsListCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
-                                        <rect key="frame" x="12.5" y="50" width="350" height="70"/>
+                                        <rect key="frame" x="12.666666666666666" y="50" width="350" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
@@ -205,7 +211,7 @@
                                                             <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U9e-iD-jyC">
-                                                            <rect key="frame" x="16" y="16" width="31.5" height="20"/>
+                                                            <rect key="frame" x="16" y="16" width="31.666666666666671" height="20"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="20" id="rN3-si-zvs"/>
                                                             </constraints>
@@ -305,7 +311,7 @@
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="8"/>
+                                                            <integer key="value" value="16"/>
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -349,16 +355,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XTs-uM-9q2">
-                                            <rect key="frame" x="8" y="0.0" width="359" height="50"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                            <rect key="frame" x="16" y="0.0" width="390" height="50"/>
+                                            <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="XTs-uM-9q2" secondAttribute="bottom" id="7iB-7c-td9"/>
-                                        <constraint firstItem="XTs-uM-9q2" firstAttribute="leading" secondItem="jso-Z8-B6N" secondAttribute="leading" constant="8" id="Ubm-Tn-0lk"/>
-                                        <constraint firstItem="XTs-uM-9q2" firstAttribute="centerX" secondItem="jso-Z8-B6N" secondAttribute="centerX" id="iLm-R2-48i"/>
+                                        <constraint firstItem="XTs-uM-9q2" firstAttribute="leading" secondItem="jso-Z8-B6N" secondAttribute="leading" constant="16" id="Ubm-Tn-0lk"/>
                                         <constraint firstItem="XTs-uM-9q2" firstAttribute="top" secondItem="jso-Z8-B6N" secondAttribute="top" id="qaA-3Q-Iqg"/>
                                         <constraint firstAttribute="trailing" secondItem="XTs-uM-9q2" secondAttribute="trailing" constant="8" id="qvp-76-Thj"/>
                                     </constraints>
@@ -372,7 +377,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZy-j8-gDg">
-                                <rect key="frame" x="289" y="433" width="55" height="55"/>
+                                <rect key="frame" x="289" y="486" width="55" height="55"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tFw-oR-6Xz">
                                         <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
@@ -405,6 +410,36 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rk-cn-QGJ">
+                                <rect key="frame" x="67" y="178" width="240" height="157"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_view_module_48px" translatesAutoresizingMaskIntoConstraints="NO" id="1dX-38-zy8">
+                                        <rect key="frame" x="85" y="48.666666666666657" width="70" height="60"/>
+                                        <color key="tintColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="70" id="Phg-23-JNa"/>
+                                            <constraint firstAttribute="height" constant="60" id="qtg-4I-Ja6"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no presets right now" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hNj-WX-GuH">
+                                        <rect key="frame" x="5" y="113.66666666666669" width="230" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ZZR-E5-08X"/>
+                                            <constraint firstAttribute="width" constant="230" id="iaT-Er-geF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
+                                        <color key="textColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="1dX-38-zy8" firstAttribute="centerY" secondItem="8rk-cn-QGJ" secondAttribute="centerY" id="7g3-wP-937"/>
+                                    <constraint firstItem="hNj-WX-GuH" firstAttribute="centerX" secondItem="8rk-cn-QGJ" secondAttribute="centerX" id="Bt0-ZC-zp2"/>
+                                    <constraint firstItem="1dX-38-zy8" firstAttribute="centerX" secondItem="8rk-cn-QGJ" secondAttribute="centerX" id="VtL-by-Zrt"/>
+                                    <constraint firstItem="hNj-WX-GuH" firstAttribute="top" secondItem="1dX-38-zy8" secondAttribute="bottom" constant="5" id="pYV-vu-GXM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -412,12 +447,17 @@
                             <constraint firstAttribute="bottom" secondItem="Eet-X1-reo" secondAttribute="bottom" id="3qL-rV-2tg"/>
                             <constraint firstAttribute="trailing" secondItem="Eet-X1-reo" secondAttribute="trailing" id="5jD-is-198"/>
                             <constraint firstAttribute="bottomMargin" secondItem="EZy-j8-gDg" secondAttribute="bottom" constant="40" id="Ati-Tc-Rbd"/>
+                            <constraint firstItem="EZy-j8-gDg" firstAttribute="top" secondItem="8rk-cn-QGJ" secondAttribute="bottom" constant="151" id="JRO-UW-J4r"/>
+                            <constraint firstItem="8rk-cn-QGJ" firstAttribute="top" secondItem="utM-Dh-VyB" secondAttribute="topMargin" constant="134" id="M8e-7z-7s3"/>
+                            <constraint firstItem="8rk-cn-QGJ" firstAttribute="leading" secondItem="utM-Dh-VyB" secondAttribute="leadingMargin" constant="51" id="Z2V-yR-Bkr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EZy-j8-gDg" secondAttribute="trailing" constant="15" id="gLz-KX-vJe"/>
                             <constraint firstItem="Eet-X1-reo" firstAttribute="leading" secondItem="utM-Dh-VyB" secondAttribute="leading" id="hHd-8O-gwc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8rk-cn-QGJ" secondAttribute="trailing" constant="52" id="tsF-Gm-2ZD"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Eet-X1-reo" id="xDK-Ae-otD"/>
+                        <outlet property="noPresetsView" destination="8rk-cn-QGJ" id="lez-2B-ezk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5X-vu-GfL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -429,7 +469,7 @@
             <objects>
                 <viewController id="7V6-GI-3N6" customClass="BanksListViewController" customModule="BricksMaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="x34-Oz-7CH">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="528"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Banks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mPg-gs-CRE">

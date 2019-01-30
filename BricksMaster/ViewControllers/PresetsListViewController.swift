@@ -11,6 +11,7 @@ import UIKit
 class PresetsListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var noPresetsView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,18 @@ extension PresetsListViewController: UICollectionViewDelegate, UICollectionViewD
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
-        return footswitches.count
+        var count = 0
+        for footswitch in footswitches {
+            if footswitch.presets.count != 0 {
+                count += 1
+            }
+        }
+        if count != 0 {
+            noPresetsView.isHidden = true
+        } else {
+            noPresetsView.isHidden = false
+        }
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
