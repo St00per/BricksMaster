@@ -66,17 +66,17 @@ class PresetSettingViewController: UIViewController {
         }
         presetSettingsView.isUserInteractionEnabled = false
         self.view.addSubview(bricksPicker)
-        bricksPicker.frame = CGRect(x: 16, y: self.view.bounds.size.height, width: self.view.bounds.size.width - 32, height: 320)
+        bricksPicker.frame = CGRect(x: 16, y: self.view.bounds.size.height, width: self.view.bounds.size.width - 32, height: 500)
         UIView.animate(withDuration: 0.3, animations: {
             self.viewShadow?.alpha = 0.45
-            self.bricksPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - 320, width: self.view.bounds.size.width, height: 320)
+            self.bricksPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - 320, width: self.view.bounds.size.width, height: 500)
         }) { (isFinished) in
         }
     }
     
     @IBAction func closeBrickPicker(_ sender: UIButton) {
         UIView.animate(withDuration: 0.3, animations: {
-            self.bricksPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 320)
+            self.bricksPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 500)
             self.viewShadow?.alpha = 0.0
         }) { (isFinished) in
             self.presetSettingsView.isUserInteractionEnabled = true
@@ -244,6 +244,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
                 return UICollectionViewCell()
             }
             cell.configure(brick: bricks[indexPath.row])
+            cell.dropShadow()
             return cell
         }
         return UICollectionViewCell()
