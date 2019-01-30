@@ -16,7 +16,7 @@
 		0E63304021F03E6700EA3652 /* PresetPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */; };
 		0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */; };
 		0E63304421F07EEF00EA3652 /* PresetsTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */; };
-		0E63304621F07FA600EA3652 /* PresetsTabCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */; };
+		0E63304621F07FA600EA3652 /* PresetsListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304521F07FA600EA3652 /* PresetsListCollectionViewCell.swift */; };
 		0E63304821F084C800EA3652 /* PresetSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304721F084C800EA3652 /* PresetSettingViewController.swift */; };
 		0E63304A21F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */; };
 		0E63304C21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */; };
@@ -83,7 +83,7 @@
 		0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetPickerViewController.swift; sourceTree = "<group>"; };
 		0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetPickerCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E63304321F07EEF00EA3652 /* PresetsTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsTabViewController.swift; sourceTree = "<group>"; };
-		0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsTabCollectionViewCell.swift; sourceTree = "<group>"; };
+		0E63304521F07FA600EA3652 /* PresetsListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E63304721F084C800EA3652 /* PresetSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetSettingViewController.swift; sourceTree = "<group>"; };
 		0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetSettingBricksCollectionViewCell.swift; sourceTree = "<group>"; };
 		0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchPickerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -187,7 +187,7 @@
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
 				0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */,
 				0E63304121F045D800EA3652 /* PresetPickerCollectionViewCell.swift */,
-				0E63304521F07FA600EA3652 /* PresetsTabCollectionViewCell.swift */,
+				0E63304521F07FA600EA3652 /* PresetsListCollectionViewCell.swift */,
 				0E63304B21F09F0900EA3652 /* FootswitchPickerCollectionViewCell.swift */,
 				0E63304D21F09FEA00EA3652 /* BricksPickerCollectionViewCell.swift */,
 				0E63304921F093B700EA3652 /* PresetSettingBricksCollectionViewCell.swift */,
@@ -460,7 +460,7 @@
 				0EC28E0321EC71F400DEF32B /* Brick.swift in Sources */,
 				0EC28E0421EC71F400DEF32B /* Footswitch.swift in Sources */,
 				0E63303E21EF472A00EA3652 /* FootswitchEditViewController.swift in Sources */,
-				0E63304621F07FA600EA3652 /* PresetsTabCollectionViewCell.swift in Sources */,
+				0E63304621F07FA600EA3652 /* PresetsListCollectionViewCell.swift in Sources */,
 				0E7926E021F89AED0085776A /* ColorWheel.swift in Sources */,
 				70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */,
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,

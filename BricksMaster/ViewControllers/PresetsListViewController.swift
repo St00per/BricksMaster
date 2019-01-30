@@ -57,7 +57,7 @@ extension PresetsListViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsTabCell", for: indexPath) as? PresetsTabCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsListCell", for: indexPath) as? PresetsListCollectionViewCell else {
                 return UICollectionViewCell()
             }
         cell.configure(preset: footswitches[indexPath.section].presets[indexPath.row])
@@ -67,11 +67,11 @@ extension PresetsListViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
-            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "PresetSettings", bundle: nil)
             guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
                 return
             }
-            desVC.preset = footswitches[indexPath.section].presets[indexPath.row]
+            desVC.currentPreset = footswitches[indexPath.section].presets[indexPath.row]
             show(desVC, sender: nil)
     }
 }

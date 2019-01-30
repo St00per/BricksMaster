@@ -12,6 +12,7 @@ import RealmSwift
 class Preset: NSObject {
     var id: String?
     var name: String = "Unnamed"
+    var presetTestBricks: [Brick] = []
     var presetBricks: [(String, Bool)]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
     var footswitch: Footswitch?
     

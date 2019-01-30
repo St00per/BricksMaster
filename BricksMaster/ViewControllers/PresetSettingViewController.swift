@@ -14,7 +14,7 @@ class PresetSettingViewController: UIViewController {
     //    var currentPresetIndex: Int = 0
     //var presetName: String = "Unnamed"
     
-    var preset: Preset?
+    var currentPreset: Preset?
     var viewShadow: UIView?
     
     @IBOutlet weak var presetNameHeader: UILabel!
@@ -46,7 +46,7 @@ class PresetSettingViewController: UIViewController {
             self.footswitchPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height - 320, width: self.view.bounds.size.width, height: 320)
         }) { (isFinished) in
         }
-
+        
     }
     @IBAction func closeFootswitchPicker(_ sender: UIButton) {
         UIView.animate(withDuration: 0.3, animations: {
@@ -57,7 +57,7 @@ class PresetSettingViewController: UIViewController {
             self.footswitchPicker.removeFromSuperview()
             self.viewShadow?.removeFromSuperview()
         }
-       
+        
     }
     
     func showBrickPicker() {
@@ -70,7 +70,7 @@ class PresetSettingViewController: UIViewController {
     }
     
     @IBAction func savePreset(_ sender: UIButton) {
-        guard let footswitch = self.preset?.footswitch, let preset = self.preset else { return }
+        guard let footswitch = self.currentPreset?.footswitch, let preset = self.currentPreset else { return }
         if !footswitch.presets.contains(preset) {
             preset.footswitch?.presets.append(preset)
             preset.save()
@@ -97,14 +97,14 @@ class PresetSettingViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let preset = preset {
-            
+        if let preset = currentPreset {
+
         } else {
-            preset = Preset(id: UUID().uuidString, name: "")
+            currentPreset = Preset(id: UUID().uuidString, name: "")
         }
         self.presetBricksCollectionView.register(UINib(nibName: "AddBrickPresetCell", bundle: nil), forCellWithReuseIdentifier: "AddBrickPresetCell")
         outletsVisibilityCheck()
-        presetNameTextField.text = preset?.name
+        presetNameTextField.text = currentPreset?.name
         presetNameTextField.delegate = self
         presetNameTextField.returnKeyType = UIReturnKeyType.done
         
@@ -115,13 +115,13 @@ class PresetSettingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        guard let presetFootswitchName = preset?.footswitch?.name else { return }
+        guard let presetFootswitchName = currentPreset?.footswitch?.name else { return }
         footswitchButton.setTitle(presetFootswitchName, for: .normal)
         presetBricksCollectionView.reloadData()
     }
     
     func outletsVisibilityCheck() {
-        if self.preset?.footswitch == nil {
+        if self.currentPreset?.footswitch == nil {
             presetNameHeader.isHidden = true
             presetNameTextFieldView.isHidden = true
             bricksHeaderLabel.isHidden = true
@@ -140,26 +140,33 @@ class PresetSettingViewController: UIViewController {
 extension PresetSettingViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let preset = self.currentPreset else {
+            return 1
+        }
+        let presetBricksCount = preset.presetTestBricks.count
         if collectionView == presetBricksCollectionView {
-            guard let count = preset?.footswitch?.bricks.count else {
+            guard presetBricksCount != 0 else {
                 return 1
             }
-            return count + 1
+            return presetBricksCount + 1
         }
         if collectionView == footswitchPickerCollectionView {
             let footswitches = UserDevicesManager.default.userFootswitches//.filter{ !$0.new }
             return footswitches.count
         }
         if collectionView == bricksPickerCollectionView {
-            return preset?.footswitch?.bricks.count ?? 0
+            return currentPreset?.footswitch?.bricks.count ?? 0
         }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+        guard let preset = self.currentPreset else {
+            return UICollectionViewCell()
+        }
+        let presetBricksCount = preset.presetTestBricks.count
         if collectionView == presetBricksCollectionView {
-            guard let count = preset?.footswitch?.bricks.count else {
+            guard presetBricksCount > 0 else {
                 
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddBrickPresetCell", for: indexPath) as? AddBrickPresetCell else {
                     return UICollectionViewCell()
@@ -167,18 +174,19 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
                 cell.configure()
                 return cell
             }
-            if count > 0, indexPath.row < count {
+            
+            if indexPath.row < presetBricksCount {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetSettingsBrickCell", for: indexPath) as? PresetSettingBricksCollectionViewCell else {
                     return UICollectionViewCell()
                 }
                 cell.viewController = self
-                cell.preset = preset
-                guard let brickState = preset?.presetBricks[indexPath.row] else {
+                cell.preset = self.currentPreset
+                guard let brick = currentPreset?.presetTestBricks[indexPath.row] else {
                     return UICollectionViewCell()
                 }
-                if let brick = UserDevicesManager.default.brick(id: brickState.0) {
-                    cell.configure(brick: brick, index: indexPath.row)
-                }
+//                if let brick = UserDevicesManager.default.brick(id: brickState.0) {
+                cell.configure(brick: brick, index: indexPath.row)
+//                }
                 return cell
             } else {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddBrickPresetCell", for: indexPath) as? AddBrickPresetCell else {
@@ -199,7 +207,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         if collectionView == bricksPickerCollectionView {
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BricksPickerCollectionViewCell", for: indexPath) as? BricksPickerCollectionViewCell, let bricks =  preset?.footswitch?.bricks else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BricksPickerCollectionViewCell", for: indexPath) as? BricksPickerCollectionViewCell, let bricks =  preset.footswitch?.bricks else {
                 return UICollectionViewCell()
             }
             cell.configure(brick: bricks[indexPath.row])
@@ -210,14 +218,14 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == presetBricksCollectionView {
-            guard let count = preset?.presetBricks.count else { return }
+            guard let count = currentPreset?.presetBricks.count else { return }
             if indexPath.row > count - 1  {
                 showBrickPicker()
             }
         }
         
         if collectionView == footswitchPickerCollectionView {
-            preset?.footswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
+            currentPreset?.footswitch = UserDevicesManager.default.userFootswitches[indexPath.row]
             UIView.animate(withDuration: 0.3, animations: {
                 self.footswitchPicker.frame = CGRect(x: 0, y: self.view.bounds.size.height, width: self.view.bounds.size.width, height: 320)
                 self.viewShadow?.alpha = 0.0
@@ -226,24 +234,28 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
                 self.footswitchPicker.removeFromSuperview()
                 self.viewShadow?.removeFromSuperview()
             }
-            guard let presetFootswitchName = preset?.footswitch?.name else { return }
+            guard let presetFootswitchName = currentPreset?.footswitch?.name else { return }
             footswitchButton.setTitle(presetFootswitchName, for: .normal)
             outletsVisibilityCheck()
         }
         
         if collectionView == bricksPickerCollectionView {
-            guard let appendedBrick = preset?.footswitch?.bricks[indexPath.row], let bricks =  preset?.presetBricks else { return }
-            var canBeAdded = true
-            for brickState in bricks {
-                if brickState.0 == appendedBrick.id {
-                    canBeAdded = false
-                    break
-                }
-            }
-            if canBeAdded {
-                if let uuid = appendedBrick.id {
-                    preset?.presetBricks.append((uuid, appendedBrick.status == .on))
-                }
+            guard let appendedBrick = currentPreset?.footswitch?.bricks[indexPath.row] else { return }
+            //            var canBeAdded = true
+            //            for brickState in bricks {
+            //                if brickState.0 == appendedBrick.id {
+            //                    canBeAdded = false
+            //                    break
+            //                }
+            //            }
+            //            if canBeAdded {
+            //
+            ////                if let uuid = appendedBrick.id {
+            ////                    preset?.presetBricks.append((uuid, appendedBrick.status == .on))
+            ////                }
+            //            }
+            if !(currentPreset?.presetTestBricks.contains(appendedBrick))! {
+                currentPreset?.presetTestBricks.append(appendedBrick)
             }
             bricksPicker.removeFromSuperview()
             presetBricksCollectionView.reloadData()
@@ -253,7 +265,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
 extension PresetSettingViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        preset?.name = textField.text ?? "Unnamed"
+        currentPreset?.name = textField.text ?? "Unnamed"
         presetNameTextField.resignFirstResponder()
         return true
     }

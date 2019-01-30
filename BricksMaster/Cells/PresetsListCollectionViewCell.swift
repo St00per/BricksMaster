@@ -1,5 +1,5 @@
 //
-//  PresetsTabCollectionViewCell.swift
+//  PresetsListCollectionViewCell.swift
 //  BricksMaster
 //
 //  Created by Kirill Shteffen on 17/01/2019.
@@ -8,14 +8,15 @@
 
 import UIKit
 
-class PresetsTabCollectionViewCell: UICollectionViewCell {
+class PresetsListCollectionViewCell: UICollectionViewCell {
     
     var preset: Preset?
-    var bank: Bank?
+    //var bank: Bank?
     
     @IBOutlet weak var presetName: UILabel!
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var newName: UILabel!
+    @IBOutlet weak var bricksIndicatorsView: UIView!
     
     var borderView: CAShapeLayer = CAShapeLayer()
     
@@ -26,7 +27,18 @@ class PresetsTabCollectionViewCell: UICollectionViewCell {
         presetName.isHidden = false
         borderView.isHidden = true
         presetName.text = preset.name
-    }
+        let indicators: [UIView] = bricksIndicatorsView.subviews
+        let presetBricks = preset.presetTestBricks
+        for indicator in indicators {
+            indicator.layer.cornerRadius = indicator.frame.width/2
+        }
+        for index in 0..<presetBricks.count {
+            if index < indicators.count, !presetBricks.isEmpty {
+                indicators[index].backgroundColor = presetBricks[index].color
+                }
+            }
+        }
+    
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -44,20 +56,20 @@ class PresetsTabCollectionViewCell: UICollectionViewCell {
         borderView.frame = self.bounds
     }
     
-    func configure(bank: Bank) {
-        self.bank = bank
-        presetName.text = bank.name
-        if(bank.empty) {
-            button.isHidden = true
-            newName.isHidden = false
-            presetName.isHidden = true
-            borderView.isHidden = false
-        } else {
-            button.isHidden = false
-            newName.isHidden = true
-            presetName.isHidden = false
-            borderView.isHidden = true
-        
-        }
-    }
+//    func configure(bank: Bank) {
+//        self.bank = bank
+//        presetName.text = bank.name
+//        if(bank.empty) {
+//            button.isHidden = true
+//            newName.isHidden = false
+//            presetName.isHidden = true
+//            borderView.isHidden = false
+//        } else {
+//            button.isHidden = false
+//            newName.isHidden = true
+//            presetName.isHidden = false
+//            borderView.isHidden = true
+//        
+//        }
+//    }
 }

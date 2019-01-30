@@ -159,8 +159,8 @@ class BrickSettingsViewController: UIViewController {
 //            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
 //        }
         
-        //        currentBrick.save()
-        //        assignedFootswitch.save()
+//        currentBrick.save()
+//        assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
     }
     
