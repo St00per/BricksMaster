@@ -61,6 +61,7 @@
 		0EC28E1221EC736200DEF32B /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */; };
 		0EC28E1421EC74B000DEF32B /* SF-Pro-Display-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */; };
 		0EFA071222006BE80033C879 /* PresetsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA071122006BE80033C879 /* PresetsListViewController.swift */; };
+		0EFA071422015C000033C879 /* BanksListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFA071322015C000033C879 /* BanksListViewController.swift */; };
 		70715EAF21F8529800C21C3E /* DataBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EAE21F8529800C21C3E /* DataBase.swift */; };
 		70715EB121F8788800C21C3E /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EB021F8788800C21C3E /* DataBaseManager.swift */; };
 		70715EB921F9A10500C21C3E /* FootswitchEditBankCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70715EB821F9A10500C21C3E /* FootswitchEditBankCell.swift */; };
@@ -133,6 +134,7 @@
 		0EC28E0D21EC736200DEF32B /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
 		0EC28E1321EC74B000DEF32B /* SF-Pro-Display-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Bold.otf"; sourceTree = "<group>"; };
 		0EFA071122006BE80033C879 /* PresetsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetsListViewController.swift; sourceTree = "<group>"; };
+		0EFA071322015C000033C879 /* BanksListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksListViewController.swift; sourceTree = "<group>"; };
 		70715EAE21F8529800C21C3E /* DataBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBase.swift; sourceTree = "<group>"; };
 		70715EB021F8788800C21C3E /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
 		70715EB821F9A10500C21C3E /* FootswitchEditBankCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchEditBankCell.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 		0E046AB521F31507006A817F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				0EFA071322015C000033C879 /* BanksListViewController.swift */,
 				0EFA071122006BE80033C879 /* PresetsListViewController.swift */,
 				0E1D1D8D21EDA37D000BEDD7 /* DevicesTabViewController.swift */,
 				0E7926BD21F85B060085776A /* BrickSettingsViewController.swift */,
@@ -478,6 +481,7 @@
 				0E7926E921F9D30B0085776A /* BricksCollectionController.swift in Sources */,
 				0EC28E0121EC71F400DEF32B /* Bank.swift in Sources */,
 				0E7926B621F72BC30085776A /* SectionHeaderView.swift in Sources */,
+				0EFA071422015C000033C879 /* BanksListViewController.swift in Sources */,
 				0E7926BE21F85B060085776A /* BrickSettingsViewController.swift in Sources */,
 				0E7926E221F89AED0085776A /* SelectedColorView.swift in Sources */,
 				0E63304221F045D800EA3652 /* PresetPickerCollectionViewCell.swift in Sources */,

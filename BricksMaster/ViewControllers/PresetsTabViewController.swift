@@ -37,6 +37,7 @@ class PresetsTabViewController: UIViewController {
     @IBOutlet weak var segmentedContainer: UIView!
     var segmentControl: HMSegmentedControl?
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet var bankNameView: UIView!
     @IBOutlet weak var bankNameTextField: UITextField!
@@ -55,7 +56,6 @@ class PresetsTabViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
         createSegmentView()
-        //collectionView.reloadData()
     }
     
     
@@ -76,7 +76,7 @@ class PresetsTabViewController: UIViewController {
         segmentView.selectionIndicatorLocation = .down
         segmentView.selectionIndicatorHeight = 4
         segmentView.selectionStyle = .fullWidthStripe
-        //segmentView.addTarget(self, action: #selector(segmentChanged(segment:)), for: UIControl.Event.valueChanged)
+        segmentView.addTarget(self, action: #selector(segmentChanged(segment:)), for: UIControl.Event.valueChanged)
         
         segmentedContainer.addSubview(segmentView)
         
@@ -85,10 +85,10 @@ class PresetsTabViewController: UIViewController {
     
     @objc func segmentChanged(segment: HMSegmentedControl) {
         if segment.selectedSegmentIndex == 0 {
-            
+            scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
         if segment.selectedSegmentIndex == 1 {
-            
+            scrollView.setContentOffset(CGPoint(x: self.view.frame.width, y: 0), animated: true)
         }
     }
     
