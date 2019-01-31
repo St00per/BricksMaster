@@ -13,11 +13,12 @@ class FootswitchEditViewController: UIViewController {
     var currentFootswitch: Footswitch?
     var currentBank: Bank?
     var currentBankButton: UIButton?
+    var shadowView = UIView(frame: UIScreen.main.bounds)
+    var banksController: BanksController?
+    var bricksCollectionController: BricksCollectionController?
     
     @IBOutlet weak var currentFootswitchName: UILabel!
-    
     @IBOutlet weak var bankButtonsView: UIView!
-    
     @IBOutlet weak var presetButtonsView: UIView!
     
     @IBOutlet weak var firstPresetButtonView: UIView!
@@ -47,11 +48,9 @@ class FootswitchEditViewController: UIViewController {
     @IBOutlet weak var bankNameEditUnderTextView: UIView!
     @IBOutlet weak var bankNameEditButton: UIView!
 
-    var shadowView = UIView(frame: UIScreen.main.bounds)
-    
-    var banksController: BanksController?
-    var bricksCollectionController: BricksCollectionController?
-    
+    @IBOutlet weak var footswitchEditView: UIView!
+    @IBOutlet var bankNameEditView: UIView!
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,14 +79,12 @@ class FootswitchEditViewController: UIViewController {
         secondPresetButtonView.layer.cornerRadius = 4
         thirdPresetButtonView.layer.cornerRadius = 4
         fourthPresetButtonView.layer.cornerRadius = 4
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UserDevicesManager.default.footswitchController = self
-        
-        guard let currentFootswitch = self.currentFootswitch else { return }
+    guard let currentFootswitch = self.currentFootswitch else { return }
         if currentFootswitch.banks.count != 0 {
             //
             configurePresetButtons()
@@ -100,8 +97,6 @@ class FootswitchEditViewController: UIViewController {
         super.viewDidDisappear(animated)
         UserDevicesManager.default.footswitchController = nil
     }
-    
-
     
     @IBAction func closeEditController(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
@@ -118,15 +113,9 @@ class FootswitchEditViewController: UIViewController {
             self.view.addSubview(bankNameEditView)
             bankNameEditView.center = self.view.center
         }
-        
         configurePresetButtons()
         currentFootswitch.save()
     }
-    @IBOutlet weak var footswitchEditView: UIView!
-    
-    @IBOutlet var bankNameEditView: UIView!
-    
-    
     
     func openBankNameEdit() {
         configurePresetButtons()
@@ -344,12 +333,14 @@ class FootswitchEditViewController: UIViewController {
     }
     
 }
+
 extension FootswitchEditViewController: PinIOModuleManagerDelegate {
     
     func onPinIODidReceivePinState() {
         configurePresetButtons()
     }
 }
+
 extension FootswitchEditViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -360,7 +351,6 @@ extension FootswitchEditViewController: UITextFieldDelegate {
         guard let button = currentBankButton else { return false}
         return true
     }
-    
 }
 
 extension FootswitchEditViewController: BanksControllerDelegate {
@@ -374,5 +364,4 @@ extension FootswitchEditViewController: BanksControllerDelegate {
         currentBank = bank
         configurePresetButtons()
     }
-    
 }

@@ -31,6 +31,7 @@ class PresetsListCollectionViewCell: UICollectionViewCell {
         let presetBricks = preset.presetTestBricks
         for indicator in indicators {
             indicator.layer.cornerRadius = indicator.frame.width/2
+            indicator.backgroundColor = UIColor.clear
         }
         for index in 0..<presetBricks.count {
             if index < indicators.count, !presetBricks.isEmpty {

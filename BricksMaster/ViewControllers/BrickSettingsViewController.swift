@@ -65,6 +65,7 @@ class BrickSettingsViewController: UIViewController {
         viewShadow?.backgroundColor = UIColor.black
         viewShadow?.alpha = 0.0
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
