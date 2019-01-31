@@ -126,9 +126,9 @@ class PresetSettingViewController: UIViewController {
         unappendedBricks = []
         for footBrick in footswitchBricksArray {
             if !self.appendedBricks.contains(footBrick) {
-                    unappendedBricks.append(footBrick)
-                }
+                unappendedBricks.append(footBrick)
             }
+        }
         bricksPickerCollectionView.reloadData()
         
         if let viewShadow = viewShadow {
@@ -239,7 +239,11 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             guard presetBricksCount != 0 else {
                 return 1
             }
-            return presetBricksCount + 1
+            if presetBricksCount == preset.footswitch?.bricks.count {
+                return presetBricksCount
+            } else {
+                return presetBricksCount + 1
+            }
         }
         
         if collectionView == footswitchPickerCollectionView {
@@ -316,7 +320,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == presetBricksCollectionView {
-            guard let count = currentPreset?.presetBricks.count else { return }
+            guard let count = currentPreset?.presetTestBricks.count else { return }
             if indexPath.row > count - 1  {
                 showBrickPicker()
             }

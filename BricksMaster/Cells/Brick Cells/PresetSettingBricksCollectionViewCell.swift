@@ -58,6 +58,7 @@ class PresetSettingBricksCollectionViewCell: UICollectionViewCell {
         brickName.text = brick.deviceName
         brickIndex = index
         brickColor.backgroundColor = brick.color
+        brickColor.dropShadow()
         brickImage.image = UIImage(named: brick.imageId ?? "")
         if preset?.presetTestBricks[brickIndex].status == .off {
             presetBrickOnOffButton.setTitle("OFF", for: .normal)

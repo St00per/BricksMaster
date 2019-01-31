@@ -21,6 +21,7 @@ class BricksPickerCollectionViewCell: UICollectionViewCell {
     func configure(brick: Brick, currentPreset: Preset, appendedBricks: [Brick]) {
         brickName.text = brick.deviceName
         brickColorView.backgroundColor = brick.color
+        brickColorView.dropShadow()
         brickImageView.image = UIImage(named: brick.imageId ?? "")
         
         if appendedBricks.contains(brick) {
