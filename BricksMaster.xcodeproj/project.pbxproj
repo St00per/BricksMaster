@@ -44,6 +44,7 @@
 		0E7926F721FAF6A40085776A /* BrickSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F621FAF6A40085776A /* BrickSettings.storyboard */; };
 		0E7926F921FAFDE80085776A /* AddBrickPresetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E7926F821FAFDE80085776A /* AddBrickPresetCell.xib */; };
 		0E866ED52202B5DD00C01885 /* AddBrickPresetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E866ED42202B5DD00C01885 /* AddBrickPresetCell.swift */; };
+		0E866ED72204386200C01885 /* BanksListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E866ED62204386200C01885 /* BanksListCollectionViewCell.swift */; };
 		0EC28DEA21EC6BAA00DEF32B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */; };
 		0EC28DEF21EC6BAA00DEF32B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DED21EC6BAA00DEF32B /* Main.storyboard */; };
 		0EC28DF121EC6BAD00DEF32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0EC28DF021EC6BAD00DEF32B /* Assets.xcassets */; };
@@ -115,6 +116,7 @@
 		0E7926F621FAF6A40085776A /* BrickSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BrickSettings.storyboard; sourceTree = "<group>"; };
 		0E7926F821FAFDE80085776A /* AddBrickPresetCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddBrickPresetCell.xib; sourceTree = "<group>"; };
 		0E866ED42202B5DD00C01885 /* AddBrickPresetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBrickPresetCell.swift; sourceTree = "<group>"; };
+		0E866ED62204386200C01885 /* BanksListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BanksListCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EC28DE621EC6BAA00DEF32B /* BricksMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BricksMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0EC28DEE21EC6BAA00DEF32B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		0E046AB621F3152E006A817F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				0E866ED62204386200C01885 /* BanksListCollectionViewCell.swift */,
 				0E866ED32202B3DF00C01885 /* Brick Cells */,
 				70E7D4AF21F2601200EC88DE /* BankCell.swift */,
 				0E1D1D9321EDB03E000BEDD7 /* FootswitchesCollectionViewCell.swift */,
@@ -473,6 +476,7 @@
 				70A04FBD21F4BB1B009C714D /* DebugViewController.swift in Sources */,
 				0EC28E0621EC71F400DEF32B /* Preset.swift in Sources */,
 				0E63304021F03E6700EA3652 /* PresetPickerViewController.swift in Sources */,
+				0E866ED72204386200C01885 /* BanksListCollectionViewCell.swift in Sources */,
 				0E866ED52202B5DD00C01885 /* AddBrickPresetCell.swift in Sources */,
 				70E7D4B421F30E1200EC88DE /* ConnectionObserver.swift in Sources */,
 				0EFA071222006BE80033C879 /* PresetsListViewController.swift in Sources */,

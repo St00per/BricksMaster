@@ -94,87 +94,11 @@
                     <tabBarItem key="tabBarItem" title="Presets" image="ic_view_module_48px" id="ZN1-QQ-02d"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="bankNameTextField" destination="zCa-c6-Vpe" id="cF7-iO-9F3"/>
-                        <outlet property="bankNameView" destination="ZDy-2l-lMP" id="UdR-re-PDh"/>
                         <outlet property="scrollView" destination="cCO-bt-mcM" id="ApS-d4-pjP"/>
                         <outlet property="segmentedContainer" destination="PCV-aa-gD8" id="umG-Jc-6Js"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DzZ-tT-U9g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <view contentMode="scaleToFill" id="ZDy-2l-lMP">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OgD-bL-rxk">
-                            <rect key="frame" x="0.0" y="44" width="240" height="84"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A3h-6T-Qzb">
-                                    <rect key="frame" x="16" y="60.666666666666671" width="208" height="50"/>
-                                    <subviews>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zCa-c6-Vpe">
-                                            <rect key="frame" x="8" y="8" width="192" height="34"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="zCa-c6-Vpe" firstAttribute="leading" secondItem="A3h-6T-Qzb" secondAttribute="leading" constant="8" id="3Bb-OB-aVx"/>
-                                        <constraint firstAttribute="height" constant="50" id="5m5-eg-cPN"/>
-                                        <constraint firstAttribute="trailing" secondItem="zCa-c6-Vpe" secondAttribute="trailing" constant="8" id="Nm4-2q-cu3"/>
-                                        <constraint firstAttribute="bottom" secondItem="zCa-c6-Vpe" secondAttribute="bottom" constant="8" id="Wcv-o5-lUh"/>
-                                        <constraint firstItem="zCa-c6-Vpe" firstAttribute="top" secondItem="A3h-6T-Qzb" secondAttribute="top" constant="8" id="ezU-jY-6OB"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add bank name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jmp-uf-RZB">
-                                    <rect key="frame" x="60" y="24" width="120" height="20.666666666666671"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgw-wf-ah9">
-                                    <rect key="frame" x="43.666666666666657" y="126.66666666666666" width="153" height="44"/>
-                                    <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="153" id="VPg-aA-w2A"/>
-                                        <constraint firstAttribute="height" constant="44" id="aAT-Pk-Ztd"/>
-                                    </constraints>
-                                    <state key="normal" title="SAVE">
-                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="createNewBank:" destination="emy-U8-KMx" eventType="touchUpInside" id="bby-nK-IXl"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="y16-VB-tXs" firstAttribute="trailing" secondItem="A3h-6T-Qzb" secondAttribute="trailing" constant="16" id="BRI-0B-b1d"/>
-                                <constraint firstItem="Zgw-wf-ah9" firstAttribute="top" secondItem="A3h-6T-Qzb" secondAttribute="bottom" constant="16" id="Q0u-9g-VzT"/>
-                                <constraint firstItem="A3h-6T-Qzb" firstAttribute="leading" secondItem="y16-VB-tXs" secondAttribute="leading" constant="16" id="Rjm-TR-jTe"/>
-                                <constraint firstItem="A3h-6T-Qzb" firstAttribute="top" secondItem="Jmp-uf-RZB" secondAttribute="bottom" constant="16" id="dpl-kz-6gt"/>
-                                <constraint firstItem="Zgw-wf-ah9" firstAttribute="centerX" secondItem="OgD-bL-rxk" secondAttribute="centerX" id="gCd-Xt-pgF"/>
-                                <constraint firstItem="Jmp-uf-RZB" firstAttribute="top" secondItem="y16-VB-tXs" secondAttribute="top" constant="24" id="nG4-mh-3Xx"/>
-                                <constraint firstItem="Jmp-uf-RZB" firstAttribute="centerX" secondItem="OgD-bL-rxk" secondAttribute="centerX" id="tRY-Uj-MAh"/>
-                            </constraints>
-                            <viewLayoutGuide key="safeArea" id="y16-VB-tXs"/>
-                        </view>
-                    </subviews>
-                    <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstItem="OgD-bL-rxk" firstAttribute="top" secondItem="so0-KX-gd7" secondAttribute="top" id="6vF-2h-TRr"/>
-                        <constraint firstAttribute="trailing" secondItem="OgD-bL-rxk" secondAttribute="trailing" id="9Be-FI-eUy"/>
-                        <constraint firstAttribute="bottom" secondItem="OgD-bL-rxk" secondAttribute="bottom" id="JTd-3k-phd"/>
-                        <constraint firstItem="OgD-bL-rxk" firstAttribute="leading" secondItem="so0-KX-gd7" secondAttribute="leading" id="aae-oV-Tn7"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="so0-KX-gd7"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                    </userDefinedRuntimeAttributes>
-                </view>
             </objects>
             <point key="canvasLocation" x="1080.8" y="754.43349753694588"/>
         </scene>
@@ -474,26 +398,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="686-9X-kyn">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="686-9X-kyn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IV0-kA-vTY">
-                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="itemSize" width="350" height="70"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="5MZ-CN-nWs">
-                                        <rect key="frame" x="0.0" y="50" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BanksListCollectionViewCell" id="5MZ-CN-nWs" customClass="BanksListCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
+                                        <rect key="frame" x="12.666666666666666" y="50" width="350" height="70"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
+                                        <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xwC-lG-luU">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SectionHeaderView" id="xwC-lG-luU" customClass="SectionHeaderView" customModule="BricksMaster" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -510,7 +435,14 @@
                                         <constraint firstAttribute="trailing" secondItem="nlI-FY-6Li" secondAttribute="trailing" constant="8" id="lkH-Ie-Q7X"/>
                                         <constraint firstItem="nlI-FY-6Li" firstAttribute="top" secondItem="xwC-lG-luU" secondAttribute="top" id="rec-DZ-Tum"/>
                                     </constraints>
+                                    <connections>
+                                        <outlet property="footswitchTitleLabel" destination="nlI-FY-6Li" id="8E4-aa-jxF"/>
+                                    </connections>
                                 </collectionReusableView>
+                                <connections>
+                                    <outlet property="dataSource" destination="7V6-GI-3N6" id="38L-fd-gYe"/>
+                                    <outlet property="delegate" destination="7V6-GI-3N6" id="BzT-iv-X6J"/>
+                                </connections>
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -522,7 +454,86 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xq6-5g-rfi"/>
                     </view>
+                    <connections>
+                        <outlet property="bankNameTextField" destination="VJL-cS-bGB" id="6rG-nc-Uj0"/>
+                        <outlet property="bankNameView" destination="vkq-cR-wsK" id="wSX-OQ-sBf"/>
+                        <outlet property="banksCollectionView" destination="686-9X-kyn" id="MLu-82-22d"/>
+                    </connections>
                 </viewController>
+                <view contentMode="scaleToFill" id="vkq-cR-wsK">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3y5-Fz-NP8">
+                            <rect key="frame" x="0.0" y="44" width="240" height="84"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iYu-wJ-TT4">
+                                    <rect key="frame" x="16" y="60.666666666666671" width="208" height="50"/>
+                                    <subviews>
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VJL-cS-bGB">
+                                            <rect key="frame" x="8" y="8" width="192" height="34"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                    </subviews>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="VJL-cS-bGB" firstAttribute="leading" secondItem="iYu-wJ-TT4" secondAttribute="leading" constant="8" id="5fI-bf-zJO"/>
+                                        <constraint firstItem="VJL-cS-bGB" firstAttribute="top" secondItem="iYu-wJ-TT4" secondAttribute="top" constant="8" id="aZx-CA-WwW"/>
+                                        <constraint firstAttribute="bottom" secondItem="VJL-cS-bGB" secondAttribute="bottom" constant="8" id="j7d-3g-opN"/>
+                                        <constraint firstAttribute="height" constant="50" id="nI5-O4-b5t"/>
+                                        <constraint firstAttribute="trailing" secondItem="VJL-cS-bGB" secondAttribute="trailing" constant="8" id="sdo-bN-cAO"/>
+                                    </constraints>
+                                </view>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add bank name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s3A-Ko-QFe">
+                                    <rect key="frame" x="60" y="24" width="120" height="20.666666666666671"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5IT-4O-Ytf">
+                                    <rect key="frame" x="43.666666666666657" y="126.66666666666666" width="153" height="44"/>
+                                    <color key="backgroundColor" red="0.54117647059999996" green="0.54117647059999996" blue="0.54117647059999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="153" id="HKR-yM-aNS"/>
+                                        <constraint firstAttribute="height" constant="44" id="MZQ-YY-ESV"/>
+                                    </constraints>
+                                    <state key="normal" title="SAVE">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="createNewBank:" destination="7V6-GI-3N6" eventType="touchUpInside" id="guG-Tx-xQ1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="5IT-4O-Ytf" firstAttribute="top" secondItem="iYu-wJ-TT4" secondAttribute="bottom" constant="16" id="08b-8M-DiR"/>
+                                <constraint firstItem="5IT-4O-Ytf" firstAttribute="centerX" secondItem="3y5-Fz-NP8" secondAttribute="centerX" id="1Rv-fs-iCh"/>
+                                <constraint firstItem="mWx-3A-ePg" firstAttribute="trailing" secondItem="iYu-wJ-TT4" secondAttribute="trailing" constant="16" id="4JU-V6-VVm"/>
+                                <constraint firstItem="iYu-wJ-TT4" firstAttribute="leading" secondItem="mWx-3A-ePg" secondAttribute="leading" constant="16" id="C3Y-k6-oRF"/>
+                                <constraint firstItem="s3A-Ko-QFe" firstAttribute="top" secondItem="mWx-3A-ePg" secondAttribute="top" constant="24" id="jKK-6W-jzu"/>
+                                <constraint firstItem="s3A-Ko-QFe" firstAttribute="centerX" secondItem="3y5-Fz-NP8" secondAttribute="centerX" id="klx-Qz-ogq"/>
+                                <constraint firstItem="iYu-wJ-TT4" firstAttribute="top" secondItem="s3A-Ko-QFe" secondAttribute="bottom" constant="16" id="ntj-ea-fKA"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="mWx-3A-ePg"/>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92941176469999998" green="0.92941176469999998" blue="0.92941176469999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="3y5-Fz-NP8" firstAttribute="top" secondItem="qIP-ID-NoL" secondAttribute="top" id="10a-jj-80T"/>
+                        <constraint firstAttribute="trailing" secondItem="3y5-Fz-NP8" secondAttribute="trailing" id="JeH-GC-bbq"/>
+                        <constraint firstAttribute="bottom" secondItem="3y5-Fz-NP8" secondAttribute="bottom" id="itQ-jD-oz0"/>
+                        <constraint firstItem="3y5-Fz-NP8" firstAttribute="leading" secondItem="qIP-ID-NoL" secondAttribute="leading" id="yHx-k3-74w"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="qIP-ID-NoL"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Wv-xe-VuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1680.8" y="1470.7646176911546"/>
