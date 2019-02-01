@@ -12,11 +12,14 @@ class PresetsListViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var noPresetsView: UIView!
+    @IBOutlet weak var newPresetButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.collectionView.register(UINib(nibName: "NewBankPresetCell", bundle: nil), forCellWithReuseIdentifier: "NewBankPresetCell")
-        // Do any additional setup after loading the view.
+        newPresetButton.dropShadow()
+        newPresetButton.layer.cornerRadius = 27
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

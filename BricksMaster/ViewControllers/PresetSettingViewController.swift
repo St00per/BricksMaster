@@ -37,6 +37,8 @@ class PresetSettingViewController: UIViewController {
         viewShadow = UIView(frame: UIScreen.main.bounds)
         viewShadow?.backgroundColor = UIColor.black
         viewShadow?.alpha = 0.0
+        
+        savePresetButton.dropShadow()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -236,9 +238,14 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         let presetBricksCount = preset.presetTestBricks.count
         
         if collectionView == presetBricksCollectionView {
-            guard presetBricksCount != 0 else {
-                return 1
+//            guard presetBricksCount != 0 else {
+//                return 1
+//            }
+            
+            if presetBricksCount == 0, preset.footswitch?.bricks.count == 0 {
+                return 0
             }
+            
             if presetBricksCount == preset.footswitch?.bricks.count {
                 return presetBricksCount
             } else {
@@ -341,6 +348,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             }
             guard let presetFootswitchName = currentPreset?.footswitch?.name else { return }
             footswitchButton.setTitle(presetFootswitchName, for: .normal)
+            presetBricksCollectionView.reloadData()
             outletsVisibilityCheck()
         }
         
