@@ -402,20 +402,25 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IV0-kA-vTY">
-                                    <size key="itemSize" width="350" height="70"/>
+                                    <size key="itemSize" width="350" height="91"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BanksListCollectionViewCell" id="5MZ-CN-nWs" customClass="BanksListCollectionViewCell" customModule="BricksMaster" customModuleProvider="target">
-                                        <rect key="frame" x="12.666666666666666" y="50" width="350" height="70"/>
+                                        <rect key="frame" x="12.666666666666666" y="50" width="350" height="91"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="350" height="91"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </view>
                                         <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SectionHeaderView" id="xwC-lG-luU" customClass="SectionHeaderView" customModule="BricksMaster" customModuleProvider="target">
@@ -536,7 +541,7 @@
                 </view>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Wv-xe-VuS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1680.8" y="1470.7646176911546"/>
+            <point key="canvasLocation" x="1680.8" y="1469.3349753694581"/>
         </scene>
     </scenes>
     <resources>

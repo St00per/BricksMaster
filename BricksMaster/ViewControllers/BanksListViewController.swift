@@ -16,7 +16,7 @@ class BanksListViewController: UIViewController {
     @IBOutlet weak var bankNameTextField: UITextField!
     
     var currentFootswitch: Footswitch?
-    
+    var selectedBanksIndex: [IndexPath] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         bankNameTextField.delegate = self
@@ -40,7 +40,7 @@ class BanksListViewController: UIViewController {
         show(desVC, sender: nil)
     }
 }
-extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
@@ -97,6 +97,13 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
         return UICollectionViewCell()
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if self.selectedBanksIndex.contains(indexPath)  {
+            return CGSize(width: collectionView.frame.width - 20, height: 300)
+        }
+        return CGSize(width: collectionView.frame.width - 20, height: 70)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
        
@@ -110,13 +117,40 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 self.view.addSubview(bankNameView)
                 bankNameView.center = self.view.center
             } else {
-                let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
-                guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
-                    return
+                if !self.selectedBanksIndex.contains(indexPath) {
+                    self.selectedBanksIndex.append(indexPath)
+                    UIView.transition(with: collectionView,
+                                      duration: 0.35,
+                                      options: [],
+                                      animations: { self.banksCollectionView.reloadItems(at: self.selectedBanksIndex) })
+                } else {
+                    self.selectedBanksIndex = self.selectedBanksIndex.filter{ $0 != indexPath }
+                    
                 }
-                desVC.currentFootswitch = footswitches[indexPath.section]
-                desVC.currentBank = footswitches[indexPath.section].banks.first
-                show(desVC, sender: nil)
+                UIView.transition(with: collectionView,
+                                  duration: 0.35,
+                                  options: [],
+                                  animations: { self.banksCollectionView.reloadItems(at: self.selectedBanksIndex) })
+                                    //reloadItems(at: self.selectedBanksIndex) })
+//                let cell = collectionView.cellForItem(at: indexPath)
+//
+//
+//
+//                UIView.transition(with: self.view, duration: 0.3, options: UIView.AnimationOptions.curveEaseInOut, animations: {
+//
+//                    cell?.frame.size.height = 300
+//
+//
+//                }, completion: { (finished: Bool) -> () in
+//                })
+                
+//                let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
+//                guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
+//                    return
+//                }
+//                desVC.currentFootswitch = footswitches[indexPath.section]
+//                desVC.currentBank = footswitches[indexPath.section].banks.first
+//                show(desVC, sender: nil)
             }
         }
     }
