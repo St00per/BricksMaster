@@ -15,7 +15,7 @@ class PresetsListCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var presetName: UILabel!
     @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var newName: UILabel!
+    //@IBOutlet weak var newName: UILabel!
     @IBOutlet weak var bricksIndicatorsView: UIView!
     
     var borderView: CAShapeLayer = CAShapeLayer()
@@ -23,7 +23,7 @@ class PresetsListCollectionViewCell: UICollectionViewCell {
     func configure(preset: Preset) {
         self.preset = preset
         button.isHidden = false
-        newName.isHidden = true
+        
         presetName.isHidden = false
         borderView.isHidden = true
         presetName.text = preset.name

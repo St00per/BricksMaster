@@ -12,11 +12,19 @@ class BanksListViewController: UIViewController {
 
     
     @IBOutlet weak var banksCollectionView: UICollectionView!
+    @IBOutlet weak var bankPresetsCollectionView: UICollectionView!
+    
+    
     @IBOutlet var bankNameView: UIView!
     @IBOutlet weak var bankNameTextField: UITextField!
+    @IBOutlet weak var bankExpandIndicator: UIImageView!
+    
     
     var currentFootswitch: Footswitch?
     var selectedBanksIndex: [IndexPath] = []
+//    var layout = Layout()
+//    let bounceEnabled = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bankNameTextField.delegate = self
@@ -82,9 +90,13 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                     return UICollectionViewCell()
                 }
                 let bank = footswitches[indexPath.section].banks[indexPath.row]
-                //cell.configure(bank: bank)
                 
-                
+                if self.selectedBanksIndex.contains(indexPath) {
+                    cell.isExpand = true
+                    } else {
+                        cell.isExpand = false
+                    }
+                cell.configure(bank: bank)
                 return cell
             } else {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewBankPresetCell", for: indexPath) as? NewBankCollectionViewCell else {
@@ -94,21 +106,23 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 return cell
             }
         }
+  
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if self.selectedBanksIndex.contains(indexPath)  {
-            return CGSize(width: collectionView.frame.width - 20, height: 300)
+            
+            return CGSize(width: collectionView.frame.width - 50, height: 300)
         }
-        return CGSize(width: collectionView.frame.width - 20, height: 70)
+        return CGSize(width: collectionView.frame.width - 50, height: 80)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
-       
+
         self.currentFootswitch = footswitches[indexPath.section]
-        
+
         if collectionView == banksCollectionView {
             footswitches[indexPath.section]
             if indexPath.row > footswitches[indexPath.section].banks.count - 1 {
@@ -117,42 +131,18 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 self.view.addSubview(bankNameView)
                 bankNameView.center = self.view.center
             } else {
+                
                 if !self.selectedBanksIndex.contains(indexPath) {
                     self.selectedBanksIndex.append(indexPath)
-                    UIView.transition(with: collectionView,
-                                      duration: 0.35,
-                                      options: [],
-                                      animations: { self.banksCollectionView.reloadItems(at: self.selectedBanksIndex) })
+                    self.banksCollectionView.reloadItems(at: self.selectedBanksIndex)
+
                 } else {
                     self.selectedBanksIndex = self.selectedBanksIndex.filter{ $0 != indexPath }
-                    
+                    self.banksCollectionView.reloadItems(at: self.selectedBanksIndex)
                 }
-                UIView.transition(with: collectionView,
-                                  duration: 0.35,
-                                  options: [],
-                                  animations: { self.banksCollectionView.reloadItems(at: self.selectedBanksIndex) })
-                                    //reloadItems(at: self.selectedBanksIndex) })
-//                let cell = collectionView.cellForItem(at: indexPath)
-//
-//
-//
-//                UIView.transition(with: self.view, duration: 0.3, options: UIView.AnimationOptions.curveEaseInOut, animations: {
-//
-//                    cell?.frame.size.height = 300
-//
-//
-//                }, completion: { (finished: Bool) -> () in
-//                })
-                
-//                let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
-//                guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
-//                    return
-//                }
-//                desVC.currentFootswitch = footswitches[indexPath.section]
-//                desVC.currentBank = footswitches[indexPath.section].banks.first
-//                show(desVC, sender: nil)
             }
         }
+        
     }
 }
 extension BanksListViewController: UITextFieldDelegate {
