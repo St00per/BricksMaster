@@ -97,7 +97,7 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NewBankPresetCell", for: indexPath) as? NewBankCollectionViewCell else {
                     return UICollectionViewCell()
                 }
-                cell.configure()
+                cell.configure(width: cell.frame.width)
                 return cell
             }
         }

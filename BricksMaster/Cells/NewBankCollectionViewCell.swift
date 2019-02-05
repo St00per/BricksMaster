@@ -12,7 +12,11 @@ class NewBankCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var newBankView: UIView!
     
-    func configure() {
-       newBankView.addDashedBorder()
+    
+    func configure(width: CGFloat) {
+        self.frame.size.width = width
+        newBankView.frame.size.width = width - 16
+        newBankView.frame.size.height = 65
+        newBankView.addDashedBorder()
     }
 }
