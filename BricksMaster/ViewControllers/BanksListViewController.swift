@@ -12,19 +12,14 @@ class BanksListViewController: UIViewController {
 
     
     @IBOutlet weak var banksCollectionView: UICollectionView!
-    @IBOutlet weak var bankPresetsCollectionView: UICollectionView!
-    
     
     @IBOutlet var bankNameView: UIView!
     @IBOutlet weak var bankNameTextField: UITextField!
-    @IBOutlet weak var bankExpandIndicator: UIImageView!
-    
     
     var currentFootswitch: Footswitch?
     var selectedBanksIndex: [IndexPath] = []
-//    var layout = Layout()
-//    let bounceEnabled = false
-    
+    var collapsedCellIndex = [IndexPath()]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         bankNameTextField.delegate = self
@@ -43,8 +38,7 @@ class BanksListViewController: UIViewController {
         currentFootswitch.banks.append(newBank)
         desVC.currentFootswitch = currentFootswitch
         bankNameView.removeFromSuperview()
-        //presetsView.alpha = 1
-        //presetsView.isUserInteractionEnabled = true
+        
         show(desVC, sender: nil)
     }
 }
@@ -93,9 +87,10 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 
                 if self.selectedBanksIndex.contains(indexPath) {
                     cell.isExpand = true
-                    } else {
-                        cell.isExpand = false
-                    }
+                } else {
+                    cell.isExpand = false
+                }
+
                 cell.configure(bank: bank)
                 return cell
             } else {
@@ -124,25 +119,21 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
         self.currentFootswitch = footswitches[indexPath.section]
 
         if collectionView == banksCollectionView {
-            footswitches[indexPath.section]
             if indexPath.row > footswitches[indexPath.section].banks.count - 1 {
-                //presetsView.alpha = 0.4
-                //presetsView.isUserInteractionEnabled = false
                 self.view.addSubview(bankNameView)
                 bankNameView.center = self.view.center
             } else {
-                
                 if !self.selectedBanksIndex.contains(indexPath) {
                     self.selectedBanksIndex.append(indexPath)
                     self.banksCollectionView.reloadItems(at: self.selectedBanksIndex)
-
                 } else {
                     self.selectedBanksIndex = self.selectedBanksIndex.filter{ $0 != indexPath }
+                    self.collapsedCellIndex[0] = indexPath
+                    self.banksCollectionView.reloadItems(at: self.collapsedCellIndex)
                     self.banksCollectionView.reloadItems(at: self.selectedBanksIndex)
                 }
             }
         }
-        
     }
 }
 extension BanksListViewController: UITextFieldDelegate {

@@ -404,7 +404,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZJ9-JR-bCF">
                                                     <rect key="frame" x="8" y="8" width="334" height="70"/>
                                                     <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_down_48px" translatesAutoresizingMaskIntoConstraints="NO" id="d7T-Ha-teT">
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_keyboard_arrow_down_48px-1" translatesAutoresizingMaskIntoConstraints="NO" id="d7T-Ha-teT">
                                                             <rect key="frame" x="16" y="23" width="24" height="24"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="24" id="0Wc-U7-Pgz"/>
@@ -750,7 +750,7 @@
     </scenes>
     <resources>
         <image name="Plus" width="20" height="20"/>
-        <image name="ic_keyboard_arrow_down_48px" width="24" height="24"/>
+        <image name="ic_keyboard_arrow_down_48px-1" width="24" height="24"/>
         <image name="ic_more_vert_48px" width="24" height="24"/>
         <image name="ic_view_module_48px" width="24" height="24"/>
     </resources>

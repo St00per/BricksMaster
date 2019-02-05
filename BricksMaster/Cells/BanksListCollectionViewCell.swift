@@ -16,12 +16,15 @@ class BanksListCollectionViewCell: UICollectionViewCell {
     
     var currentBank: Bank = Bank(id: "", name: "")
     var isExpand = false
+    
     func configure(bank: Bank) {
         self.currentBank = bank
         bankNameLabel.text = bank.name
         bankPresetsCollectionView.reloadData()
         if isExpand {
-            bankExpandIndicator.transform = bankExpandIndicator.transform.rotated(by: CGFloat(Double.pi))
+            bankExpandIndicator.image = UIImage(named: "ic_keyboard_arrow_up_48px")
+        } else {
+            bankExpandIndicator.image = UIImage(named: "ic_keyboard_arrow_down_48px-1")
         }
     }
 }
