@@ -12,6 +12,7 @@ class BanksListViewController: UIViewController {
 
     
     @IBOutlet weak var banksCollectionView: UICollectionView!
+    @IBOutlet var banksListView: UIView!
     
     @IBOutlet var bankNameView: UIView!
     @IBOutlet weak var bankNameTextField: UITextField!
@@ -19,9 +20,19 @@ class BanksListViewController: UIViewController {
     var currentFootswitch: Footswitch?
     var selectedBanksIndex: [IndexPath] = []
     var collapsedCellIndex = [IndexPath()]
+    
+    var shadowView = UIView(frame: UIScreen.main.bounds)
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        shadowView.backgroundColor = UIColor.black
+        shadowView.alpha = 0.0
+        let shadowViewGesture = UITapGestureRecognizer(target: self, action: #selector(closeBankNameView))
+        shadowView.addGestureRecognizer(shadowViewGesture)
+        
+        self.view.addSubview(shadowView)
+        
         bankNameTextField.delegate = self
         bankNameTextField.returnKeyType = UIReturnKeyType.done
         self.banksCollectionView.register(UINib(nibName: "NewBankPresetCell", bundle: nil), forCellWithReuseIdentifier: "NewBankPresetCell")
@@ -41,6 +52,35 @@ class BanksListViewController: UIViewController {
         
         show(desVC, sender: nil)
     }
+    
+    func openBankNameView() {
+        banksCollectionView.isUserInteractionEnabled = false
+        self.view.addSubview(bankNameView)
+        let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+        let bankNameViewFrame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+        self.bankNameView.frame = bankNameViewFrame
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.45
+            self.bankNameView.frame = CGRect(x: bankNameViewFrame.origin.x, y: self.view.bounds.midY - 120, width: size.width, height: size.height)
+        }) { (isFinished) in
+            self.becomeFirstResponder()
+        }
+        
+    }
+    
+    @objc func closeBankNameView() {
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.0
+            let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+            self.bankNameView.frame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+        }) { (isFinished) in
+            self.becomeFirstResponder()
+            self.banksCollectionView.isUserInteractionEnabled = true
+            self.bankNameView.removeFromSuperview()
+        }
+    }
+    
 }
 extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -124,8 +164,8 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
 
         if collectionView == banksCollectionView {
             if indexPath.row > footswitches[indexPath.section].banks.count - 1 {
-                self.view.addSubview(bankNameView)
-                bankNameView.center = self.view.center
+                
+                openBankNameView()
             } else {
                 if !self.selectedBanksIndex.contains(indexPath) {
                     self.selectedBanksIndex.append(indexPath)
@@ -145,7 +185,7 @@ extension BanksListViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
         bankNameTextField.resignFirstResponder()
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return false
         }
