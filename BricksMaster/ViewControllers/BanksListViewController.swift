@@ -107,8 +107,12 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if self.selectedBanksIndex.contains(indexPath)  {
-            
-            return CGSize(width: collectionView.frame.width - 50, height: 300)
+            let bankPresetCount = CGFloat(UserDevicesManager.default.userFootswitches[indexPath.section].banks[indexPath.row].presets.count)
+            var expandedCellHeight: CGFloat = 80
+            if bankPresetCount > 0 {
+                expandedCellHeight = expandedCellHeight + (expandedCellHeight * bankPresetCount) + 16
+            }
+            return CGSize(width: collectionView.frame.width - 50, height: expandedCellHeight)
         }
         return CGSize(width: collectionView.frame.width - 50, height: 80)
     }

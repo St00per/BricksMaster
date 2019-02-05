@@ -52,7 +52,7 @@ class Footswitch: Observable {
         self.name = name
         super.init()
         
-        self.banks = [Bank(id: UUID().uuidString, name: "")]
+        self.banks = [Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: ""), Bank(id: UUID().uuidString, name: "")]
         for bank in self.banks {
             bank.footswitchId = self.id
         }
