@@ -12,36 +12,32 @@ import UIKit
 
 class PresetPickerCollectionViewCell: UICollectionViewCell {
     
-    var footswitch: Footswitch?
-    var bank: Bank?
     var preset: Preset?
-    var controller: PresetPickerViewController?
     var footswitchButtonIndex = 0
     
-    
     @IBOutlet weak var presetName: UILabel!
-    @IBAction func setPresetToFootswitchButton(_ sender: UIButton) {
-        guard let selectedPreset = preset else { return }
-        
-        let footswitchArray = UserDevicesManager.default.userFootswitches
-        guard let currentFootswitch = self.footswitch, let currentBank = self.bank else { return }
-        guard let footswitchIndex = footswitchArray.firstIndex(of: currentFootswitch) else { return }
-       
-        let bank = UserDevicesManager.default.userFootswitches[footswitchIndex].banks.first{$0.id == currentBank.id}
-        if let bank = bank {
-            bank.footswitchButtons[footswitchButtonIndex].preset = selectedPreset
-        }
-        if !currentBank.presets.contains(selectedPreset) {
-            currentBank.presets.append(selectedPreset)
-        }
-        bank?.save()
-        currentFootswitch.save()
-        controller?.close()
-    }
+    @IBOutlet weak var bricksIndicatorsView: UIView!
+    @IBOutlet weak var selectionMarker: UIImageView!
     
     func configure(preset: Preset) {
         self.preset = preset
         presetName.text = preset.name
+        let indicators: [UIView] = bricksIndicatorsView.subviews
+        let presetBricks = preset.presetTestBricks
+        for indicator in indicators {
+            indicator.layer.cornerRadius = indicator.frame.width/2
+            indicator.backgroundColor = UIColor.clear
+        }
+        for index in 0..<presetBricks.count {
+            if index < indicators.count, !presetBricks.isEmpty {
+                indicators[index].backgroundColor = presetBricks[index].color
+            }
+        }
+        
+        if preset.footswitch?.buttons[footswitchButtonIndex].preset == preset {
+            selectionMarker.image = UIImage(named: "round select")
+        } else {
+            selectionMarker.image = UIImage(named: "round unselect")
+        }
     }
-    
 }

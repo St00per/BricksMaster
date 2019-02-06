@@ -171,7 +171,7 @@ class FootswitchEditViewController: UIViewController {
     
     
     @IBAction func openPresetPicker(_ sender: UIButton) {
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetPickerViewController") as? PresetPickerViewController else {
             return
         }

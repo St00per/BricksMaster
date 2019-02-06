@@ -52,7 +52,8 @@ class BanksListViewController: UIViewController {
         let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
         newBank.empty = false
         newBank.footswitchId = currentFootswitch.id
-        currentFootswitch.banks[1] = newBank
+        let saveIndex = currentFootswitch.banks.firstIndex{ $0.empty }
+        currentFootswitch.banks[saveIndex ?? 0] = newBank
         desVC.currentFootswitch = currentFootswitch
         bankNameView.removeFromSuperview()
         self.banksCollectionView.isUserInteractionEnabled = true

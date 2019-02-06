@@ -43,12 +43,12 @@ class PresetsTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        createSegmentView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super .viewWillAppear(true)
-        createSegmentView()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

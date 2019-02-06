@@ -53,6 +53,26 @@ class PresetPickerViewController: UIViewController {
         }, completion: nil)
     }
     
+    func setPresetToFootswitchButton(preset: Preset) {
+        
+        
+        let footswitchArray = UserDevicesManager.default.userFootswitches
+        guard let currentFootswitch = self.editedFootswitch, let currentBank = self.editedBank else { return }
+        guard let footswitchIndex = footswitchArray.firstIndex(of: currentFootswitch) else { return }
+        
+        let bank = UserDevicesManager.default.userFootswitches[footswitchIndex].banks.first{$0.id == currentBank.id}
+        if let bank = bank {
+            bank.footswitchButtons[footswitchButtonNumber].preset = preset
+        }
+        if !currentBank.presets.contains(preset) {
+            currentBank.presets.append(preset)
+        }
+        bank?.save()
+        currentFootswitch.save()
+        close()
+    }
+
+    
 }
 extension PresetPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -63,18 +83,17 @@ extension PresetPickerViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetPickerCell", for: indexPath) as? PresetPickerCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.controller = self
-        cell.footswitch = editedFootswitch
-        cell.bank = editedBank
+        
         cell.footswitchButtonIndex = footswitchButtonNumber
         if let currentPreset = editedFootswitch?.presets[indexPath.row] {
             cell.configure(preset: currentPreset)
         }
+        cell.dropShadow()
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        
-//    }
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let selectedPreset = editedFootswitch?.presets[indexPath.row] else { return }
+        setPresetToFootswitchButton(preset: selectedPreset)
+    }
 }
