@@ -17,6 +17,9 @@ class FootswitchEditViewController: UIViewController {
     var banksController: BanksController?
     var bricksCollectionController: BricksCollectionController?
     
+    @IBOutlet weak var bricksIndicatorsView: UIView!
+    
+    
     @IBOutlet weak var currentFootswitchName: UILabel!
     @IBOutlet weak var bankButtonsView: UIView!
     @IBOutlet weak var presetButtonsView: UIView!
@@ -330,6 +333,21 @@ class FootswitchEditViewController: UIViewController {
             fourthPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
             fourthPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
+        
+//        for button in footswitchButtons {
+//            let indicators: [UIView] = bricksIndicatorsView.subviews
+//            guard let presetBricks = button.preset?.presetTestBricks else { return }
+//            for indicator in indicators {
+//                indicator.layer.cornerRadius = indicator.frame.width/2
+//                indicator.backgroundColor = UIColor.clear
+//            }
+//            for index in 0..<presetBricks.count {
+//                if index < indicators.count, !presetBricks.isEmpty {
+//                    indicators[index].backgroundColor = presetBricks[index].color
+//                }
+//            }
+//        }
+        
     }
     
 }

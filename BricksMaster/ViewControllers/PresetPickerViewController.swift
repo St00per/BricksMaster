@@ -83,12 +83,11 @@ extension PresetPickerViewController: UICollectionViewDelegate, UICollectionView
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetPickerCell", for: indexPath) as? PresetPickerCollectionViewCell else {
             return UICollectionViewCell()
         }
-        
+        cell.bank = self.editedBank
         cell.footswitchButtonIndex = footswitchButtonNumber
         if let currentPreset = editedFootswitch?.presets[indexPath.row] {
             cell.configure(preset: currentPreset)
         }
-        cell.dropShadow()
         return cell
     }
     

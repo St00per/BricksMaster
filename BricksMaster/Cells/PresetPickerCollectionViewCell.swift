@@ -12,8 +12,11 @@ import UIKit
 
 class PresetPickerCollectionViewCell: UICollectionViewCell {
     
+    
+    var bank: Bank?
     var preset: Preset?
     var footswitchButtonIndex = 0
+    
     
     @IBOutlet weak var presetName: UILabel!
     @IBOutlet weak var bricksIndicatorsView: UIView!
@@ -34,7 +37,7 @@ class PresetPickerCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        if preset.footswitch?.buttons[footswitchButtonIndex].preset == preset {
+        if bank?.footswitchButtons[footswitchButtonIndex].preset == preset {
             selectionMarker.image = UIImage(named: "round select")
         } else {
             selectionMarker.image = UIImage(named: "round unselect")
