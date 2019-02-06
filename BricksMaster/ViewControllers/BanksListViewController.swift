@@ -20,7 +20,7 @@ class BanksListViewController: UIViewController {
     var currentFootswitch: Footswitch?
     var selectedBanksIndex: [IndexPath] = []
     var collapsedCellIndex = [IndexPath()]
-    
+    var banksCount: [Int] = []
     var shadowView = UIView(frame: UIScreen.main.bounds)
 
     override func viewDidLoad() {
@@ -39,6 +39,10 @@ class BanksListViewController: UIViewController {
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        banksCollectionView.reloadData()
+    }
+    
     @IBAction func createNewBank(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
         guard let currentFootswitch = self.currentFootswitch, let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
@@ -46,10 +50,13 @@ class BanksListViewController: UIViewController {
         }
 
         let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
-        currentFootswitch.banks.append(newBank)
+        newBank.empty = false
+        newBank.footswitchId = currentFootswitch.id
+        currentFootswitch.banks[1] = newBank
         desVC.currentFootswitch = currentFootswitch
         bankNameView.removeFromSuperview()
-        
+        self.banksCollectionView.isUserInteractionEnabled = true
+        self.shadowView.alpha = 0.0
         show(desVC, sender: nil)
     }
     
@@ -66,7 +73,6 @@ class BanksListViewController: UIViewController {
         }) { (isFinished) in
             self.becomeFirstResponder()
         }
-        
     }
     
     @objc func closeBankNameView() {
@@ -80,12 +86,19 @@ class BanksListViewController: UIViewController {
             self.bankNameView.removeFromSuperview()
         }
     }
-    
+    func setBanksCountArrayToZero() {
+        banksCount = []
+        let footswitches = UserDevicesManager.default.userFootswitches
+        for _ in footswitches {
+            banksCount.append(0)
+        }
+    }
 }
 extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        setBanksCountArrayToZero()
         return footswitches.count
     }
     
@@ -93,11 +106,17 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
         let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
         
         if collectionView == banksCollectionView {
-            if footswitches[section].banks.count < 4 {
-                return footswitches[section].banks.count + 1
+            //setBanksCountArrayToZero()
+            for bank in footswitches[section].banks {
+                if !bank.empty {
+                    banksCount[section] += 1
+                }
             }
-            if footswitches[section].banks.count == 4 {
-                return footswitches[section].banks.count
+            if banksCount[section] < 4 {
+                return banksCount[section] + 1
+            }
+            if banksCount[section] == 4 {
+                return banksCount[section]
             }
         }
         return 0
@@ -118,8 +137,9 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
         
         
         if collectionView == banksCollectionView {
-            
-            if indexPath.row < UserDevicesManager.default.userFootswitches[indexPath.section].banks.count {
+            let currentCellRow = indexPath.row
+            let currentBanksCount = banksCount[indexPath.section]
+            if currentCellRow < currentBanksCount {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BanksListCollectionViewCell", for: indexPath) as? BanksListCollectionViewCell else {
                     return UICollectionViewCell()
                 }
@@ -163,8 +183,10 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
         self.currentFootswitch = footswitches[indexPath.section]
 
         if collectionView == banksCollectionView {
-            if indexPath.row > footswitches[indexPath.section].banks.count - 1 {
-                
+            let currentCellRow = indexPath.row
+            let currentBanksCount = banksCount[indexPath.section]
+            //if currentCellRow < currentBanksCount - 1
+            if currentCellRow > currentBanksCount - 1 {
                 openBankNameView()
             } else {
                 if !self.selectedBanksIndex.contains(indexPath) {

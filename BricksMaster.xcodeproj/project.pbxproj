@@ -110,7 +110,7 @@
 		0E7926DE21F89AED0085776A /* BrightnessView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrightnessView.swift; sourceTree = "<group>"; };
 		0E7926E421F89AF70085776A /* MTCircularSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MTCircularSlider.swift; sourceTree = "<group>"; };
 		0E7926E621F9BF580085776A /* FootswitchBricksCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootswitchBricksCollectionViewCell.swift; sourceTree = "<group>"; };
-		0E7926E821F9D30B0085776A /* BricksCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BricksCollectionController.swift; path = ViewControllers/BricksCollectionController.swift; sourceTree = "<group>"; };
+		0E7926E821F9D30B0085776A /* BricksCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BricksCollectionController.swift; sourceTree = "<group>"; };
 		0E7926EE21FAE31E0085776A /* Devices.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Devices.storyboard; sourceTree = "<group>"; };
 		0E7926F021FAF4AD0085776A /* Presets.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Presets.storyboard; sourceTree = "<group>"; };
 		0E7926F221FAF5CF0085776A /* PresetSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PresetSettings.storyboard; sourceTree = "<group>"; };
@@ -176,6 +176,8 @@
 				0EFA071322015C000033C879 /* BanksListViewController.swift */,
 				0E63303F21F03E6700EA3652 /* PresetPickerViewController.swift */,
 				70A04FBC21F4BB1B009C714D /* DebugViewController.swift */,
+				70715EBC21F9A4FB00C21C3E /* BanksController.swift */,
+				0E7926E821F9D30B0085776A /* BricksCollectionController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -280,10 +282,8 @@
 				0E046AB521F31507006A817F /* ViewControllers */,
 				0E046AB621F3152E006A817F /* Cells */,
 				0E1D1D8B21EDA1DD000BEDD7 /* CentralBluetoothManager.swift */,
-				70715EBC21F9A4FB00C21C3E /* BanksController.swift */,
 				70715EB021F8788800C21C3E /* DataBaseManager.swift */,
 				0E1D1D8F21EDA460000BEDD7 /* UserDevicesManager.swift */,
-				0E7926E821F9D30B0085776A /* BricksCollectionController.swift */,
 				0EC28DE921EC6BAA00DEF32B /* AppDelegate.swift */,
 				0E7926C821F895FB0085776A /* BrickMaster-Bridging-Header.h */,
 				0EC28E0821EC733B00DEF32B /* Fonts */,

@@ -51,10 +51,9 @@ extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectBankCell", for: indexPath)
-        if let cell = cell as? FootswitchEditBankCell {
-            cell.configure(bank: footswitch.banks[indexPath.item])
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectBankCell", for: indexPath) as? FootswitchEditBankCell else { return UICollectionViewCell()
         }
+            cell.configure(bank: footswitch.banks[indexPath.item])
         return cell
     }
     
