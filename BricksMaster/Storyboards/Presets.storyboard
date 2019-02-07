@@ -253,6 +253,11 @@
                                             <constraint firstItem="51V-hJ-SPg" firstAttribute="width" secondItem="HGu-mD-yXl" secondAttribute="width" id="iDv-Iv-Q8L"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="S6t-oI-es6" secondAttribute="trailing" constant="15" id="sBe-Zg-5rA"/>
                                         </constraints>
+                                        <variation key="default">
+                                            <mask key="subviews">
+                                                <exclude reference="S6t-oI-es6"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <outlet property="bricksIndicatorsView" destination="JdO-rY-lJh" id="LMn-Zb-kmp"/>
                                             <outlet property="button" destination="S6t-oI-es6" id="cgL-RM-eUC"/>
@@ -418,6 +423,9 @@
                                                                 <constraint firstAttribute="height" constant="24" id="9qZ-xe-vQC"/>
                                                             </constraints>
                                                             <state key="normal" image="ic_more_vert_48px"/>
+                                                            <connections>
+                                                                <action selector="openBankEditor:" destination="5MZ-CN-nWs" eventType="touchUpInside" id="sgF-N0-pNY"/>
+                                                            </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g25-k9-DXL">
                                                             <rect key="frame" x="50" y="24" width="184" height="21"/>
@@ -592,6 +600,11 @@
                                                                 <constraint firstItem="VKC-40-8Im" firstAttribute="top" secondItem="I7e-4P-sii" secondAttribute="topMargin" constant="16" id="gh6-yR-Hf2"/>
                                                                 <constraint firstItem="UFi-cP-72C" firstAttribute="top" secondItem="I7e-4P-sii" secondAttribute="top" id="hEf-4F-n2k"/>
                                                             </constraints>
+                                                            <variation key="default">
+                                                                <mask key="subviews">
+                                                                    <exclude reference="VKC-40-8Im"/>
+                                                                </mask>
+                                                            </variation>
                                                             <connections>
                                                                 <outlet property="bricksIndicatorsView" destination="NBB-LY-WRs" id="0O1-yQ-QpU"/>
                                                                 <outlet property="button" destination="VKC-40-8Im" id="xCX-dG-t4q"/>

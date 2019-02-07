@@ -151,7 +151,13 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 } else {
                     cell.isExpand = false
                 }
-
+                if bank.presets.count == 0 {
+                    cell.bankExpandIndicator.isHidden = true
+                } else {
+                    cell.bankExpandIndicator.isHidden = false
+                }
+                cell.controller = self
+                cell.currentFootswitch = footswitches[indexPath.section]
                 cell.configure(bank: bank)
                 return cell
             } else {
@@ -190,6 +196,7 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
             if currentCellRow > currentBanksCount - 1 {
                 openBankNameView()
             } else {
+                guard footswitches[indexPath.section].banks[indexPath.row].presets.count != 0 else { return }
                 if !self.selectedBanksIndex.contains(indexPath) {
                     self.selectedBanksIndex.append(indexPath)
                     self.banksCollectionView.reloadItems(at: self.selectedBanksIndex)

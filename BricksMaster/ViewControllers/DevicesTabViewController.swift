@@ -12,7 +12,6 @@ class DevicesTabViewController: UIViewController {
     
     @IBOutlet weak var noBricksDevicesView: UIView!
     
-    
     @IBOutlet weak var bricksCount: UILabel!
     @IBOutlet weak var bricksCollectionScanButton: UIButton!
     @IBOutlet weak var bricksCollectionView: UICollectionView!

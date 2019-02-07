@@ -127,7 +127,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Presets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kVD-KT-JDS">
-                                        <rect key="frame" x="15" y="282.5" width="344" height="20"/>
+                                        <rect key="frame" x="15" y="286.5" width="344" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="B2Q-6q-dL1"/>
                                         </constraints>
@@ -136,13 +136,13 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buttons" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RW8-UG-FeT">
-                                        <rect key="frame" x="15" y="404.5" width="344" height="19.5"/>
+                                        <rect key="frame" x="15" y="394.5" width="344" height="19.5"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Bold" family="SF Pro Display" pointSize="16"/>
                                         <color key="textColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NEp-xq-XB7" userLabel="PresetsButtonsView">
-                                        <rect key="frame" x="8" y="432" width="359" height="224"/>
+                                        <rect key="frame" x="8" y="417" width="359" height="224"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="ptM-fU-PBs">
                                                 <rect key="frame" x="0.0" y="0.0" width="359" height="119.5"/>
@@ -163,6 +163,11 @@
                                                                         <state key="normal" title="OFF">
                                                                             <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="onOffFootswitchButton:" destination="UXa-af-Cpp" eventType="touchUpInside" id="ho5-of-aIl"/>
                                                                         </connections>
@@ -327,6 +332,11 @@
                                                                         <state key="normal" title="Button">
                                                                             <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="onOffFootswitchButton:" destination="UXa-af-Cpp" eventType="touchUpInside" id="7QW-p5-XS0"/>
                                                                         </connections>
@@ -398,6 +408,11 @@
                                                                         <state key="normal" title="Button">
                                                                             <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="onOffFootswitchButton:" destination="UXa-af-Cpp" eventType="touchUpInside" id="XkG-B8-gzM"/>
                                                                         </connections>
@@ -482,6 +497,11 @@
                                                                         <state key="normal" title="Button">
                                                                             <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                         <connections>
                                                                             <action selector="onOffFootswitchButton:" destination="UXa-af-Cpp" eventType="touchUpInside" id="hJP-Np-PZN"/>
                                                                         </connections>
@@ -553,6 +573,11 @@
                                                                         <state key="normal" title="Change">
                                                                             <color key="titleColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                                                         </state>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                                <integer key="value" value="6"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
                                                                     </button>
                                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="aqO-dM-6Qq">
                                                                         <rect key="frame" x="5" y="8" width="98.5" height="58"/>
@@ -658,7 +683,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MuO-sj-Hbn" userLabel="Banks View">
-                                        <rect key="frame" x="16" y="310.5" width="343" height="70"/>
+                                        <rect key="frame" x="16" y="309.5" width="343" height="70"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="b17-LK-Jpk">
                                                 <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
@@ -727,7 +752,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="NEp-xq-XB7" firstAttribute="top" secondItem="RW8-UG-FeT" secondAttribute="bottom" constant="8.0000000000001137" id="00F-OD-Vyq"/>
+                                    <constraint firstItem="NEp-xq-XB7" firstAttribute="top" secondItem="RW8-UG-FeT" secondAttribute="bottom" constant="3" id="00F-OD-Vyq"/>
                                     <constraint firstItem="MuO-sj-Hbn" firstAttribute="leading" secondItem="hGu-pe-WiA" secondAttribute="leading" constant="16" id="0IY-ik-OBw"/>
                                     <constraint firstItem="kVD-KT-JDS" firstAttribute="leading" secondItem="hGu-pe-WiA" secondAttribute="leading" constant="15" id="0ze-58-mtx"/>
                                     <constraint firstItem="DXp-EO-xrV" firstAttribute="top" secondItem="WsU-Et-fm0" secondAttribute="bottom" id="50J-WD-fD8"/>
@@ -739,9 +764,9 @@
                                     <constraint firstItem="RW8-UG-FeT" firstAttribute="leading" secondItem="kVD-KT-JDS" secondAttribute="leading" id="Zfl-pW-whb"/>
                                     <constraint firstItem="WsU-Et-fm0" firstAttribute="top" secondItem="C6G-hn-UuP" secondAttribute="top" id="a0r-D4-Fiq"/>
                                     <constraint firstItem="hGu-pe-WiA" firstAttribute="trailing" secondItem="kVD-KT-JDS" secondAttribute="trailing" constant="16" id="ab1-89-dxc"/>
-                                    <constraint firstItem="RW8-UG-FeT" firstAttribute="top" secondItem="MuO-sj-Hbn" secondAttribute="bottom" constant="24" id="jh8-O9-lDV"/>
-                                    <constraint firstItem="kVD-KT-JDS" firstAttribute="top" secondItem="DXp-EO-xrV" secondAttribute="bottom" constant="16" id="r9b-yG-TcL"/>
-                                    <constraint firstItem="MuO-sj-Hbn" firstAttribute="top" secondItem="kVD-KT-JDS" secondAttribute="bottom" constant="8" id="sVf-5T-1mN"/>
+                                    <constraint firstItem="RW8-UG-FeT" firstAttribute="top" secondItem="MuO-sj-Hbn" secondAttribute="bottom" constant="15" id="jh8-O9-lDV"/>
+                                    <constraint firstItem="kVD-KT-JDS" firstAttribute="top" secondItem="DXp-EO-xrV" secondAttribute="bottom" constant="20" id="r9b-yG-TcL"/>
+                                    <constraint firstItem="MuO-sj-Hbn" firstAttribute="top" secondItem="kVD-KT-JDS" secondAttribute="bottom" constant="3" id="sVf-5T-1mN"/>
                                     <constraint firstItem="hGu-pe-WiA" firstAttribute="trailing" secondItem="MuO-sj-Hbn" secondAttribute="trailing" constant="16" id="vZJ-6l-zmb"/>
                                     <constraint firstItem="hGu-pe-WiA" firstAttribute="trailing" secondItem="DXp-EO-xrV" secondAttribute="trailing" id="xWh-4v-wSX"/>
                                     <constraint firstItem="hGu-pe-WiA" firstAttribute="trailing" secondItem="NEp-xq-XB7" secondAttribute="trailing" constant="8" id="yPU-LY-KWK"/>
@@ -871,7 +896,6 @@
         <!--Preset Picker View Controller-->
         <scene sceneID="byu-m7-gx2">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ysj-cU-A9F" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="PresetPickerViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="d7I-mR-1Cv" customClass="PresetPickerViewController" customModule="BricksMaster" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="deK-oY-PDw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -1102,6 +1126,7 @@
                         <outlet property="shadow" destination="9yT-eC-BTA" id="kst-gI-Bdf"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ysj-cU-A9F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1169" y="547"/>
         </scene>
