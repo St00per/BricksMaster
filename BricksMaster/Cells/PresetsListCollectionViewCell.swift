@@ -28,14 +28,15 @@ class PresetsListCollectionViewCell: UICollectionViewCell {
         borderView.isHidden = true
         presetName.text = preset.name
         let indicators: [UIView] = bricksIndicatorsView.subviews
-        let presetBricks = preset.presetTestBricks
+        let presetBricks = preset.presetBricks
+        let userBricks = UserDevicesManager.default.userBricks
         for indicator in indicators {
             indicator.layer.cornerRadius = indicator.frame.width/2
             indicator.backgroundColor = UIColor.clear
         }
         for index in 0..<presetBricks.count {
             if index < indicators.count, !presetBricks.isEmpty {
-                indicators[index].backgroundColor = presetBricks[index].color
+                indicators[index].backgroundColor = userBricks.first{$0.id == presetBricks[index].0}?.color
                 }
             }
         }

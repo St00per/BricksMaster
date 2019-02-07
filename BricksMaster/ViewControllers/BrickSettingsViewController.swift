@@ -152,16 +152,16 @@ class BrickSettingsViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
             return
         }
-//        if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
-//            return brick.id == currentBrick.id
-//        }) {
-//
-//        } else {
-//            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
-//        }
+        if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
+            return brick.id == currentBrick.id
+        }) {
+
+        } else {
+            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
+        }
         
-//        currentBrick.save()
-//        assignedFootswitch.save()
+        currentBrick.save()
+        assignedFootswitch.save()
         self.dismiss(animated: true, completion: nil)
     }
     

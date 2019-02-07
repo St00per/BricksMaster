@@ -77,6 +77,8 @@ class Brick: Observable {
         return first.identifier == second.identifier
     }
     
+    
+    
     func updateConnection(isConnected: Bool) {
         for observer in observers {
             if let id = peripheral?.identifier {
@@ -86,28 +88,28 @@ class Brick: Observable {
     }
     
     func save() {
-//        guard let realm = try? Realm() else {
-//            return
-//        }
-//        try! realm.write {
-//            if let object = brickObject {
-//                object.update(brick: self)
-//                realm.add(object, update: true)
-//            } else {
-//                let object = BrickObject(brick: self)
-//                self.brickObject = object
-//                realm.add(object)
-//            }
-//        }
+        guard let realm = try? Realm() else {
+            return
+        }
+        try! realm.write {
+            if let object = brickObject {
+                object.update(brick: self)
+                realm.add(object, update: true)
+            } else {
+                let object = BrickObject(brick: self)
+                self.brickObject = object
+                realm.add(object)
+            }
+        }
     }
     
-//    func saveInBackground () {
-//        DispatchQueue(label: "background").async {
-//            autoreleasepool {
-//                self.save()
-//            }
-//        }
-//    }
+    func saveInBackground () {
+        DispatchQueue(label: "background").async {
+            autoreleasepool {
+                self.save()
+            }
+        }
+    }
 }
 
 

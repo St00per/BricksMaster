@@ -251,8 +251,9 @@ extension CentralBluetoothManager: CBCentralManagerDelegate {
         if isFirstDidLoad {
             isFirstDidLoad = false
         }
-        
+        devicesTabViewController?.bricksCount.text = "(\(UserDevicesManager.default.userBricks.count))"
         devicesTabViewController?.bricksCollectionView.reloadData()
+        devicesTabViewController?.footswitchCount.text = "(\(UserDevicesManager.default.userFootswitches.count))"
         devicesTabViewController?.footswitchesCollectionView.reloadData()
     }
     

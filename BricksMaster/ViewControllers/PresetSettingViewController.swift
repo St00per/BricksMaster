@@ -197,6 +197,11 @@ class PresetSettingViewController: UIViewController {
         guard let footswitch = self.currentPreset?.footswitch, let preset = self.currentPreset else { return }
         if !footswitch.presets.contains(preset) {
             preset.footswitch?.presets.append(preset)
+            preset.presetObject?.id = preset.id
+            preset.presetObject?.footswitch = footswitch.id
+            preset.presetObject?.name = preset.name
+//            preset.presetObject?.presetBricks = pre
+            //var presetObject = PresetObject(preset: preset)
             preset.save()
             preset.footswitch?.save()
             self.dismiss(animated: true, completion: nil)
@@ -254,7 +259,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         if collectionView == footswitchPickerCollectionView {
-            let footswitches = UserDevicesManager.default.userFootswitches//.filter{ !$0.new }
+            let footswitches = UserDevicesManager.default.userFootswitches.filter{ !$0.new }
             return footswitches.count
         }
         
@@ -309,7 +314,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FootswitchPickerCollectionViewCell", for: indexPath) as? FootswitchPickerCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let footswitches = UserDevicesManager.default.userFootswitches//.filter{ !$0.new }
+            let footswitches = UserDevicesManager.default.userFootswitches.filter{ !$0.new }
             cell.configure(footswitch: footswitches[indexPath.row])
             return cell
         }

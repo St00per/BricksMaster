@@ -98,13 +98,13 @@ class BanksListViewController: UIViewController {
 extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         setBanksCountArrayToZero()
         return footswitches.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         
         if collectionView == banksCollectionView {
             //setBanksCountArrayToZero()
@@ -124,7 +124,7 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         guard let sectionHeaderView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeaderView", for: indexPath) as? SectionHeaderView else {
             return UICollectionReusableView()
         }
@@ -134,7 +134,7 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         
         
         if collectionView == banksCollectionView {
@@ -185,7 +185,7 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
 
         self.currentFootswitch = footswitches[indexPath.section]
 
@@ -213,7 +213,7 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
 extension BanksListViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         bankNameTextField.resignFirstResponder()
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {

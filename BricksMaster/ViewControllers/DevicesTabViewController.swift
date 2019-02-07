@@ -27,12 +27,13 @@ class DevicesTabViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //DataBaseManager.client.restoreBase()
-        //CentralBluetoothManager.default.startScan()
+        DataBaseManager.client.restoreBase()
+        CentralBluetoothManager.default.startScan()
         CentralBluetoothManager.default.devicesTabViewController = self
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         if UserDevicesManager.default.userBricks.count == 0 {
             noBricksDevicesView.isHidden = false
         } else {
