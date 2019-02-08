@@ -16,7 +16,7 @@ class PresetSettingViewController: UIViewController {
     
     var currentPreset: Preset?
     var viewShadow: UIView?
-    var appendedBricks: [Brick] = []
+    var appendedBricks: [(String, Bool)] = []
     var unappendedBricks: [Brick] = []
     
     override func viewDidLoad() {
@@ -116,7 +116,7 @@ class PresetSettingViewController: UIViewController {
     }
     
     func fillAppendedBricksArray() {
-        guard let presetBricksArray = currentPreset?.presetTestBricks else { return }
+        guard let presetBricksArray = currentPreset?.presetBricks else { return }
         self.appendedBricks = presetBricksArray
     }
     
@@ -127,7 +127,14 @@ class PresetSettingViewController: UIViewController {
         fillAppendedBricksArray()
         unappendedBricks = []
         for footBrick in footswitchBricksArray {
-            if !self.appendedBricks.contains(footBrick) {
+            var checkedBrick = ("",false)
+            checkedBrick.0 = footBrick.id ?? ""
+            if footBrick.status == .off {
+                checkedBrick.1 = false
+            } else {
+                checkedBrick.1 = true
+            }
+            if !self.appendedBricks.contains{ $0 == checkedBrick } {
                 unappendedBricks.append(footBrick)
             }
         }
@@ -169,15 +176,15 @@ class PresetSettingViewController: UIViewController {
     }
     
     @IBAction func addSelectedBricksToPreset(_ sender: UIButton) {
-        guard var presetBricksArray = currentPreset?.presetTestBricks else { return }
+        guard var presetBricksArray = currentPreset?.presetBricks else { return }
         
         for brick in self.appendedBricks {
-            if !(presetBricksArray.contains(brick))
+            if !presetBricksArray.contains{ $0 == brick }
             {
                 presetBricksArray.append(brick)
             }
         }
-        currentPreset?.presetTestBricks = presetBricksArray
+        currentPreset?.presetBricks = presetBricksArray
         UIView.animate(withDuration: 0.3, animations: {
             self.bricksPicker.frame = CGRect(x: 0,
                                              y: self.view.bounds.size.height,
@@ -200,8 +207,6 @@ class PresetSettingViewController: UIViewController {
             preset.presetObject?.id = preset.id
             preset.presetObject?.footswitch = footswitch.id
             preset.presetObject?.name = preset.name
-//            preset.presetObject?.presetBricks = pre
-            //var presetObject = PresetObject(preset: preset)
             preset.save()
             preset.footswitch?.save()
             self.dismiss(animated: true, completion: nil)
@@ -243,9 +248,6 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         let presetBricksCount = preset.presetTestBricks.count
         
         if collectionView == presetBricksCollectionView {
-//            guard presetBricksCount != 0 else {
-//                return 1
-//            }
             
             if presetBricksCount == 0, preset.footswitch?.bricks.count == 0 {
                 return 0
@@ -264,9 +266,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
         }
         
         if collectionView == bricksPickerCollectionView {
-            let count = unappendedBricks.count
             return unappendedBricks.count
-            
         }
         return 0
     }
@@ -276,7 +276,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             return UICollectionViewCell()
         }
         
-        let presetBricksCount = preset.presetTestBricks.count
+        let presetBricksCount = preset.presetBricks.count
         
         if collectionView == presetBricksCollectionView {
             guard presetBricksCount > 0 else {
@@ -288,17 +288,16 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             }
             
             if indexPath.row < presetBricksCount {
-                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetSettingsBrickCell", for: indexPath) as? PresetSettingBricksCollectionViewCell else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetSettingsBrickCell", for: indexPath) as? PresetSettingBricksCollectionViewCell, let currentPreset = self.currentPreset else {
                     return UICollectionViewCell()
                 }
                 cell.viewController = self
-                cell.preset = self.currentPreset
-                guard let brick = currentPreset?.presetTestBricks[indexPath.row] else {
+                cell.preset = currentPreset
+                let currentBrick = UserDevicesManager.default.userBricks.first{$0.id == currentPreset.presetBricks[indexPath.row].0}
+                guard let brick = currentBrick else {
                     return UICollectionViewCell()
                 }
-                //                if let brick = UserDevicesManager.default.brick(id: brickState.0) {
                 cell.configure(brick: brick, index: indexPath.row)
-                //                }
                 cell.dropShadow()
                 return cell
             } else {
@@ -374,12 +373,19 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             //
             
             
-            if !appendedBricks.contains(selectedBrick) {
-                appendedBricks.append(selectedBrick)
+            if !appendedBricks.contains{$0.0 == selectedBrick.id} {
+                var appendedBrick = ("",false)
+                appendedBrick.0 = selectedBrick.id ?? ""
+                if selectedBrick.status == .off {
+                    appendedBrick.1 = false
+                } else {
+                    appendedBrick.1 = true
+                }
+                appendedBricks.append(appendedBrick)
             } else {
                 var indexForDelete: Int = 0
                 for index in 0..<appendedBricks.count {
-                    if appendedBricks[index] == selectedBrick {
+                    if appendedBricks[index].0 == selectedBrick.id {
                         indexForDelete = index
                     }
                 }

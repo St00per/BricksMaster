@@ -18,13 +18,13 @@ class BricksPickerCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var brickSelectionMark: UIImageView!
     
-    func configure(brick: Brick, currentPreset: Preset, appendedBricks: [Brick]) {
+    func configure(brick: Brick, currentPreset: Preset, appendedBricks: [(String,Bool)]) {
         brickName.text = brick.deviceName
         brickColorView.backgroundColor = brick.color
         brickColorView.dropShadow()
         brickImageView.image = UIImage(named: brick.imageId ?? "")
         
-        if appendedBricks.contains(brick) {
+        if appendedBricks.contains(where: {$0.0 == brick.id}) {
             brickSelectionMark.image = UIImage(named: "Select")
         } else {
             brickSelectionMark.image = UIImage(named: "Unselect")
