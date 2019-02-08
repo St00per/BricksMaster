@@ -146,22 +146,23 @@ class BrickSettingsViewController: UIViewController {
             return
         }
         currentBrick.assignedFootswitch = self.assignedFootswitch
-        if !assignedFootswitch.bricks.contains(currentBrick) {
-            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-            return
-        }
         if let finded = self.assignedFootswitch?.bricks.firstIndex(where: { (brick) -> Bool in
             return brick.id == currentBrick.id
         }) {
-
+            
         } else {
             currentBrick.assignedFootswitch?.bricks.append(currentBrick)
         }
         
         currentBrick.save()
         assignedFootswitch.save()
+        if !assignedFootswitch.bricks.contains(currentBrick) {
+            currentBrick.assignedFootswitch?.bricks.append(currentBrick)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
         self.dismiss(animated: true, completion: nil)
     }
     
