@@ -12,9 +12,9 @@ import RealmSwift
 class Bank {
     var id: String?
     var name: String?
-    var presets: [Preset] = [] // presets according to order 1st button - 1st preset
+    var presets: [Preset] = [Preset(),Preset(),Preset(),Preset()] // presets according to order 1st button - 1st preset
     var footswitchId: String?
-    var footswitchButtons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
+    //var footswitchButtons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
     
     var empty: Bool = true
     
@@ -31,11 +31,14 @@ class Bank {
         name = bankObject.name
         empty = false
         footswitchId = bankObject.footswitchId
-        for (i, button) in bankObject.footswitchButtons.enumerated() {
-            footswitchButtons[i].id = button.id
-            footswitchButtons[i].index = button.index
-            footswitchButtons[i].isOn = button.isOn
-        }
+//        for (i, button) in bankObject.footswitchButtons.enumerated() {
+//            if i < 4 {
+//            footswitchButtons[i].id = button.id
+//            footswitchButtons[i].index = button.index
+//            footswitchButtons[i].preset?.id = button.preset
+//            footswitchButtons[i].isOn = button.isOn
+//            }
+//        }
         empty = bankObject.empty
     }
 

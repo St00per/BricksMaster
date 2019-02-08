@@ -32,10 +32,13 @@ class BankObject: Object {
             }
         }
         self.footswitchId = bank.footswitchId
-        for button in bank.footswitchButtons {
-            self.footswitchButtons.append(FootswitchButtonObject(footswitchButton: button))
-        }
+//        for button in bank.footswitchButtons {
+//            self.footswitchButtons.append(FootswitchButtonObject(footswitchButton: button))
+//        }
         self.empty = bank.empty
+    }
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
 
@@ -154,9 +157,7 @@ class BrickObject: Object {
     override static func primaryKey() -> String? {
         return "id"
     }
-    
-    
-}
+ }
 
 class FootswitchButtonObject: Object {
     @objc dynamic var id: String!

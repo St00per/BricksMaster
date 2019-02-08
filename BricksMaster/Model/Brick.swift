@@ -23,7 +23,7 @@ class Brick: Observable {
     var deviceName: String?
     var assignedFootswitch: Footswitch?
     var color = UIColor.white
-    //var image: UIImage?
+    
     var imageId: String?
     
     var peripheral: CBPeripheral? = nil

@@ -200,10 +200,10 @@ class FootswitchEditViewController: UIViewController {
     
     
     @IBAction func onOffFootswitchButton(_ sender: UIButton) {
-        guard let selectedBank = currentBank, let currentFootswitch = currentFootswitch else {
+        guard let currentFootswitch = currentFootswitch else {
             return
         }
-        var footswitchButtons = selectedBank.footswitchButtons
+        var footswitchButtons = currentFootswitch.buttons
         var selectedPreset: Preset? = nil
         var selectedButton = -1;
         switch sender {
@@ -286,14 +286,15 @@ class FootswitchEditViewController: UIViewController {
         guard let selectedBank = currentBank else {
             return
         }
-        var footswitchButtons = selectedBank.footswitchButtons
-        firstPresetButtonLabel.text = footswitchButtons[0].preset?.name ?? "None"
-        secondPresetButtonLabel.text = footswitchButtons[1].preset?.name ?? "None"
-        thirdPresetButtonLabel.text = footswitchButtons[2].preset?.name ?? "None"
-        fourthPresetButtonLabel.text = footswitchButtons[3].preset?.name ?? "None"
+        var presets = selectedBank.presets
         
+        firstPresetButtonLabel.text = presets[0].name
+        secondPresetButtonLabel.text = presets[1].name
+        thirdPresetButtonLabel.text = presets[2].name
+        fourthPresetButtonLabel.text = presets[3].name
         
-        if footswitchButtons[0].isOn == true && footswitchButtons[0].preset != nil
+        guard let footswitchButtons = currentFootswitch?.buttons else { return }
+        if footswitchButtons[0].isOn == true && presets[0] != nil
         {
             firstPresetOnOffButton.setTitle("ON", for: .normal)
             firstPresetOnOffButton.backgroundColor = UIColor.white
@@ -303,7 +304,7 @@ class FootswitchEditViewController: UIViewController {
             firstPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
             firstPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
-        if footswitchButtons[1].isOn == true && footswitchButtons[1].preset != nil
+        if footswitchButtons[1].isOn == true && presets[1] != nil
         {
             secondPresetOnOffButton.setTitle("ON", for: .normal)
             secondPresetOnOffButton.backgroundColor = UIColor.white
@@ -313,7 +314,7 @@ class FootswitchEditViewController: UIViewController {
             secondPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
             secondPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
-        if footswitchButtons[2].isOn == true && footswitchButtons[2].preset != nil
+        if footswitchButtons[2].isOn == true && presets[2] != nil
         {
             thirdPresetOnOffButton.setTitle("ON", for: .normal)
             thirdPresetOnOffButton.backgroundColor = UIColor.white
@@ -323,7 +324,7 @@ class FootswitchEditViewController: UIViewController {
             thirdPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)
             thirdPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
-        if footswitchButtons[3].isOn == true && footswitchButtons[3].preset != nil
+        if footswitchButtons[3].isOn == true && presets[3] != nil
         {
             fourthPresetOnOffButton.setTitle("ON", for: .normal)
             fourthPresetOnOffButton.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.3)

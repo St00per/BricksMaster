@@ -245,7 +245,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
             return 1
         }
         
-        let presetBricksCount = preset.presetTestBricks.count
+        let presetBricksCount = preset.presetBricks.count
         
         if collectionView == presetBricksCollectionView {
             
@@ -331,7 +331,7 @@ extension PresetSettingViewController: UICollectionViewDelegate, UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == presetBricksCollectionView {
-            guard let count = currentPreset?.presetTestBricks.count else { return }
+            guard let count = currentPreset?.presetBricks.count else { return }
             if indexPath.row > count - 1  {
                 showBrickPicker()
             }

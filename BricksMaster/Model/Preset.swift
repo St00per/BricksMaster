@@ -12,21 +12,21 @@ import RealmSwift
 class Preset: NSObject {
     var id: String?
     var name: String = "Unnamed"
-    var presetTestBricks: [Brick] = [] {
-        didSet {
-            for brick in presetTestBricks {
-                var presetBrick: (String, Bool) = ("",false)
-                presetBrick.0 = brick.id!
-                if brick.status == .off {
-                    presetBrick.1 = false
-                } else {
-                    presetBrick.1 = true
-                }
-                
-                self.presetBricks.append(presetBrick)
-            }
-        }
-    }
+//    var presetTestBricks: [Brick] = [] {
+//        didSet {
+//            for brick in presetTestBricks {
+//                var presetBrick: (String, Bool) = ("",false)
+//                presetBrick.0 = brick.id!
+//                if brick.status == .off {
+//                    presetBrick.1 = false
+//                } else {
+//                    presetBrick.1 = true
+//                }
+//                
+//                self.presetBricks.append(presetBrick)
+//            }
+//        }
+//    }
     var presetBricks: [(String, Bool)]  = [] // ((int)"brick id from BLE", (Bool)"status: ON / OFF")
     var footswitch: Footswitch?
     
