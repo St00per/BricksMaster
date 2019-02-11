@@ -36,7 +36,7 @@ class FootswitchesCollectionViewCell: UICollectionViewCell, ConnectionObserver {
         }
      
         desVC.currentFootswitch = self.footswitch
-        desVC.currentBank = self.footswitch?.banks.first
+        desVC.currentBank = self.footswitch?.selectedBank
         controller?.show(desVC, sender: nil)
     }
     

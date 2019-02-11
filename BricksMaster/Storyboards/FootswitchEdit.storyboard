@@ -1035,7 +1035,7 @@
                                                                         <constraint firstItem="RhS-3q-Qzq" firstAttribute="leading" secondItem="tTd-6j-CqN" secondAttribute="trailing" constant="8" id="vSe-QA-5Iy"/>
                                                                     </constraints>
                                                                 </view>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round unselect" translatesAutoresizingMaskIntoConstraints="NO" id="p9U-la-wQl">
+                                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round unselect" translatesAutoresizingMaskIntoConstraints="NO" id="p9U-la-wQl">
                                                                     <rect key="frame" x="329" y="23" width="25" height="25"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="25" id="CCx-jz-O6Q"/>

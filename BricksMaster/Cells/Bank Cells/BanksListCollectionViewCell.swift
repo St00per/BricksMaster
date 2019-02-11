@@ -39,6 +39,7 @@ class BanksListCollectionViewCell: UICollectionViewCell {
         
         desVC.currentFootswitch = self.currentFootswitch
         desVC.currentBank = self.currentBank
+        desVC.currentFootswitch?.selectedBank = currentBank
         controller?.show(desVC, sender: nil)
     }
     

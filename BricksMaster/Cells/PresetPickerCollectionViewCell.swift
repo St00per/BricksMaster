@@ -38,7 +38,7 @@ class PresetPickerCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        if bank?.presets[footswitchButtonIndex] == preset {
+        if bank?.presets[footswitchButtonIndex].id == preset.id {
             selectionMarker.image = UIImage(named: "round select")
         } else {
             selectionMarker.image = UIImage(named: "round unselect")

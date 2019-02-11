@@ -71,11 +71,13 @@ class BricksCollectionViewCell: UICollectionViewCell {
         deviceImage.image = UIImage(named: brick.imageId ?? "")
         deviceColor.backgroundColor = brick.color
         connectedLabelView.layer.cornerRadius = 4
-        
+        connectedLabelView.isHidden = true
+        onOffDeviceButton.isHidden = true
         guard let brickState = brick.peripheral?.state else {
             return
         }
         switch brickState {
+            
         case .disconnected:
             onOffDeviceButton.isHidden = true
             connectedLabelView.isHidden = true

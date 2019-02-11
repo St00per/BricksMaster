@@ -72,23 +72,39 @@ class PresetPickerViewController: UIViewController {
 }
 extension PresetPickerViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return editedFootswitch?.presets.count ?? 0
+        return (editedFootswitch?.presets.count ?? 0) + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetPickerCell", for: indexPath) as? PresetPickerCollectionViewCell else {
             return UICollectionViewCell()
         }
+        if indexPath.row == 0 {
+            cell.presetName.text = "No preset"
+            cell.bricksIndicatorsView.isHidden = true
+            let bankPresets = editedBank?.presets
+            if editedBank?.presets[footswitchButtonNumber].id == nil {
+                cell.selectionMarker.image = UIImage(named: "round select")
+            } else {
+                cell.selectionMarker.image = UIImage(named: "round unselect")
+            }
+            return cell
+        } else {
         cell.bank = self.editedBank
         cell.footswitchButtonIndex = footswitchButtonNumber
-        if let currentPreset = editedFootswitch?.presets[indexPath.row] {
+        if let currentPreset = editedFootswitch?.presets[indexPath.row - 1] {
             cell.configure(preset: currentPreset)
         }
-        return cell
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedPreset = editedFootswitch?.presets[indexPath.row] else { return }
+        if indexPath.row == 0 {
+            setPresetToFootswitchButton(preset: Preset())
+        } else {
+        guard let selectedPreset = editedFootswitch?.presets[indexPath.row - 1 ] else { return }
         setPresetToFootswitchButton(preset: selectedPreset)
+        }
     }
 }
