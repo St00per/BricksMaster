@@ -151,7 +151,14 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 } else {
                     cell.isExpand = false
                 }
-                if bank.presets.count == 0 {
+                let presets = bank.presets
+                var actualPresetCount = 0
+                for preset in presets {
+                    if preset.id != nil {
+                        actualPresetCount += 1
+                    }
+                }
+                if actualPresetCount == 0 {
                     cell.bankExpandIndicator.isHidden = true
                 } else {
                     cell.bankExpandIndicator.isHidden = false

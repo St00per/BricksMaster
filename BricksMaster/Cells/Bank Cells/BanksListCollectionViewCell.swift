@@ -48,7 +48,8 @@ class BanksListCollectionViewCell: UICollectionViewCell {
 
 extension BanksListCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { let presets = currentBank.presets
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let presets = currentBank.presets
         var actualPresetCount = 0
         for preset in presets {
             if preset.id != nil {

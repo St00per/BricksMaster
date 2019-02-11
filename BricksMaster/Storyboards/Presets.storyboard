@@ -416,35 +416,35 @@
                                                                 <constraint firstAttribute="height" constant="24" id="1fc-7O-c8e"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0E-Gm-Izx">
-                                                            <rect key="frame" x="294" y="23" width="24" height="24"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="24" id="4V6-sU-VbU"/>
-                                                                <constraint firstAttribute="height" constant="24" id="9qZ-xe-vQC"/>
-                                                            </constraints>
-                                                            <state key="normal" image="ic_more_vert_48px"/>
-                                                            <connections>
-                                                                <action selector="openBankEditor:" destination="5MZ-CN-nWs" eventType="touchUpInside" id="sgF-N0-pNY"/>
-                                                            </connections>
-                                                        </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g25-k9-DXL">
                                                             <rect key="frame" x="50" y="24" width="184" height="21"/>
                                                             <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n0E-Gm-Izx">
+                                                            <rect key="frame" x="286" y="16" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="KdP-D5-j1o"/>
+                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="xmX-7p-1ne"/>
+                                                            </constraints>
+                                                            <state key="normal" image="ic_more_vert_48px"/>
+                                                            <connections>
+                                                                <action selector="openBankEditor:" destination="5MZ-CN-nWs" eventType="touchUpInside" id="sgF-N0-pNY"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="g25-k9-DXL" secondAttribute="bottom" constant="25" id="3JW-Lg-Z52"/>
                                                         <constraint firstItem="d7T-Ha-teT" firstAttribute="leading" secondItem="ZJ9-JR-bCF" secondAttribute="leading" constant="16" id="3m5-v8-Zr3"/>
-                                                        <constraint firstAttribute="trailing" secondItem="n0E-Gm-Izx" secondAttribute="trailing" constant="16" id="5qm-w8-xGL"/>
                                                         <constraint firstAttribute="trailing" secondItem="g25-k9-DXL" secondAttribute="trailing" constant="100" id="7at-xs-DS2"/>
                                                         <constraint firstItem="g25-k9-DXL" firstAttribute="leading" secondItem="ZJ9-JR-bCF" secondAttribute="leading" constant="50" id="GzN-2t-DjO"/>
                                                         <constraint firstAttribute="height" constant="70" id="KAR-O5-fRg"/>
                                                         <constraint firstItem="d7T-Ha-teT" firstAttribute="centerY" secondItem="ZJ9-JR-bCF" secondAttribute="centerY" id="R4n-CX-RUN"/>
                                                         <constraint firstItem="g25-k9-DXL" firstAttribute="top" secondItem="ZJ9-JR-bCF" secondAttribute="top" constant="24" id="WYt-H9-RbN"/>
-                                                        <constraint firstItem="n0E-Gm-Izx" firstAttribute="top" secondItem="ZJ9-JR-bCF" secondAttribute="top" constant="23" id="r3x-3c-dMV"/>
+                                                        <constraint firstItem="n0E-Gm-Izx" firstAttribute="top" secondItem="ZJ9-JR-bCF" secondAttribute="top" constant="16" id="gRo-lA-8N3"/>
+                                                        <constraint firstItem="n0E-Gm-Izx" firstAttribute="leading" secondItem="ZJ9-JR-bCF" secondAttribute="leading" constant="286" id="yOM-K8-2uc"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
