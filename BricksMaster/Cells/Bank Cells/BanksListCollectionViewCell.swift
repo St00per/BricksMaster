@@ -38,6 +38,7 @@ class BanksListCollectionViewCell: UICollectionViewCell {
         }
         
         desVC.currentFootswitch = self.currentFootswitch
+        desVC.currentBank = self.currentBank
         controller?.show(desVC, sender: nil)
     }
     
@@ -46,25 +47,37 @@ class BanksListCollectionViewCell: UICollectionViewCell {
 
 extension BanksListCollectionViewCell: UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentBank.presets.count
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { let presets = currentBank.presets
+        var actualPresetCount = 0
+        for preset in presets {
+            if preset.id != nil {
+                actualPresetCount += 1
+            }
+        }
+        return actualPresetCount
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsListCell", for: indexPath) as? PresetsListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.configure(preset: currentBank.presets[indexPath.row])
+        guard let preset = ((currentFootswitch?.presets.first{ $0.id == currentBank.presets[indexPath.row].id})) else {
+            return UICollectionViewCell()
+        }
+        cell.configure(preset: preset)
         return cell
-    }
+            }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let footswitches = UserDevicesManager.default.userFootswitches//.filter{$0.new == false}
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "PresetSettings", bundle: nil)
         guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetSettingViewController") as? PresetSettingViewController else {
             return
         }
-        desVC.currentPreset = footswitches[indexPath.section].presets[indexPath.row]
+        guard let preset = ((currentFootswitch?.presets.first{ $0.id == currentBank.presets[indexPath.row].id})) else {
+            return
+        }
+        desVC.currentPreset = preset
         controller?.show(desVC, sender: nil)
     }
     

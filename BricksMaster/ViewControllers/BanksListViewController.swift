@@ -174,7 +174,13 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if self.selectedBanksIndex.contains(indexPath)  {
-            let bankPresetCount = CGFloat(UserDevicesManager.default.userFootswitches[indexPath.section].banks[indexPath.row].presets.count)
+            let presets = UserDevicesManager.default.userFootswitches[indexPath.section].banks[indexPath.row].presets
+            var bankPresetCount: CGFloat = 0
+            for preset in presets {
+                if preset.id != nil {
+                    bankPresetCount += 1
+                }
+            }
             var expandedCellHeight: CGFloat = 80
             if bankPresetCount > 0 {
                 expandedCellHeight = expandedCellHeight + (expandedCellHeight * bankPresetCount) + 16
@@ -221,7 +227,7 @@ extension BanksListViewController: UITextFieldDelegate {
         }
         let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
         footswitches.first?.banks.append(newBank)
-        desVC.currentFootswitch = footswitches.first
+        desVC.currentFootswitch = footswitches.first//??
         
         show(desVC, sender: nil)
         return true

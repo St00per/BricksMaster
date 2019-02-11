@@ -61,18 +61,9 @@ class PresetPickerViewController: UIViewController {
         guard let footswitchIndex = footswitchArray.firstIndex(of: currentFootswitch) else { return }
         
         let bank = UserDevicesManager.default.userFootswitches[footswitchIndex].banks.first{$0.id == currentBank.id}
-//        if let bank = bank {
-//            bank.footswitchButtons[footswitchButtonNumber].preset = preset
-//        }
-        if !currentBank.presets.contains(preset) {
-            currentBank.presets.append(preset)
-        }
+        currentBank.presets[footswitchButtonNumber] = preset
         guard let updatedBank = bank else { return }
-        
-        updatedBank.bankObject = BankObject(bank: updatedBank)
-        
         updatedBank.save()
-
         currentFootswitch.save()
         close()
     }

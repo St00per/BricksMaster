@@ -14,7 +14,7 @@ class Bank {
     var name: String?
     var presets: [Preset] = [Preset(),Preset(),Preset(),Preset()] // presets according to order 1st button - 1st preset
     var footswitchId: String?
-    //var footswitchButtons: [FootswitchButton] = [FootswitchButton(0), FootswitchButton(1), FootswitchButton(2), FootswitchButton(3)]
+    
     
     var empty: Bool = true
     
@@ -29,16 +29,11 @@ class Bank {
         self.bankObject = bankObject
         id = bankObject.id
         name = bankObject.name
+        for index in 0..<bankObject.presets.count {
+            presets[index].id = bankObject.presets[index]
+        }
         empty = false
         footswitchId = bankObject.footswitchId
-//        for (i, button) in bankObject.footswitchButtons.enumerated() {
-//            if i < 4 {
-//            footswitchButtons[i].id = button.id
-//            footswitchButtons[i].index = button.index
-//            footswitchButtons[i].preset?.id = button.preset
-//            footswitchButtons[i].isOn = button.isOn
-//            }
-//        }
         empty = bankObject.empty
     }
 

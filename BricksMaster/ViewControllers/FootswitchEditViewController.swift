@@ -61,7 +61,6 @@ class FootswitchEditViewController: UIViewController {
         bankNameEditTextField.returnKeyType = UIReturnKeyType.done
         guard let currentFootswitch = self.currentFootswitch else { return }
         currentFootswitchName.text = currentFootswitch.name
-        currentBank = currentFootswitch.banks.first
         
         bricksCollectionController = BricksCollectionController(collection: bricksCollection, footswitch: currentFootswitch)
         bricksCollectionController?.delegate = self
@@ -288,10 +287,10 @@ class FootswitchEditViewController: UIViewController {
         }
         var presets = selectedBank.presets
         
-        firstPresetButtonLabel.text = presets[0].name
-        secondPresetButtonLabel.text = presets[1].name
-        thirdPresetButtonLabel.text = presets[2].name
-        fourthPresetButtonLabel.text = presets[3].name
+        firstPresetButtonLabel.text = currentFootswitch?.presets.first{ $0.id == presets[0].id}?.name
+        secondPresetButtonLabel.text = currentFootswitch?.presets.first{ $0.id == presets[1].id}?.name
+        thirdPresetButtonLabel.text = currentFootswitch?.presets.first{ $0.id == presets[2].id}?.name
+        fourthPresetButtonLabel.text = currentFootswitch?.presets.first{ $0.id == presets[3].id}?.name
         
         guard let footswitchButtons = currentFootswitch?.buttons else { return }
         if footswitchButtons[0].isOn == true && presets[0] != nil
