@@ -11,6 +11,7 @@ import Foundation
 protocol BanksControllerDelegate: class {
     func didCreateNew(bank: Bank)
     func selectedBank(bank: Bank)
+    func openRenameDeleteView()
 }
 
 class BanksController : NSObject{
@@ -53,6 +54,7 @@ extension BanksController: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "selectBankCell", for: indexPath) as? FootswitchEditBankCell else { return UICollectionViewCell()
         }
+            cell.delegate = self.delegate
             cell.configure(bank: footswitch.banks[indexPath.item])
         return cell
     }

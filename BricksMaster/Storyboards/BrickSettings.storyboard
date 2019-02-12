@@ -35,13 +35,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eFL-Rf-k3g">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55H-RS-D4U">
-                                        <rect key="frame" x="332" y="55" width="25" height="25"/>
-                                        <state key="normal" image="Close 2.1"/>
-                                        <connections>
-                                            <action selector="closeBrickSettings:" destination="IQT-lF-Vs6" eventType="touchUpInside" id="8Dq-hh-ITY"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brick Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JwS-PA-1wu">
                                         <rect key="frame" x="132.66666666666666" y="52" width="110" height="20"/>
                                         <constraints>
@@ -274,19 +267,30 @@
                                             <action selector="startPing" destination="IQT-lF-Vs6" eventType="touchDown" id="SUZ-B1-bbL"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="55H-RS-D4U">
+                                        <rect key="frame" x="325" y="45" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Oy3-tP-mVt"/>
+                                            <constraint firstAttribute="width" constant="40" id="d8r-E6-UPk"/>
+                                        </constraints>
+                                        <state key="normal" image="Close 2.1"/>
+                                        <connections>
+                                            <action selector="closeBrickSettings:" destination="IQT-lF-Vs6" eventType="touchUpInside" id="8Dq-hh-ITY"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="pPF-Oj-hdG" firstAttribute="top" secondItem="b9G-7e-YTH" secondAttribute="bottom" constant="8" id="0N5-gb-YkA"/>
                                     <constraint firstItem="Vhl-Jz-pEQ" firstAttribute="centerX" secondItem="eFL-Rf-k3g" secondAttribute="centerX" id="5qk-qw-Mbr"/>
-                                    <constraint firstItem="b9G-7e-YTH" firstAttribute="top" secondItem="55H-RS-D4U" secondAttribute="bottom" constant="34" id="7Gt-Uv-Y2h"/>
+                                    <constraint firstItem="b9G-7e-YTH" firstAttribute="top" secondItem="55H-RS-D4U" secondAttribute="bottom" constant="29" id="7Gt-Uv-Y2h"/>
                                     <constraint firstItem="b9G-7e-YTH" firstAttribute="centerX" secondItem="eFL-Rf-k3g" secondAttribute="centerX" id="86L-Pc-4vh"/>
                                     <constraint firstItem="UDR-Kv-XEr" firstAttribute="leading" secondItem="eFL-Rf-k3g" secondAttribute="leading" constant="20" id="DbW-vQ-3w3"/>
                                     <constraint firstItem="pPF-Oj-hdG" firstAttribute="leading" secondItem="f3w-Sp-lMB" secondAttribute="leading" id="Dly-s5-eTe"/>
                                     <constraint firstItem="kK5-vO-CGx" firstAttribute="width" secondItem="srt-lt-akU" secondAttribute="width" id="MNB-eS-g3i"/>
                                     <constraint firstItem="qGB-4W-fyG" firstAttribute="trailing" secondItem="b9G-7e-YTH" secondAttribute="trailing" multiplier="0.9" id="P8U-q6-lmv"/>
                                     <constraint firstItem="b9G-7e-YTH" firstAttribute="top" secondItem="f3w-Sp-lMB" secondAttribute="bottom" constant="8" id="TPi-eW-rhb"/>
-                                    <constraint firstItem="55H-RS-D4U" firstAttribute="leading" secondItem="JwS-PA-1wu" secondAttribute="trailing" constant="89.333333333333343" id="Vqh-18-Ws5"/>
+                                    <constraint firstItem="55H-RS-D4U" firstAttribute="leading" secondItem="JwS-PA-1wu" secondAttribute="trailing" constant="82.333333333333343" id="Vqh-18-Ws5"/>
                                     <constraint firstItem="srt-lt-akU" firstAttribute="top" secondItem="pPF-Oj-hdG" secondAttribute="bottom" constant="8" id="ZXp-TR-gTp"/>
                                     <constraint firstItem="kK5-vO-CGx" firstAttribute="centerX" secondItem="eFL-Rf-k3g" secondAttribute="centerX" id="biO-U4-JmS"/>
                                     <constraint firstItem="6tT-0K-fgG" firstAttribute="trailing" secondItem="hGb-pP-sgu" secondAttribute="trailing" id="dJ9-dk-N7n"/>
@@ -418,7 +422,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </objects>
-            <point key="canvasLocation" x="2054" y="134"/>
+            <point key="canvasLocation" x="2053.5999999999999" y="133.74384236453201"/>
         </scene>
     </scenes>
     <resources>

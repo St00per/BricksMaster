@@ -18,6 +18,7 @@ class FootswitchEditViewController: UIViewController {
     var bricksCollectionController: BricksCollectionController?
     
     @IBOutlet weak var bricksIndicatorsView: UIView!
+    @IBOutlet var renameDeleteView: UIView!
     
     
     @IBOutlet weak var currentFootswitchName: UILabel!
@@ -143,10 +144,12 @@ class FootswitchEditViewController: UIViewController {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
             self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+            self.renameDeleteView.frame = CGRect(x: self.view.bounds.width * 0.25, y: self.view.bounds.height, width: size.width * 0.5, height: size.height)
         }) { (isFinished) in
             self.becomeFirstResponder()
             self.footswitchEditView.isUserInteractionEnabled = true
             self.bankNameEditView.removeFromSuperview()
+            self.renameDeleteView.removeFromSuperview()
         }
     }
     
@@ -381,5 +384,18 @@ extension FootswitchEditViewController: BanksControllerDelegate {
     func selectedBank(bank: Bank) {
         currentBank = bank
         configurePresetButtons()
+    }
+    
+    func openRenameDeleteView() {
+        footswitchEditView.isUserInteractionEnabled = false
+        self.view.addSubview(renameDeleteView)
+        let size = CGSize(width: self.view.bounds.width * 0.5, height: 190)
+        let renameDeleteFrame = CGRect(x: self.view.bounds.width * 0.25, y: self.view.bounds.height, width: size.width, height: size.height)
+        self.renameDeleteView.frame = renameDeleteFrame
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.45
+            self.renameDeleteView.frame = CGRect(x: renameDeleteFrame.origin.x, y: self.view.bounds.midY - 120, width: size.width, height: size.height)
+        })
     }
 }

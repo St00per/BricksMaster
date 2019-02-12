@@ -10,11 +10,15 @@ import Foundation
 
 class  FootswitchEditBankCell: UICollectionViewCell {
     
+    var borderView: CAShapeLayer = CAShapeLayer()
+    var longPressRecognizer: UILongPressGestureRecognizer?
+    var bank: Bank?
+    var isCurrent: Bool = false
+    weak var delegate: BanksControllerDelegate?
+    
     @IBOutlet weak var plusImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
-    var borderView: CAShapeLayer = CAShapeLayer()
-
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,6 +28,11 @@ class  FootswitchEditBankCell: UICollectionViewCell {
         self.layer.addSublayer(borderView)
         self.layer.cornerRadius = 4
         self.layer.masksToBounds  = true
+        
+        self.longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(openRenameDeleteView))
+        longPressRecognizer?.minimumPressDuration = 0.5
+        guard let recognizer = longPressRecognizer else { return }
+        self.addGestureRecognizer(recognizer)
     }
     
     override func layoutSubviews() {
@@ -31,9 +40,6 @@ class  FootswitchEditBankCell: UICollectionViewCell {
         borderView.path = UIBezierPath(roundedRect: self.bounds, cornerRadius: 4).cgPath
         borderView.frame = self.bounds
     }
-    
-    var bank: Bank?
-    var isCurrent: Bool = false
     
     func configure(bank: Bank) {
         self.bank = bank
@@ -57,6 +63,11 @@ class  FootswitchEditBankCell: UICollectionViewCell {
         }
     }
 
+    @objc func openRenameDeleteView() {
+        longPressRecognizer?.state = .ended
+        delegate?.openRenameDeleteView()
+    }
+    
     override var isSelected: Bool {
         didSet {
             if isSelected {

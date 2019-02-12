@@ -275,14 +275,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4s-Oy-yxP">
-                                <rect key="frame" x="324" y="58" width="25" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="Close 2.1"/>
-                                <connections>
-                                    <action selector="closePresetSetting:" destination="rzc-Vd-yEx" eventType="touchUpInside" id="EDd-xi-oFf"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0mv-hB-Ahp">
                                 <rect key="frame" x="137.5" y="592" width="100" height="50"/>
                                 <color key="backgroundColor" red="0.41568627450000001" green="0.60784313729999995" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -303,14 +295,27 @@
                                     <action selector="savePreset:" destination="rzc-Vd-yEx" eventType="touchUpInside" id="nug-Yb-sUk"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4s-Oy-yxP">
+                                <rect key="frame" x="308" y="50" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="g5m-lc-rtN"/>
+                                    <constraint firstAttribute="width" constant="40" id="lVp-wn-cNl"/>
+                                </constraints>
+                                <state key="normal" image="Close 2.1"/>
+                                <connections>
+                                    <action selector="closePresetSetting:" destination="rzc-Vd-yEx" eventType="touchUpInside" id="EDd-xi-oFf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0mv-hB-Ahp" firstAttribute="centerX" secondItem="XfO-HI-6Wj" secondAttribute="centerX" id="2XR-rO-Zuj"/>
                             <constraint firstItem="0mv-hB-Ahp" firstAttribute="centerX" secondItem="XfO-HI-6Wj" secondAttribute="centerX" id="3Qh-fo-muo"/>
                             <constraint firstItem="I9q-sv-AdF" firstAttribute="bottom" secondItem="Krk-qa-vdK" secondAttribute="bottom" id="4Hk-NB-Jvr"/>
+                            <constraint firstItem="C4s-Oy-yxP" firstAttribute="top" secondItem="I9q-sv-AdF" secondAttribute="top" constant="30" id="XNq-be-8fU"/>
                             <constraint firstItem="0mv-hB-Ahp" firstAttribute="top" secondItem="Qgc-vA-Kmk" secondAttribute="bottom" constant="8" id="g7o-ql-qND"/>
                             <constraint firstItem="I9q-sv-AdF" firstAttribute="trailing" secondItem="Krk-qa-vdK" secondAttribute="trailing" id="ijy-6R-Fhk"/>
+                            <constraint firstItem="I9q-sv-AdF" firstAttribute="trailing" secondItem="C4s-Oy-yxP" secondAttribute="trailing" constant="27" id="jWw-bo-2M5"/>
                             <constraint firstItem="Krk-qa-vdK" firstAttribute="leading" secondItem="I9q-sv-AdF" secondAttribute="leading" id="pYd-Cx-ZFK"/>
                             <constraint firstItem="Krk-qa-vdK" firstAttribute="top" secondItem="I9q-sv-AdF" secondAttribute="top" constant="65" id="uZY-r1-jRZ"/>
                             <constraint firstItem="I9q-sv-AdF" firstAttribute="bottom" secondItem="0mv-hB-Ahp" secondAttribute="bottom" constant="25" id="vih-pl-Fid"/>

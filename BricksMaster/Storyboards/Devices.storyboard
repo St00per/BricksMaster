@@ -56,7 +56,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no devices right now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvi-z4-BFD">
-                                                        <rect key="frame" x="4" y="100" width="232" height="20"/>
+                                                        <rect key="frame" x="13" y="100" width="214" height="20"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                         <color key="textColor" red="0.41568627450980389" green="0.60784313725490191" blue="0.83529411764705885" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -120,17 +120,6 @@
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
-                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmJ-sa-QEK">
-                                                                            <rect key="frame" x="130" y="16" width="24" height="24"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="24" id="Nv8-qh-GEZ"/>
-                                                                                <constraint firstAttribute="width" constant="24" id="XBJ-YD-eQf"/>
-                                                                            </constraints>
-                                                                            <state key="normal" image="ic_more_vert_48px"/>
-                                                                            <connections>
-                                                                                <action selector="showBrickEdit:" destination="qv6-48-GYO" eventType="touchUpInside" id="tmb-TH-B8j"/>
-                                                                            </connections>
-                                                                        </button>
                                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiK-Ug-v4g">
                                                                             <rect key="frame" x="17.666666666666671" y="134" width="135" height="40"/>
                                                                             <color key="backgroundColor" red="0.87058823529411766" green="0.41176470588235292" blue="0.41176470588235292" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,11 +179,21 @@
                                                                                 <constraint firstItem="qiL-sz-kO5" firstAttribute="leading" secondItem="duV-O3-pEf" secondAttribute="leading" constant="47" id="wvY-sI-tYA"/>
                                                                             </constraints>
                                                                         </view>
+                                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LmJ-sa-QEK">
+                                                                            <rect key="frame" x="122" y="5" width="40" height="40"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="40" id="NvT-nY-m0z"/>
+                                                                                <constraint firstAttribute="height" constant="40" id="Ssr-jC-W56"/>
+                                                                            </constraints>
+                                                                            <state key="normal" image="ic_more_vert_48px"/>
+                                                                            <connections>
+                                                                                <action selector="showBrickEdit:" destination="qv6-48-GYO" eventType="touchUpInside" id="tmb-TH-B8j"/>
+                                                                            </connections>
+                                                                        </button>
                                                                     </subviews>
                                                                     <color key="backgroundColor" red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="trailing" secondItem="LmJ-sa-QEK" secondAttribute="trailing" constant="16" id="0bL-Bn-V6b"/>
-                                                                        <constraint firstItem="LmJ-sa-QEK" firstAttribute="top" secondItem="Bsq-Vf-Jch" secondAttribute="top" constant="16" id="6DZ-Il-acG"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="LmJ-sa-QEK" secondAttribute="trailing" constant="8" id="Acy-bs-VgN"/>
                                                                         <constraint firstItem="oiK-Ug-v4g" firstAttribute="top" secondItem="ggg-c5-27m" secondAttribute="bottom" constant="9" id="CzH-hg-9nY"/>
                                                                         <constraint firstItem="ggg-c5-27m" firstAttribute="centerX" secondItem="Bsq-Vf-Jch" secondAttribute="centerX" id="D8d-0p-RlZ"/>
                                                                         <constraint firstItem="O1e-p3-j3Q" firstAttribute="top" secondItem="Bsq-Vf-Jch" secondAttribute="top" constant="16" id="E0r-51-kNP"/>
@@ -205,6 +204,7 @@
                                                                         <constraint firstItem="duV-O3-pEf" firstAttribute="width" secondItem="Bsq-Vf-Jch" secondAttribute="width" id="gCc-Kd-Joq"/>
                                                                         <constraint firstItem="ggg-c5-27m" firstAttribute="top" secondItem="Bsq-Vf-Jch" secondAttribute="top" constant="85" id="hWj-Zs-1lW"/>
                                                                         <constraint firstItem="VOc-fu-UES" firstAttribute="centerY" secondItem="Bsq-Vf-Jch" secondAttribute="centerY" id="lWC-Gu-Bsb"/>
+                                                                        <constraint firstItem="LmJ-sa-QEK" firstAttribute="top" secondItem="Bsq-Vf-Jch" secondAttribute="top" constant="5" id="rmh-0R-cie"/>
                                                                         <constraint firstItem="duV-O3-pEf" firstAttribute="centerX" secondItem="Bsq-Vf-Jch" secondAttribute="centerX" id="smf-Es-7kn"/>
                                                                     </constraints>
                                                                     <userDefinedRuntimeAttributes>
@@ -286,7 +286,7 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have no devices right now" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8si-T5-tob">
-                                                        <rect key="frame" x="4" y="100" width="232" height="20"/>
+                                                        <rect key="frame" x="13" y="100" width="214" height="20"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                                         <color key="textColor" red="0.41568627450000001" green="0.60784313729999995" blue="0.83529411760000005" alpha="1" colorSpace="calibratedRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -518,7 +518,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Footswitches" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dz4-Dk-M35">
-                                        <rect key="frame" x="14.999999999999993" y="322" width="119.33333333333331" height="24"/>
+                                        <rect key="frame" x="15.000000000000007" y="322" width="122.66666666666669" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="cMG-7o-5Pc"/>
                                         </constraints>
@@ -534,7 +534,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(0)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2gp-fe-HHV">
-                                        <rect key="frame" x="136.33333333333334" y="324" width="20" height="20"/>
+                                        <rect key="frame" x="139.66666666666666" y="324" width="20" height="20"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="20" id="OGF-Cs-iKB"/>
                                             <constraint firstAttribute="height" constant="20" id="hro-UJ-5Fj"/>
@@ -704,7 +704,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </objects>
-            <point key="canvasLocation" x="1080.8" y="-474.51274362818594"/>
+            <point key="canvasLocation" x="1080.8" y="-475.1231527093596"/>
         </scene>
     </scenes>
     <resources>

@@ -804,6 +804,7 @@
                         <outlet property="fourthPresetOnOffButton" destination="7RI-4c-5tf" id="eXR-eg-916"/>
                         <outlet property="fourthPresetSelectButton" destination="Bey-t0-bwH" id="eap-2o-HTb"/>
                         <outlet property="presetButtonsView" destination="NEp-xq-XB7" id="HyK-vS-asl"/>
+                        <outlet property="renameDeleteView" destination="m10-1X-5eG" id="7EQ-ch-G6n"/>
                         <outlet property="secondPresetButtonLabel" destination="WCl-Rd-EWj" id="4bi-YU-3n9"/>
                         <outlet property="secondPresetButtonView" destination="Lvs-cp-B23" id="ynX-cR-DbV"/>
                         <outlet property="secondPresetOnOffButton" destination="rAC-d1-HM8" id="X7u-AG-nLg"/>
@@ -816,7 +817,6 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xki-IG-G09" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="FmP-Ep-qM2" userLabel="Exit" sceneMemberID="exit"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="YNp-fP-pI7"/>
                 <view contentMode="scaleToFill" id="ohn-3f-RqG">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="190"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -887,9 +887,78 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="AHj-ot-P2l"/>
                 </view>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="iT1-Qr-ghI"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="dbL-7O-9zV"/>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="V39-mu-Gqh"/>
+                <view contentMode="scaleToFill" id="m10-1X-5eG">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="180"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SPT-cJ-hF1">
+                            <rect key="frame" x="0.0" y="0.0" width="240" height="180"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J82-Sh-E4A">
+                                    <rect key="frame" x="43" y="30" width="153" height="44"/>
+                                    <color key="backgroundColor" red="0.56470588239999997" green="0.70980392160000005" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="153" id="4Hd-8P-5Tf"/>
+                                        <constraint firstAttribute="height" constant="44" id="h5A-dI-Z6L"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                    <state key="normal" title="RENAME">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ue-tU-jn6">
+                                    <rect key="frame" x="44" y="101" width="153" height="44"/>
+                                    <color key="backgroundColor" red="0.87058823529999996" green="0.41176470590000003" blue="0.41176470590000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="153" id="77m-4d-Myd"/>
+                                        <constraint firstAttribute="height" constant="44" id="YLc-23-h4o"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                                    <state key="normal" title="DELETE">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="8"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="6ue-tU-jn6" secondAttribute="bottom" constant="35" id="HPI-Xe-x7Y"/>
+                                <constraint firstItem="J82-Sh-E4A" firstAttribute="leading" secondItem="SPT-cJ-hF1" secondAttribute="leading" constant="43" id="JXY-Ft-s8A"/>
+                                <constraint firstAttribute="trailing" secondItem="J82-Sh-E4A" secondAttribute="trailing" constant="44" id="cGC-Ho-pyi"/>
+                                <constraint firstItem="6ue-tU-jn6" firstAttribute="leading" secondItem="SPT-cJ-hF1" secondAttribute="leading" constant="44" id="dTl-1T-4oD"/>
+                                <constraint firstAttribute="trailing" secondItem="6ue-tU-jn6" secondAttribute="trailing" constant="43" id="jDZ-Hi-CQP"/>
+                                <constraint firstItem="J82-Sh-E4A" firstAttribute="top" secondItem="SPT-cJ-hF1" secondAttribute="top" constant="30" id="yyD-ys-EVk"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="SPT-cJ-hF1" firstAttribute="trailing" secondItem="Qxm-gi-pj3" secondAttribute="trailing" id="BPG-0m-ti6"/>
+                        <constraint firstItem="SPT-cJ-hF1" firstAttribute="leading" secondItem="Qxm-gi-pj3" secondAttribute="leading" id="Hce-ur-ysl"/>
+                        <constraint firstItem="SPT-cJ-hF1" firstAttribute="top" secondItem="Qxm-gi-pj3" secondAttribute="top" id="XsB-J3-rbV"/>
+                        <constraint firstItem="Qxm-gi-pj3" firstAttribute="bottom" secondItem="SPT-cJ-hF1" secondAttribute="bottom" id="Ynw-s9-Y1L"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="Qxm-gi-pj3"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="8"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
             </objects>
             <point key="canvasLocation" x="1170" y="-140"/>
         </scene>
