@@ -910,6 +910,9 @@
                                             <integer key="value" value="8"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="renameBank:" destination="UXa-af-Cpp" eventType="touchUpInside" id="8fK-IZ-XIG"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6ue-tU-jn6">
                                     <rect key="frame" x="44" y="101" width="153" height="44"/>

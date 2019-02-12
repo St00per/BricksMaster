@@ -135,6 +135,9 @@ class FootswitchEditViewController: UIViewController {
             self.becomeFirstResponder()
         }
     }
+    @IBAction func renameBank(_ sender: UIButton) {
+        openBankNameEdit()
+    }
     
     @IBAction func closeBankNameEdit(_ sender: Any) {
         if let selected = banksController?.selectedIndex {
@@ -154,6 +157,7 @@ class FootswitchEditViewController: UIViewController {
     }
     
     @IBAction func saveEditedBankName(_ sender: UIButton) {
+        self.renameDeleteView.removeFromSuperview()
         currentBank?.name = bankNameEditTextField.text
         currentBank?.empty = false
         if let selected = currentFootswitch?.banks.firstIndex(where: { (bank) -> Bool in
