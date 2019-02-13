@@ -63,12 +63,15 @@ extension BanksListCollectionViewCell: UICollectionViewDataSource, UICollectionV
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsListCell", for: indexPath) as? PresetsListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        guard let preset = ((currentFootswitch?.presets.first{ $0.id == currentBank.presets[indexPath.row].id})) else {
+        let actualPresets = currentBank.presets.filter{ $0.id != nil }
+        let actualPreset = currentFootswitch?.presets.first{ $0.id == actualPresets[indexPath.row].id}
+        guard let preset = actualPreset else {
             return UICollectionViewCell()
         }
         cell.configure(preset: preset)
         return cell
-            }
+       
+    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         

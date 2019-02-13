@@ -84,12 +84,16 @@ class FootswitchEditViewController: UIViewController {
         fourthPresetButtonView.layer.cornerRadius = 4
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        UserDevicesManager.default.footswitchController = self
+        banksController?.updateSelection()
+        configurePresetButtons()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UserDevicesManager.default.footswitchController = self
-        configurePresetButtons()
         shadowView.frame = self.view.bounds
-        banksController?.updateSelection()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -140,8 +144,12 @@ class FootswitchEditViewController: UIViewController {
     @IBAction func renameBank(_ sender: UIButton) {
         openBankNameEdit()
     }
+    
+    
     @IBAction func deleteCurrentBank(_ sender: UIButton) {
-        guard let currentFootswitch = self.currentFootswitch, let currentBank = self.currentBank else { return }
+        guard let currentFootswitch = self.currentFootswitch, let currentBank = self.currentBank else {
+            return
+        }
         let currentBankIndex = currentFootswitch.banks.firstIndex{ $0.id == currentBank.id }
         
         guard let deleteBankIndex = currentBankIndex else { return }
@@ -150,9 +158,14 @@ class FootswitchEditViewController: UIViewController {
         currentFootswitch.banks[deleteBankIndex] = emptyBank
         let nextBankIndex = currentFootswitch.banks.firstIndex{ $0.empty == false }
         
-        guard let nextExistBankIndex = nextBankIndex else { return }
-        currentFootswitch.selectedBank = currentFootswitch.banks[nextExistBankIndex]
+        if let nextExistBankIndex = nextBankIndex {
+            currentFootswitch.selectedBank = currentFootswitch.banks[nextExistBankIndex]
+        } else {
+            currentFootswitch.selectedBank = nil
+        }
+        
         currentFootswitch.save()
+        
         self.currentBank?.footswitchId = nil
         self.currentBank?.save()
         
@@ -161,8 +174,12 @@ class FootswitchEditViewController: UIViewController {
         banksController?.updateSelection()
         
         self.currentBank?.save()
-        
-        self.currentBank = currentFootswitch.banks[nextExistBankIndex]
+        if let nextExistBankIndex = nextBankIndex {
+            self.currentBank = currentFootswitch.banks[nextExistBankIndex]
+            banksController?.updateSelection()
+        } else {
+            self.currentBank = nil
+        }
         configurePresetButtons()
         
         UIView.animate(withDuration: 0.3, animations: {
@@ -211,8 +228,10 @@ class FootswitchEditViewController: UIViewController {
         }) {
             banksCollection.selectItem(at: IndexPath(item: selected, section: 0), animated: false, scrollPosition: .left)
         }
+        currentFootswitch?.selectedBank = currentBank
         banksController?.update()
         banksController?.updateSelection()
+        currentBank?.footswitchId = currentFootswitch?.id
         currentBank?.save()
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
@@ -231,7 +250,7 @@ class FootswitchEditViewController: UIViewController {
     
     @IBAction func openPresetPicker(_ sender: UIButton) {
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
-        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetPickerViewController") as? PresetPickerViewController else {
+        guard self.currentBank != nil, let desVC = mainStoryboard.instantiateViewController(withIdentifier: "PresetPickerViewController") as? PresetPickerViewController else {
             return
         }
         desVC.editedFootswitch = self.currentFootswitch
@@ -339,10 +358,14 @@ class FootswitchEditViewController: UIViewController {
     }
     
     func configurePresetButtons() {
-        guard let selectedBank = currentBank else {
+        guard let currentBank = self.currentBank else {
+            firstPresetButtonLabel.text = ""
+            secondPresetButtonLabel.text = ""
+            thirdPresetButtonLabel.text = ""
+            fourthPresetButtonLabel.text = ""
             return
         }
-        var presets = selectedBank.presets
+        var presets = currentBank.presets
         
         firstPresetButtonLabel.text = currentFootswitch?.presets.first{ $0.id == presets[0].id}?.name
         secondPresetButtonLabel.text = currentFootswitch?.presets.first{ $0.id == presets[1].id}?.name

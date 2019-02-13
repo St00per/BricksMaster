@@ -34,7 +34,9 @@ class BanksController : NSObject{
     
     func updateSelection() {
         let index = footswitch.banks.firstIndex{$0.id == footswitch.selectedBank?.id}
-        collection?.selectItem(at: IndexPath(item: index ?? 0, section: 0), animated: false, scrollPosition: .left)
+        if index != nil {
+            collection?.selectItem(at: IndexPath(item: index ?? 0, section: 0), animated: false, scrollPosition: .left)
+        }
     }
     
     func update() {

@@ -52,11 +52,17 @@ class BanksListViewController: UIViewController {
         newBank.empty = false
         newBank.footswitchId = currentFootswitch.id
         let saveIndex = currentFootswitch.banks.firstIndex{ $0.empty }
+        currentFootswitch.banks[saveIndex ?? 0].footswitchId = nil
+        currentFootswitch.banks[saveIndex ?? 0].save()
         currentFootswitch.banks[saveIndex ?? 0] = newBank
+        currentFootswitch.save()
         desVC.currentFootswitch = currentFootswitch
         bankNameView.removeFromSuperview()
         self.banksCollectionView.isUserInteractionEnabled = true
         self.shadowView.alpha = 0.0
+        
+        desVC.currentBank = newBank
+        desVC.currentFootswitch?.selectedBank = newBank
         show(desVC, sender: nil)
     }
     
@@ -202,18 +208,27 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
+        let filteredBanks = footswitches[indexPath.section].banks.filter { $0.empty == false }
+        
         
         self.currentFootswitch = footswitches[indexPath.section]
         
         if collectionView == banksCollectionView {
             let currentCellRow = indexPath.row
             let currentBanksCount = banksCount[indexPath.section]
-            //if currentCellRow < currentBanksCount - 1
+            
             if currentCellRow > currentBanksCount - 1 {
                 openBankNameView()
             } else {
-                let filteredBanks = footswitches[indexPath.section].banks.filter { $0.empty == false }
-                guard filteredBanks[indexPath.row].presets.count != 0 else {
+                let presets = filteredBanks[indexPath.row].presets
+                var bankPresetCount: CGFloat = 0
+                for preset in presets {
+                    if preset.id != nil {
+                        bankPresetCount += 1
+                    }
+                }
+                
+                guard bankPresetCount != 0 else {
                     return
                 }
                 if !self.selectedBanksIndex.contains(indexPath) {
@@ -232,16 +247,26 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
 extension BanksListViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
+        //let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         bankNameTextField.resignFirstResponder()
+        
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "FootswitchEdit", bundle: nil)
-        guard let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
+        guard let currentFootswitch = self.currentFootswitch, let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return false
         }
         let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
-        footswitches.first?.banks.append(newBank)
-        desVC.currentFootswitch = footswitches.first//??
-        
+        newBank.empty = false
+        newBank.footswitchId = currentFootswitch.id
+        let saveIndex = currentFootswitch.banks.firstIndex{ $0.empty }
+        currentFootswitch.banks[saveIndex ?? 0].footswitchId = nil
+        currentFootswitch.banks[saveIndex ?? 0].save()
+        currentFootswitch.banks[saveIndex ?? 0] = newBank
+        currentFootswitch.save()
+        desVC.currentFootswitch = currentFootswitch
+        desVC.currentBank = newBank
+        desVC.currentFootswitch?.selectedBank = newBank
+        bankNameView.removeFromSuperview()
+        shadowView.removeFromSuperview()
         show(desVC, sender: nil)
         return true
     }
