@@ -33,11 +33,8 @@ class BanksController : NSObject{
     }
     
     func updateSelection() {
-        if firstUse {
-            firstUse = false
-            let index = footswitch.banks.firstIndex{$0.id == footswitch.selectedBank?.id}
-            collection?.selectItem(at: IndexPath(item: index ?? 0, section: 0), animated: false, scrollPosition: .left)
-        }
+        let index = footswitch.banks.firstIndex{$0.id == footswitch.selectedBank?.id}
+        collection?.selectItem(at: IndexPath(item: index ?? 0, section: 0), animated: false, scrollPosition: .left)
     }
     
     func update() {

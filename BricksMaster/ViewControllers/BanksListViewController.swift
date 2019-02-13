@@ -9,7 +9,6 @@
 import UIKit
 
 class BanksListViewController: UIViewController {
-
     
     @IBOutlet weak var banksCollectionView: UICollectionView!
     @IBOutlet var banksListView: UIView!
@@ -22,7 +21,7 @@ class BanksListViewController: UIViewController {
     var collapsedCellIndex = [IndexPath()]
     var banksCount: [Int] = []
     var shadowView = UIView(frame: UIScreen.main.bounds)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +47,7 @@ class BanksListViewController: UIViewController {
         guard let currentFootswitch = self.currentFootswitch, let desVC = mainStoryboard.instantiateViewController(withIdentifier: "FootswitchEditViewController") as? FootswitchEditViewController else {
             return
         }
-
+        
         let newBank: Bank = Bank(id: UUID().uuidString, name: bankNameTextField.text ?? "Unnamed")
         newBank.empty = false
         newBank.footswitchId = currentFootswitch.id
@@ -107,7 +106,6 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
         let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
         
         if collectionView == banksCollectionView {
-            //setBanksCountArrayToZero()
             for bank in footswitches[section].banks {
                 if !bank.empty {
                     banksCount[section] += 1
@@ -144,7 +142,10 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BanksListCollectionViewCell", for: indexPath) as? BanksListCollectionViewCell else {
                     return UICollectionViewCell()
                 }
-                let bank = footswitches[indexPath.section].banks[indexPath.row]
+                
+                let filteredBanks = footswitches[indexPath.section].banks.filter { $0.empty == false }
+                
+                let bank = filteredBanks[indexPath.row]
                 
                 if self.selectedBanksIndex.contains(indexPath) {
                     cell.isExpand = true
@@ -175,13 +176,15 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
                 return cell
             }
         }
-  
         return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if self.selectedBanksIndex.contains(indexPath)  {
-            let presets = UserDevicesManager.default.userFootswitches[indexPath.section].banks[indexPath.row].presets
+            let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
+            let filteredBanks = footswitches[indexPath.section].banks.filter { $0.empty == false }
+            let presets = filteredBanks[indexPath.row].presets
+            
             var bankPresetCount: CGFloat = 0
             for preset in presets {
                 if preset.id != nil {
@@ -199,9 +202,9 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let footswitches = UserDevicesManager.default.userFootswitches.filter{$0.new == false}
-
+        
         self.currentFootswitch = footswitches[indexPath.section]
-
+        
         if collectionView == banksCollectionView {
             let currentCellRow = indexPath.row
             let currentBanksCount = banksCount[indexPath.section]
@@ -209,7 +212,10 @@ extension BanksListViewController: UICollectionViewDelegate, UICollectionViewDat
             if currentCellRow > currentBanksCount - 1 {
                 openBankNameView()
             } else {
-                guard footswitches[indexPath.section].banks[indexPath.row].presets.count != 0 else { return }
+                let filteredBanks = footswitches[indexPath.section].banks.filter { $0.empty == false }
+                guard filteredBanks[indexPath.row].presets.count != 0 else {
+                    return
+                }
                 if !self.selectedBanksIndex.contains(indexPath) {
                     self.selectedBanksIndex.append(indexPath)
                     self.banksCollectionView.reloadItems(at: self.selectedBanksIndex)

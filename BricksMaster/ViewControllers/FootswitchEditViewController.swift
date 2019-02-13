@@ -87,11 +87,10 @@ class FootswitchEditViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UserDevicesManager.default.footswitchController = self
-    guard let currentFootswitch = self.currentFootswitch else { return }
-        if currentFootswitch.banks.count != 0 {
-            //
+    //guard let currentFootswitch = self.currentFootswitch else { return }
+        //if currentFootswitch.banks.count != 0 {
             configurePresetButtons()
-        }
+       // }
         shadowView.frame = self.view.bounds
         banksController?.updateSelection()
     }
@@ -137,6 +136,32 @@ class FootswitchEditViewController: UIViewController {
     }
     @IBAction func renameBank(_ sender: UIButton) {
         openBankNameEdit()
+    }
+    @IBAction func deleteCurrentBank(_ sender: UIButton) {
+    guard let currentFootswitch = self.currentFootswitch, let currentBank = self.currentBank else { return }
+        let currentBankIndex = currentFootswitch.banks.firstIndex{ $0.id == currentBank.id }
+    guard let deleteBankIndex = currentBankIndex else { return }
+        currentFootswitch.banks[deleteBankIndex] = Bank(id: UUID().uuidString, name: "")
+        let nextBankIndex = currentFootswitch.banks.firstIndex{ $0.empty == false }
+        guard let nextExistBankIndex = nextBankIndex else { return }
+        currentFootswitch.selectedBank = currentFootswitch.banks[nextExistBankIndex]
+        currentFootswitch.save()
+        self.currentBank = currentFootswitch.banks[deleteBankIndex]
+        banksController?.update()
+        banksController?.updateSelection()
+        self.currentBank?.save()
+        self.currentBank = currentFootswitch.banks[nextExistBankIndex]
+        configurePresetButtons()
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.0
+            let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+            self.renameDeleteView.frame = CGRect(x: self.view.bounds.width * 0.25, y: self.view.bounds.height, width: size.width * 0.5, height: size.height)
+        }) { (isFinished) in
+            self.becomeFirstResponder()
+            self.footswitchEditView.isUserInteractionEnabled = true
+            self.renameDeleteView.removeFromSuperview()
+        }
     }
     
     @IBAction func closeBankNameEdit(_ sender: Any) {
