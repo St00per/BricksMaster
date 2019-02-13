@@ -91,6 +91,8 @@ extension DevicesTabViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.configure(brick: currentBrick)
 //            if currentBrick.imageId == nil {
 //                cell.deviceImage.addDashedBorder()
+//            } else {
+//
 //            }
             cell.dropShadow()
             return cell

@@ -47,14 +47,14 @@ class FootswitchEditViewController: UIViewController {
     
     @IBOutlet weak var banksCollection: UICollectionView!
     @IBOutlet weak var bricksCollection: UICollectionView!
-
+    
     @IBOutlet weak var bankNameEditTextField: UITextField!
     @IBOutlet weak var bankNameEditUnderTextView: UIView!
     @IBOutlet weak var bankNameEditButton: UIView!
-
+    
     @IBOutlet weak var footswitchEditView: UIView!
     @IBOutlet var bankNameEditView: UIView!
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -87,10 +87,7 @@ class FootswitchEditViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         UserDevicesManager.default.footswitchController = self
-    //guard let currentFootswitch = self.currentFootswitch else { return }
-        //if currentFootswitch.banks.count != 0 {
-            configurePresetButtons()
-       // }
+        configurePresetButtons()
         shadowView.frame = self.view.bounds
         banksController?.updateSelection()
     }
@@ -124,12 +121,18 @@ class FootswitchEditViewController: UIViewController {
         footswitchEditView.isUserInteractionEnabled = false
         self.view.addSubview(bankNameEditView)
         let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
-        let bankNameEditFrame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+        let bankNameEditFrame = CGRect(x: self.view.bounds.width * 0.05,
+                                       y: self.view.bounds.height,
+                                       width: size.width,
+                                       height: size.height)
         self.bankNameEditView.frame = bankNameEditFrame
         
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.45
-            self.bankNameEditView.frame = CGRect(x: bankNameEditFrame.origin.x, y: self.view.bounds.midY - 120, width: size.width, height: size.height)
+            self.bankNameEditView.frame = CGRect(x: bankNameEditFrame.origin.x,
+                                                 y: self.view.bounds.midY - 120,
+                                                 width: size.width,
+                                                 height: size.height)
         }) { (isFinished) in
             self.becomeFirstResponder()
         }
@@ -138,25 +141,37 @@ class FootswitchEditViewController: UIViewController {
         openBankNameEdit()
     }
     @IBAction func deleteCurrentBank(_ sender: UIButton) {
-    guard let currentFootswitch = self.currentFootswitch, let currentBank = self.currentBank else { return }
+        guard let currentFootswitch = self.currentFootswitch, let currentBank = self.currentBank else { return }
         let currentBankIndex = currentFootswitch.banks.firstIndex{ $0.id == currentBank.id }
-    guard let deleteBankIndex = currentBankIndex else { return }
-        currentFootswitch.banks[deleteBankIndex] = Bank(id: UUID().uuidString, name: "")
+        
+        guard let deleteBankIndex = currentBankIndex else { return }
+        let emptyBank = Bank(id: UUID().uuidString, name: "")
+        emptyBank.footswitchId = currentFootswitch.id
+        currentFootswitch.banks[deleteBankIndex] = emptyBank
         let nextBankIndex = currentFootswitch.banks.firstIndex{ $0.empty == false }
+        
         guard let nextExistBankIndex = nextBankIndex else { return }
         currentFootswitch.selectedBank = currentFootswitch.banks[nextExistBankIndex]
         currentFootswitch.save()
-        self.currentBank = currentFootswitch.banks[deleteBankIndex]
+        self.currentBank?.footswitchId = nil
+        self.currentBank?.save()
+        
+        self.currentBank = emptyBank
         banksController?.update()
         banksController?.updateSelection()
+        
         self.currentBank?.save()
+        
         self.currentBank = currentFootswitch.banks[nextExistBankIndex]
         configurePresetButtons()
         
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
-            self.renameDeleteView.frame = CGRect(x: self.view.bounds.width * 0.25, y: self.view.bounds.height, width: size.width * 0.5, height: size.height)
+            self.renameDeleteView.frame = CGRect(x: self.view.bounds.width * 0.25,
+                                                 y: self.view.bounds.height,
+                                                 width: size.width * 0.5,
+                                                 height: size.height)
         }) { (isFinished) in
             self.becomeFirstResponder()
             self.footswitchEditView.isUserInteractionEnabled = true
@@ -171,8 +186,14 @@ class FootswitchEditViewController: UIViewController {
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
-            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
-            self.renameDeleteView.frame = CGRect(x: self.view.bounds.width * 0.25, y: self.view.bounds.height, width: size.width * 0.5, height: size.height)
+            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05,
+                                                 y: self.view.bounds.height,
+                                                 width: size.width,
+                                                 height: size.height)
+            self.renameDeleteView.frame = CGRect(x: self.view.bounds.width * 0.25,
+                                                 y: self.view.bounds.height,
+                                                 width: size.width * 0.5,
+                                                 height: size.height)
         }) { (isFinished) in
             self.becomeFirstResponder()
             self.footswitchEditView.isUserInteractionEnabled = true
@@ -191,11 +212,15 @@ class FootswitchEditViewController: UIViewController {
             banksCollection.selectItem(at: IndexPath(item: selected, section: 0), animated: false, scrollPosition: .left)
         }
         banksController?.update()
+        banksController?.updateSelection()
         currentBank?.save()
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
-            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05, y: self.view.bounds.height, width: size.width, height: size.height)
+            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05,
+                                                 y: self.view.bounds.height,
+                                                 width: size.width,
+                                                 height: size.height)
         }) { (isFinished) in
             self.becomeFirstResponder()
             self.footswitchEditView.isUserInteractionEnabled = true
@@ -366,19 +391,19 @@ class FootswitchEditViewController: UIViewController {
             fourthPresetButtonView.backgroundColor = UIColor(hexString: "6A9BD5").withAlphaComponent(0.1)
         }
         
-//        for button in footswitchButtons {
-//            let indicators: [UIView] = bricksIndicatorsView.subviews
-//            guard let presetBricks = button.preset?.presetTestBricks else { return }
-//            for indicator in indicators {
-//                indicator.layer.cornerRadius = indicator.frame.width/2
-//                indicator.backgroundColor = UIColor.clear
-//            }
-//            for index in 0..<presetBricks.count {
-//                if index < indicators.count, !presetBricks.isEmpty {
-//                    indicators[index].backgroundColor = presetBricks[index].color
-//                }
-//            }
-//        }
+        //        for button in footswitchButtons {
+        //            let indicators: [UIView] = bricksIndicatorsView.subviews
+        //            guard let presetBricks = button.preset?.presetTestBricks else { return }
+        //            for indicator in indicators {
+        //                indicator.layer.cornerRadius = indicator.frame.width/2
+        //                indicator.backgroundColor = UIColor.clear
+        //            }
+        //            for index in 0..<presetBricks.count {
+        //                if index < indicators.count, !presetBricks.isEmpty {
+        //                    indicators[index].backgroundColor = presetBricks[index].color
+        //                }
+        //            }
+        //        }
         
     }
     
@@ -404,7 +429,7 @@ extension FootswitchEditViewController: UITextFieldDelegate {
 }
 
 extension FootswitchEditViewController: BanksControllerDelegate {
-   
+    
     func didCreateNew(bank: Bank) {
         currentBank = bank
         openBankNameEdit()
@@ -419,12 +444,18 @@ extension FootswitchEditViewController: BanksControllerDelegate {
         footswitchEditView.isUserInteractionEnabled = false
         self.view.addSubview(renameDeleteView)
         let size = CGSize(width: self.view.bounds.width * 0.5, height: 190)
-        let renameDeleteFrame = CGRect(x: self.view.bounds.width * 0.25, y: self.view.bounds.height, width: size.width, height: size.height)
+        let renameDeleteFrame = CGRect(x: self.view.bounds.width * 0.25,
+                                       y: self.view.bounds.height,
+                                       width: size.width,
+                                       height: size.height)
         self.renameDeleteView.frame = renameDeleteFrame
         
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.45
-            self.renameDeleteView.frame = CGRect(x: renameDeleteFrame.origin.x, y: self.view.bounds.midY - 120, width: size.width, height: size.height)
+            self.renameDeleteView.frame = CGRect(x: renameDeleteFrame.origin.x,
+                                                 y: self.view.bounds.midY - 120,
+                                                 width: size.width,
+                                                 height: size.height)
         })
     }
 }

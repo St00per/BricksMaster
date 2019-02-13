@@ -26,6 +26,8 @@ class DataBaseManager {
         UserDevicesManager.default.userBricks = bricks.map{ Brick(brickObject: $0) }
         UserDevicesManager.default.userFootswitches = footswitches.map{ Footswitch(footswitchObject: $0) }
         
+        let userFootswitches = UserDevicesManager.default.userFootswitches
+        
         let mappedPresets = presets.map{ Preset(presetObject: $0) }
         let mappedBanks = banks.map{ Bank(bankObject: $0) }
         UserDevicesManager.default.userPresets.append(contentsOf: mappedPresets)

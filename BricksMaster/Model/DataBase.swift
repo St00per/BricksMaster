@@ -24,6 +24,7 @@ class BankObject: Object {
     }
     
     func update(bank: Bank) {
+        //self.id = bank.id
         self.name = bank.name
         self.presets.removeAll()
         for preset in bank.presets {
@@ -32,9 +33,6 @@ class BankObject: Object {
             }
         }
         self.footswitchId = bank.footswitchId
-//        for button in bank.footswitchButtons {
-//            self.footswitchButtons.append(FootswitchButtonObject(footswitchButton: button))
-//        }
         self.empty = bank.empty
     }
     override static func primaryKey() -> String? {
