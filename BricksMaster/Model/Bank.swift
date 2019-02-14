@@ -32,6 +32,9 @@ class Bank {
         for index in 0..<bankObject.presets.count {
             presets[index].id = bankObject.presets[index]
         }
+//        for index in 0...3 {
+//            presets[index].id = bankObject.presets[index]
+//        }
         empty = false
         footswitchId = bankObject.footswitchId
         empty = bankObject.empty

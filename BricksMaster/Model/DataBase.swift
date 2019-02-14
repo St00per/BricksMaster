@@ -30,6 +30,8 @@ class BankObject: Object {
         for preset in bank.presets {
             if let id = preset.id {
                 self.presets.append(id)
+            } else {
+                self.presets.append("")
             }
         }
         self.footswitchId = bank.footswitchId

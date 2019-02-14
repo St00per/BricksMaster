@@ -164,8 +164,8 @@ class FootswitchEditViewController: UIViewController {
         
         currentFootswitch.save()
         
-        self.currentBank?.footswitchId = nil
-        self.currentBank?.save()
+//        self.currentBank?.footswitchId = nil
+//        self.currentBank?.save()
         
         self.currentBank = emptyBank
         banksController?.update()

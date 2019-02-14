@@ -37,6 +37,8 @@ class DataBaseManager {
                 for presetId in object.presets {
                     if let preset = mappedPresets.first(where: { $0.id == presetId } ) {
                         bank.presets.append( preset )
+                    } else {
+                        bank.presets.append(Preset())
                     }
                 }
             }

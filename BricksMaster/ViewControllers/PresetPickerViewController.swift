@@ -54,17 +54,17 @@ class PresetPickerViewController: UIViewController {
     }
     
     func setPresetToFootswitchButton(preset: Preset) {
+ 
+        //let footswitchArray = UserDevicesManager.default.userFootswitches
+        guard let editedFootswitch = self.editedFootswitch, let editedBank = self.editedBank else { return }
+        //guard let footswitchIndex = footswitchArray.firstIndex(of: currentFootswitch) else { return }
         
-        
-        let footswitchArray = UserDevicesManager.default.userFootswitches
-        guard let currentFootswitch = self.editedFootswitch, let currentBank = self.editedBank else { return }
-        guard let footswitchIndex = footswitchArray.firstIndex(of: currentFootswitch) else { return }
-        
-        let bank = UserDevicesManager.default.userFootswitches[footswitchIndex].banks.first{$0.id == currentBank.id}
-        currentBank.presets[footswitchButtonNumber] = preset
-        guard let updatedBank = bank else { return }
-        updatedBank.save()
-        currentFootswitch.save()
+        //let bank = UserDevicesManager.default.userFootswitches[footswitchIndex].banks.first{$0.id == currentBank.id}
+        editedBank.presets[footswitchButtonNumber] = preset
+        //guard let updatedBank = bank else { return }
+        //updatedBank.save()
+        editedBank.save()
+        editedFootswitch.save()
         close()
     }
 
