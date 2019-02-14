@@ -438,11 +438,34 @@ extension FootswitchEditViewController: PinIOModuleManagerDelegate {
 extension FootswitchEditViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        currentBank?.name = bankNameEditTextField.text
-        bankNameEditView.removeFromSuperview()
-        footswitchEditView.alpha = 1
-        footswitchEditView.isUserInteractionEnabled = true
-        guard currentBankButton != nil else { return false}
+        self.currentBank?.name = bankNameEditTextField.text
+        self.currentBank?.empty = false
+        self.currentBank?.footswitchId = self.currentFootswitch?.id
+        currentFootswitch?.selectedBank = currentBank
+        banksController?.update()
+        banksController?.updateSelection()
+        configurePresetButtons()
+        self.currentBank?.save()
+        self.currentFootswitch?.save()
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shadowView.alpha = 0.0
+            let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
+            self.bankNameEditView.frame = CGRect(x: self.view.bounds.width * 0.05,
+                                                 y: self.view.bounds.height,
+                                                 width: size.width,
+                                                 height: size.height)
+        }) { (isFinished) in
+            self.becomeFirstResponder()
+            self.footswitchEditView.isUserInteractionEnabled = true
+            self.bankNameEditView.removeFromSuperview()
+        }
+//        currentBank?.name = bankNameEditTextField.text
+//        bankNameEditView.removeFromSuperview()
+//        shadowView.removeFromSuperview()
+//        footswitchEditView.alpha = 1
+//        footswitchEditView.isUserInteractionEnabled = true
+//        guard currentBankButton != nil else { return false}
         return true
     }
 }
@@ -451,7 +474,6 @@ extension FootswitchEditViewController: BanksControllerDelegate {
     
     func didCreateNew(bank: Bank) {
         currentBank = bank
-        
         openBankNameEdit()
     }
     

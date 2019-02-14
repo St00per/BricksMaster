@@ -68,10 +68,10 @@ class DataBaseManager {
 //                }
 //            }
             
-            let emptyBanksCount = 4 - footswitch.banks.count
-            for _ in 0..<emptyBanksCount {
-                footswitch.banks.append(Bank(id: UUID().uuidString, name: ""))
-            }
+//            let emptyBanksCount = 4 - footswitch.banks.count
+//            for _ in 0..<emptyBanksCount {
+//                footswitch.banks.append(Bank(id: UUID().uuidString, name: ""))
+//            }
         }
         
         for brick in UserDevicesManager.default.userBricks {
