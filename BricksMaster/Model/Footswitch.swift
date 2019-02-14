@@ -20,6 +20,7 @@ class Footswitch: Observable {
     var customButton: CustomButton = CustomButton()
     var selectedBank: Bank?
     var banks: [Bank] = []
+    var banksIds: [String] = []
     var presets: [Preset] = []
     var selectedPreset: Preset?
     
@@ -71,7 +72,9 @@ class Footswitch: Observable {
         super.init()
         self.new = false
         self.footswitchObject = footswitchObject
-        
+        for bank in footswitchObject.banks {
+            banksIds.append(bank)
+        }
         let emptyBanksCount = 4 - banks.count
     }
     

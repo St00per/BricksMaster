@@ -43,7 +43,14 @@ class DataBaseManager {
         }
         
         for footswitch in UserDevicesManager.default.userFootswitches {
-            footswitch.banks = mappedBanks.filter{ $0.footswitchId == footswitch.id }
+            //footswitch.banks = mappedBanks.filter{ $0.footswitchId == footswitch.id }
+            for index in 0...3 {
+                let bank = mappedBanks.first { $0.id == footswitch.banksIds[index]}
+                if let appendedBank = bank {
+                    footswitch.banks.append(appendedBank)
+                }
+            }
+            
             footswitch.presets = mappedPresets.filter{ $0.presetObject?.footswitch == footswitch.id}
             footswitch.selectedBank = mappedBanks.first{$0.id == footswitch.footswitchObject?.selectedBank}
             footswitch.selectedPreset = mappedPresets.first{$0.id == footswitch.footswitchObject?.selectedPreset}

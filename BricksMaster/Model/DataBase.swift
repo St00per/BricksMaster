@@ -114,6 +114,7 @@ class FootswitchObject: Object {
         for bank in footswitch.banks {
             if let id = bank.id {
                 banks.append(id)
+                //print(banks)
             }
         }
         presets.removeAll()
