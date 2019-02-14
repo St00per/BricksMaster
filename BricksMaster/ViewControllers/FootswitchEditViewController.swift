@@ -84,16 +84,14 @@ class FootswitchEditViewController: UIViewController {
         fourthPresetButtonView.layer.cornerRadius = 4
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        UserDevicesManager.default.footswitchController = self
-        banksController?.updateSelection()
-        configurePresetButtons()
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         shadowView.frame = self.view.bounds
+        UserDevicesManager.default.footswitchController = self
+        banksController?.update()
+        banksController?.updateSelection()
+        
+        configurePresetButtons()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -221,18 +219,19 @@ class FootswitchEditViewController: UIViewController {
     
     @IBAction func saveEditedBankName(_ sender: UIButton) {
         self.renameDeleteView.removeFromSuperview()
-        currentBank?.name = bankNameEditTextField.text
-        currentBank?.empty = false
-        if let selected = currentFootswitch?.banks.firstIndex(where: { (bank) -> Bool in
-            return bank.id == currentBank?.id
-        }) {
-            banksCollection.selectItem(at: IndexPath(item: selected, section: 0), animated: false, scrollPosition: .left)
-        }
+        self.currentBank?.name = bankNameEditTextField.text
+        self.currentBank?.empty = false
+        
         currentFootswitch?.selectedBank = currentBank
         banksController?.update()
         banksController?.updateSelection()
-        currentBank?.footswitchId = currentFootswitch?.id
-        currentBank?.save()
+        configurePresetButtons()
+        
+
+        
+        self.currentBank?.save()
+        self.currentFootswitch?.save()
+        
         UIView.animate(withDuration: 0.3, animations: {
             self.shadowView.alpha = 0.0
             let size = CGSize(width: self.view.bounds.width * 0.9, height: 190)
@@ -446,7 +445,7 @@ extension FootswitchEditViewController: UITextFieldDelegate {
         bankNameEditView.removeFromSuperview()
         footswitchEditView.alpha = 1
         footswitchEditView.isUserInteractionEnabled = true
-        guard let button = currentBankButton else { return false}
+        guard currentBankButton != nil else { return false}
         return true
     }
 }
