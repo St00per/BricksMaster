@@ -64,6 +64,11 @@ class  FootswitchEditBankCell: UICollectionViewCell {
     }
 
     @objc func openRenameDeleteView() {
+        guard self.bank?.empty == false else { return }
+        if longPressRecognizer?.state == .began {
+            guard let currentBank = self.bank else { return }
+            delegate?.selectedBank(bank: currentBank)
+        }
         longPressRecognizer?.state = .ended
         delegate?.openRenameDeleteView()
     }

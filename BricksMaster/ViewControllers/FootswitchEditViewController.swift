@@ -460,6 +460,9 @@ extension FootswitchEditViewController: BanksControllerDelegate {
     
     func selectedBank(bank: Bank) {
         currentBank = bank
+        currentFootswitch?.selectedBank = bank
+        banksController?.update()
+        banksController?.updateSelection()
         configurePresetButtons()
     }
     
