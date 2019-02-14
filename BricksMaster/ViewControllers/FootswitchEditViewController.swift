@@ -221,14 +221,11 @@ class FootswitchEditViewController: UIViewController {
         self.renameDeleteView.removeFromSuperview()
         self.currentBank?.name = bankNameEditTextField.text
         self.currentBank?.empty = false
-        
+        self.currentBank?.footswitchId = self.currentFootswitch?.id
         currentFootswitch?.selectedBank = currentBank
         banksController?.update()
         banksController?.updateSelection()
         configurePresetButtons()
-        
-
-        
         self.currentBank?.save()
         self.currentFootswitch?.save()
         
@@ -454,6 +451,7 @@ extension FootswitchEditViewController: BanksControllerDelegate {
     
     func didCreateNew(bank: Bank) {
         currentBank = bank
+        
         openBankNameEdit()
     }
     
