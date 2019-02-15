@@ -52,7 +52,7 @@ extension BanksListCollectionViewCell: UICollectionViewDataSource, UICollectionV
         let presets = currentBank.presets
         var actualPresetCount = 0
         for preset in presets {
-            if preset.id != nil {
+            if preset.id != nil, preset.id != "" {
                 actualPresetCount += 1
             }
         }
@@ -63,7 +63,8 @@ extension BanksListCollectionViewCell: UICollectionViewDataSource, UICollectionV
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PresetsListCell", for: indexPath) as? PresetsListCollectionViewCell else {
             return UICollectionViewCell()
         }
-        let actualPresets = currentBank.presets.filter{ $0.id != nil }
+        var actualPresets = currentBank.presets.filter{ $0.id != nil}
+        actualPresets = actualPresets.filter { $0.id != ""}
         let actualPreset = currentFootswitch?.presets.first{ $0.id == actualPresets[indexPath.row].id}
         guard let preset = actualPreset else {
             return UICollectionViewCell()
